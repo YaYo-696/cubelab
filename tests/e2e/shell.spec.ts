@@ -9,7 +9,7 @@ test('navegación móvil, contenido diferido, persistencia y mezcla offline', as
     await context.setOffline(true);
     await page.reload();
     await page.getByLabel('Evento').selectOption('222');
-    await page.getByRole('button', { name: 'Generar mezcla' }).click();
+    await page.getByRole('button', { name: 'Siguiente mezcla' }).click();
     await expect(page.getByText('Mezcla generada con criterios WCA')).toBeVisible({ timeout: 60000 });
     await page.getByRole('link', { name: 'Academia' }).click();
     await page.getByRole('button', { name: 'Abrir' }).click();

@@ -1,0 +1,183 @@
+.timer-page {
+    display: grid;
+    gap: 16px;
+}
+.session-bar,
+.actions,
+.timer-page form {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.timer-page button {
+    margin: 0;
+    width: fit-content;
+}
+.session-bar label,
+.timer-page label {
+    font-size: 0.94rem;
+}
+.timer-page input:not([type='checkbox']),
+.timer-page textarea {
+    padding: 8px;
+    border: 1px solid #54656e;
+    border-radius: 5px;
+    background: #16232d;
+    color: inherit;
+    font: inherit;
+}
+.timer-page input[type='number'] {
+    width: 6em;
+}
+.timer-page input[type='checkbox'] {
+    accent-color: #a3e8c9;
+}
+.mix-board,
+.times,
+.timer-page details {
+    padding: 18px 22px;
+    border: 1px solid #394b55;
+    border-radius: 12px;
+    background: #1a2630;
+}
+.mix-board {
+    display: grid;
+    grid-template-columns: 1fr minmax(100px, 25%);
+    gap: 16px;
+    align-items: center;
+}
+.mix-board svg {
+    width: 100%;
+    max-height: 170px;
+}
+.mix-board h2,
+.times h2 {
+    margin: 0;
+}
+.mix-board .sequence {
+    font-size: clamp(18px, 3vw, 26px);
+    margin: 0.5em 0;
+}
+.mix-board small {
+    color: #9ddfc1;
+}
+.mix-board .actions {
+    margin-top: 14px;
+}
+.timer-stage {
+    position: relative;
+    background: #15232c;
+    border: 1px solid #435962;
+    border-radius: 12px;
+}
+.touch-zone {
+    min-height: 200px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 8px;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    cursor: pointer;
+    text-align: center;
+}
+.timer-stage.expanded {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    border: 0;
+    border-radius: 0;
+    overscroll-behavior: none;
+    touch-action: none;
+}
+.expanded .touch-zone {
+    height: 100%;
+    box-sizing: border-box;
+}
+.timer-stage .digits {
+    font:
+        600 clamp(48px, 12vw, 128px) / 1.2 ui-monospace,
+        monospace;
+    font-variant-numeric: tabular-nums;
+}
+.phase-holding {
+    color: #ffa198;
+}
+.phase-ready {
+    color: #90f4b7;
+}
+.phase-inspecting {
+    color: #ffda86;
+}
+.phase-running {
+    background: #10181f;
+}
+.phase-name {
+    font-weight: bold;
+}
+.exit-touch {
+    position: absolute;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    left: 16px;
+}
+.screen-reader {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+}
+.timer-page details summary {
+    cursor: pointer;
+}
+.timer-page details[open] summary {
+    margin-bottom: 14px;
+}
+.timer-page textarea {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+}
+.times ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    list-style: none;
+    padding: 0;
+}
+.times li {
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: #263945;
+}
+.times li span {
+    display: block;
+    overflow-wrap: anywhere;
+}
+.timer-page button[aria-pressed='true'] {
+    outline: 2px solid #fff;
+}
+.timer-page [role='alert'] {
+    color: #ffaca6;
+}
+@media (max-width: 600px) {
+    .mix-board {
+        grid-template-columns: minmax(0, 1fr) 90px;
+        padding: 12px;
+        gap: 6px;
+    }
+    .touch-zone {
+        min-height: 170px;
+    }
+    .session-bar {
+        gap: 8px;
+    }
+    .timer-page button {
+        min-height: 44px;
+    }
+}
