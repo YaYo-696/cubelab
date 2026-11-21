@@ -11,6 +11,16 @@ npm install
 npm run dev
 ```
 
+## Diagnóstico de aceptación en Windows
+
+Desde PowerShell, en la raíz del repo con las dependencias instaladas, ejecutar:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\diagnostico.ps1 -ConE2E
+```
+
+El diagnóstico comprueba dependencias y tipos, ejecuta lint, filtros, Vitest y build, revisa el manifiesto y el service worker, y ejecuta Playwright con Edge. Devuelve código 0 si pasa y guarda el detalle en `diagnostico-*.log`. La opción `-Rapido` ejecuta un subconjunto. Para instalar desde cero según el lockfile, usar `npm.cmd ci`.
+
 ## Comprobaciones
 
 ```sh
@@ -29,3 +39,29 @@ Vitest genera 1.000 mezclas por modalidad activa y comprueba cada una con un mod
 ## Teléfono y PWA
 
 Para abrir la interfaz en la misma Wi-Fi, ejecutar `npm run dev -- --host 0.0.0.0` y usar la dirección Network que imprime Vite. Para probar instalación y workers que requieren un contexto seguro, servir el contenido de `dist/` por HTTPS con un certificado de confianza en el teléfono. En PC se puede usar `npm run preview` y abrir localhost. En Android usar la opción de instalar del navegador. En iOS, abrir en Safari y elegir Compartir → Agregar al inicio. Tras la primera carga completa, activar el modo avión, cerrar, reabrir y generar una mezcla de cada evento.
+
+### Prueba de producción en un teléfono
+
+**Android por USB**. Con las Android Platform Tools en PATH, la depuración USB activada y el teléfono autorizado, ejecutar en el PC:
+
+```powershell
+adb devices
+adb reverse tcp:4173 tcp:4173
+npm.cmd run preview -- --host 127.0.0.1 --port 4173 --strictPort
+```
+
+En Chrome del teléfono abrir `http://localhost:4173`. El reenvío permite usar localhost como contexto seguro. Instalar CubeLab desde el menú de Chrome, abrirla una vez, cerrar, desconectar el cable y activar modo avión con Wi-Fi apagado. Reabrir desde el icono y generar una mezcla para 2×2, 3×3 y 3×3 a ciegas. Comprobar la etiqueta de criterios WCA y abrir una lección. Cambiar el idioma, cerrar y confirmar que se conserva al reabrir.
+
+**Android o iPhone por Wi-Fi con HTTPS local**. Con mkcert instalado en el PC, seleccionar la IPv4 de la interfaz Wi-Fi usando `ipconfig`. En PowerShell, desde el repo y con el build generado:
+
+```powershell
+$ip = Read-Host 'IPv4 Wi-Fi del PC'
+$cert = Join-Path $env:TEMP 'cubelab-cert.pem'
+$key = Join-Path $env:TEMP 'cubelab-key.pem'
+mkcert -cert-file $cert -key-file $key $ip
+mkcert -CAROOT
+Write-Host "Abrir https://${ip}:4173"
+npx.cmd --yes --package=http-server@14.1.1 -- http-server dist -a $ip -p 4173 -S -C $cert -K $key -c-1
+```
+
+Transferir al teléfono únicamente el certificado público `rootCA.pem` de la carpeta indicada por `mkcert -CAROOT`. Instalarlo como CA de confianza. En iOS activar también la confianza total para esa raíz en Ajustes → General → Información → Ajustes de confianza de certificados. Con ambos dispositivos en la misma Wi-Fi, abrir la URL impresa en Chrome o Safari y comprobar que el certificado se acepta. En iPhone usar Compartir → Agregar al inicio. Repetir la comprobación en modo avión indicada arriba. Cerrar el servidor con Ctrl+C al terminar y retirar la confianza de prueba del teléfono si se habilitó solo para esta sesión.

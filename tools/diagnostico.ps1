@@ -1,13 +1,13 @@
 ﻿<#
   CubeLab - Diagnostico del proyecto (Fase 0)
   Revisa herramientas, git, dependencias, el navegador de Playwright
-  y corre las comprobaciones del proyecto. No modifica nada salvo crear
-  el archivo de log y la carpeta dist/ (por el build).
+  y corre las comprobaciones del proyecto. Genera
+  el log, dist/ y los resultados de Playwright.
 
   Uso (desde la carpeta del proyecto):
-    powershell -ExecutionPolicy Bypass -File .\diagnostico.ps1
-    powershell -ExecutionPolicy Bypass -File .\diagnostico.ps1 -Rapido      (sin tests largos, build ni e2e)
-    powershell -ExecutionPolicy Bypass -File .\diagnostico.ps1 -ConE2E      (incluye la prueba e2e)
+    powershell -ExecutionPolicy Bypass -File .\tools\diagnostico.ps1
+    powershell -ExecutionPolicy Bypass -File .\tools\diagnostico.ps1 -Rapido      (sin tests largos, build ni e2e)
+    powershell -ExecutionPolicy Bypass -File .\tools\diagnostico.ps1 -ConE2E      (incluye la prueba e2e)
 #>
 param(
   [switch]$Rapido,
@@ -17,8 +17,8 @@ param(
 $ErrorActionPreference = 'Continue'
 try { [Console]::OutputEncoding = [Text.Encoding]::UTF8 } catch {}
 
-$root = $PSScriptRoot
-if (-not $root) { $root = (Get-Location).Path }
+$root = Split-Path -Parent $PSScriptRoot
+if ($Rapido -and $ConE2E) { throw 'Usa -ConE2E para el diagnóstico completo o -Rapido para el abreviado.' }
 Set-Location $root
 
 $stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
@@ -73,12 +73,6 @@ function Get-JsonVersion([string]$path) {
   return $null
 }
 
-function Get-FolderMB([string]$path) {
-  $sum = (Get-ChildItem $path -Recurse -File -ErrorAction SilentlyContinue | Measure-Object Length -Sum).Sum
-  if (-not $sum) { return 0 }
-  return [math]::Round($sum / 1MB, 1)
-}
-
 Write-Log "Diagnostico CubeLab - $(Get-Date)"
 Write-Log "Carpeta: $root"
 Write-Log "Windows: $([Environment]::OSVersion.VersionString) | PowerShell $($PSVersionTable.PSVersion)"
@@ -86,7 +80,7 @@ Write-Log "Windows: $([Environment]::OSVersion.VersionString) | PowerShell $($PS
 # ------------------------------------------------------------------
 Write-Section '1. Carpeta del proyecto'
 if (-not (Test-Path (Join-Path $root 'package.json'))) {
-  Add-Result 'Carpeta' 'FALLA' "No hay package.json en $root. Copia este script a la carpeta del proyecto y correlo ahi."
+  Add-Result 'Carpeta' 'FALLA' "No hay package.json en $root. Ejecuta tools\diagnostico.ps1 desde una copia completa del proyecto."
   Write-Host "`nLog guardado en: $log"
   exit 1
 }
@@ -162,7 +156,7 @@ if ($cubingInstalled -and $cubingInstalled -eq $cubingWanted) { Add-Result 'cubi
 elseif ($cubingInstalled) { Add-Result 'cubing' 'AVISO' "instalada $cubingInstalled, pero package.json pide $cubingWanted" }
 else { Add-Result 'cubing' 'FALLA' 'cubing no esta instalada' }
 
-$latest = Invoke-Step 'npm view cubing' 'npm view cubing version'
+$latest = Invoke-Step 'npm view cubing' 'npm view cubing version --fetch-retries=0 --fetch-timeout=5000'
 if ($latest.Code -eq 0) {
   $lv = ($latest.Out | Select-Object -Last 1).ToString().Trim()
   if ($lv -eq $cubingWanted) { Add-Result 'cubing (npm)' 'OK' "La fijada es la ultima publicada ($lv)" }
@@ -177,58 +171,22 @@ else { Add-Result 'Playwright' 'FALLA' '@playwright/test no esta instalado' }
 
 # ------------------------------------------------------------------
 Write-Section '5. Navegadores de Playwright'
-$pwDir = Join-Path $env:LOCALAPPDATA 'ms-playwright'
-$chromiumReady = $false
-if (Test-Path $pwDir) {
-  $dirs = @(Get-ChildItem $pwDir -Directory -ErrorAction SilentlyContinue | Where-Object { $_.Name -notlike '.*' })
-  if ($dirs.Count -eq 0) { Add-Result 'ms-playwright' 'AVISO' 'La carpeta existe pero esta vacia' }
-  foreach ($d in $dirs) {
-    $mb = Get-FolderMB $d.FullName
-    $marker = Test-Path (Join-Path $d.FullName 'INSTALLATION_COMPLETE')
-    $exe = Get-ChildItem $d.FullName -Recurse -File -Include 'chrome.exe', 'headless_shell.exe', 'chrome-headless-shell.exe' -ErrorAction SilentlyContinue | Select-Object -First 1
-    $exeTxt = 'sin ejecutable'
-    if ($exe) { $exeTxt = "ejecutable: $($exe.Name)" }
-    if ($marker) {
-      Add-Result $d.Name 'OK' "instalacion completa ($mb MB, $exeTxt)"
-      if ($d.Name -like 'chromium-*' -and $exe) { $chromiumReady = $true }
-    } else {
-      Add-Result $d.Name 'FALLA' "instalacion INCOMPLETA: falta la marca INSTALLATION_COMPLETE ($mb MB, $exeTxt)"
-    }
-  }
+$browser = $env:CUBELAB_E2E_BROWSER
+if (-not $browser) { $browser = 'msedge' }
+if ($browser -eq 'msedge') {
+  $edgePaths = @(
+    (Join-Path ${env:ProgramFiles(x86)} 'Microsoft\Edge\Application\msedge.exe'),
+    (Join-Path $env:ProgramFiles 'Microsoft\Edge\Application\msedge.exe')
+  )
+  $edge = $edgePaths | Where-Object { Test-Path -LiteralPath $_ } | Select-Object -First 1
+  if ($edge) { Add-Result 'Microsoft Edge' 'OK' $edge }
+  else { Add-Result 'Microsoft Edge' 'FALLA' 'Falta el canal estable de Edge.' }
+} elseif ($browser -eq 'chromium') {
+  Add-Result 'Navegador' 'OK' 'Chromium seleccionado. La prueba e2e verifica su arranque.'
 } else {
-  Add-Result 'ms-playwright' 'AVISO' "No existe $pwDir (ningun navegador instalado)"
+  Add-Result 'Navegador' 'FALLA' "CUBELAB_E2E_BROWSER desconocido: $browser"
 }
 
-$zips = @(Get-ChildItem $env:TEMP -Filter 'playwright-download-*' -ErrorAction SilentlyContinue)
-foreach ($z in $zips) {
-  Add-Result 'Temporal' 'AVISO' "Quedo una descarga: $($z.FullName) ($([math]::Round($z.Length / 1MB, 1)) MB)"
-}
-
-$nodeProcs = @(Get-Process node -ErrorAction SilentlyContinue)
-if ($nodeProcs.Count -gt 0) {
-  Add-Result 'Procesos node' 'AVISO' "$($nodeProcs.Count) proceso(s) node abiertos: si 'playwright install' sigue colgado en otra ventana, cierralo con Ctrl+C"
-} else {
-  Add-Result 'Procesos node' 'OK' 'Ninguno colgado'
-}
-
-$edgePaths = @(
-  (Join-Path ${env:ProgramFiles(x86)} 'Microsoft\Edge\Application\msedge.exe'),
-  (Join-Path $env:ProgramFiles 'Microsoft\Edge\Application\msedge.exe')
-)
-$edge = $edgePaths | Where-Object { $_ -and (Test-Path $_) } | Select-Object -First 1
-if ($edge) { Add-Result 'Microsoft Edge' 'OK' "Disponible como alternativa para e2e: $edge" }
-else { Add-Result 'Microsoft Edge' 'AVISO' 'No encontre Edge instalado' }
-
-$defender = Get-Command Get-MpComputerStatus -ErrorAction SilentlyContinue
-if ($defender) {
-  try {
-    $mp = Get-MpComputerStatus -ErrorAction Stop
-    if ($mp.RealTimeProtectionEnabled) { Add-Result 'Defender' 'AVISO' 'Proteccion en tiempo real activa (puede volver muy lenta la descompresion de Playwright)' }
-    else { Add-Result 'Defender' 'OK' 'Proteccion en tiempo real desactivada' }
-  } catch { }
-}
-
-# ------------------------------------------------------------------
 Write-Section '6. Comprobaciones del proyecto'
 
 $tsc = Invoke-Step 'TypeScript' 'node_modules\.bin\tsc --noEmit'
@@ -264,8 +222,8 @@ if ($Rapido) {
 
 if (-not $ConE2E) {
   Add-Result 'Tests e2e' 'OMITIDO' 'usa -ConE2E para incluirlos'
-} elseif (-not $chromiumReady) {
-  Add-Result 'Tests e2e' 'OMITIDO' 'Chromium de Playwright no esta completo'
+} elseif ($build.Code -ne 0) {
+  Add-Result 'Tests e2e' 'FALLA' 'El build de producción falló.'
 } else {
   $e2e = Invoke-Step 'Tests e2e' 'npm run test:e2e'
   if ($e2e.Code -eq 0) { Add-Result 'Tests e2e' 'OK' "pasaron ($($e2e.Secs) s)" }
@@ -286,3 +244,6 @@ else { Write-Host $msg -ForegroundColor Green }
 Write-Log $msg
 Write-Host ''
 Write-Host "Log completo guardado en: $log" -ForegroundColor Cyan
+
+if ($fallas -gt 0) { exit 1 }
+exit 0
