@@ -38,6 +38,7 @@ MVP: solo 2x2 y 3x3. La arquitectura debe permitir agregar puzzles nuevos como "
 - Trabajamos por FASES. Te pasaré el prompt de cada fase. No avances a la siguiente sin mi "ok fase N".
 - Al empezar una fase: resume en 5–10 líneas lo que vas a hacer y empieza. Solo pregunta si estás bloqueado.
 - Al cerrar una fase entrega: (a) lista de archivos creados o modificados, (b) comandos para correr y probar, (c) resultados de tests y lint, (d) cómo probarla manualmente en PC y teléfono, (e) pendientes y riesgos.
-- Haz commits pequeños con mensajes claros (convención: feat/fix/test/docs/refactor).
+- El entorno de Codex tiene restricciones de escritura en .git y de ejecución de subprocesos (spawn EPERM). Deja los cambios en los archivos. No crees commits ni bundles. Al cerrar cada fase, entrega los comandos exactos git add y git commit -m para un commit por bloque lógico, en orden, con la convención feat/fix/test/docs/refactor.
+- El usuario confirma la aceptación de cada fase ejecutando tools\diagnostico.ps1 -ConE2E en Windows. Si se añade un tipo de prueba nuevo, intégralo en ese script.
 - Mantén actualizados README.md, AGENTS.md (si cambian reglas o decisiones) y docs/DECISIONES.md (registro breve de decisiones técnicas con su motivo).
 - Si una petición mía contradice estas reglas, avísame antes de hacerla.
