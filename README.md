@@ -1,6 +1,6 @@
 # CubeLab
 
-Esqueleto de la fase 0 para PC y teléfono. Incluye navegación en español e inglés, dos módulos de cubo, un ejemplo de contenido diferido y generación de mezclas para 2×2, 3×3 y 3×3 a ciegas. El cronometraje interactivo corresponde a la fase 1. [Arquitectura](docs/ARQUITECTURA.md) · [Decisiones](docs/DECISIONES.md)
+Cronómetro offline de speedcubing para 2×2, 3×3 y 3×3 a ciegas. Guarda el intento, la mezcla y sus penalizaciones en la sesión del evento. [Arquitectura](docs/ARQUITECTURA.md) · [Decisiones](docs/DECISIONES.md)
 
 ## Arranque en PC
 
@@ -65,3 +65,11 @@ npx.cmd --yes --package=http-server@14.1.1 -- http-server dist -a $ip -p 4173 -S
 ```
 
 Transferir al teléfono únicamente el certificado público `rootCA.pem` de la carpeta indicada por `mkcert -CAROOT`. Instalarlo como CA de confianza. En iOS activar también la confianza total para esa raíz en Ajustes → General → Información → Ajustes de confianza de certificados. Con ambos dispositivos en la misma Wi-Fi, abrir la URL impresa en Chrome o Safari y comprobar que el certificado se acepta. En iPhone usar Compartir → Agregar al inicio. Repetir la comprobación en modo avión indicada arriba. Cerrar el servidor con Ctrl+C al terminar y retirar la confianza de prueba del teléfono si se habilitó solo para esta sesión.
+
+### Aceptación de la fase 1
+
+En Windows ejecutar `npm.cmd ci` y después `powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\diagnostico.ps1 -ConE2E`. Vitest incluye los límites del timer, las entradas manuales y el repositorio Dexie con fake-indexeddb. Playwright prueba la PWA de producción en Edge, el guardado por teclado, la recarga y una inspección con +2 mediante un reloj simulado.
+
+En PC, seleccionar la modalidad y la sesión. Con inspección habilitada, una pulsación de espacio inicia la inspección. Mantener espacio hasta «Listo», soltar para correr y pulsar una tecla para detener. Probar soltar antes del umbral, activar y quitar +2 y DNF, comentar y borrar/deshacer. En ingreso manual, 1:02.34 y 62.34 deben producir el mismo tiempo. Para probar notación, introducir R U3 y comprobar que se señala el 3. En 3×3 a ciegas, la primera presión ya prepara el timer.
+
+En Android abrir la PWA de producción con adb reverse como se indica arriba. Verificar que se ve «Últimos cinco tiempos» y anotar el contador de una sesión. Activar modo avión, desconectar el USB y completar **12 intentos cronometrados consecutivos en la misma sesión**. Mantener el dedo hasta «Listo», soltar para correr y tocar para detener. Verificar que el contador aumentó en 12, anotar los últimos cinco y el ao5, cerrar por completo y reabrir desde el icono. El contador, los cinco tiempos y el ao5 deben coincidir. Si el teléfono ya tenía la fase 0, abrir primero con conexión al servidor actualizado y dejar que el service worker descargue la nueva versión.
