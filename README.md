@@ -17,9 +17,10 @@ npm run dev
 npm run lint
 npm test
 npm run build
-npx playwright install chromium
 npm run test:e2e
 ```
+
+En Windows, Playwright usa el Microsoft Edge instalado mediante el canal `msedge`. En otros sistemas usa Chromium de Playwright. Para elegir Chromium explícitamente en otro equipo Windows, usar `$env:CUBELAB_E2E_BROWSER = "chromium"` en PowerShell. En CI se puede fijar `CUBELAB_E2E_BROWSER=chromium` en el entorno del job, ejecutar `npx playwright install --with-deps chromium` allí y correr el build y los e2e. Para volver al valor predeterminado en PowerShell, ejecutar `Remove-Item Env:CUBELAB_E2E_BROWSER -ErrorAction SilentlyContinue`.
 
 El filtro también tiene una prueba reproducible sin dependencias externas con `node --experimental-strip-types --test tests/filter.mjs`. Usa candidatos controlados e incluye rechazos intencionados.
 
