@@ -22,7 +22,7 @@ npm run test:e2e
 
 En Windows, Playwright usa el Microsoft Edge instalado mediante el canal `msedge`. En otros sistemas usa Chromium de Playwright. Para elegir Chromium explícitamente en otro equipo Windows, usar `$env:CUBELAB_E2E_BROWSER = "chromium"` en PowerShell. En CI se puede fijar `CUBELAB_E2E_BROWSER=chromium` en el entorno del job, ejecutar `npx playwright install --with-deps chromium` allí y correr el build y los e2e. Para volver al valor predeterminado en PowerShell, ejecutar `Remove-Item Env:CUBELAB_E2E_BROWSER -ErrorAction SilentlyContinue`.
 
-El filtro también tiene una prueba reproducible sin dependencias externas con `node --experimental-strip-types --test tests/filter.mjs`. Usa candidatos controlados e incluye rechazos intencionados.
+`npm run test:filter` verifica con KPuzzle las distancias exactas a ambos lados del umbral en las 24 orientaciones y recorre 1.000 muestras por modalidad.
 
 Vitest genera 1.000 mezclas por modalidad activa y comprueba cada una con un modelo independiente de cubing.js. El test de navegador sirve el build de producción, activa el modo sin conexión y pide una mezcla. `npm run format` formatea el proyecto con Prettier.
 

@@ -1,49 +1,39 @@
-// Run with node --experimental-strip-types tests/filter.mjs (no npm packages needed).
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { generate } from '../src/workers/generate.ts';
-import { cubeModel, orientations, turns } from '../src/puzzles/cube.ts';
+import { faceTurns, makeOracle } from './distance-oracle.ts';
+
 for (const [puzzle, event] of [['222', '222'], ['333', '333'], ['333', '333bf']]) {
-    test(event + ' · 1.000 secuencias controladas y rechazo de candidatos resueltos', async () => {
-        const model = cubeModel(puzzle === '222' ? 2 : 3);
-        const oneTurn = new Set();
-        for (const rotation of orientations) {
-            const root = model.apply(model.solved, rotation);
-            oneTurn.add(root);
-            for (const turn of turns)
-                oneTurn.add(model.apply(root, turn));
-        }
-        // Independent search direction: meet the precomputed one-turn sphere
-        // from the candidate. For 2×2, two more turns cover distances 0..3.
-        function belowThreshold(state) {
-            if (oneTurn.has(state))
-                return true;
-            if (puzzle === '333')
-                return false;
-            for (const a of turns) {
-                const middle = model.apply(state, a);
-                if (oneTurn.has(middle))
-                    return true;
-                for (const b of turns)
-                    if (oneTurn.has(model.apply(middle, b)))
-                        return true;
-            }
-            return false;
+    test(event + ' · distancia exacta, rotaciones y 1.000 muestras', async t => {
+        const oracle = await makeOracle(puzzle);
+        const signal = new globalThis.AbortController().signal;
+        const cases = puzzle === '222' ? ['', 'R', 'R U', 'R U F', 'R U F R'] : ['', 'R', 'R U'];
+        const minimum = cases.length - 1;
+        for (const [distance, setup] of cases.entries()) {
+            await t.test('distancia ' + distance + ' en las 24 orientaciones', async () => {
+                for (const rotation of oracle.rotations) {
+                    const candidate = (setup + ' ' + rotation).trim();
+                    // Verify the expected distance before injecting the candidate.
+                    assert.equal(oracle.distanceAtBoundary(candidate), distance, candidate);
+                    const inputs = distance < minimum ? [candidate, cases[minimum]] : [candidate];
+                    let calls = 0;
+                    const result = await generate(puzzle, event, signal, async () => {
+                        assert.ok(calls < inputs.length, 'Se rechazó el estado en el umbral: ' + candidate);
+                        return inputs[calls++];
+                    });
+                    assert.equal(calls, inputs.length, 'Se aceptó un estado demasiado próximo: ' + candidate);
+                    assert.equal(oracle.distanceAtBoundary(result), minimum);
+                }
+            });
         }
         let seed = 40621;
         function nextTurn() {
             seed = (Math.imul(1664525, seed) + 1013904223) >>> 0;
-            return turns[seed % turns.length];
+            return faceTurns[seed % faceTurns.length];
         }
-        for (let sample = 0; sample < 1000; sample++) {
-            let attempts = 0;
-            const alg = await generate(puzzle, event, new globalThis.AbortController().signal, async () => {
-                if (attempts++ === 0)
-                    return "U F F F2 U'";
-                return Array.from({ length: 22 }, nextTurn).join(' ');
-            });
-            assert.ok(attempts >= 2);
-            assert.equal(belowThreshold(model.apply(model.solved, alg)), false, alg);
+        for (let i = 0; i < 1000; i++) {
+            const result = await generate(puzzle, event, signal, async () => Array.from({ length: 22 }, nextTurn).join(' '));
+            assert.equal(oracle.below(result), false, result);
         }
     });
 }
