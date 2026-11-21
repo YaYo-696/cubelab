@@ -12,8 +12,8 @@ test('navegación móvil, contenido diferido, persistencia y mezcla offline', as
     await page.getByRole('button', { name: 'Siguiente mezcla' }).click();
     await expect(page.getByText('Mezcla generada con criterios WCA')).toBeVisible({ timeout: 60000 });
     await page.getByRole('link', { name: 'Academia' }).click();
-    await page.getByRole('button', { name: 'Notación' }).click();
-    await expect(page.getByRole('heading', { name: 'Notación' })).toBeVisible();
+    await page.getByRole('button', { name: 'Notación', exact: true }).click();
+    await expect(page.getByRole('heading', { name: 'Notación', exact: true })).toBeVisible();
     await page.getByRole('link', { name: 'Ajustes' }).click();
     await page.getByLabel('Idioma').selectOption('en');
     await expect(page.getByRole('heading', { name: 'Settings' })).toBeVisible();

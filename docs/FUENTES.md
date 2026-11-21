@@ -10,7 +10,7 @@
 - [J Perm, método principiante 3×3](https://jperm.net/3x3) y [Advanced F2L](https://jperm.net/3x3/cfop/f2l) para la progresión por capas y el trabajo alrededor de los huecos. CubeLab redactó sus propias explicaciones, preparaciones y preguntas.
 - [SpeedcubeQuest, 2-Look OLL y PLL](https://speedcube.quest/guides/2-look-oll-pll) para las formas de aristas y esquinas, T, Ua, Ub y H. CubeLab usa Y para cubrir el reconocimiento diagonal y emplea la secuencia de Z recopilada en [CubeMasters, Algorithm Library](https://cubemasters.online/algorithms).
 - [HCubist, lámina de Ortega](https://hcubist.com/downloads/HCubist-2x2-Ortega-Sheet.pdf) para los siete casos OLL y los cinco tipos PBL. En 2×2 se sustituyen los giros anchos de las secuencias T y L de 3×3 por sus formas de giros de cara. El PBL de una capa usa T y Y. [Ortega de Kevin Gittemeier](https://www.kevingittemeier.com/2x2-cube-ortega-tutorial/) documenta la variante de una barra que usa CubeLab. La hoja de HCubist documenta los casos de dos diagonales y dos adyacencias.
-- Las variantes de agarre son conjugaciones de la misma secuencia por un cambio de frente. La variante final explicita un giro U para practicar el ajuste. Ambas se validan con la misma prueba que la secuencia principal. Los fingertricks son sugerencias de CubeLab.
+- Las alternativas 2×2 de Sune, H, Pi, U y PBL adyacente con la otra capa resuelta provienen de la [lámina Ortega de HCubist](https://hcubist.com/downloads/HCubist-2x2-Ortega-Sheet.pdf), páginas 2 y 3. Las alternativas 3×3 de Anti-Sune y Z provienen de [SpeedcubeQuest](https://speedcube.quest/guides/2-look-oll-pll). Cada alternativa conserva su propia preparación cuando cambia el ángulo. Los fingertricks son sugerencias de CubeLab.
 
 ## Verificación
 

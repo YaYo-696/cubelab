@@ -38,7 +38,7 @@ export interface Lesson {
     setId: string;
     caseIds: readonly string[];
     quiz: readonly QuizQuestion[];
-    glossary?: boolean;
+    glossary?: 'basic' | 'advanced';
     caseId?: string;
 }
 export interface Course {

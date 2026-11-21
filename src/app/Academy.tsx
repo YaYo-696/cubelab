@@ -21,8 +21,8 @@ function LessonView({
 }: { course: Course; lesson: Lesson; completed: boolean } & Props) {
     const [set, setSet] = useState<AlgSet>(),
         [caseId, setCase] = useState(lesson.caseIds[0]);
-    const [setup, setSetup] = useState<string>(),
-        [variant, setVariant] = useState(lesson.glossary ? -1 : 0),
+    const [position, setPosition] = useState<{ setup: string; caseId: string; variant: number }>(),
+        [variant, setVariant] = useState(lesson.demos.length ? -1 : 0),
         [move, setMove] = useState('');
     const [answers, setAnswers] = useState<number[]>([]),
         [result, setResult] = useState<number>(),
@@ -41,11 +41,11 @@ function LessonView({
         };
     }, [mod, lesson.setId]);
     useEffect(() => {
-        if (!set) return;
+        if (!set || !caseId) return;
         let active = true;
-        predefinedPractice(lesson, set, caseId)
+        predefinedPractice(lesson, set, caseId, variant)
             .then((data) => {
-                if (active) setSetup(data.setup);
+                if (active) setPosition({ ...data, variant });
             })
             .catch(() => {
                 if (active) setError(true);
@@ -53,11 +53,13 @@ function LessonView({
         return () => {
             active = false;
         };
-    }, [lesson, set, caseId]);
+    }, [lesson, set, caseId, variant]);
+    const setup =
+        position?.caseId === caseId && position?.variant === variant ? position?.setup : undefined;
     const cases = set?.cases.filter((c) => lesson.caseIds.includes(c.id));
     const selected = cases?.find((c) => c.id === caseId);
     const puzzle = mod.id === '222' ? '2x2x2' : '3x3x3';
-    const symbol = glossary(mod.id).find((entry) => entry.move === move);
+    const symbol = glossary(mod.id, lesson.glossary).find((entry) => entry.move === move);
     const demo = lesson.demos[0];
     const alg = symbol?.alg ?? (variant === -1 ? demo?.alg : selected?.algorithms[variant]);
     const playerSetup = symbol ? '' : variant === -1 ? demo?.setup : setup;
@@ -71,9 +73,17 @@ function LessonView({
             <p>{t(lesson.bodyKey)}</p>
             {lesson.glossary && (
                 <section>
-                    <h3>{t('aGlossary')}</h3>
+                    <h3>
+                        {t(
+                            lesson.glossary === 'basic'
+                                ? 'aBasicGlossary'
+                                : mod.id === '222'
+                                  ? 'aAdvancedGlossary2'
+                                  : 'aAdvancedGlossary',
+                        )}
+                    </h3>
                     <div className="actions">
-                        {glossary(mod.id).map((entry) => (
+                        {glossary(mod.id, lesson.glossary).map((entry) => (
                             <button
                                 key={entry.move}
                                 onClick={() => setMove(entry.move)}
@@ -94,7 +104,6 @@ function LessonView({
                         onChange={(e) => {
                             setCase(e.target.value);
                             setVariant(0);
-                            setSetup(undefined);
                         }}
                     >
                         {cases.map((c) => (
@@ -123,8 +132,7 @@ function LessonView({
                                     setMove('');
                                 }}
                             >
-                                {t(i === 0 ? 'aMain' : i === 1 ? 'aSideGrip' : 'aAlignment')} ·{' '}
-                                <code>{sequence}</code>
+                                {t(i === 0 ? 'aMain' : 'aRealAlternative')} · <code>{sequence}</code>
                             </button>
                         ))}
                     </div>
@@ -163,6 +171,7 @@ function LessonView({
                                         setup={picture.referenceSetup}
                                         alg=""
                                         still
+                                        flatOnly
                                         t={t}
                                     />
                                 </Suspense>
@@ -196,7 +205,7 @@ function LessonView({
     );
 }
 
-export function Academy({ mod, t }: Props) {
+export function Academy({ mod, t, lessonLink }: Props & { lessonLink?: string }) {
     const [course, setCourse] = useState<Course>(),
         [progress, setProgress] = useState<Completion[]>([]);
     const [selected, setSelected] = useState(''),
@@ -225,7 +234,9 @@ export function Academy({ mod, t }: Props) {
         return () => sub.unsubscribe();
     }, [course]);
     if (!course) return <p>{t(error ? 'failed' : 'aLoading')}</p>;
-    const lesson = course.modules.flatMap((m) => m.lessons).find((l) => l.id === selected);
+    const lesson = course.modules
+        .flatMap((m) => m.lessons)
+        .find((l) => l.id === (lessonLink ?? selected));
     const done = (id: string) =>
         progress.some(
             (r) => r.revision === course.revision && r.lessonId === id && r.completedAt !== undefined,
@@ -241,9 +252,12 @@ export function Academy({ mod, t }: Props) {
                             {module.lessons.map((l) => (
                                 <li key={l.id}>
                                     <button
-                                        onClick={() => setSelected(l.id)}
+                                        onClick={() => {
+                                            setSelected(l.id);
+                                            if (lessonLink) location.hash = 'academy/' + l.id;
+                                        }}
                                         disabled={!unlocked(course, l, progress)}
-                                        aria-pressed={selected === l.id}
+                                        aria-pressed={(lessonLink ?? selected) === l.id}
                                     >
                                         {t(l.titleKey)}
                                     </button>
@@ -268,6 +282,7 @@ export function Academy({ mod, t }: Props) {
                     t={t}
                 />
             )}
+            {lesson && !unlocked(course, lesson, progress) && <p>{t('aLocked')}</p>}
             {error && <p role="alert">{t('failed')}</p>}
         </div>
     );

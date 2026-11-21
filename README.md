@@ -86,6 +86,14 @@ Para contrastar con csTimer, activar el recorte predeterminado del 5 % por extre
 
 ### Aceptación de la fase 3A
 
-Ejecuta el diagnóstico de Windows con Edge. En Academia, selecciona 3×3, abre Notación y pulsa Rw, r, M y una rotación. Prueba reproducir, pausar, avanzar y retroceder un giro, y cambiar la velocidad. Responde el minitest con Verdadero, Falso y Verdadero. La cruz debe desbloquearse y seguir disponible después de recargar. Repite el flujo de Notación con 2×2 y comprueba que el progreso se guarda por curso.
+Ejecuta el diagnóstico de Windows con Edge. En Academia, selecciona 3×3, abre Notación y prueba reproducir, pausar, avanzar y retroceder un giro, y cambiar la velocidad. Completa el minitest. La cruz debe desbloquearse y seguir disponible después de recargar. Repite el flujo de Notación con 2×2 y comprueba que el progreso se guarda por curso.
 
 En Android sirve el build actualizado con Vite Preview y adb reverse como en las fases anteriores. Abre la PWA en línea para actualizar el service worker, activa modo avión y entra en Academia. Abre una lección, usa el glosario, completa el minitest, cierra y reabre. En una lección de última capa, prepara uno de los casos mostrados con un cubo físico y comprueba la solución por etapas. [Fuentes y criterios de verificación](docs/FUENTES.md)
+
+### Aceptación de la fase 3A.1
+
+En Notación de 3×3, confirma que el cubo grande se deja girar sin perder el paso de la animación. Cambia la velocidad, pausa, avanza un paso y compara con la vista plana. Activa las caras ocultas. Completa la lección básica para abrir Notación avanzada, donde se animan Rw, r, M, E, S y las rotaciones. En Timer alterna entre plano y 3D.
+
+Abre Evaluación, elige Principiante y responde las 12 preguntas. Falla a propósito alguna de notación y sigue el enlace de repaso. Recarga y comprueba el historial. En Android, actualiza la PWA con adb reverse, entra en modo avión y repite el flujo. La posición de la cámara cambia al arrastrar con un dedo, y la vista plana aparece debajo del 3D.
+
+El historial de evaluaciones se incluye en los respaldos JSON v2. Se mantienen compatibles los respaldos v1 anteriores.

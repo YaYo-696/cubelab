@@ -1,5 +1,5 @@
 import '../ui/timer.css';
-import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { liveQuery } from 'dexie';
 import type { EventRules, PuzzleModule } from '../core/contracts';
 import { formatTime, parseTime } from '../core/timer/times';
@@ -12,6 +12,7 @@ import { CubeNet } from '../ui/CubeNet';
 import { useScrambles } from './useScrambles';
 import { useTimerInput } from './useTimerInput';
 
+const Cube3D = lazy(() => import('./AcademyPlayer').then((m) => ({ default: m.AcademyPlayer })));
 type T = (key: string, params?: Record<string, string | number>) => string;
 type Props = { mod: PuzzleModule<string>; rules: EventRules; t: T };
 
@@ -25,9 +26,9 @@ export function Timer({ mod, rules, t }: Props) {
         [boot, setBoot] = useState(0);
     const [recent, setRecent] = useState<Solve[]>([]),
         [deleted, setDeleted] = useState('');
-    const [pbInput,setPbInput]=useState<{session:Solve[];event:Solve[]}>();
-    const [lastSaved,setLastSaved]=useState('');
-    const pbStats=useStatistics(pbInput);
+    const [pbInput, setPbInput] = useState<{ session: Solve[]; event: Solve[] }>();
+    const [lastSaved, setLastSaved] = useState('');
+    const pbStats = useStatistics(pbInput);
     const [total, setTotal] = useState(0);
     const [message, setMessage] = useState(''),
         [custom, setCustom] = useState(''),
@@ -117,9 +118,11 @@ export function Timer({ mod, rules, t }: Props) {
             setPending(null);
             setLastSaved(solve.id);
             setPbInput(undefined);
-            void solvesForEvent(rules.id).then(event=>{
-                if(alive.current)setPbInput({session:[],event});
-            }).catch(()=>{});
+            void solvesForEvent(rules.id)
+                .then((event) => {
+                    if (alive.current) setPbInput({ session: [], event });
+                })
+                .catch(() => {});
             setMessage('');
             if (solve.source === 'timer') timer.saved();
             setManual('');
@@ -176,8 +179,10 @@ export function Timer({ mod, rules, t }: Props) {
               : 'DNF'
         : formatTime(elapsed);
     const locked = !ready || active || !!pending || phase === 'stopped';
-    const ao = useMemo(()=>breakdown([...recent].reverse(),'ao5')?.value??null,[recent]);
-    const newPbs=pbStats?.records.filter(r=>r.solve.id===lastSaved&&['single','ao5','ao12'].includes(r.metric));
+    const ao = useMemo(() => breakdown([...recent].reverse(), 'ao5')?.value ?? null, [recent]);
+    const newPbs = pbStats?.records.filter(
+        (r) => r.solve.id === lastSaved && ['single', 'ao5', 'ao12'].includes(r.metric),
+    );
     const last = recent[0];
     const show = (s: Solve) =>
         s.penalty === 'dnf' ? 'DNF' : formatTime(adjusted(s)) + (s.penalty === '+2' ? ' (+2)' : '');
@@ -204,6 +209,7 @@ export function Timer({ mod, rules, t }: Props) {
             customInput.current?.setSelectionRange(pos, pos + 1);
         }
     }
+    const [showCube3d, setCube3d] = useState(false);
     const Preview = mod.ui?.preview,
         InputPanel = mod.ui?.inputPanel;
     const preview = useMemo(
@@ -301,6 +307,15 @@ export function Timer({ mod, rules, t }: Props) {
                             {t('copy')}
                         </button>
                     </div>
+                    {!Preview && (
+                        <button
+                            type="button"
+                            aria-pressed={showCube3d}
+                            onClick={() => setCube3d((v) => !v)}
+                        >
+                            {t(showCube3d ? 'aFlatView' : 'aView3d')}
+                        </button>
+                    )}
                     {mix.failed && <button onClick={mix.retry}>{t('retryMix')}</button>}
                 </div>
                 <Suspense>
@@ -309,6 +324,15 @@ export function Timer({ mod, rules, t }: Props) {
                             eventId={rules.id}
                             scramble={mix.current?.text ?? ''}
                             onChange={applyCustom}
+                        />
+                    ) : showCube3d && !active ? (
+                        <Cube3D
+                            puzzle={mod.id === '222' ? '2x2x2' : '3x3x3'}
+                            setup={mix.current?.text ?? ''}
+                            alg=""
+                            still
+                            timerPreview
+                            t={t}
                         />
                     ) : (
                         <CubeNet state={preview} label={t('preview')} />
@@ -436,7 +460,11 @@ export function Timer({ mod, rules, t }: Props) {
                 <p>
                     ao5 <strong>{ao === null ? '—' : ao === Infinity ? 'DNF' : formatTime(ao)}</strong>
                 </p>
-                {newPbs?.length ? <p role="status">{t('newPb')} {newPbs.map(r=>t(r.metric)).join(', ')}</p>:null}
+                {newPbs?.length ? (
+                    <p role="status">
+                        {t('newPb')} {newPbs.map((r) => t(r.metric)).join(', ')}
+                    </p>
+                ) : null}
                 <ol data-testid="recent">
                     {recent.map((s) => (
                         <li key={s.id}>

@@ -1,3 +1,4 @@
+import './academy.css';
 import { useEffect, useRef, useState } from 'react';
 import { TwistyPlayer } from 'cubing/twisty';
 import { Alg } from 'cubing/alg';
@@ -8,6 +9,8 @@ export function AcademyPlayer({
     alg,
     autoplay = false,
     still = false,
+    flatOnly = false,
+    timerPreview = false,
     t,
 }: {
     puzzle: '2x2x2' | '3x3x3';
@@ -15,31 +18,57 @@ export function AcademyPlayer({
     alg: string;
     autoplay?: boolean;
     still?: boolean;
+    flatOnly?: boolean;
+    timerPreview?: boolean;
     t: T;
 }) {
     const target = useRef<HTMLDivElement>(null);
+    const net = useRef<HTMLDivElement>(null);
     const player = useRef<TwistyPlayer>();
+    const [hidden, setHidden] = useState(false);
+    const hiddenRef = useRef(false);
     const [speed, setSpeed] = useState(1);
     const rate = useRef(1);
     useEffect(() => {
-        const node = new TwistyPlayer({
+        const config = {
             puzzle,
             alg,
-            experimentalSetupAlg: ('z2 ' + setup).trim(),
-            visualization: '2D',
-            controlPanel: 'none',
-            background: 'none',
+            experimentalSetupAlg: timerPreview ? setup : ('z2 ' + setup).trim(),
+            controlPanel: 'none' as const,
+            background: 'none' as const,
             tempoScale: rate.current,
+        };
+        const node = new TwistyPlayer({
+            ...config,
+            visualization: flatOnly ? '2D' : '3D',
+            experimentalDragInput: flatOnly ? 'none' : 'auto',
+            hintFacelets: hiddenRef.current ? 'floating' : 'none',
         });
+        const comparison =
+            !flatOnly && !still ? new TwistyPlayer({ ...config, visualization: '2D' }) : undefined;
+        const timeline = node.experimentalModel.detailedTimelineInfo;
+        const synchronize = ({
+            timestamp,
+        }: {
+            timestamp: Awaited<ReturnType<typeof node.experimentalGet.timestamp>>;
+        }) => {
+            if (comparison) comparison.timestamp = timestamp;
+        };
         player.current = node;
         target.current?.append(node);
+        if (comparison) {
+            net.current?.append(comparison);
+            timeline.addFreshListener(synchronize);
+        }
         if (autoplay) node.play();
         return () => {
+            timeline.removeFreshListener(synchronize);
             node.pause();
             node.remove();
+            comparison?.remove();
             player.current = undefined;
         };
-    }, [puzzle, setup, alg, autoplay]);
+    }, [puzzle, setup, alg, autoplay, flatOnly, still, timerPreview]);
     async function step(direction: number) {
         const node = player.current;
         if (!node) return;
@@ -64,7 +93,35 @@ export function AcademyPlayer({
     }
     return (
         <div className="academy-player">
-            <div ref={target} data-testid="academy-player" data-alg={alg} aria-label={t('aAnimation')} />
+            <div className={'cube-views ' + (!still && !flatOnly ? 'cube-views-pair' : '')}>
+                <div
+                    ref={target}
+                    className="cube-primary"
+                    data-testid="academy-player"
+                    data-alg={alg}
+                    data-visualization={flatOnly ? '2D' : '3D'}
+                    aria-label={t('aAnimation')}
+                />
+                {!still && !flatOnly && (
+                    <div className="cube-secondary">
+                        <small>{t('aFlatView')}</small>
+                        <div ref={net} data-testid="academy-net" />
+                    </div>
+                )}
+            </div>
+            {!flatOnly && !timerPreview && (
+                <button
+                    aria-pressed={hidden}
+                    onClick={() => {
+                        const next = !hidden;
+                        hiddenRef.current = next;
+                        setHidden(next);
+                        if (player.current) player.current.hintFacelets = next ? 'floating' : 'none';
+                    }}
+                >
+                    {t('aHiddenFaces')}
+                </button>
+            )}
             {!still && (
                 <div className="actions">
                     <button onClick={() => player.current?.play()}>{t('aPlay')}</button>

@@ -18,6 +18,7 @@ export type StageGoal =
     | 'cornerPermutation'
     | 'solved';
 export type AcademyCase = AlgCase & {
+    alternativeSetups?: readonly string[];
     standardName: string;
     fingertrickKey: string;
     pattern: CasePattern;
@@ -130,7 +131,7 @@ export function matchesCase(p: KPattern, solved: KPattern, pattern: CasePattern)
     return false;
 }
 export function verifyCase(solved: KPattern, entry: AcademyCase, algorithm: string) {
-    const fromSetup = solved.applyAlg(entry.referenceSetup);
+    const fromSetup = solved.applyAlg(caseSetup(entry, entry.algorithms.indexOf(algorithm)));
     const independent = independentCase(solved, entry.pattern);
     const fromInverse = solved.applyAlg(new Alg(algorithm).invert());
     const solves = (start: KPattern) =>
@@ -169,4 +170,8 @@ function independentCase(solved: KPattern, pattern: CasePattern): KPattern {
         corners.pieces.splice(4, 4, ...digits(pattern.lower).map((i) => i + 4));
     }
     return new KPattern(solved.kpuzzle, data);
+}
+
+export function caseSetup(entry: AlgCase, variant: number) {
+    return (entry as Partial<AcademyCase>).alternativeSetups?.[variant - 1] ?? entry.referenceSetup;
 }

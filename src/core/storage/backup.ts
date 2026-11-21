@@ -1,6 +1,14 @@
 import { db, type CubeDatabase, type Session, type Solve } from './db';
 
-const names = ['sessions', 'solves', 'trainerCases', 'lessons', 'rounds', 'settings'] as const;
+const names = [
+    'sessions',
+    'solves',
+    'trainerCases',
+    'lessons',
+    'rounds',
+    'settings',
+    'evaluations',
+] as const;
 type TableName = (typeof names)[number];
 type Row = Record<string, unknown>;
 function check(condition: unknown): asserts condition {
@@ -74,6 +82,37 @@ function rowKey(name: TableName, r: Row): string | string[] {
                     optional(r.quizScore, number),
             );
             return [r.courseId, r.lessonId] as string[];
+        case 'evaluations':
+            check(
+                uuid(r.id) &&
+                    string(r.puzzleId) &&
+                    count(r.createdAt) &&
+                    ['beginner', 'intermediate'].includes(r.level as string) &&
+                    list(r.questionIds, string) &&
+                    list(r.answers, count) &&
+                    r.questionIds.length >= 10 &&
+                    r.questionIds.length <= 15 &&
+                    new Set(r.questionIds).size === r.questionIds.length &&
+                    r.answers.length === r.questionIds.length &&
+                    list(r.skills, (entry) => {
+                        const skill = object(entry);
+                        return (
+                            [
+                                'basic',
+                                'advanced',
+                                'steps',
+                                'oll',
+                                'pll',
+                                'ortega',
+                                'inspection',
+                            ].includes(skill.skill as string) &&
+                            count(skill.correct) &&
+                            count(skill.total) &&
+                            skill.correct <= skill.total
+                        );
+                    }),
+            );
+            return r.id;
         case 'rounds':
             check(
                 uuid(r.id) &&
@@ -95,17 +134,17 @@ export async function exportBackup(database = db) {
             const data = await Promise.all(
                 names.map(async (name) => [name, await database.table(name).toArray()]),
             );
-            return JSON.stringify({ version: 1, tables: Object.fromEntries(data) }, null, 2);
+            return JSON.stringify({ version: 2, tables: Object.fromEntries(data) }, null, 2);
         },
     );
 }
 export async function importBackup(source: string, database = db) {
     const file = object(JSON.parse(source));
-    check(file.version === 1);
+    check(file.version === 1 || file.version === 2);
     const tables = object(file.tables);
     const rows = new Map(
         names.map((name) => {
-            const input = tables[name];
+            const input = file.version === 1 && name === 'evaluations' ? [] : tables[name];
             check(Array.isArray(input));
             const seen = new Set<string>();
             const values = input.map((value) => {

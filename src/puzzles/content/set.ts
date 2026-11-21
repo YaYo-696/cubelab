@@ -7,7 +7,7 @@ const right: AcademyCase = {
     referenceSetup: 'R',
     pattern: { kind: 'setup', setup: 'R' },
     goal: 'exact',
-    algorithms: ["R'", "y F' y'"],
+    algorithms: ["R'"],
     fingertrickKey: 'fingerRight',
 };
-export default { id: 'basic', revision: 2, nameKey: 'basic', cases: [right] } satisfies AlgSet;
+export default { id: 'basic', revision: 3, nameKey: 'basic', cases: [right] } satisfies AlgSet;

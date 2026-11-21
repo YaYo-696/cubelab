@@ -22,30 +22,17 @@ const both: Record<string, [string, string]> = {
     tperm: ['1023', '0123'],
     yperm: ['2103', '0123'],
 };
-// View the same verified case from the right side, then restore the original frame.
-function sideGrip(alg: string) {
-    const mapped: Record<string, string> = {
-        R: 'F',
-        L: 'B',
-        F: 'L',
-        B: 'R',
-        U: 'U',
-        D: 'D',
-        r: 'f',
-        f: 'l',
-        M: "S'",
-    };
-    const regripped = alg
-        .split(' ')
-        .map((token) => {
-            const move = mapped[token[0]],
-                suffix = token.slice(1);
-            if (!move) throw new Error('academyGrip ' + token);
-            return move.endsWith("'") && suffix ? move[0] + (suffix === '2' ? '2' : '') : move + suffix;
-        })
-        .join(' ');
-    return 'y ' + regripped + " y'";
-}
+const alternatives2: Record<string, string> = {
+    sune: "R U R2 U' R2 U R",
+    h: 'R2 U2 R U2 R2',
+    pi: "F R U R' U' R U R' U' F'",
+    u: "F R U R' U' F'",
+    tperm: "R' F R F' R U2 R' U R U2 R'",
+};
+const alternatives3: Record<string, string> = {
+    antisune: "R' U' R U' R' U2 R",
+    zperm: "M' U' M2 U' M2 U' M' U2 M2",
+};
 const cornerIds = Object.keys(corners);
 function reference(id: string, size: 2 | 3) {
     const [key, name, raw] = sequences.find((row) => row[0] === id)!;
@@ -60,13 +47,14 @@ function reference(id: string, size: 2 | 3) {
 }
 function lastLayer(id: string, size: 2 | 3, pattern: CasePattern, goal: StageGoal): AcademyCase {
     const { name, alg } = reference(id, size);
-    // The additional U is an explicitly labelled final alignment option.
+    const alternative = (size === 2 ? alternatives2 : alternatives3)[id];
     return {
         id,
         nameKey: 'aCase_' + (size === 2 && ['tperm', 'yperm'].includes(id) ? id + '222' : id),
         standardName: name,
         referenceSetup: new Alg(alg).invert().toString(),
-        algorithms: [alg, sideGrip(alg), alg + ' U'],
+        algorithms: alternative ? [alg, alternative] : [alg],
+        alternativeSetups: alternative ? [new Alg(alternative).invert().toString()] : undefined,
         fingertrickKey:
             id === 'zperm' || id === 'hperm'
                 ? 'fingerSlice'
@@ -78,14 +66,8 @@ function lastLayer(id: string, size: 2 | 3, pattern: CasePattern, goal: StageGoa
     };
 }
 const set = (id: string, cases: AcademyCase[]) =>
-    ({ id, nameKey: id, revision: 1, cases }) satisfies AlgSet;
-function drill(
-    id: string,
-    setup: string,
-    goal: StageGoal,
-    main: string,
-    alternate: string,
-): AcademyCase {
+    ({ id, nameKey: id, revision: 2, cases }) satisfies AlgSet;
+function drill(id: string, setup: string, goal: StageGoal, main: string): AcademyCase {
     return {
         id,
         nameKey: 'aTitle_' + id,
@@ -93,18 +75,18 @@ function drill(
         referenceSetup: setup,
         pattern: { kind: 'setup', setup },
         goal,
-        algorithms: [main, sideGrip(main), alternate],
+        algorithms: [main],
         fingertrickKey: main.includes('U') ? 'fingerUpper' : 'fingerHalf',
     };
 }
 const early3 = [
-    drill('cross', 'F2', 'cross', 'F2', 'F2 U'),
-    drill('crossPlan', 'F2 R2', 'cross', 'R2 F2', 'R2 F2 U'),
-    drill('corners', "R U R'", 'first', "R U' R'", "R U' R' U"),
-    drill('middle', "F' U' F U R U R' U'", 'f2l', "U R U' R' U' F' U F", "U R U' R' U' F' U F U"),
-    drill('f2l', "R U2 R'", 'f2l', "R U2 R'", "R U2 R' U"),
-    drill('f2lJoin', "R U R' U2", 'f2l', "U2 R U' R'", "U2 R U' R' U"),
-    drill('f2lSplit', "R U' R'", 'f2l', "R U R'", "R U R' U"),
+    drill('cross', 'F2', 'cross', 'F2'),
+    drill('crossPlan', 'F2 R2', 'cross', 'R2 F2'),
+    drill('corners', "R U R'", 'first', "R U' R'"),
+    drill('middle', "F' U' F U R U R' U'", 'f2l', "U R U' R' U' F' U F"),
+    drill('f2l', "R U2 R'", 'f2l', "R U2 R'"),
+    drill('f2lJoin', "R U R' U2", 'f2l', "U2 R U' R'"),
+    drill('f2lSplit', "R U' R'", 'f2l', "R U R'"),
 ];
 export const sets3 = [
     set('drills333', early3),
@@ -127,8 +109,8 @@ export const sets3 = [
 ];
 export const sets2 = [
     set('drills222', [
-        drill('firstFace', 'F2', 'face', 'F2', 'F2 U'),
-        drill('firstLayer', "R U R'", 'first', "R U' R'", "R U' R' U"),
+        drill('firstFace', 'F2', 'face', 'F2'),
+        drill('firstLayer', "R U R'", 'first', "R U' R'"),
     ]),
     set(
         'oll222',

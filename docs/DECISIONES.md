@@ -39,3 +39,9 @@ Cuando la sesión de un intento pendiente ha desaparecido, la recuperación lo g
 - Cada puzzle tiene un curso con identificador estable y revisión. Los prerrequisitos se verifican tanto al mostrar la lección como dentro de la transacción que escribe LessonProgress. Completar exige acertar todas las preguntas. El mejor puntaje y la primera fecha de finalización se conservan al repetir.
 - Course y AlgSet se cargan mediante las funciones del módulo de puzzle. PracticeProvider devuelve una preparación por caso y permite conectar el solucionador por etapas sin reescribir las lecciones. TwistyPlayer se importa de forma diferida. Los controles de paso usan el indexador de la versión fijada de cubing.js.
 - La media de la sesión tiene únicamente valor actual. El historial de PB incluye los single, mo3 y aoN con ventanas definidas.
+
+## Fase 3A.1 · Visualización y evaluación
+
+- El modelo de tiempo de TwistyPlayer 3D actualiza la misma marca temporal en la comparación 2D. Las caras ocultas son adhesivos guía flotantes del mismo reproductor. Las figuras de los minitests dentro de una lección usan 2D. La evaluación muestra una pregunta visual 3D a la vez. El timer carga el visor 3D bajo demanda.
+- Las lecciones toman sus preguntas del banco etiquetado por habilidad, nivel y puzzle. Cada evaluación toma doce preguntas con orden mezclado y cobertura de habilidades. Las recomendaciones aceptan evidencias de respuesta o de práctica cronometrada, con un objetivo de tiempo aportado por el entrenador.
+- Dexie v2 añade el historial de evaluaciones. Los respaldos v2 lo contienen y el importador admite v1. Los identificadores de curso, lección y revisión conservan el avance anterior. Las lecciones que usan notación avanzada exigen completar esa lección para abrirse.

@@ -122,7 +122,7 @@ it('guarda el progreso por puzzle y revisión y valida los prerrequisitos al esc
             ),
         ).toBe(0);
         expect(unlocked(course, next, await db.lessons.toArray())).toBe(false);
-        expect(await submitLesson(db, course, first.id, correct(first))).toBe(3);
+        expect(await submitLesson(db, course, first.id, correct(first))).toBe(first.quiz.length);
         db.close();
         await db.open();
         const progress = await db.lessons.toArray();
@@ -135,7 +135,9 @@ it('guarda el progreso por puzzle y revisión y valida los prerrequisitos al esc
             first.id,
             correct(first).map((x) => 1 - x),
         );
-        expect(await db.lessons.get([course.id, first.id])).toMatchObject({ quizScore: 3 });
+        expect(await db.lessons.get([course.id, first.id])).toMatchObject({
+            quizScore: first.quiz.length,
+        });
     } finally {
         await db.delete();
     }
