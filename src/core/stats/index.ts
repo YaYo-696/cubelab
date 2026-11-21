@@ -11,7 +11,6 @@ export const windows = {
     ao1000: 1000,
 } as const;
 export type Metric = keyof typeof windows;
-export type RecordMetric = Metric | 'sessionMean';
 export const metrics = Object.keys(windows) as Metric[];
 export const trim = (size: number) => (size <= 3 ? 0 : Math.ceil(size / 20));
 export function principal(rules: EventRules): Metric {
@@ -117,27 +116,13 @@ export function analyze(solves: readonly Solve[]) {
         }
         return { metric, series, best, records, current: series.at(-1) ?? null };
     });
-    let count = 0,
-        total = 0,
-        mean: number | null = null,
-        bestMean: number | null = null;
-    const meanRecords: Entry[] = [];
-    for (const [end, time] of times.entries())
-        if (Number.isFinite(time)) {
-            total += time;
-            count++;
-            mean = rounded(total / count);
-            if (mean < (bestMean ?? Infinity)) {
-                bestMean = mean;
-                meanRecords.push({ value: mean, end });
-            }
-        }
-    return { results, mean, bestMean, meanRecords, times };
+    const finite = times.filter(Number.isFinite);
+    const mean = finite.length
+        ? rounded(finite.reduce((sum, value) => sum + value, 0) / finite.length)
+        : null;
+    return { results, mean, times };
 }
-export function eventRecords(
-    solves: readonly Solve[],
-    only: readonly RecordMetric[] = [...metrics, 'sessionMean'],
-) {
+export function eventRecords(solves: readonly Solve[], only: readonly Metric[] = metrics) {
     const groups = new Map<string, Solve[]>();
     const position = new Map(solves.map((s, i) => [s.id, i]));
     for (const solve of solves) {
@@ -145,20 +130,16 @@ export function eventRecords(
         group.push(solve);
         groups.set(solve.sessionId, group);
     }
-    const candidates: { metric: RecordMetric; value: number; solve: Solve }[] = [];
+    const candidates: { metric: Metric; value: number; solve: Solve }[] = [];
     for (const group of groups.values()) {
-        const statistics = analyze(group);
-        for (const { metric, records } of [
-            ...statistics.results,
-            { metric: 'sessionMean' as const, records: statistics.meanRecords },
-        ]) {
+        for (const { metric, records } of analyze(group).results) {
             if (only.includes(metric))
                 for (const entry of records)
                     candidates.push({ metric, value: entry.value, solve: group[entry.end] });
         }
     }
     candidates.sort((a, b) => position.get(a.solve.id)! - position.get(b.solve.id)!);
-    const best = new Map<RecordMetric, number>();
+    const best = new Map<Metric, number>();
     return candidates.filter(({ metric, value }) => {
         if (value >= (best.get(metric) ?? Infinity)) return false;
         best.set(metric, value);

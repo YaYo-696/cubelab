@@ -82,4 +82,10 @@ En Estadísticas, elegir el evento y la sesión. Después de cinco intentos, abr
 
 En Android, abrir el build actualizado usando el procedimiento USB anterior. En modo avión, confirmar que funcionan el panel, el gráfico, el desglose y la edición. Exportar el JSON desde el teléfono y conservarlo antes de probar la importación en otro perfil.
 
-Para contrastar con csTimer, activar el recorte predeterminado del 5 % por extremo e ingresar 10.00, 12.00 (+2), 14.00, 15.00, 18.00 (DNF), 11.00, 13.00, 10.00, 12.00 (+2), 9.00, 16.00 y 12.00. Single actual/mejor 12.00/9.00, mo3 12.33/11.00, ao5 12.00/11.33, ao12 12.90/12.90. Media 12.55. El mejor valor histórico de la media acumulada de CubeLab es 10.00. Los promedios de 25 intentos o más quedan vacíos.
+Para contrastar con csTimer, activar el recorte predeterminado del 5 % por extremo e ingresar 10.00, 12.00 (+2), 14.00, 15.00, 18.00 (DNF), 11.00, 13.00, 10.00, 12.00 (+2), 9.00, 16.00 y 12.00. Single actual/mejor 12.00/9.00, mo3 12.33/11.00, ao5 12.00/11.33, ao12 12.90/12.90. Media 12.55. Los promedios de 25 intentos o más quedan vacíos.
+
+### Aceptación de la fase 3A
+
+Ejecuta el diagnóstico de Windows con Edge. En Academia, selecciona 3×3, abre Notación y pulsa Rw, r, M y una rotación. Prueba reproducir, pausar, avanzar y retroceder un giro, y cambiar la velocidad. Responde el minitest con Verdadero, Falso y Verdadero. La cruz debe desbloquearse y seguir disponible después de recargar. Repite el flujo de Notación con 2×2 y comprueba que el progreso se guarda por curso.
+
+En Android sirve el build actualizado con Vite Preview y adb reverse como en las fases anteriores. Abre la PWA en línea para actualizar el service worker, activa modo avión y entra en Academia. Abre una lección, usa el glosario, completa el minitest, cierra y reabre. En una lección de última capa, prepara uno de los casos mostrados con un cubo físico y comprueba la solución por etapas. [Fuentes y criterios de verificación](docs/FUENTES.md)

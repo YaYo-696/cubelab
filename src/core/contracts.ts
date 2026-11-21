@@ -21,11 +21,24 @@ export interface AlgSet {
     nameKey: string;
     cases: readonly AlgCase[];
 }
+export interface QuizQuestion {
+    promptKey: string;
+    optionKeys: readonly string[];
+    correct: number;
+    caseId?: string;
+}
 export interface Lesson {
     id: string;
     titleKey: string;
     bodyKey: string;
-    exampleAlg: string;
+    objectiveKey: string;
+    exerciseKey: string;
+    requires: readonly string[];
+    demos: readonly { setup: string; alg: string }[];
+    setId: string;
+    caseIds: readonly string[];
+    quiz: readonly QuizQuestion[];
+    glossary?: boolean;
     caseId?: string;
 }
 export interface Course {
@@ -34,6 +47,7 @@ export interface Course {
     titleKey: string;
     modules: readonly {
         id: string;
+        titleKey: string;
         lessons: readonly Lesson[];
     }[];
 }
@@ -47,16 +61,18 @@ export interface Stage {
     lessonId?: string;
     caseId?: string;
 }
-export type SearchResult = {
-    status: 'solved';
-    alg: string;
-    metric: string;
-    moves: number;
-    quality: 'provenOptimal' | 'heuristic';
-    stages: readonly Stage[];
-} | {
-    status: 'timeout' | 'cancelled' | 'invalidInput';
-};
+export type SearchResult =
+    | {
+          status: 'solved';
+          alg: string;
+          metric: string;
+          moves: number;
+          quality: 'provenOptimal' | 'heuristic';
+          stages: readonly Stage[];
+      }
+    | {
+          status: 'timeout' | 'cancelled' | 'invalidInput';
+      };
 export type WorkerTask<Result> = (input: string, signal: AbortSignal) => Promise<Result>;
 export type Solver = WorkerTask<SearchResult>;
 export type VerifiedCase = {
@@ -64,11 +80,13 @@ export type VerifiedCase = {
     verified: true;
 };
 export type CaseGenerator = WorkerTask<VerifiedCase>;
-export type Panel = LazyExoticComponent<ComponentType<{
-    eventId: string;
-    scramble: string;
-    onChange: (input: string) => void;
-}>>;
+export type Panel = LazyExoticComponent<
+    ComponentType<{
+        eventId: string;
+        scramble: string;
+        onChange: (input: string) => void;
+    }>
+>;
 export interface PuzzleModule<State> {
     id: string;
     nameKey: string;

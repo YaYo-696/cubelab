@@ -98,7 +98,7 @@ it('voltea un PB previo al editar +2 y no une ventanas de sesiones distintas', (
 it('aplica +2 antes del umbral de precisión y excluye DNF de la media', () => {
     expect(adjusted(solve(598999, 0, '+2'))).toBe(600000);
     const s = [solve(10009), solve(10019, 1, 'dnf'), solve(10010, 2)];
-    expect(analyze(s)).toMatchObject({ mean: 10010, bestMean: 10000 });
+    expect(analyze(s)).toMatchObject({ mean: 10010 });
     expect(breakdown(s, 'mo3')?.value).toBe(Infinity);
     expect(principal(cubeEvent('333', true))).toBe('single');
 });

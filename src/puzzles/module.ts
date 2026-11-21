@@ -11,7 +11,9 @@ export function makeCube(id: CubeId): PuzzleModule<string> {
         visualization: { twistyPuzzleId: id === '222' ? '2x2x2' : '3x3x3', defaultView: '2D' },
         generateScramble: (event, signal) => run('scramble', id, event, signal),
         solvedState: () => model.solved, applyAlg: model.apply, isSolved: model.isSolved,
-        algSets: ['basic'], courses: ['notation'], loadAlgSet, loadCourse,
+        algSets: ['basic','drills'+id,'oll'+id,id==='222'?'pbl222':'pll333'],
+        courses: ['academy-'+id],
+        loadAlgSet: set=>loadAlgSet(set,id), loadCourse: course=>loadCourse(course,id),
         caseGenerators: { basic: (caseId, signal) => run('case', id, caseId, signal) }
     };
 }

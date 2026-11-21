@@ -4,7 +4,7 @@ import { db, solvesForEvent, type Session, type Solve } from '../core/storage/db
 import { attempts } from '../core/storage/attempts';
 import { sessionActions } from '../core/storage/sessions';
 import { exportBackup, exportCsv, importBackup } from '../core/storage/backup';
-import { adjusted, breakdown, principal, type Metric, type RecordMetric } from '../core/stats';
+import { adjusted, breakdown, principal, type Metric } from '../core/stats';
 import type { EventRules } from '../core/contracts';
 import { formatTime } from '../core/timer/times';
 import { StatisticsCharts } from './StatisticsCharts';
@@ -110,7 +110,7 @@ export function Statistics({ rules, puzzleId, t }: { rules: EventRules; puzzleId
         () => new Map(computation?.records.map((r) => [r.metric, r])),
         [computation],
     );
-    const eventBest = (metric: RecordMetric) => bestByEvent.get(metric);
+    const eventBest = (metric: Metric) => bestByEvent.get(metric);
     return (
         <div className="stats-page">
             <section className="stats-card">
@@ -277,8 +277,8 @@ export function Statistics({ rules, puzzleId, t }: { rules: EventRules; puzzleId
                         <tr>
                             <th scope="row">{t('sessionMean')}</th>
                             <td>{display(computation?.stats.mean)}</td>
-                            <td>{display(computation?.stats.bestMean)}</td>
-                            <td>{display(eventBest('sessionMean')?.value)}</td>
+                            <td>—</td>
+                            <td>—</td>
                         </tr>
                     </tbody>
                 </table>

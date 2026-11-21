@@ -1,0 +1,97 @@
+[
+    [
+        "dot",
+        "Dot",
+        "F R U R' U' F' f R U R' U' f'"
+    ],
+    [
+        "el",
+        "L-shape",
+        "f R U R' U' f'"
+    ],
+    [
+        "line",
+        "Line",
+        "F R U R' U' F'"
+    ],
+    [
+        "sune",
+        "Sune",
+        "R U R' U R U2 R'"
+    ],
+    [
+        "antisune",
+        "Anti-Sune",
+        "R U2 R' U' R U' R'"
+    ],
+    [
+        "pi",
+        "Pi",
+        "R U2 R2 U' R2 U' R2 U2 R"
+    ],
+    [
+        "h",
+        "H",
+        "R U R' U R U' R' U R U2 R'"
+    ],
+    [
+        "t",
+        "T",
+        "r U R' U' r' F R F'"
+    ],
+    [
+        "l",
+        "L",
+        "F R' F' r U R U' r'"
+    ],
+    [
+        "u",
+        "U",
+        "R2 D R' U2 R D' R' U2 R'"
+    ],
+    [
+        "tperm",
+        "T-perm",
+        "R U R' U' R' F R2 U' R' U' R U R' F'"
+    ],
+    [
+        "yperm",
+        "Y-perm",
+        "F R U' R' U' R U R' F' R U R' U' R' F R F'"
+    ],
+    [
+        "ua",
+        "Ua-perm",
+        "R U' R U R U R U' R' U' R2"
+    ],
+    [
+        "ub",
+        "Ub-perm",
+        "R2 U R U R' U' R' U' R' U R'"
+    ],
+    [
+        "zperm",
+        "Z-perm",
+        "M2 U M2 U M' U2 M2 U2 M' U2"
+    ],
+    [
+        "hperm",
+        "H-perm",
+        "M2 U M2 U2 M2 U M2"
+    ],
+    [
+        "bars",
+        "Adjacent / Adjacent",
+        "R2 U' B2 U2 R2 U' R2"
+    ],
+    [
+        "diags",
+        "Diagonal / Diagonal",
+        "R2 F2 R2"
+    ],
+    [
+        "mixed",
+        "Adjacent / Diagonal",
+        "R U' R F2 R' U R'"
+    ]
+]

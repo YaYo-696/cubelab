@@ -1,0 +1,78 @@
+.academy {
+    display: grid;
+    grid-template-columns: minmax(200px, 1fr) minmax(0, 2fr);
+    gap: 1rem;
+    align-items: start;
+}
+.academy-card {
+    background: #1a2630;
+    border: 1px solid #43535e;
+    border-radius: 12px;
+    min-width: 0;
+    padding: 1rem;
+}
+.academy h2 {
+    margin-bottom: 0.7rem;
+}
+.academy ul {
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.4rem;
+}
+.academy li {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.academy button {
+    margin: 0;
+    text-align: left;
+    padding: 0.55rem 0.7rem;
+    overflow-wrap: anywhere;
+}
+.academy button[aria-pressed='true'] {
+    outline: 2px solid #fff;
+    outline-offset: -2px;
+}
+.academy .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin: 0.65rem 0;
+}
+.academy code {
+    overflow-wrap: anywhere;
+}
+.academy-player twisty-player {
+    width: 100%;
+    height: 240px;
+}
+.academy fieldset {
+    border: 1px solid #596c77;
+    border-radius: 0.4rem;
+    margin: 0.8rem 0;
+    padding: 0.6rem;
+    min-width: 0;
+}
+.academy fieldset label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-right: 1rem;
+}
+.academy select {
+    max-width: 100%;
+}
+.academy small {
+    color: #c4d5dc;
+}
+@media (max-width: 720px) {
+    .academy {
+        grid-template-columns: 1fr;
+    }
+    .academy-player twisty-player {
+        height: 210px;
+    }
+}

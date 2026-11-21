@@ -5,16 +5,15 @@ import { useApp } from './state';
 import { events, registry } from '../puzzles/registry';
 import { CubePreview } from '../ui/CubePreview';
 import { db } from '../core/storage/db';
-import type { PuzzleModule, Lesson } from '../core/contracts';
+import type { PuzzleModule } from '../core/contracts';
+const Academy = lazy(() => import('./Academy').then(m => ({default:m.Academy})));
 const Statistics = lazy(() => import('./Statistics').then(m => ({default:m.Statistics})));
 const routes = ['timer', 'academy', 'trainer', 'solver', 'stats', 'settings'] as const;
-type Route = typeof routes[number];
 function routeFromHash() { return routes.find(r => '#' + r === location.hash) ?? 'timer'; }
 type T = (key: string, params?: Record<string,string|number>) => string;
-function Workspace({ mod, eventId, route, t }: {
+function Trainer({ mod, eventId, t }: {
     mod: PuzzleModule<string>;
     eventId: string;
-    route: Route;
     t: T;
 }) {
     const [scramble, setScramble] = useState(''), [busy, setBusy] = useState(false), [failed, setFailed] = useState(false);
@@ -29,20 +28,15 @@ function Workspace({ mod, eventId, route, t }: {
             setFailed(true);
         }
     }
-    const [lesson, setLesson] = useState<Lesson>();
     const [control] = useState(() => new AbortController());
     useEffect(() => () => control.abort(), [control]);
     async function load() {
         setBusy(true);
         setFailed(false);
         try {
-            if (route === 'academy')
-                setLesson((await mod.loadCourse(mod.courses[0])).modules[0].lessons[0]);
-            else {
-                const set = await mod.loadAlgSet(mod.algSets[0]);
-                const result = await mod.caseGenerators[set.id](set.cases[0].id, control.signal);
-                setScramble(result.scramble);
-            }
+            const set = await mod.loadAlgSet(mod.algSets[0]);
+            const result = await mod.caseGenerators[set.id](set.cases[0].id, control.signal);
+            setScramble(result.scramble);
         }
         catch {
             if (!control.signal.aborted)
@@ -55,12 +49,11 @@ function Workspace({ mod, eventId, route, t }: {
     }
     const Preview = mod.ui?.preview, InputPanel = mod.ui?.inputPanel;
     return <section className="board">
-    <div className="sheet"><h2>{t(route === 'trainer' ? 'basic' : 'notation')}</h2>
-    {route === 'academy' && lesson && <><h3>{t(lesson.titleKey)}</h3><p>{t(lesson.bodyKey)}</p><code>{lesson.exampleAlg}</code></>}
-    {route === 'trainer' && <p>{t('train')}</p>}
+    <div className="sheet"><h2>{t('basic')}</h2>
+    <p>{t('train')}</p>
     {scramble && <p className="sequence" dir="ltr">{scramble}</p>}
 
-    <button disabled={busy} onClick={load}>{t(busy ? 'busy' : route === 'academy' ? 'load' : 'case')}</button>
+    <button disabled={busy} onClick={load}>{t(busy ? 'busy' : 'case')}</button>
     {failed && <p role="alert">{t('failed')}</p>}
     <Suspense>{InputPanel && <InputPanel eventId={eventId} scramble={scramble} onChange={editScramble}/>}</Suspense>
     </div><figure><Suspense>{Preview ? <Preview eventId={eventId} scramble={scramble} onChange={editScramble}/> : <CubePreview state={mod.applyAlg(mod.solvedState(), scramble)} label={t('preview')}/>}</Suspense><figcaption>{t('preview')}</figcaption></figure>
@@ -84,7 +77,8 @@ export default function App() {
     <main><div className="heading"><h1>{t(route)}</h1>{['timer', 'trainer', 'academy', 'stats'].includes(route) && <label>{t('event')} <select value={eventId} onChange={e=>{setEvent(e.target.value);try{localStorage.setItem('cubelab.event',e.target.value)}catch{/* storage unavailable */}e.target.blur()}}>{events.map(({ rules }) => <option key={rules.id} value={rules.id}>{t(rules.nameKey)}</option>)}</select></label>}</div>
     {failed && <p role="alert">{t('failed')}</p>}
     {route==='timer' && mod?.id===puzzle && <Timer key={eventId} mod={mod} rules={events.find(e=>e.rules.id===eventId)!.rules} t={t}/>}
-    {mod?.id === puzzle && ['trainer', 'academy'].includes(route) && <Workspace key={eventId + route} eventId={eventId} mod={mod} route={route} t={t}/>}
+    {mod?.id === puzzle && route==='trainer' && <Trainer key={eventId} eventId={eventId} mod={mod} t={t}/>}
+    {mod?.id === puzzle && route==='academy' && <Suspense><Academy key={puzzle} mod={mod} t={t}/></Suspense>}
     {route === 'settings' && <section className="sheet"><label>{t('language')} <select value={lang} onChange={e => { const value = e.target.value as 'es' | 'en'; setLang(value); db.settings.put({ key: 'language', value }).catch(() => setFailed(true)); }}><option value="es">{t('es')}</option><option value="en">{t('en')}</option></select></label></section>}
     {route === 'stats' && <Suspense><Statistics key={eventId} rules={events.find(e=>e.rules.id===eventId)!.rules} puzzleId={puzzle} t={t}/></Suspense>}{route === 'solver' && <p>{t('solverText')}</p>}
     </main></>;
