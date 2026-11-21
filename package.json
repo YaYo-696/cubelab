@@ -1,0 +1,40 @@
+{
+  "name": "cubelab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.16.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "test:filter": "node --experimental-strip-types --test tests/filter.mjs"
+  },
+  "dependencies": {
+    "cubing": "0.63.8",
+    "dexie": "4.0.11",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "zustand": "5.0.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.55.1",
+    "@types/react": "18.3.20",
+    "@types/react-dom": "18.3.6",
+    "@vitejs/plugin-react": "4.4.1",
+    "eslint": "9.25.1",
+    "@eslint/js": "9.25.1",
+    "typescript-eslint": "8.31.0",
+    "prettier": "3.5.3",
+    "typescript": "5.8.3",
+    "vite": "6.3.6",
+    "vite-plugin-pwa": "1.0.3",
+    "vitest": "3.2.4"
+  }
+}
