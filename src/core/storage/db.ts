@@ -29,6 +29,7 @@ export interface Solve {
     result: Result;
     penalty: 'none' | '+2' | 'dnf';
     source: 'manual' | 'timer' | 'smartcube' | 'stackmat';
+    deletedAt?: number;
     comment?: string;
     splitsMs?: number[];
     reconstruction?: string;
@@ -64,7 +65,7 @@ interface CompetitionRound {
     scrambles: string[];
     solveIds: string[];
 }
-class CubeDatabase extends Dexie {
+export class CubeDatabase extends Dexie {
     sessions!: Table<Session, string>;
     solves!: Table<Solve, string>;
     trainerCases!: Table<TrainerCase, [
@@ -81,13 +82,13 @@ class CubeDatabase extends Dexie {
         key: string;
         value: string;
     }, string>;
-    constructor() {
-        super('cubelab');
+    constructor(name = 'cubelab') {
+        super(name);
         this.version(1).stores({ sessions: 'id,eventId', solves: 'id,[sessionId+createdAt],[eventId+createdAt]',
             trainerCases: '[puzzleId+setId+caseId],dueAt', lessons: '[courseId+lessonId]', rounds: 'id,[eventId+createdAt]', settings: 'key' });
     }
 }
 export const db = new CubeDatabase();
 export function solvesForEvent(eventId: string) {
-    return db.solves.where('[eventId+createdAt]').between([eventId, Dexie.minKey], [eventId, Dexie.maxKey]).toArray();
+    return db.solves.where('[eventId+createdAt]').between([eventId, Dexie.minKey], [eventId, Dexie.maxKey]).filter(s => s.deletedAt === undefined).toArray();
 }
