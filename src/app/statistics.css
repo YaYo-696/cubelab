@@ -1,0 +1,99 @@
+.stats-page {
+    display: grid;
+    gap: 1rem;
+}
+.stats-card {
+    background: #1a2630;
+    border: 1px solid #43535e;
+    border-radius: 12px;
+    padding: 1rem;
+    min-width: 0;
+}
+.stats-card h2 {
+    margin: 0 0 0.8rem;
+}
+.stats-card button {
+    margin: 0;
+    padding: 0.45rem 0.7rem;
+}
+.stats-card form,
+.session-forms,
+.stats-card .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem;
+    margin: 0.55rem 0;
+}
+.stats-card input {
+    max-width: 100%;
+    padding: 0.4rem;
+}
+.stats-card label,
+.stats-card select {
+    max-width: 100%;
+}
+.stats-card table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: clamp(0.75rem, 2.5vw, 1rem);
+}
+.stats-card td,
+.stats-card th {
+    text-align: left;
+    border-bottom: 1px solid #43535e;
+    padding: 0.55rem 0.3rem;
+}
+.stats-card td button {
+    font-size: inherit;
+}
+.main-metric {
+    background: #253d3c;
+}
+.stats-charts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: 1rem;
+    margin-block: 1rem;
+}
+.stats-charts figure {
+    display: block;
+    padding: 0.5rem;
+}
+.stats-charts svg {
+    max-width: none;
+    width: 100%;
+}
+.stats-charts svg text {
+    fill: #dce6e8;
+    font-size: 14px;
+}
+.chart-single {
+    stroke: #e8eeef;
+}
+.chart-ao5 {
+    stroke: #79d5b5;
+}
+.chart-ao12 {
+    stroke: #eebc78;
+}
+.legend-five {
+    color: #79d5b5;
+}
+.legend-twelve {
+    color: #eebc78;
+}
+.stats-card details {
+    border-top: 1px solid #43535e;
+    padding: 0.6rem 0;
+    overflow-wrap: anywhere;
+}
+.stats-card summary {
+    cursor: pointer;
+}
+.stats-notice {
+    position: sticky;
+    bottom: 0;
+    background: #253d3c;
+    padding: 0.7rem;
+}

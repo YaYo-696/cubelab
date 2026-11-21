@@ -73,3 +73,13 @@ En Windows ejecutar `npm.cmd ci` y después `powershell.exe -NoProfile -Executio
 En PC, seleccionar la modalidad y la sesión. Con inspección habilitada, una pulsación de espacio inicia la inspección. Mantener espacio hasta «Listo», soltar para correr y pulsar una tecla para detener. Probar soltar antes del umbral, activar y quitar +2 y DNF, comentar y borrar/deshacer. En ingreso manual, 1:02.34 y 62.34 deben producir el mismo tiempo. Para probar notación, introducir R U3 y comprobar que se señala el 3. En 3×3 a ciegas, la primera presión ya prepara el timer.
 
 En Android abrir la PWA de producción con adb reverse como se indica arriba. Verificar que se ve «Últimos cinco tiempos» y anotar el contador de una sesión. Activar modo avión, desconectar el USB y completar **12 intentos cronometrados consecutivos en la misma sesión**. Mantener el dedo hasta «Listo», soltar para correr y tocar para detener. Verificar que el contador aumentó en 12, anotar los últimos cinco y el ao5, cerrar por completo y reabrir desde el icono. El contador, los cinco tiempos y el ao5 deben coincidir. Si el teléfono ya tenía la fase 0, abrir primero con conexión al servidor actualizado y dejar que el service worker descargue la nueva versión.
+
+### Aceptación de la fase 2
+
+Ejecutar el diagnóstico de aceptación de Windows con Edge. Incluye el límite de 1.000 ms para estadísticas completas y PB con 10.000 intentos, las transacciones de sesiones y la restauración JSON con Playwright.
+
+En Estadísticas, elegir el evento y la sesión. Después de cinco intentos, abrir el desglose del ao5. Cambiar +2 en un intento antiguo y revisar tanto la nueva media como los descartes. Crear otra sesión del mismo evento y mover un intento con su casilla de selección. Fusionar las sesiones y verificar el conteo. Exportar JSON y restaurarlo en un perfil desechable del navegador. El CSV exporta los intentos activos y el JSON incluye también los borrados recuperables. No hace falta borrar el perfil habitual.
+
+En Android, abrir el build actualizado usando el procedimiento USB anterior. En modo avión, confirmar que funcionan el panel, el gráfico, el desglose y la edición. Exportar el JSON desde el teléfono y conservarlo antes de probar la importación en otro perfil.
+
+Para contrastar con csTimer, activar el recorte predeterminado del 5 % por extremo e ingresar 10.00, 12.00 (+2), 14.00, 15.00, 18.00 (DNF), 11.00, 13.00, 10.00, 12.00 (+2), 9.00, 16.00 y 12.00. Single actual/mejor 12.00/9.00, mo3 12.33/11.00, ao5 12.00/11.33, ao12 12.90/12.90. Media 12.55. El mejor valor histórico de la media acumulada de CubeLab es 10.00. Los promedios de 25 intentos o más quedan vacíos.

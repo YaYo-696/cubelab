@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { translate } from '../i18n/translate';
 import { Timer } from './Timer';
 import { useApp } from './state';
@@ -6,6 +6,7 @@ import { events, registry } from '../puzzles/registry';
 import { CubePreview } from '../ui/CubePreview';
 import { db } from '../core/storage/db';
 import type { PuzzleModule, Lesson } from '../core/contracts';
+const Statistics = lazy(() => import('./Statistics').then(m => ({default:m.Statistics})));
 const routes = ['timer', 'academy', 'trainer', 'solver', 'stats', 'settings'] as const;
 type Route = typeof routes[number];
 function routeFromHash() { return routes.find(r => '#' + r === location.hash) ?? 'timer'; }
@@ -80,11 +81,11 @@ export default function App() {
         setLang(row.value); }).catch(() => setFailed(true)); }, [setLang]);
     useEffect(() => { document.documentElement.lang = lang; document.title = t(route) + ' · CubeLab'; }, [lang, route]);
     return <><header><a className="brand" href="#timer"><span aria-hidden="true">◇</span> CubeLab</a><nav>{routes.map(r => <a href={'#' + r} key={r} aria-current={r === route ? 'page' : undefined}>{t(r)}</a>)}</nav></header>
-    <main><div className="heading"><h1>{t(route)}</h1>{['timer', 'trainer', 'academy'].includes(route) && <label>{t('event')} <select value={eventId} onChange={e=>{setEvent(e.target.value);try{localStorage.setItem('cubelab.event',e.target.value)}catch{/* storage unavailable */}e.target.blur()}}>{events.map(({ rules }) => <option key={rules.id} value={rules.id}>{t(rules.nameKey)}</option>)}</select></label>}</div>
+    <main><div className="heading"><h1>{t(route)}</h1>{['timer', 'trainer', 'academy', 'stats'].includes(route) && <label>{t('event')} <select value={eventId} onChange={e=>{setEvent(e.target.value);try{localStorage.setItem('cubelab.event',e.target.value)}catch{/* storage unavailable */}e.target.blur()}}>{events.map(({ rules }) => <option key={rules.id} value={rules.id}>{t(rules.nameKey)}</option>)}</select></label>}</div>
     {failed && <p role="alert">{t('failed')}</p>}
     {route==='timer' && mod?.id===puzzle && <Timer key={eventId} mod={mod} rules={events.find(e=>e.rules.id===eventId)!.rules} t={t}/>}
     {mod?.id === puzzle && ['trainer', 'academy'].includes(route) && <Workspace key={eventId + route} eventId={eventId} mod={mod} route={route} t={t}/>}
     {route === 'settings' && <section className="sheet"><label>{t('language')} <select value={lang} onChange={e => { const value = e.target.value as 'es' | 'en'; setLang(value); db.settings.put({ key: 'language', value }).catch(() => setFailed(true)); }}><option value="es">{t('es')}</option><option value="en">{t('en')}</option></select></label></section>}
-    {route === 'stats' && <p>{t('noStats')}</p>}{route === 'solver' && <p>{t('solverText')}</p>}
+    {route === 'stats' && <Suspense><Statistics key={eventId} rules={events.find(e=>e.rules.id===eventId)!.rules} puzzleId={puzzle} t={t}/></Suspense>}{route === 'solver' && <p>{t('solverText')}</p>}
     </main></>;
 }

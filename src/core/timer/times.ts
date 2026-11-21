@@ -1,5 +1,3 @@
-import type { Solve } from '../storage/db';
-
 export function parseTime(input: string): number | null {
     const match = /^(?:(\d+):([0-5]\d)|(\d+))(?:\.(\d{1,2}))?$/.exec(input.trim());
     if (!match) return null;
@@ -16,17 +14,4 @@ export function formatTime(ms: number) {
         '.' +
         String(cs % 100).padStart(2, '0')
     );
-}
-export function adjusted(solve: Solve) {
-    if (solve.penalty === 'dnf' || solve.result.kind !== 'time') return Infinity;
-    return Math.floor(solve.result.timeMs / 10) * 10 + (solve.penalty === '+2' ? 2000 : 0);
-}
-// TODO fase 2: trasladar el cálculo y el redondeo por formato de evento a core/stats.
-export function currentAo5(recent: Solve[]) {
-    if (recent.length < 5) return null;
-    const sorted = recent
-        .slice(0, 5)
-        .map(adjusted)
-        .sort((a, b) => a - b);
-    return Math.round((sorted[1] + sorted[2] + sorted[3]) / 30) * 10;
 }

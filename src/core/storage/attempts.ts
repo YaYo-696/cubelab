@@ -16,9 +16,13 @@ export function attemptRepository(database: CubeDatabase) {
         async sessions(eventId: string, puzzleId: string) {
             return database.transaction('rw', database.sessions, async () => {
                 await ensureDefault(eventId, puzzleId);
-                return (await database.sessions.where('eventId').equals(eventId).toArray()).filter(
+                const active = (await database.sessions.where('eventId').equals(eventId).toArray()).filter(
                     (s) => s.archivedAt === undefined,
                 );
+                if(active.length)return active;
+                const session={id:crypto.randomUUID(),eventId,puzzleId,name:'',createdAt:Date.now()};
+                await database.sessions.add(session);
+                return [session];
             });
         },
         async save(solve: Solve, { recoverMissingSession = false } = {}) {

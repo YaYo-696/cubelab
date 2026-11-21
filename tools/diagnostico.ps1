@@ -1,5 +1,5 @@
 ﻿<#
-  CubeLab - Diagnostico del proyecto (Fase 1)
+  CubeLab - Diagnostico del proyecto (Fase 2)
   Revisa herramientas, git, dependencias, el navegador de Playwright
   y corre las comprobaciones del proyecto. Genera
   el log, dist/ y los resultados de Playwright.
@@ -206,7 +206,7 @@ if ($Rapido) {
   Add-Result 'Build' 'OMITIDO' 'modo -Rapido'
 } else {
   Write-Host '     (los tests unitarios generan miles de mezclas: pueden tardar varios minutos)' -ForegroundColor DarkGray
-  $unit = Invoke-Step 'Tests unitarios (timer, mezclas y Dexie)' 'npm test'
+  $unit = Invoke-Step 'Tests unitarios (timer, mezclas, Dexie, respaldo y rendimiento)' 'npm test'
   if ($unit.Code -eq 0) { Add-Result 'Tests unitarios' 'OK' "pasaron ($($unit.Secs) s)" }
   else { Add-Result 'Tests unitarios' 'FALLA' 'hay tests fallando'; Show-Tail $unit 30 }
 
@@ -225,7 +225,7 @@ if (-not $ConE2E) {
 } elseif ($build.Code -ne 0) {
   Add-Result 'Tests e2e' 'FALLA' 'El build de producción falló.'
 } else {
-  $e2e = Invoke-Step 'Tests e2e (offline, timer e inspeccion)' 'npm run test:e2e'
+  $e2e = Invoke-Step 'Tests e2e (offline, timer, estadisticas y respaldo)' 'npm run test:e2e'
   if ($e2e.Code -eq 0) { Add-Result 'Tests e2e' 'OK' "pasaron ($($e2e.Secs) s)" }
   else { Add-Result 'Tests e2e' 'FALLA' 'fallaron'; Show-Tail $e2e 30 }
 }

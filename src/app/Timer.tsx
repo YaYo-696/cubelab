@@ -2,9 +2,11 @@ import '../ui/timer.css';
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { liveQuery } from 'dexie';
 import type { EventRules, PuzzleModule } from '../core/contracts';
-import { formatTime, parseTime, adjusted, currentAo5 } from '../core/timer/times';
+import { formatTime, parseTime } from '../core/timer/times';
 import { attempts, persistAttempt, replayAttempts } from '../core/storage/attempts';
-import { db, type Solve, type Session } from '../core/storage/db';
+import { adjusted, breakdown } from '../core/stats';
+import { useStatistics } from './useStatistics';
+import { db, solvesForEvent, type Solve, type Session } from '../core/storage/db';
 import { NotationError } from '../puzzles/notation';
 import { CubeNet } from '../ui/CubeNet';
 import { useScrambles } from './useScrambles';
@@ -23,6 +25,9 @@ export function Timer({ mod, rules, t }: Props) {
         [boot, setBoot] = useState(0);
     const [recent, setRecent] = useState<Solve[]>([]),
         [deleted, setDeleted] = useState('');
+    const [pbInput,setPbInput]=useState<{session:Solve[];event:Solve[]}>();
+    const [lastSaved,setLastSaved]=useState('');
+    const pbStats=useStatistics(pbInput);
     const [total, setTotal] = useState(0);
     const [message, setMessage] = useState(''),
         [custom, setCustom] = useState(''),
@@ -110,6 +115,11 @@ export function Timer({ mod, rules, t }: Props) {
             await persistAttempt(solve);
             if (!alive.current) return;
             setPending(null);
+            setLastSaved(solve.id);
+            setPbInput(undefined);
+            void solvesForEvent(rules.id).then(event=>{
+                if(alive.current)setPbInput({session:[],event});
+            }).catch(()=>{});
             setMessage('');
             if (solve.source === 'timer') timer.saved();
             setManual('');
@@ -166,7 +176,8 @@ export function Timer({ mod, rules, t }: Props) {
               : 'DNF'
         : formatTime(elapsed);
     const locked = !ready || active || !!pending || phase === 'stopped';
-    const ao = currentAo5(recent);
+    const ao = useMemo(()=>breakdown([...recent].reverse(),'ao5')?.value??null,[recent]);
+    const newPbs=pbStats?.records.filter(r=>r.solve.id===lastSaved&&['single','ao5','ao12'].includes(r.metric));
     const last = recent[0];
     const show = (s: Solve) =>
         s.penalty === 'dnf' ? 'DNF' : formatTime(adjusted(s)) + (s.penalty === '+2' ? ' (+2)' : '');
@@ -425,6 +436,7 @@ export function Timer({ mod, rules, t }: Props) {
                 <p>
                     ao5 <strong>{ao === null ? '—' : ao === Infinity ? 'DNF' : formatTime(ao)}</strong>
                 </p>
+                {newPbs?.length ? <p role="status">{t('newPb')} {newPbs.map(r=>t(r.metric)).join(', ')}</p>:null}
                 <ol data-testid="recent">
                     {recent.map((s) => (
                         <li key={s.id}>
