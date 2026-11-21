@@ -45,3 +45,9 @@ Cuando la sesión de un intento pendiente ha desaparecido, la recuperación lo g
 - El modelo de tiempo de TwistyPlayer 3D actualiza la misma marca temporal en la comparación 2D. Las caras ocultas son adhesivos guía flotantes del mismo reproductor. Las figuras de los minitests dentro de una lección usan 2D. La evaluación muestra una pregunta visual 3D a la vez. El timer carga el visor 3D bajo demanda.
 - Las lecciones toman sus preguntas del banco etiquetado por habilidad, nivel y puzzle. Cada evaluación toma doce preguntas con orden mezclado y cobertura de habilidades. Las recomendaciones aceptan evidencias de respuesta o de práctica cronometrada, con un objetivo de tiempo aportado por el entrenador.
 - Dexie v2 añade el historial de evaluaciones. Los respaldos v2 lo contienen y el importador admite v1. Los identificadores de curso, lección y revisión conservan el avance anterior. Las lecciones que usan notación avanzada exigen completar esa lección para abrirse.
+
+## Fase 3B · Catálogos y reconocimiento
+
+Los manifiestos de los grupos solo contienen nombres e identificadores. Cada set carga su JSON por separado mediante importación dinámica. El panel calcula las miniaturas cuando se abre un grupo o se muestra una pregunta. Las proyecciones se reutilizan en una caché acotada de 256 imágenes. Cada grupo reutiliza una sola instancia visible del reproductor principal; los minitests de catálogo usan miniaturas SVG.
+
+La identidad del caso se compara en las cuatro orientaciones U. PLL y CLL también admiten cambios cíclicos de los colores laterales. OLL compara la orientación conjunta de aristas y esquinas. CLL exige que la capa inferior esté ordenada y EG compara, además, sus franjas. Se conservan los identificadores y la revisión del curso v1 para que el progreso anterior siga siendo válido.

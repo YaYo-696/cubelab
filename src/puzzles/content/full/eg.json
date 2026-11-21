@@ -1,0 +1,42 @@
+[
+  {
+    "id": "EG1 AS 2",
+    "group": "EG-1",
+    "co": "1101",
+    "cp": "2103",
+    "down": "1023",
+    "algs": [
+      "R U' F2 R U2 R U' F"
+    ]
+  },
+  {
+    "id": "EG1 AS 3",
+    "group": "EG-1",
+    "co": "1101",
+    "cp": "2130",
+    "down": "1023",
+    "algs": [
+      "F' R U R' U' R U R2 F' R"
+    ]
+  },
+  {
+    "id": "EG2 AS 1",
+    "group": "EG-2",
+    "co": "1101",
+    "cp": "0123",
+    "down": "0321",
+    "algs": [
+      "F' R2 D R2 D' F R' F2 R' F"
+    ]
+  },
+  {
+    "id": "EG2 AS 2",
+    "group": "EG-2",
+    "co": "1101",
+    "cp": "2103",
+    "down": "0321",
+    "algs": [
+      "R' U' R U' R' U2 R' F2 R2"
+    ]
+  }
+]

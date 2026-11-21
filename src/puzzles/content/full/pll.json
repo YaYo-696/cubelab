@@ -1,0 +1,253 @@
+[
+  {
+    "id": "Aa",
+    "group": "Corners",
+    "co": "0000",
+    "cp": "2013",
+    "ep": "0123",
+    "algs": [
+      "R' F R' B2 R F' R' B2 R2",
+      "B2 R2 B' L' B R2 B' L B'"
+    ]
+  },
+  {
+    "id": "Ab",
+    "group": "Corners",
+    "co": "0000",
+    "cp": "1203",
+    "ep": "0123",
+    "algs": [
+      "R2 B2 R F R' B2 R F' R",
+      "B L' B R2 B' L B R2 B2",
+      "R' B' R U' R D R' U R D' R2 B R"
+    ]
+  },
+  {
+    "id": "E",
+    "group": "Corners",
+    "co": "0000",
+    "cp": "2103",
+    "ep": "3012",
+    "algs": [
+      "B L' B' R B L B' R' B L B' R B L' B' R'",
+      "B' U' B' D' B U' B' D B U B' D' B U B' D B2",
+      "R2 U F' R' U R U' R' U R U' R' U R U' F U' R2"
+    ]
+  },
+  {
+    "id": "F",
+    "group": "Adj Swap",
+    "co": "0000",
+    "cp": "3102",
+    "ep": "3210",
+    "algs": [
+      "B' U' R' B U B' U' B' R B2 U' B' U' B U B' U B",
+      "B' R B r' B' R B2 U B' U' B' R' B2 U B' M'",
+      "R' U R U' R2 F' U' F U R F R' F' R2"
+    ]
+  },
+  {
+    "id": "Ga",
+    "group": "Adj Swap",
+    "co": "0000",
+    "cp": "1023",
+    "ep": "1302",
+    "algs": [
+      "R2 U R' U R' U' R U' R2 D U' R' U R D'",
+      "R2 u R' U R' U' R u' R2 F' U F",
+      "B U B' R' B U B' U' B' R B U' B' R B2 U' B' U' B U B' R'"
+    ]
+  },
+  {
+    "id": "Gb",
+    "group": "Adj Swap",
+    "co": "0000",
+    "cp": "1023",
+    "ep": "2031",
+    "algs": [
+      "D R' U' R U D' R2 U R' U R U' R U' R2",
+      "R' U' R U D' R2 U R' U R U' R U' R2 D",
+      "R' U' R B2 u B' U B U' B u' B2"
+    ]
+  },
+  {
+    "id": "Gc",
+    "group": "Adj Swap",
+    "co": "0000",
+    "cp": "1023",
+    "ep": "2310",
+    "algs": [
+      "R2 U' R U' R U R' U R2 D' U R U' R' D",
+      "L2 B2 L U2 L U2 L' B L U L' U' L' B L2",
+      "D R2 U' R U' R U R' U R2 D' U R U' R'"
+    ]
+  },
+  {
+    "id": "Gd",
+    "group": "Adj Swap",
+    "co": "0000",
+    "cp": "1023",
+    "ep": "3201",
+    "algs": [
+      "R U R' U' D R2 U' R U' R' U R' U R2 D'",
+      "D' R U R' U' D R2 U' R U' R' U R' U R2",
+      "R U R' F2 u' F U' F' U F' u F2"
+    ]
+  },
+  {
+    "id": "H",
+    "group": "EPLL",
+    "co": "0000",
+    "cp": "0123",
+    "ep": "2301",
+    "algs": [
+      "M2 U M2 U2 M2 U M2",
+      "M2 U' M2 U2 M2 U' M2",
+      "R2 S2 R2 U' R2 S2 R2"
+    ]
+  },
+  {
+    "id": "Ja",
+    "group": "Adj Swap",
+    "co": "0000",
+    "cp": "2310",
+    "ep": "1302",
+    "algs": [
+      "L2 D L D' L B2 l' B l B2",
+      "L' U' L F L' U' L U L F' L2 U L",
+      "B' U F' U2 B U' B' U2 B F"
+    ]
+  },
+  {
+    "id": "Jb",
+    "group": "Adj Swap",
+    "co": "0000",
+    "cp": "0312",
+    "ep": "0312",
+    "algs": [
+      "R U R' F' R U R' U' R' F R2 U' R'",
+      "R U2 R' U' R U2 L' U R' U' L",
+      "r' F R F' r U2 R' U R U2 R'"
+    ]
+  },
+  {
+    "id": "Na",
+    "group": "Opp Swap",
+    "co": "0000",
+    "cp": "0321",
+    "ep": "0321",
+    "algs": [
+      "R U R' U R U R' F' R U R' U' R' F R2 U' R' U2 R U' R'",
+      "F' R U R' U' R' F R2 F U' R' U' R U F' R'",
+      "R F U' R' U R U F' R2 F' R U R U' R' F"
+    ]
+  },
+  {
+    "id": "Nb",
+    "group": "Opp Swap",
+    "co": "0000",
+    "cp": "2103",
+    "ep": "0321",
+    "algs": [
+      "R' U R U' R' F' U' F R U R' F R' F' R U' R",
+      "r' D' F r U' r' F' D r2 U r' U' r' F r F'",
+      "R' U L' U2 R U' L R' U L' U2 R U' L"
+    ]
+  },
+  {
+    "id": "Ra",
+    "group": "Adj Swap",
+    "co": "0000",
+    "cp": "2031",
+    "ep": "1302",
+    "algs": [
+      "B U' B' U' B U B D B' U' B D' B' U2 B'",
+      "B U B' R' B U2 B' U2 B' R B U B U2 B'",
+      "L U2 L' U2 L F' L' U' L U L F L2"
+    ]
+  },
+  {
+    "id": "Rb",
+    "group": "Adj Swap",
+    "co": "0000",
+    "cp": "3102",
+    "ep": "0312",
+    "algs": [
+      "R' U2 R U2 R' F R U R' U' R' F' R2",
+      "B2 R B U B U' B' R' B U2 B' U2 B",
+      "R' U2 R' D' R U' R' D R U R U' R' U' R"
+    ]
+  },
+  {
+    "id": "T",
+    "group": "Adj Swap",
+    "co": "0000",
+    "cp": "1023",
+    "ep": "0321",
+    "algs": [
+      "R U R' U' R' F R2 U' R' U' R U R' F'",
+      "R U R' U' R' F R2 U' R' U F' L' U L",
+      "R2 u R2 u' R2 F2 u' F2 u F2"
+    ]
+  },
+  {
+    "id": "Ua",
+    "group": "EPLL",
+    "co": "0000",
+    "cp": "0123",
+    "ep": "0231",
+    "algs": [
+      "M2 U M' U2 M U M2",
+      "R U R' U R' U' R2 U' R' U R' U R",
+      "B2 U' M U2 M' U' B2"
+    ]
+  },
+  {
+    "id": "Ub",
+    "group": "EPLL",
+    "co": "0000",
+    "cp": "0123",
+    "ep": "0312",
+    "algs": [
+      "M2 U' M' U2 M U' M2",
+      "R' U R' U' R' U' R' U R U R2",
+      "R2 U R U R' U' R' U' R' U R'"
+    ]
+  },
+  {
+    "id": "V",
+    "group": "Opp Swap",
+    "co": "0000",
+    "cp": "2103",
+    "ep": "0213",
+    "algs": [
+      "R' U R' U' R D' R' D R' U D' R2 U' R2 D R2",
+      "R' U R U' R' f' U' R U2 R' U' R U' R' f R",
+      "R' U R' U' B' R' B2 U' B' U B' R B R"
+    ]
+  },
+  {
+    "id": "Y",
+    "group": "Opp Swap",
+    "co": "0000",
+    "cp": "2103",
+    "ep": "0132",
+    "algs": [
+      "F R U' R' U' R U R' F' R U R' U' R' F R F'",
+      "F R' F R2 U' R' U' R U R' F' R U R' U' F'",
+      "R2 U' R2 U' R2 U F U F' R2 F U' F'"
+    ]
+  },
+  {
+    "id": "Z",
+    "group": "EPLL",
+    "co": "0000",
+    "cp": "2301",
+    "ep": "3210",
+    "algs": [
+      "M' U' M2 U' M2 U' M' U2 M2",
+      "M2 U M2 U M' U2 M2 U2 M'",
+      "S2 U' S2 U' S' U2 S2 U2 S'"
+    ]
+  }
+]

@@ -1,0 +1,624 @@
+[
+  {
+    "id": "OLL 1",
+    "group": "Dot Case",
+    "co": "1212",
+    "eo": "1111",
+    "algs": [
+      "R U2 R2 F R F' U2 R' F R F'",
+      "B U' B2 D' b U' b' D B2 U B'",
+      "f R U R' U' R f' U' r' U' R U M'"
+    ]
+  },
+  {
+    "id": "OLL 2",
+    "group": "Dot Case",
+    "co": "2112",
+    "eo": "1111",
+    "algs": [
+      "F U' F2 D' f U f' D F2 U F'",
+      "F R U R' U' S R U R' U' f'",
+      "b U b' U2 B U2 B' U2 b U' b'"
+    ]
+  },
+  {
+    "id": "OLL 3",
+    "group": "Dot Case",
+    "co": "2220",
+    "eo": "1111",
+    "algs": [
+      "l F U F' U' l' U' L F U F' U' L'",
+      "B' R2 B2 U2 B' R B U2 B2 R2 B",
+      "r' R2 U R' U r U2 r' U M'"
+    ]
+  },
+  {
+    "id": "OLL 4",
+    "group": "Dot Case",
+    "co": "0111",
+    "eo": "1111",
+    "algs": [
+      "F' L2 F2 U2 F' L' F U2 F2 L2 F",
+      "l F U F' U' l' U L F U F' U' L'",
+      "R' F R F' U' S R' U' R U R S'"
+    ]
+  },
+  {
+    "id": "OLL 5",
+    "group": "Square Shapes",
+    "co": "0222",
+    "eo": "0011",
+    "algs": [
+      "r' U2 R U R' U r",
+      "L' B2 l U l' B L",
+      "L' B2 R B R' B L"
+    ]
+  },
+  {
+    "id": "OLL 6",
+    "group": "Square Shapes",
+    "co": "1011",
+    "eo": "1001",
+    "algs": [
+      "r U2 R' U' R U' r'",
+      "F U' R2 D R' U' R D' R2 U F'",
+      "L F2 l' U' l F' L'"
+    ]
+  },
+  {
+    "id": "OLL 7",
+    "group": "Lightning Shapes",
+    "co": "2220",
+    "eo": "1100",
+    "algs": [
+      "r U R' U R U2 r'",
+      "S' R U R' U R U2 R' U S",
+      "L' U2 L U2 L F' L' F"
+    ]
+  },
+  {
+    "id": "OLL 8",
+    "group": "Lightning Shapes",
+    "co": "0111",
+    "eo": "1001",
+    "algs": [
+      "l' U' L U' L' U2 l",
+      "R U2 R' U2 R' F R F'",
+      "R' F' r U' r' F2 R"
+    ]
+  },
+  {
+    "id": "OLL 9",
+    "group": "Fish Shapes",
+    "co": "1011",
+    "eo": "0110",
+    "algs": [
+      "B U B' U' B' R B2 U B' U' R'",
+      "R U2 R' U' S' R U' R' S",
+      "B' U' B U' B L' B' L B' U2 B"
+    ]
+  },
+  {
+    "id": "OLL 10",
+    "group": "Fish Shapes",
+    "co": "2022",
+    "eo": "0110",
+    "algs": [
+      "R U R' U R' F R F' R U2 R'",
+      "R U R' B' R B U' B' R' B",
+      "S' B' U2 B U B' U B U S"
+    ]
+  },
+  {
+    "id": "OLL 11",
+    "group": "Lightning Shapes",
+    "co": "2220",
+    "eo": "0011",
+    "algs": [
+      "r' R2 U R' U R U2 R' U M'",
+      "l U L' U L' B L B' L U2 l'",
+      "M R U R' U R U2 R' U M'"
+    ]
+  },
+  {
+    "id": "OLL 12",
+    "group": "Lightning Shapes",
+    "co": "1011",
+    "eo": "0011",
+    "algs": [
+      "S F' U' F U' F' U2 F U' S'",
+      "F R U R' U' F' U F R U R' U' F'",
+      "M F' U' F U' F' U2 F U2 M'"
+    ]
+  },
+  {
+    "id": "OLL 13",
+    "group": "Knight Move Shapes",
+    "co": "2220",
+    "eo": "1010",
+    "algs": [
+      "F U R U2 R' U' R U R' F'",
+      "F U R U' R2 F' R U R U' R'",
+      "r U' r' U' r U r' F' U F"
+    ]
+  },
+  {
+    "id": "OLL 14",
+    "group": "Knight Move Shapes",
+    "co": "0111",
+    "eo": "1010",
+    "algs": [
+      "R' F R U R' F' R F U' F'",
+      "r U R' U' r' F R2 U R' U' F'",
+      "l' U l U l' U' l F U' F'"
+    ]
+  },
+  {
+    "id": "OLL 15",
+    "group": "Knight Move Shapes",
+    "co": "0222",
+    "eo": "1010",
+    "algs": [
+      "r' U' r R' U' R U r' U r",
+      "r' U' M' U' R U r' U r",
+      "L' B' L R' U' R U L' B L"
+    ]
+  },
+  {
+    "id": "OLL 16",
+    "group": "Knight Move Shapes",
+    "co": "1011",
+    "eo": "1010",
+    "algs": [
+      "r U r' R U R' U' r U' r'",
+      "r U M U R' U' r U' r'",
+      "L' B L U L' U' B' L U' L' U2 L"
+    ]
+  },
+  {
+    "id": "OLL 17",
+    "group": "Dot Case",
+    "co": "0102",
+    "eo": "1111",
+    "algs": [
+      "R U R' U R' F R F' U2 R' F R F'",
+      "B L' B' L U S L U' L' S'",
+      "B L' B' L2 l' U L U' L' U' M"
+    ]
+  },
+  {
+    "id": "OLL 18",
+    "group": "Dot Case",
+    "co": "2001",
+    "eo": "1111",
+    "algs": [
+      "B U2 B2 R B R' U2 S' U B U' b'",
+      "r U R' U R U2 r2 U' R U' R' U2 r",
+      "R M B U' B' M' B U2 B' U' R'"
+    ]
+  },
+  {
+    "id": "OLL 19",
+    "group": "Dot Case",
+    "co": "1002",
+    "eo": "1111",
+    "algs": [
+      "M B U B' M' U' B' R B R'",
+      "M U R U R' U' M' R' F R F'",
+      "R' U2 F R U R' U' F2 U2 F R"
+    ]
+  },
+  {
+    "id": "OLL 20",
+    "group": "Dot Case",
+    "co": "0000",
+    "eo": "1111",
+    "algs": [
+      "r U R' U' M2 U R U' R' U' M'",
+      "M' U2 M U2 M' U M U2 M' U2 M",
+      "S' R U R' S U' M' U R U' r'"
+    ]
+  },
+  {
+    "id": "OLL 21",
+    "group": "OCLL",
+    "co": "1212",
+    "eo": "0000",
+    "algs": [
+      "R U R' U R U' R' U R U2 R'",
+      "B U2 B' U' B U B' U' B U' B'",
+      "R B U B' U' B U B' U' B U B' U' R'"
+    ]
+  },
+  {
+    "id": "OLL 22",
+    "group": "OCLL",
+    "co": "2112",
+    "eo": "0000",
+    "algs": [
+      "R U2 R2 U' R2 U' R2 U2 R",
+      "R' U2 R2 U R2 U R2 U2 R'",
+      "f R U R' U' S' R U R' U' F'"
+    ]
+  },
+  {
+    "id": "OLL 23",
+    "group": "OCLL",
+    "co": "2001",
+    "eo": "0000",
+    "algs": [
+      "R2 D R' U2 R D' R' U2 R'",
+      "L2 D' L U2 L' D L U2 L",
+      "R U R' U R U2 R2 U' R U' R' U2 R"
+    ]
+  },
+  {
+    "id": "OLL 24",
+    "group": "OCLL",
+    "co": "0021",
+    "eo": "0000",
+    "algs": [
+      "r U R' U' r' F R F'",
+      "L' B' l U L U' l' B",
+      "B U B D B' U' B D' B2"
+    ]
+  },
+  {
+    "id": "OLL 25",
+    "group": "OCLL",
+    "co": "0201",
+    "eo": "0000",
+    "algs": [
+      "R U2 R D R' U2 R D' R2",
+      "R' b U B' U' b' R B",
+      "F R' F' r U R U' r'"
+    ]
+  },
+  {
+    "id": "OLL 26",
+    "group": "OCLL",
+    "co": "1101",
+    "eo": "0000",
+    "algs": [
+      "B U2 B' U' B U' B'",
+      "R' U' R U' R' U2 R",
+      "R' U L U' R U L'"
+    ]
+  },
+  {
+    "id": "OLL 27",
+    "group": "OCLL",
+    "co": "2220",
+    "eo": "0000",
+    "algs": [
+      "R U R' U R U2 R'",
+      "F' U2 F U F' U F"
+    ]
+  },
+  {
+    "id": "OLL 28",
+    "group": "All Corners Oriented",
+    "co": "0000",
+    "eo": "1100",
+    "algs": [
+      "r U R' U' M U R U' R'",
+      "r U R' U' r' R U R U' R'",
+      "R' F R S R' F' R S'"
+    ]
+  },
+  {
+    "id": "OLL 29",
+    "group": "Awkward Shapes",
+    "co": "1002",
+    "eo": "0110",
+    "algs": [
+      "r2 D' r U r' D r2 U' r' U' r",
+      "B U B' U' B U' B' R' U' R B U B'",
+      "M B U B' U' B' R B R' U M'"
+    ]
+  },
+  {
+    "id": "OLL 30",
+    "group": "Awkward Shapes",
+    "co": "1002",
+    "eo": "0011",
+    "algs": [
+      "B U L U2 L' U' L U2 L' U' B'",
+      "f' D' f U' f' D f2 U' f' U f U f'",
+      "B L' B L2 U' L' U' L U L' B2"
+    ]
+  },
+  {
+    "id": "OLL 31",
+    "group": "P Shapes",
+    "co": "0021",
+    "eo": "1001",
+    "algs": [
+      "R' U' F U R U' R' F' R",
+      "M' B U B' U' r' U' R",
+      "S R' U' R U R B' R' b"
+    ]
+  },
+  {
+    "id": "OLL 32",
+    "group": "P Shapes",
+    "co": "0021",
+    "eo": "0011",
+    "algs": [
+      "S R U R' U' R' F R f'",
+      "R U B' U' R' U R B R'",
+      "F' L F L' U' f U' f' U f U f'"
+    ]
+  },
+  {
+    "id": "OLL 33",
+    "group": "T Shapes",
+    "co": "0021",
+    "eo": "1010",
+    "algs": [
+      "R U R' U' R' F R F'",
+      "R' U' R U R B' R' B",
+      "l' B' l U l U' l' B"
+    ]
+  },
+  {
+    "id": "OLL 34",
+    "group": "C Shapes",
+    "co": "1002",
+    "eo": "1010",
+    "algs": [
+      "r B r' U' b' U' B U S'",
+      "L U L2 U' L' B L U L U' B'",
+      "F R U R' U' R' F' r U R U' r'"
+    ]
+  },
+  {
+    "id": "OLL 35",
+    "group": "Fish Shapes",
+    "co": "0201",
+    "eo": "0011",
+    "algs": [
+      "R U2 R2 F R F' R U2 R'",
+      "f R U R' U' f' R U R' U R U2 R'",
+      "F' U2 F2 R' F' R F' U2 F"
+    ]
+  },
+  {
+    "id": "OLL 36",
+    "group": "W Shapes",
+    "co": "0201",
+    "eo": "0110",
+    "algs": [
+      "B U B2 R' U' R U B2 U2 B'",
+      "R' U' R U' R' U R U R B' R' B",
+      "L U L' B' L U L' U' L' B L U' L' B L B'"
+    ]
+  },
+  {
+    "id": "OLL 37",
+    "group": "Fish Shapes",
+    "co": "0201",
+    "eo": "1100",
+    "algs": [
+      "F R' F' R U R U' R'",
+      "F R U' R' U' R U R' F'",
+      "R' b U b' U' b' R b"
+    ]
+  },
+  {
+    "id": "OLL 38",
+    "group": "W Shapes",
+    "co": "1020",
+    "eo": "1100",
+    "algs": [
+      "R U R' U R U' R' U' R' F R F'",
+      "R B U' B' M' U' B U B' r'",
+      "r U R' U' r' F R U R U' R' F'"
+    ]
+  },
+  {
+    "id": "OLL 39",
+    "group": "Lightning Shapes",
+    "co": "0102",
+    "eo": "0101",
+    "algs": [
+      "l' f U f' U' f' L f M",
+      "F U F' L' U' L U F U2 F'",
+      "F R' F' U' F U R U' F'"
+    ]
+  },
+  {
+    "id": "OLL 40",
+    "group": "Lightning Shapes",
+    "co": "2010",
+    "eo": "0101",
+    "algs": [
+      "B' R B U B' U' R' U B",
+      "l F' L' F U F U' F' M'",
+      "R r D r' U r D' r' U' R'"
+    ]
+  },
+  {
+    "id": "OLL 41",
+    "group": "Awkward Shapes",
+    "co": "2001",
+    "eo": "0011",
+    "algs": [
+      "L U L' U L U2 L' B L U L' U' B'",
+      "B U L2 D L' U' L D' L2 B'",
+      "M U' F' L' U' L U F M'"
+    ]
+  },
+  {
+    "id": "OLL 42",
+    "group": "Awkward Shapes",
+    "co": "2001",
+    "eo": "0110",
+    "algs": [
+      "R' U' R U' R' U2 R F R U R' U' F'",
+      "R M B U B' U' R' U M'",
+      "B' R B R' B' R B R' B U B' U' B U B'"
+    ]
+  },
+  {
+    "id": "OLL 43",
+    "group": "P Shapes",
+    "co": "1200",
+    "eo": "0110",
+    "algs": [
+      "B' U' R' U R B",
+      "f' L' U' L U f"
+    ]
+  },
+  {
+    "id": "OLL 44",
+    "group": "P Shapes",
+    "co": "0012",
+    "eo": "0011",
+    "algs": [
+      "f R U R' U' f'",
+      "B U L U' L' B'"
+    ]
+  },
+  {
+    "id": "OLL 45",
+    "group": "T Shapes",
+    "co": "0012",
+    "eo": "1010",
+    "algs": [
+      "F R U R' U' F'",
+      "B' R' U' R U B",
+      "b U L U' L' b'"
+    ]
+  },
+  {
+    "id": "OLL 46",
+    "group": "C Shapes",
+    "co": "1200",
+    "eo": "0101",
+    "algs": [
+      "R' U' R' F R F' U R",
+      "R' F' U' F R U' R' U2 R",
+      "R B U B' U' R' U' B U B' U B U2 B'"
+    ]
+  },
+  {
+    "id": "OLL 47",
+    "group": "L Shapes",
+    "co": "1221",
+    "eo": "1001",
+    "algs": [
+      "L F' L' F U2 F U' F' U F U2 F'",
+      "F' L' U' L U L' U' L U F",
+      "R' U' R' F R F' R' F R F' U R"
+    ]
+  },
+  {
+    "id": "OLL 48",
+    "group": "L Shapes",
+    "co": "2112",
+    "eo": "1100",
+    "algs": [
+      "F R U R' U' R U R' U' F'",
+      "b U L U' L' U L U' L' b'",
+      "F l F l' U' l F l' U' F'"
+    ]
+  },
+  {
+    "id": "OLL 49",
+    "group": "L Shapes",
+    "co": "1221",
+    "eo": "0110",
+    "algs": [
+      "l U' l2 U l2 U l2 U' l",
+      "R B' R2 F R2 B R2 F' R",
+      "L' B L' B' L2 U2 F' L F L'"
+    ]
+  },
+  {
+    "id": "OLL 50",
+    "group": "L Shapes",
+    "co": "2112",
+    "eo": "0011",
+    "algs": [
+      "r' U r2 U' r2 U' r2 U r'",
+      "L' B L2 F' L2 B' L2 F L'",
+      "F U2 F' U' F U' F' L F U F' U' L'"
+    ]
+  },
+  {
+    "id": "OLL 51",
+    "group": "Line Shapes",
+    "co": "2112",
+    "eo": "1010",
+    "algs": [
+      "B U L U' L' U L U' L' B'",
+      "f R U R' U' R U R' U' f'",
+      "F' U' F' L F L' F U' F' U2 F"
+    ]
+  },
+  {
+    "id": "OLL 52",
+    "group": "Line Shapes",
+    "co": "1221",
+    "eo": "0101",
+    "algs": [
+      "L' B' U' B U' L U L' U L",
+      "R U R' U R U' B U' B' R'"
+    ]
+  },
+  {
+    "id": "OLL 53",
+    "group": "L Shapes",
+    "co": "1212",
+    "eo": "0011",
+    "algs": [
+      "r' U' R U' R' U R U' R' U2 r",
+      "b' U2 B U B' U' B U B' U b"
+    ]
+  },
+  {
+    "id": "OLL 54",
+    "group": "L Shapes",
+    "co": "1212",
+    "eo": "1001",
+    "algs": [
+      "r U R' U R U' R' U R U2 r'",
+      "f U2 F' U' F U F' U' F U' f'",
+      "f U f' F U F' U' F U F' U' f U' f'"
+    ]
+  },
+  {
+    "id": "OLL 55",
+    "group": "Line Shapes",
+    "co": "1212",
+    "eo": "0101",
+    "algs": [
+      "B' R U B U' B2 R' B2 U B' U' B",
+      "B' R B U B U' B2 R' B2 U' B' U B U B'",
+      "R U2 R2 U' R U' R' U2 F R F'"
+    ]
+  },
+  {
+    "id": "OLL 56",
+    "group": "Line Shapes",
+    "co": "1212",
+    "eo": "1010",
+    "algs": [
+      "r U r' U R U' R' U R U' R' r U' r'",
+      "r U r' U R U' R' M' U R U2 r'",
+      "F R U R' U' R F' r U R' U' r'"
+    ]
+  },
+  {
+    "id": "OLL 57",
+    "group": "All Corners Oriented",
+    "co": "0000",
+    "eo": "1010",
+    "algs": [
+      "R U R' U' M' U R U' r'",
+      "B U' B' M B U B' M'",
+      "B U B' M B U' B' M'"
+    ]
+  }
+]

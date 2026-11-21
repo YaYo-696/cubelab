@@ -97,3 +97,9 @@ En Notación de 3×3, confirma que el cubo grande se deja girar sin perder el pa
 Abre Evaluación, elige Principiante y responde las 12 preguntas. Falla a propósito alguna de notación y sigue el enlace de repaso. Recarga y comprueba el historial. En Android, actualiza la PWA con adb reverse, entra en modo avión y repite el flujo. La posición de la cámara cambia al arrastrar con un dedo, y la vista plana aparece debajo del 3D.
 
 El historial de evaluaciones se incluye en los respaldos JSON v2. Se mantienen compatibles los respaldos v1 anteriores.
+
+### Aceptación de la fase 3B
+
+Ejecuta el diagnóstico de Windows con Edge. En Academia, completa los prerrequisitos de un grupo de PLL. Abre «PLL · Solo esquinas», selecciona Aa en la vista superior, reproduce la secuencia y reconoce el caso en el minitest. Repite con CLL en 2×2 y abre Evaluación en nivel Avanzado para revisar las recomendaciones por grupo.
+
+En Android, actualiza la PWA mediante Vite Preview y adb reverse, activa modo avión y abre un grupo de OLL que no hayas usado antes. Comprueba que aparecen las miniaturas, que puedes cambiar de caso en 3D y que un intento de evaluación reaparece después de cerrar y reabrir.

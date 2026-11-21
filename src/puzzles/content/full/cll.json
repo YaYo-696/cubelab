@@ -1,0 +1,460 @@
+[
+  {
+    "id": "CLL AS 1",
+    "group": "AS",
+    "co": "1101",
+    "cp": "2301",
+    "algs": [
+      "B U2 B' U' B U' B'",
+      "R' U' R U' R' U2 R",
+      "U2 L' U' L U' L' U2 L"
+    ]
+  },
+  {
+    "id": "CLL AS 2",
+    "group": "AS",
+    "co": "1101",
+    "cp": "3210",
+    "algs": [
+      "R U2 R' F R' F' R U' R U' R'",
+      "L' U L U' L2 B L B' L U L' U' L",
+      "L' U' L U' L F' L' F L' U2 L"
+    ]
+  },
+  {
+    "id": "CLL AS 3",
+    "group": "AS",
+    "co": "1101",
+    "cp": "2130",
+    "algs": [
+      "B' R B R' U2 R' U2 R",
+      "B' L U L' U2 L' B2 L",
+      "B' R B R' B U2 B' U' B' R B R'"
+    ]
+  },
+  {
+    "id": "CLL AS 4",
+    "group": "AS",
+    "co": "1101",
+    "cp": "0132",
+    "algs": [
+      "L' B L B' L U L'",
+      "U2 L' U R U' L U R'",
+      "R' U R B' L U L'"
+    ]
+  },
+  {
+    "id": "CLL AS 5",
+    "group": "AS",
+    "co": "1101",
+    "cp": "0231",
+    "algs": [
+      "L U2 L' U2 L' B L B'",
+      "R B2 R' U2 R' U R B'",
+      "L U2 L' U' B' U' B L U' L'"
+    ]
+  },
+  {
+    "id": "CLL AS 6",
+    "group": "AS",
+    "co": "1101",
+    "cp": "2031",
+    "algs": [
+      "F U2 F' U' F U' F' L F' L' F U F U' F' U'",
+      "R2 F' U' R2 F' R2 U F R2",
+      "R2 F R U2 R U' R' U2 F' R"
+    ]
+  },
+  {
+    "id": "CLL H 1",
+    "group": "H",
+    "co": "1212",
+    "cp": "2031",
+    "algs": [
+      "F R2 U' R2 U' R2 U R2 F'",
+      "F R U' R' U R U2 R' U' R U R' U' F'",
+      "F' U2 F R' U R' U' R U' R"
+    ]
+  },
+  {
+    "id": "CLL H 2",
+    "group": "H",
+    "co": "1212",
+    "cp": "1023",
+    "algs": [
+      "R U R' U R U R' F R' F' R",
+      "L' B' L U' L' B' L B' L U L'",
+      "R U R' U R U L' U R' U' L"
+    ]
+  },
+  {
+    "id": "CLL H 3",
+    "group": "H",
+    "co": "1212",
+    "cp": "0321",
+    "algs": [
+      "R B U B' U' B U B' U' B U B' U' R'",
+      "L2 B L2 B2 U2 B L2",
+      "R U' R' F R' F' R2 U' R' F R' F' R"
+    ]
+  },
+  {
+    "id": "CLL H 4",
+    "group": "H",
+    "co": "1212",
+    "cp": "0123",
+    "algs": [
+      "B2 U2 B' U2 B2",
+      "B2 U2 B U2 B2",
+      "R U R' U R U' R' U R U2 R'"
+    ]
+  },
+  {
+    "id": "CLL L 1",
+    "group": "L",
+    "co": "1020",
+    "cp": "2310",
+    "algs": [
+      "B U2 B' R' B U2 B' U B' R2 B",
+      "B' U' B U2 B' R B' R' B U' B",
+      "R' F' R U R' U' R' F R2 U' R' U2 R"
+    ]
+  },
+  {
+    "id": "CLL L 2",
+    "group": "L",
+    "co": "1020",
+    "cp": "2013",
+    "algs": [
+      "L U2 L2 B2 L U L' B2 L B'",
+      "R U' R' U R U' R' F R' F' R2 U R'",
+      "R' U2 R' U' F R2 F' U R2"
+    ]
+  },
+  {
+    "id": "CLL L 3",
+    "group": "L",
+    "co": "1020",
+    "cp": "3012",
+    "algs": [
+      "L' U L' U2 L U' L' U L U' L2",
+      "L2 U' L U2 L' U2 L U' L2",
+      "F U F' U F U' F' U F U' F' U F U2 F'"
+    ]
+  },
+  {
+    "id": "CLL L 4",
+    "group": "L",
+    "co": "1020",
+    "cp": "2103",
+    "algs": [
+      "B U2 B2 R B R' B U2 B'",
+      "R U2 R' F R' F' R2 U2 R'",
+      "L U L' R' U2 L U L' U2 R"
+    ]
+  },
+  {
+    "id": "CLL L 5",
+    "group": "L",
+    "co": "1020",
+    "cp": "2031",
+    "algs": [
+      "R B' R' B U B U' B'",
+      "R B' R' U' B' U B",
+      "R' U B U' B' R2 B U' B'"
+    ]
+  },
+  {
+    "id": "CLL L 6",
+    "group": "L",
+    "co": "1020",
+    "cp": "0312",
+    "algs": [
+      "B' L U L' U' L' B L",
+      "R B U' B' U' B U B' R'",
+      "R U R U' R' F R' F'"
+    ]
+  },
+  {
+    "id": "CLL Pi 1",
+    "group": "Pi",
+    "co": "2112",
+    "cp": "3102",
+    "algs": [
+      "R B' R' B U2 B U' B' U B U2 B'",
+      "R' F2 R F' U2 R U' R' U' F",
+      "U F U R U' R' U R U' R2 F' R U R U' R'"
+    ]
+  },
+  {
+    "id": "CLL Pi 2",
+    "group": "Pi",
+    "co": "2112",
+    "cp": "0231",
+    "algs": [
+      "R U2 R' U' R U R' U2 R' F R F'",
+      "R' B U B' U2 B' R B U' B' R2 B",
+      "R U R' U' R' F R2 U R' U' R U R' U' F'"
+    ]
+  },
+  {
+    "id": "CLL Pi 3",
+    "group": "Pi",
+    "co": "2112",
+    "cp": "0312",
+    "algs": [
+      "R B2 U' B2 U B2 U B2 R'",
+      "F U' F U' F' U F' L F2 L'",
+      "B L' B' L U2 B L' B' L2 U2 L'"
+    ]
+  },
+  {
+    "id": "CLL Pi 4",
+    "group": "Pi",
+    "co": "2112",
+    "cp": "0132",
+    "algs": [
+      "L' B L B' L U' L' U' L U' L'",
+      "R U' R' F R' F R U R' F R",
+      "R U' R' F L' U L U L' U L"
+    ]
+  },
+  {
+    "id": "CLL Pi 5",
+    "group": "Pi",
+    "co": "2112",
+    "cp": "0321",
+    "algs": [
+      "F' U' F' L F L' F U' F' U2 F",
+      "R2 U R' U' F R F' R U' R2",
+      "U' R' U' R' F R F' R U' R' U2 R"
+    ]
+  },
+  {
+    "id": "CLL Pi 6",
+    "group": "Pi",
+    "co": "2112",
+    "cp": "0123",
+    "algs": [
+      "F R U R' U' R U R' U' F'",
+      "R U' R2 U R2 U R2 U' R",
+      "R' U R2 U' R2 U' R2 U R'"
+    ]
+  },
+  {
+    "id": "CLL Sune 1",
+    "group": "Sune",
+    "co": "2220",
+    "cp": "1320",
+    "algs": [
+      "L' U2 L U2 L F' L' F",
+      "R' F2 R U2 R U' R' F",
+      "R' F2 R U2 L F' L' F"
+    ]
+  },
+  {
+    "id": "CLL Sune 2",
+    "group": "Sune",
+    "co": "2220",
+    "cp": "0231",
+    "algs": [
+      "R U R' U' R' F R F' R U R' U R U2 R'",
+      "R U2 R' F R U2 R' U R U' R' F",
+      "L U' L U' L' U L' U' F U' F'"
+    ]
+  },
+  {
+    "id": "CLL Sune 3",
+    "group": "Sune",
+    "co": "2220",
+    "cp": "2310",
+    "algs": [
+      "R U' R' F R' F' R",
+      "R U' R' F L' U' L",
+      "L F' L' F L' U' L"
+    ]
+  },
+  {
+    "id": "CLL Sune 4",
+    "group": "Sune",
+    "co": "2220",
+    "cp": "2130",
+    "algs": [
+      "F R' F' R U2 R U2 R'",
+      "F L' U' L U2 L F2 L'",
+      "B U' B' R B' R2 B U B U' B' R"
+    ]
+  },
+  {
+    "id": "CLL Sune 5",
+    "group": "Sune",
+    "co": "2220",
+    "cp": "2103",
+    "algs": [
+      "L U L' U L' B L B' L U2 L'",
+      "U2 R U R' U R' F R F' R U2 R'",
+      "R U R' U' R' F R F' R U' R' F R' F' R"
+    ]
+  },
+  {
+    "id": "CLL Sune 6",
+    "group": "Sune",
+    "co": "2220",
+    "cp": "2301",
+    "algs": [
+      "R U R' U R U2 R'",
+      "R U R2 U' R2 U R",
+      "F' U2 F U F' U F"
+    ]
+  },
+  {
+    "id": "CLL T 1",
+    "group": "T",
+    "co": "0210",
+    "cp": "2310",
+    "algs": [
+      "F U F' U' F' L F L'",
+      "L' U' L U B L B'",
+      "U' L F R' F' L' F R F'"
+    ]
+  },
+  {
+    "id": "CLL T 2",
+    "group": "T",
+    "co": "0210",
+    "cp": "3201",
+    "algs": [
+      "F' U' F U F R' F' R",
+      "B' R' B U B U' B' R",
+      "R U R' U' F' U' F"
+    ]
+  },
+  {
+    "id": "CLL T 3",
+    "group": "T",
+    "co": "0210",
+    "cp": "3210",
+    "algs": [
+      "F U' R U2 R' U' F2 R U R'",
+      "B U2 B2 R B R' B U' B' U B U2 B'",
+      "L U B L' B' L U2 L U2 L2"
+    ]
+  },
+  {
+    "id": "CLL T 4",
+    "group": "T",
+    "co": "0210",
+    "cp": "2301",
+    "algs": [
+      "R' U R U2 R2 F' R U' R' F2 R2",
+      "B' U B' R U' B U R2 B2",
+      "L' U L' U2 L U2 L' U L2 U' L'"
+    ]
+  },
+  {
+    "id": "CLL T 5",
+    "group": "T",
+    "co": "0210",
+    "cp": "0231",
+    "algs": [
+      "B L U L' U' L U' L' U' L U L' B'",
+      "F U F' U' F U' F' L' U' L F U F'",
+      "B U B' U2 B U B' U B' R B R'"
+    ]
+  },
+  {
+    "id": "CLL T 6",
+    "group": "T",
+    "co": "0210",
+    "cp": "2031",
+    "algs": [
+      "R' U R U2 R2 F R F' R",
+      "U' F U' F' U' R U2 F' U' F' U F U' R'",
+      "L U' L' U2 R2 B' R' U R'"
+    ]
+  },
+  {
+    "id": "CLL U 1",
+    "group": "U",
+    "co": "0120",
+    "cp": "2103",
+    "algs": [
+      "L F U F' U' L'",
+      "R U B U' B' R'",
+      "R' F' U' F U R"
+    ]
+  },
+  {
+    "id": "CLL U 2",
+    "group": "U",
+    "co": "0120",
+    "cp": "3012",
+    "algs": [
+      "R' U' R2 U R' U2 R U2 R' U R'",
+      "F2 L2 F U F' L F2 U2 F' U' F",
+      "R' F U' R U' R' U2 F2 R"
+    ]
+  },
+  {
+    "id": "CLL U 3",
+    "group": "U",
+    "co": "0120",
+    "cp": "0213",
+    "algs": [
+      "B L U L' U2 B' L U' L' B",
+      "R' F R U' R' U' R U R' F' R U R' U' R' F R F' R",
+      "F U2 F U' F' L F' L2 U' L"
+    ]
+  },
+  {
+    "id": "CLL U 4",
+    "group": "U",
+    "co": "0120",
+    "cp": "2013",
+    "algs": [
+      "L F' L' F U' F U' F' U2 F U' F'",
+      "F R U' R' U R U R' U R U' R' F'",
+      "R' B U B' U' B' R B2 U B' U B U2 B'"
+    ]
+  },
+  {
+    "id": "CLL U 5",
+    "group": "U",
+    "co": "0120",
+    "cp": "1203",
+    "algs": [
+      "R U' R2 F R F' R U R' U' R U R'",
+      "L U2 L' U L' B2 L B' L' B2 L",
+      "R2 D' R U2 R' D R U2 R"
+    ]
+  },
+  {
+    "id": "CLL U 6",
+    "group": "U",
+    "co": "0120",
+    "cp": "2130",
+    "algs": [
+      "R' U R' F R F' R U2 R' U R",
+      "L' U L2 F' L' F L' U' L U L' U' L",
+      "R' F R2 U' R' F R' F' R U R' F' R"
+    ]
+  },
+  {
+    "id": "CLL O Adj",
+    "group": "Oriented",
+    "co": "0000",
+    "cp": "1023",
+    "algs": [
+      "R U R' U' R' F R2 U' R' U' R U R' F'"
+    ]
+  },
+  {
+    "id": "CLL O Diag",
+    "group": "Oriented",
+    "co": "0000",
+    "cp": "2103",
+    "algs": [
+      "F R U' R' U' R U R' F' R U R' U' R' F R F'"
+    ]
+  }
+]

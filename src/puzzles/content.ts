@@ -2,6 +2,12 @@ import type { AlgSet, Course } from '../core/contracts';
 import type { CubeId } from './events';
 export async function loadAlgSet(id: string, puzzle: CubeId = '333'): Promise<AlgSet> {
     if (id === 'basic') return (await import('./content/set')).default;
+    if (
+        (puzzle === '333' && (id === 'fullOLL' || id === 'fullPLL')) ||
+        (puzzle === '222' && (id === 'fullCLL' || id === 'eg'))
+    ) {
+        return (await import('./content/full/load')).loadFullSet(id);
+    }
     const { sets2, sets3 } = await import('./content/academySets');
     const found = (puzzle === '222' ? sets2 : sets3).find((set) => set.id === id);
     if (!found) throw new RangeError(id);

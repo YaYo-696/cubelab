@@ -1,3 +1,5 @@
+import { isFullPattern } from '../core/academy/lastLayer';
+import { LastLayerImage } from './LastLayerImage';
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { liveQuery } from 'dexie';
 import type { Course, Lesson, PuzzleModule, AlgSet } from '../core/contracts';
@@ -57,6 +59,15 @@ function LessonView({
     const setup =
         position?.caseId === caseId && position?.variant === variant ? position?.setup : undefined;
     const cases = set?.cases.filter((c) => lesson.caseIds.includes(c.id));
+    const full = cases?.some((raw) => {
+        const item = raw as AcademyCase;
+        return item.pattern && isFullPattern(item.pattern);
+    });
+    const selectCase = (id: string) => {
+        setCase(id);
+        setVariant(0);
+        setMove('');
+    };
     const selected = cases?.find((c) => c.id === caseId);
     const puzzle = mod.id === '222' ? '2x2x2' : '3x3x3';
     const symbol = glossary(mod.id, lesson.glossary).find((entry) => entry.move === move);
@@ -96,7 +107,7 @@ function LessonView({
                     {symbol && <p>{t(symbol.descriptionKey)}</p>}
                 </section>
             )}
-            {cases && cases.length > 1 && (
+            {cases && cases.length > 1 && !full && (
                 <label>
                     {t('aCase')}{' '}
                     <select
@@ -114,6 +125,53 @@ function LessonView({
                     </select>
                 </label>
             )}
+            {full && (
+                <div className="case-grid">
+                    {cases?.map((raw) => {
+                        const entry = raw as AcademyCase;
+                        if (!isFullPattern(entry.pattern)) return null;
+                        return (
+                            <button
+                                key={entry.id}
+                                type="button"
+                                aria-label={t(entry.nameKey)}
+                                aria-pressed={caseId === entry.id}
+                                onClick={() => selectCase(entry.id)}
+                            >
+                                <LastLayerImage
+                                    puzzle={mod.id}
+                                    setup={entry.referenceSetup}
+                                    pattern={entry.pattern}
+                                    label={t('aTopCase')}
+                                />
+                                <span>{t(entry.nameKey)}</span>
+                            </button>
+                        );
+                    })}
+                </div>
+            )}
+            {lesson.milestones?.length ? (
+                <ol>
+                    {lesson.milestones.map((row) => (
+                        <li key={row.textKey}>
+                            <strong>{t(row.textKey)}</strong>
+                            <ul>
+                                {row.lessons.map((id) => {
+                                    const link = course.modules
+                                        .flatMap((m) => m.lessons)
+                                        .find((l) => l.id === id);
+                                    return link ? (
+                                        <li key={id}>
+                                            <a href={'#academy/' + id}>{t(link.titleKey)}</a>
+                                        </li>
+                                    ) : null;
+                                })}
+                            </ul>
+                        </li>
+                    ))}
+                </ol>
+            ) : null}
+            {selected && !selected.algorithms.length && <p>{t('aPendingCase')}</p>}
             {alg !== undefined && playerSetup !== undefined && (
                 <Suspense fallback={<p>{t('aLoading')}</p>}>
                     <Player puzzle={puzzle} setup={playerSetup} alg={alg} autoplay={!!symbol} t={t} />
@@ -160,21 +218,34 @@ function LessonView({
             >
                 <h3>{t('aQuiz')}</h3>
                 {lesson.quiz.map((question, index) => {
-                    const picture = cases?.find((c) => c.id === question.caseId);
+                    const picture = cases?.find((c) => c.id === question.caseId) as
+                        | AcademyCase
+                        | undefined;
                     return (
                         <fieldset key={question.promptKey} data-testid={'academy-question-' + index}>
                             <legend>{t(question.promptKey)}</legend>
-                            {picture && (
-                                <Suspense fallback={<p>{t('aLoading')}</p>}>
-                                    <Player
-                                        puzzle={puzzle}
+                            {picture && isFullPattern(picture.pattern) ? (
+                                <div className="quiz-case">
+                                    <LastLayerImage
+                                        puzzle={mod.id}
                                         setup={picture.referenceSetup}
-                                        alg=""
-                                        still
-                                        flatOnly
-                                        t={t}
+                                        pattern={picture.pattern}
+                                        label={t('aTopCase')}
                                     />
-                                </Suspense>
+                                </div>
+                            ) : (
+                                picture && (
+                                    <Suspense fallback={<p>{t('aLoading')}</p>}>
+                                        <Player
+                                            puzzle={puzzle}
+                                            setup={picture.referenceSetup}
+                                            alg=""
+                                            still
+                                            flatOnly
+                                            t={t}
+                                        />
+                                    </Suspense>
+                                )
                             )}
                             {question.optionKeys.map((key, value) => (
                                 <label key={key}>

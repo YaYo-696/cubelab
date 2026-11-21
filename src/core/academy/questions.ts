@@ -1,11 +1,12 @@
+import { advancedQuestions } from './advancedBank';
 import type { QuizQuestion } from '../contracts';
 
-export type Skill = 'basic' | 'advanced' | 'steps' | 'oll' | 'pll' | 'ortega' | 'inspection';
-export type Level = 'beginner' | 'intermediate';
+export type Skill = 'basic' | 'advanced' | 'steps' | 'oll' | 'pll' | 'ortega' | 'cll' | 'inspection';
+export type Level = 'beginner' | 'intermediate' | 'advanced';
 export type Applicability = 'nxn' | 'nxn3' | '222' | '333';
 type Picture =
     | { kind: 'move'; setup: string; moves: string[] }
-    | { kind: 'case'; setId: string; ids: string[] };
+    | { kind: 'case'; setId: string; ids: string[]; top?: boolean };
 export type Question = QuizQuestion & {
     id: string;
     skill: Skill;
@@ -90,6 +91,7 @@ function visual(
     };
 }
 export const questionBank: Question[] = [
+    ...advancedQuestions,
     ...topics.flatMap(([lessonId, skill, level, applies, answers]) =>
         answers.map((answer, i) => ({
             id: [lessonId, applies, i].join('-'),
@@ -151,7 +153,14 @@ export function levelQuestions(puzzle: string, level: Level, random = Math.rando
     const visualQuestions = pool.filter((q) => q.picture);
     const movePicture = visualQuestions.find((q) => q.picture?.kind === 'move');
     const casePicture = visualQuestions.find((q) => q.picture?.kind === 'case');
-    const take = movePicture && casePicture ? [movePicture, casePicture] : visualQuestions.slice(0, 2);
+    const take =
+        level === 'advanced'
+            ? [...new Set(visualQuestions.map((q) => q.skill))].map(
+                  (skill) => visualQuestions.find((q) => q.skill === skill)!,
+              )
+            : movePicture && casePicture
+              ? [movePicture, casePicture]
+              : visualQuestions.slice(0, 2);
     const skills = [...new Set(pool.map((q) => q.skill))];
     while (take.length < 12) {
         const before = take.length;

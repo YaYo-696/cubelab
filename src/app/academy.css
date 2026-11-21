@@ -139,3 +139,34 @@
 .evaluation .academy-card li {
     margin: 0.35rem 0;
 }
+
+.case-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(82px, 1fr));
+    gap: 0.45rem;
+    margin: 0.75rem 0;
+}
+.case-grid button {
+    display: grid;
+    gap: 0.25rem;
+    justify-items: center;
+    background: #293b47;
+    color: #f2f4f7;
+    text-align: center;
+    font-size: 0.9rem;
+}
+.case-grid svg,
+.quiz-case svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 128px;
+}
+.quiz-case {
+    width: 125px;
+    margin: 0.5rem 0;
+}
+.academy a {
+    color: #a8e6cf;
+    text-decoration: underline;
+}

@@ -1,8 +1,16 @@
+import {
+    isFullPattern,
+    lastLayerKey,
+    patternFromVectors,
+    validLastLayer,
+    type LastLayerPattern,
+} from './lastLayer';
 import { Alg } from 'cubing/alg';
 import { KPattern } from 'cubing/kpuzzle';
 import type { AlgCase } from '../contracts';
 
 export type CasePattern =
+    | LastLayerPattern
     | { kind: 'setup'; setup: string }
     | { kind: 'edges' | 'corners'; orientation: string }
     | { kind: 'cornerPerm' | 'edgePerm'; permutation: string }
@@ -20,6 +28,7 @@ export type StageGoal =
 export type AcademyCase = AlgCase & {
     alternativeSetups?: readonly string[];
     standardName: string;
+    group?: string;
     fingertrickKey: string;
     pattern: CasePattern;
     goal: StageGoal;
@@ -98,6 +107,12 @@ export function matchesCase(p: KPattern, solved: KPattern, pattern: CasePattern)
         );
     }
     if (!fixedFrame(p)) return false;
+    if (isFullPattern(pattern))
+        return (
+            validLastLayer(p, pattern.kind) &&
+            lastLayerKey(p, pattern.kind) ===
+                lastLayerKey(patternFromVectors(solved, pattern), pattern.kind)
+        );
     const c = p.patternData.CORNERS,
         e = p.patternData.EDGES;
     const layerReady = e ? matchesStage(p, solved, 'f2l') : matchesStage(p, solved, 'face');
@@ -154,6 +169,7 @@ function digits(value: string) {
 }
 function independentCase(solved: KPattern, pattern: CasePattern): KPattern {
     if (pattern.kind === 'setup') return solved.applyAlg(pattern.setup);
+    if (isFullPattern(pattern)) return patternFromVectors(solved, pattern);
     const data = structuredClone(solved.patternData),
         corners = data.CORNERS,
         edges = data.EDGES;

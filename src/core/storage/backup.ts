@@ -87,7 +87,7 @@ function rowKey(name: TableName, r: Row): string | string[] {
                 uuid(r.id) &&
                     string(r.puzzleId) &&
                     count(r.createdAt) &&
-                    ['beginner', 'intermediate'].includes(r.level as string) &&
+                    ['beginner', 'intermediate', 'advanced'].includes(r.level as string) &&
                     list(r.questionIds, string) &&
                     list(r.answers, count) &&
                     r.questionIds.length >= 10 &&
@@ -104,6 +104,7 @@ function rowKey(name: TableName, r: Row): string | string[] {
                                 'oll',
                                 'pll',
                                 'ortega',
+                                'cll',
                                 'inspection',
                             ].includes(skill.skill as string) &&
                             count(skill.correct) &&

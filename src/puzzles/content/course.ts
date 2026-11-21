@@ -1,3 +1,4 @@
+import { advancedGroups, advancedTheory } from '../../core/academy/advancedBank';
 import type { Course, Lesson } from '../../core/contracts';
 import type { CubeId } from '../events';
 import { lessonQuestions } from '../../core/academy/questions';
@@ -117,13 +118,54 @@ const plans: Record<CubeId, { id: string; lessons: Plan[] }[]> = {
         },
     ],
 };
+const groupPlans = (set: 'fullOLL' | 'fullPLL' | 'fullCLL', prerequisite: string): Plan[] =>
+    advancedGroups[set].map((group) => ({ id: group.id, set, cases: group.ids, needs: [prerequisite] }));
+const milestones: Record<string, [string, ...string[]][]> = {
+    goals333: [
+        ['33360', 'notationB', 'cross', 'middle', 'permEdges'],
+        ['33330', 'crossDown', 'f2l', 'oll3', 'pll3'],
+        ['33320', 'lookahead', advancedGroups.fullPLL[1].id],
+        ['33315', 'advancedF2L', advancedGroups.fullOLL[0].id],
+        ['33310', 'inspectionPair', 'fingertricks'],
+    ],
+    goals222: [
+        ['22210', 'notationB', 'firstLayer'],
+        ['2227', 'firstFace', 'oll2'],
+        ['2225', 'pbl2', 'perm2'],
+        ['2223', advancedGroups.fullCLL[0].id, 'egConcept'],
+    ],
+};
+const theoryPlans = (puzzle: CubeId): Plan[] =>
+    advancedTheory[puzzle].map((id) => ({ id, set: 'basic', cases: [], needs: ['notationA'] }));
+const advancedModules = {
+    '333': [
+        { id: 'advancedTheory', lessons: theoryPlans('333') },
+        { id: 'fullOLL', lessons: groupPlans('fullOLL', 'oll3') },
+        { id: 'fullPLL', lessons: groupPlans('fullPLL', 'pll3') },
+    ],
+    '222': [
+        { id: 'advancedTheory', lessons: theoryPlans('222') },
+        { id: 'fullCLL', lessons: groupPlans('fullCLL', 'pbl2') },
+        {
+            id: 'eg',
+            lessons: [
+                {
+                    id: 'egConcept',
+                    set: 'eg',
+                    cases: advancedGroups.eg.flatMap((g) => g.ids),
+                    needs: ['pbl2'],
+                },
+            ],
+        },
+    ],
+};
 export function makeCourse(puzzle: CubeId): Course {
     let previous: string | undefined;
     return {
         id: 'academy-' + puzzle,
         revision: 1,
         titleKey: 'aCourse_' + puzzle,
-        modules: plans[puzzle].map((module) => ({
+        modules: [...plans[puzzle], ...advancedModules[puzzle]].map((module) => ({
             id: module.id,
             titleKey: 'aModule_' + module.id,
             lessons: module.lessons.map((plan) => {
@@ -153,6 +195,10 @@ export function makeCourse(puzzle: CubeId): Course {
                             : plan.id === 'notationA'
                               ? 'advanced'
                               : undefined,
+                    milestones: milestones[plan.id]?.map(([key, ...lessons]) => ({
+                        textKey: 'aMilestone_' + key,
+                        lessons,
+                    })),
                     quiz: lessonQuestions(puzzle, plan.id),
                 };
                 previous = lesson.id;

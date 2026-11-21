@@ -1,3 +1,6 @@
+import { LastLayerImage } from './LastLayerImage';
+import { isFullPattern, type LastLayerPattern } from '../core/academy/lastLayer';
+import type { AcademyCase } from '../core/academy/cases';
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { liveQuery } from 'dexie';
 import { db } from '../core/storage/db';
@@ -30,9 +33,30 @@ function AssessmentPicture({
     t: T;
 }) {
     const [setup, setSetup] = useState<string>();
+    const [pattern, setPattern] = useState<LastLayerPattern>();
     const [error, setError] = useState(false);
     useEffect(() => {
         let active = true;
+        const picture = question.picture;
+        if (picture?.kind === 'case' && picture.top) {
+            mod.loadAlgSet(picture.setId)
+                .then((set) => {
+                    const entry = set.cases.find((c) => c.id === question.caseId) as
+                        | AcademyCase
+                        | undefined;
+                    if (!entry || !isFullPattern(entry.pattern)) throw new Error('assessmentCase');
+                    if (active) {
+                        setSetup(entry.referenceSetup);
+                        setPattern(entry.pattern);
+                    }
+                })
+                .catch(() => {
+                    if (active) setError(true);
+                });
+            return () => {
+                active = false;
+            };
+        }
         questionSetup(question, mod.loadAlgSet)
             .then((value) => {
                 if (active) setSetup(value);
@@ -46,6 +70,12 @@ function AssessmentPicture({
     }, [mod, question]);
     if (error) return <p role="alert">{t('failed')}</p>;
     if (setup === undefined) return <p>{t('aLoading')}</p>;
+    if (pattern)
+        return (
+            <div className="quiz-case">
+                <LastLayerImage puzzle={mod.id} pattern={pattern} setup={setup} label={t('aTopCase')} />
+            </div>
+        );
     return (
         <Suspense fallback={<p>{t('aLoading')}</p>}>
             <Player puzzle={mod.id === '222' ? '2x2x2' : '3x3x3'} setup={setup} alg="" still t={t} />
@@ -126,6 +156,7 @@ export function Evaluation({ mod, t }: { mod: PuzzleModule<string>; t: T }) {
                             <select value={level} onChange={(e) => setLevel(e.target.value as Level)}>
                                 <option value="beginner">{t('aLevel_beginner')}</option>
                                 <option value="intermediate">{t('aLevel_intermediate')}</option>
+                                <option value="advanced">{t('aLevel_advanced')}</option>
                             </select>
                         </label>
                         <button onClick={start}>{t('aStartEvaluation')}</button>

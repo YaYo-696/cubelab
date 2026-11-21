@@ -38,6 +38,7 @@ export interface Lesson {
     setId: string;
     caseIds: readonly string[];
     quiz: readonly QuizQuestion[];
+    milestones?: readonly { textKey: string; lessons: readonly string[] }[];
     glossary?: 'basic' | 'advanced';
     caseId?: string;
 }
