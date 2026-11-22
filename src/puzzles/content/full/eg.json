@@ -26,7 +26,7 @@
     "cp": "0123",
     "down": "0321",
     "algs": [
-      "F' R2 D R2 D' F R' F2 R' F"
+      "x U' R2 F R2 F' U R' U2 R' U x'"
     ]
   },
   {

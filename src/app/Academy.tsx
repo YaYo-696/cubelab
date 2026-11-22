@@ -7,7 +7,8 @@ import { db } from '../core/storage/db';
 import { unlocked, submitLesson, type Completion } from '../core/academy/progress';
 import { glossary } from '../core/academy/glossary';
 import { predefinedPractice } from '../core/academy/practice';
-import type { AcademyCase } from '../core/academy/cases';
+import { caseSetup, type AcademyCase } from '../core/academy/cases';
+import { openingMoves } from '../core/academy/execution';
 import './academy.css';
 
 const Player = lazy(() => import('./AcademyPlayer').then((m) => ({ default: m.AcademyPlayer })));
@@ -74,6 +75,7 @@ function LessonView({
     const demo = lesson.demos[0];
     const alg = symbol?.alg ?? (variant === -1 ? demo?.alg : selected?.algorithms[variant]);
     const playerSetup = symbol ? '' : variant === -1 ? demo?.setup : setup;
+    const opening = full && alg && !symbol && variant >= 0 ? openingMoves(alg) : undefined;
     return (
         <section className="academy-card">
             <h2>{t(lesson.titleKey)}</h2>
@@ -140,7 +142,7 @@ function LessonView({
                             >
                                 <LastLayerImage
                                     puzzle={mod.id}
-                                    setup={entry.referenceSetup}
+                                    setup={caseSetup(entry, caseId === entry.id ? variant : 0)}
                                     pattern={entry.pattern}
                                     label={t('aTopCase')}
                                 />
@@ -194,6 +196,18 @@ function LessonView({
                             </button>
                         ))}
                     </div>
+                    {opening && opening.steps.length > 0 && (
+                        <ol className="algorithm-opening" aria-label={t('aOpeningMoves')}>
+                            {opening.steps.map(({ key, move }, i) => (
+                                <li key={i}>
+                                    {t(key)} · <code>{move}</code>
+                                </li>
+                            ))}
+                            <li>
+                                {t('aExecuteSequence')} · <code>{opening.body}</code>
+                            </li>
+                        </ol>
+                    )}
                     <p>{t((selected as Partial<AcademyCase>).fingertrickKey ?? 'fingerUpper')}</p>
                 </section>
             )}

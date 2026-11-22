@@ -1,6 +1,8 @@
 import 'fake-indexeddb/auto';
 import { expect, it } from 'vitest';
+import { Alg, Move } from 'cubing/alg';
 import { puzzles } from 'cubing/puzzles';
+import { finalRotation, openingMoves } from '../../src/core/academy/execution';
 import { registry } from '../../src/puzzles/registry';
 import {
     isFullPattern,
@@ -66,6 +68,15 @@ for (const config of catalog) {
             expect(entry.algorithms.length, entry.id).toBeLessThanOrEqual(3);
             for (const algorithm of entry.algorithms)
                 expect(verifyCase(solved, entry, algorithm), entry.id + ' ' + algorithm).toBe(true);
+            if (config.set !== 'eg') {
+                const moves = [...new Alg(entry.algorithms[0]).experimentalExpand()];
+                const backOrWideLeft = moves.filter(
+                    (move) => move instanceof Move && /^(B|b|Bw|l|Lw)$/.test(move.quantum.toString()),
+                );
+                // FUENTES.md lists zero source exceptions. Future exceptions need an exact
+                // case and sequence allowlist here and a source citation there.
+                expect(backOrWideLeft.map(String), entry.id + ' / ' + entry.algorithms[0]).toEqual([]);
+            }
             alternatives += entry.algorithms.length - 1;
         }
         expect(alternatives).toBe(config.alternatives);
@@ -83,6 +94,33 @@ for (const config of catalog) {
         }
     });
 }
+it('conserva el agarre publicado y resuelve Aa sin una rotación de retorno', async () => {
+    const mod = await registry['333']();
+    const set = await mod.loadAlgSet('fullPLL');
+    const aa = set.cases.find((entry) => entry.id === 'Aa') as AcademyCase;
+    const sequence = "x R' U R' D2 R U' R' D2 R2";
+    expect(aa.algorithms[0]).toBe(sequence);
+    const solved = (await puzzles['3x3x3'].kpuzzle()).defaultPattern();
+    const previous = new Alg("R' F R' B2 R F' R' B2 R2").invert();
+    const initial = solved.applyAlg(aa.referenceSetup);
+    expect(initial.isIdentical(solved.applyAlg(previous))).toBe(true);
+    const end = initial.applyAlg(sequence);
+    expect(end.isIdentical(solved)).toBe(false);
+    expect(end.applyAlg(finalRotation(new Alg(sequence)).invert()).isIdentical(solved)).toBe(true);
+    expect(verifyCase(solved, aa, sequence + ' R')).toBe(false);
+});
+it('distingue ajustes U y giros de agarre sin tocar el resto de la notación', () => {
+    expect(openingMoves("U' y z R U (R' U')")).toEqual({
+        steps: [
+            { key: 'aAdjustUpper', move: "U'" },
+            { key: 'aRotateCube', move: 'y' },
+            { key: 'aRotateCube', move: 'z' },
+        ],
+        body: "R U (R' U')",
+    });
+    expect(openingMoves("R U R' U'").steps).toEqual([]);
+});
+
 it('evalua casos por grupo y devuelve recomendaciones por grupo en ambos cubos', async () => {
     for (const cube of ['222', '333'] as const) {
         const mod = await registry[cube](),

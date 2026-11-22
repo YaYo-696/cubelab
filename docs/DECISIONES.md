@@ -51,3 +51,7 @@ Cuando la sesión de un intento pendiente ha desaparecido, la recuperación lo g
 Los manifiestos de los grupos solo contienen nombres e identificadores. Cada set carga su JSON por separado mediante importación dinámica. El panel calcula las miniaturas cuando se abre un grupo o se muestra una pregunta. Las proyecciones se reutilizan en una caché acotada de 256 imágenes. Cada grupo reutiliza una sola instancia visible del reproductor principal; los minitests de catálogo usan miniaturas SVG.
 
 La identidad del caso se compara en las cuatro orientaciones U. PLL y CLL también admiten cambios cíclicos de los colores laterales. OLL compara la orientación conjunta de aristas y esquinas. CLL exige que la capa inferior esté ordenada y EG compara, además, sus franjas. Se conservan los identificadores y la revisión del curso v1 para que el progreso anterior siga siendo válido.
+
+## Fase 3B.1 · Notación de ejecución
+
+El contenido conserva el agarre y los ajustes de apertura de las secuencias publicadas. El modelo usa la orientación final del algoritmo para preparar y verificar el caso. Las miniaturas y los ejercicios toman el mismo estado inicial por variante. Los sets pasan a revisión 2 con los mismos identificadores y patrones de la fase 3B. Los grupos avanzados requieren Notación avanzada en su propio curso.

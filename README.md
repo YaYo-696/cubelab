@@ -103,3 +103,9 @@ El historial de evaluaciones se incluye en los respaldos JSON v2. Se mantienen c
 Ejecuta el diagnóstico de Windows con Edge. En Academia, completa los prerrequisitos de un grupo de PLL. Abre «PLL · Solo esquinas», selecciona Aa en la vista superior, reproduce la secuencia y reconoce el caso en el minitest. Repite con CLL en 2×2 y abre Evaluación en nivel Avanzado para revisar las recomendaciones por grupo.
 
 En Android, actualiza la PWA mediante Vite Preview y adb reverse, activa modo avión y abre un grupo de OLL que no hayas usado antes. Comprueba que aparecen las miniaturas, que puedes cambiar de caso en 3D y que un intento de evaluación reaparece después de cerrar y reabrir.
+
+### Aceptación de la fase 3B.1
+
+En Windows ejecuta el diagnóstico con Edge. En Academia abre «PLL · Solo esquinas», selecciona Aa y avanza un paso. El primer movimiento gira el cubo completo con x y la secuencia conserva sus giros D2. Repite con E y OLL 9. En 2×2, completa Notación avanzada y abre CLL Anti-Sune. En CLL AS 1, el principal muestra el agarre y la segunda alternativa empieza con un ajuste U2. Al cambiar de variante deben actualizarse la miniatura, la preparación y el reproductor.
+
+En Android, actualiza el build mediante Vite Preview y adb reverse como arriba. Activa modo avión, abre los mismos casos y comprueba que puedes reproducirlos, avanzar un movimiento y cambiar de variante sin conexión. [Comparación de algoritmos](docs/ALGORITMOS-CAMBIOS.md)

@@ -1,4 +1,5 @@
 import { Alg } from 'cubing/alg';
+import { inverseInInitialFrame } from '../../../core/academy/execution';
 import type { AlgSet } from '../../../core/contracts';
 import type { AcademyCase } from '../../../core/academy/cases';
 import type { LastLayerPattern } from '../../../core/academy/lastLayer';
@@ -21,7 +22,7 @@ const sources = {
 export async function loadFullSet(kind: LastLayerPattern['kind']): Promise<AlgSet> {
     const rows: Row[] = await sources[kind]();
     const cases = rows.map(({ id, group, co, cp, eo, ep, down, algs }): AcademyCase => {
-        const setups = algs.map((alg) => new Alg(alg).invert().toString());
+        const setups = algs.map((alg) => inverseInInitialFrame(new Alg(alg)).toString());
         return {
             id,
             nameKey: 'case.' + id,
@@ -36,5 +37,5 @@ export async function loadFullSet(kind: LastLayerPattern['kind']): Promise<AlgSe
                 kind === 'fullPLL' && /\bM/.test(algs[0] ?? '') ? 'fingerSlice' : 'fingerUpper',
         };
     });
-    return { id: kind, nameKey: kind, cases, revision: 1 };
+    return { id: kind, nameKey: kind, cases, revision: 2 };
 }

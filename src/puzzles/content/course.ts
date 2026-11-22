@@ -119,7 +119,12 @@ const plans: Record<CubeId, { id: string; lessons: Plan[] }[]> = {
     ],
 };
 const groupPlans = (set: 'fullOLL' | 'fullPLL' | 'fullCLL', prerequisite: string): Plan[] =>
-    advancedGroups[set].map((group) => ({ id: group.id, set, cases: group.ids, needs: [prerequisite] }));
+    advancedGroups[set].map((group) => ({
+        id: group.id,
+        set,
+        cases: group.ids,
+        needs: [prerequisite, 'notationA'],
+    }));
 const milestones: Record<string, [string, ...string[]][]> = {
     goals333: [
         ['33360', 'notationB', 'cross', 'middle', 'permEdges'],
@@ -153,7 +158,7 @@ const advancedModules = {
                     id: 'egConcept',
                     set: 'eg',
                     cases: advancedGroups.eg.flatMap((g) => g.ids),
-                    needs: ['pbl2'],
+                    needs: ['pbl2', 'notationA'],
                 },
             ],
         },

@@ -8,6 +8,7 @@ import {
 import { Alg } from 'cubing/alg';
 import { KPattern } from 'cubing/kpuzzle';
 import type { AlgCase } from '../contracts';
+import { finalRotation, inverseInInitialFrame } from './execution';
 
 export type CasePattern =
     | LastLayerPattern
@@ -148,19 +149,28 @@ export function matchesCase(p: KPattern, solved: KPattern, pattern: CasePattern)
 export function verifyCase(solved: KPattern, entry: AcademyCase, algorithm: string) {
     const fromSetup = solved.applyAlg(caseSetup(entry, entry.algorithms.indexOf(algorithm)));
     const independent = independentCase(solved, entry.pattern);
-    const fromInverse = solved.applyAlg(new Alg(algorithm).invert());
+    const sequence = new Alg(algorithm);
+    const full = isFullPattern(entry.pattern);
+    const restoreFrame = full ? finalRotation(sequence).invert() : new Alg();
+    const fromInverse = solved.applyAlg(full ? inverseInInitialFrame(sequence) : sequence.invert());
     const solves = (start: KPattern) =>
         entry.pattern.kind === 'setup'
             ? matchesStage(start.applyAlg(algorithm), solved, entry.goal)
             : turns.some((auf) =>
-                  matchesStage(start.applyAlg(auf).applyAlg(algorithm), solved, entry.goal),
+                  matchesStage(
+                      start.applyAlg(auf).applyAlg(sequence).applyAlg(restoreFrame),
+                      solved,
+                      entry.goal,
+                  ),
               );
     return (
         matchesCase(independent, solved, entry.pattern) &&
         solves(independent) &&
         matchesCase(fromSetup, solved, entry.pattern) &&
         matchesCase(fromInverse, solved, entry.pattern) &&
-        solves(fromSetup)
+        (full
+            ? matchesStage(fromSetup.applyAlg(sequence).applyAlg(restoreFrame), solved, entry.goal)
+            : solves(fromSetup))
     );
 }
 

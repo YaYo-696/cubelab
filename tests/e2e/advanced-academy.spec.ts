@@ -11,13 +11,14 @@ test('selecciona un PLL por su vista superior, lo reproduce y reconoce el caso',
                 open.onsuccess = () => {
                     const db = open.result,
                         tx = db.transaction('lessons', 'readwrite');
-                    tx.objectStore('lessons').put({
-                        courseId: 'academy-333',
-                        lessonId: 'pll3',
-                        revision: 1,
-                        completedAt: 1,
-                        quizScore: 3,
-                    });
+                    for (const lessonId of ['pll3', 'notationA'])
+                        tx.objectStore('lessons').put({
+                            courseId: 'academy-333',
+                            lessonId,
+                            revision: 1,
+                            completedAt: 1,
+                            quizScore: 3,
+                        });
                     tx.oncomplete = () => {
                         db.close();
                         resolve();
@@ -34,6 +35,15 @@ test('selecciona un PLL por su vista superior, lo reproduce y reconoce el caso',
     const aa = page.getByRole('button', { name: 'Aa', exact: true });
     await expect(aa.getByRole('img').locator('rect')).toHaveCount(21);
     await aa.click();
+    const opening = page.getByRole('list', {
+        name: 'Inicio del algoritmo',
+        exact: true,
+    });
+    await expect(opening.getByRole('listitem').first()).toHaveText('Gira el cubo · x');
+    await expect(page.getByTestId('academy-player')).toHaveAttribute(
+        'data-alg',
+        "x R' U R' D2 R U' R' D2 R2",
+    );
     await page.getByRole('button', { name: 'Reproducir', exact: true }).click();
     await expect
         .poll(() =>

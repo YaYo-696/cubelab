@@ -32,6 +32,8 @@ for (const [id, puzzle] of [
         const lessons = course.modules.flatMap((m) => m.lessons);
         const taught = new Map<string, Set<string>>();
         for (const lesson of lessons) {
+            if (['fullOLL', 'fullPLL', 'fullCLL', 'eg'].includes(lesson.setId))
+                expect(lesson.requires, lesson.id).toContain('notationA');
             const moves = new Set(
                 lesson.requires.flatMap((prerequisite) => [...taught.get(prerequisite)!]),
             );

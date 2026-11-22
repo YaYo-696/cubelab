@@ -5,7 +5,7 @@
     "co": "1101",
     "cp": "2301",
     "algs": [
-      "B U2 B' U' B U' B'",
+      "y R U2 R' U' R U' R'",
       "R' U' R U' R' U2 R",
       "U2 L' U' L U' L' U2 L"
     ]
@@ -17,7 +17,7 @@
     "cp": "3210",
     "algs": [
       "R U2 R' F R' F' R U' R U' R'",
-      "L' U L U' L2 B L B' L U L' U' L",
+      "y2 R' U R U' R2 F R F' R U R' U' R",
       "L' U' L U' L F' L' F L' U2 L"
     ]
   },
@@ -27,9 +27,9 @@
     "co": "1101",
     "cp": "2130",
     "algs": [
-      "B' R B R' U2 R' U2 R",
-      "B' L U L' U2 L' B2 L",
-      "B' R B R' B U2 B' U' B' R B R'"
+      "y2 F' L F L' U2 L' U2 L",
+      "y2 F' R U R' U2 R' F2 R",
+      "y R' F R F' R U2 R' U' R' F R F'"
     ]
   },
   {
@@ -38,9 +38,9 @@
     "co": "1101",
     "cp": "0132",
     "algs": [
-      "L' B L B' L U L'",
+      "y2 R' F R F' R U R'",
       "U2 L' U R U' L U R'",
-      "R' U R B' L U L'"
+      "y2 L' U L F' R U R'"
     ]
   },
   {
@@ -49,9 +49,9 @@
     "co": "1101",
     "cp": "0231",
     "algs": [
-      "L U2 L' U2 L' B L B'",
-      "R B2 R' U2 R' U R B'",
-      "L U2 L' U' B' U' B L U' L'"
+      "y2 R U2 R' U2 R' F R F'",
+      "x' R U2 R' F2 R' F R U'",
+      "y' z F R2 F' R' U' R' U z' y' R U' R'"
     ]
   },
   {
@@ -60,7 +60,7 @@
     "co": "1101",
     "cp": "2031",
     "algs": [
-      "F U2 F' U' F U' F' L F' L' F U F U' F' U'",
+      "y' R U2 R' U' R U' R' F R' F' R U R U' R' U'",
       "R2 F' U' R2 F' R2 U F R2",
       "R2 F R U2 R U' R' U2 F' R"
     ]
@@ -73,7 +73,7 @@
     "algs": [
       "F R2 U' R2 U' R2 U R2 F'",
       "F R U' R' U R U2 R' U' R U R' U' F'",
-      "F' U2 F R' U R' U' R U' R"
+      "y' R' U2 R y R' U R' U' R U' R"
     ]
   },
   {
@@ -83,7 +83,7 @@
     "cp": "1023",
     "algs": [
       "R U R' U R U R' F R' F' R",
-      "L' B' L U' L' B' L B' L U L'",
+      "y2 R' F' R U' R' F' R F' R U R'",
       "R U R' U R U L' U R' U' L"
     ]
   },
@@ -93,8 +93,8 @@
     "co": "1212",
     "cp": "0321",
     "algs": [
-      "R B U B' U' B U B' U' B U B' U' R'",
-      "L2 B L2 B2 U2 B L2",
+      "y F R U R' U' R U R' U' R U R' U' F'",
+      "y x' U2 R U2 R2 F2 R U2 x",
       "R U' R' F R' F' R2 U' R' F R' F' R"
     ]
   },
@@ -104,8 +104,8 @@
     "co": "1212",
     "cp": "0123",
     "algs": [
-      "B2 U2 B' U2 B2",
-      "B2 U2 B U2 B2",
+      "y R2 U2 R' U2 R2",
+      "y R2 U2 R U2 R2",
       "R U R' U R U' R' U R U2 R'"
     ]
   },
@@ -115,8 +115,8 @@
     "co": "1020",
     "cp": "2310",
     "algs": [
-      "B U2 B' R' B U2 B' U B' R2 B",
-      "B' U' B U2 B' R B' R' B U' B",
+      "y R U2 R' F' R U2 R' U R' F2 R",
+      "y R' U' R U2 R' F R' F' R U' R",
       "R' F' R U R' U' R' F R2 U' R' U2 R"
     ]
   },
@@ -126,7 +126,7 @@
     "co": "1020",
     "cp": "2013",
     "algs": [
-      "L U2 L2 B2 L U L' B2 L B'",
+      "y2 R U2 R2 F2 R U R' F2 R F'",
       "R U' R' U R U' R' F R' F' R2 U R'",
       "R' U2 R' U' F R2 F' U R2"
     ]
@@ -137,9 +137,9 @@
     "co": "1020",
     "cp": "3012",
     "algs": [
-      "L' U L' U2 L U' L' U L U' L2",
-      "L2 U' L U2 L' U2 L U' L2",
-      "F U F' U F U' F' U F U' F' U F U2 F'"
+      "y2 R' U R' U2 R U' R' U R U' R2",
+      "y2 R2 U' R U2 R' U2 R U' R2",
+      "y' R U R' U R U' R' U R U' R' U R U2 R'"
     ]
   },
   {
@@ -148,9 +148,9 @@
     "co": "1020",
     "cp": "2103",
     "algs": [
-      "B U2 B2 R B R' B U2 B'",
+      "y R U2 R2 F R F' R U2 R'",
       "R U2 R' F R' F' R2 U2 R'",
-      "L U L' R' U2 L U L' U2 R"
+      "y2 R U R' L' U2 R U R' U2 L"
     ]
   },
   {
@@ -159,9 +159,9 @@
     "co": "1020",
     "cp": "2031",
     "algs": [
-      "R B' R' B U B U' B'",
-      "R B' R' U' B' U B",
-      "R' U B U' B' R2 B U' B'"
+      "y F R' F' R U R U' R'",
+      "y F R' F' U' R' U R",
+      "y F' U R U' R' F2 R U' R'"
     ]
   },
   {
@@ -170,8 +170,8 @@
     "co": "1020",
     "cp": "0312",
     "algs": [
-      "B' L U L' U' L' B L",
-      "R B U' B' U' B U B' R'",
+      "y2 F' R U R' U' R' F R",
+      "y F R U' R' U' R U R' F'",
       "R U R U' R' F R' F'"
     ]
   },
@@ -181,7 +181,7 @@
     "co": "2112",
     "cp": "3102",
     "algs": [
-      "R B' R' B U2 B U' B' U B U2 B'",
+      "y F R' F' R U2 R U' R' U R U2 R'",
       "R' F2 R F' U2 R U' R' U' F",
       "U F U R U' R' U R U' R2 F' R U R U' R'"
     ]
@@ -193,7 +193,7 @@
     "cp": "0231",
     "algs": [
       "R U2 R' U' R U R' U2 R' F R F'",
-      "R' B U B' U2 B' R B U' B' R2 B",
+      "y F' R U R' U2 R' F R U' R' F2 R",
       "R U R' U' R' F R2 U R' U' R U R' U' F'"
     ]
   },
@@ -203,9 +203,9 @@
     "co": "2112",
     "cp": "0312",
     "algs": [
-      "R B2 U' B2 U B2 U B2 R'",
-      "F U' F U' F' U F' L F2 L'",
-      "B L' B' L U2 B L' B' L2 U2 L'"
+      "y F R2 U' R2 U R2 U R2 F'",
+      "y' R U' R U' R' U R' F R2 F'",
+      "y2 F R' F' R U2 F R' F' R2 U2 R'"
     ]
   },
   {
@@ -214,7 +214,7 @@
     "co": "2112",
     "cp": "0132",
     "algs": [
-      "L' B L B' L U' L' U' L U' L'",
+      "y2 R' F R F' R U' R' U' R U' R'",
       "R U' R' F R' F R U R' F R",
       "R U' R' F L' U L U L' U L"
     ]
@@ -225,7 +225,7 @@
     "co": "2112",
     "cp": "0321",
     "algs": [
-      "F' U' F' L F L' F U' F' U2 F",
+      "y' R' U' R' F R F' R U' R' U2 R",
       "R2 U R' U' F R F' R U' R2",
       "U' R' U' R' F R F' R U' R' U2 R"
     ]
@@ -260,7 +260,7 @@
     "algs": [
       "R U R' U' R' F R F' R U R' U R U2 R'",
       "R U2 R' F R U2 R' U R U' R' F",
-      "L U' L U' L' U L' U' F U' F'"
+      "y2 R U' R U' R' U R' U' y R U' R'"
     ]
   },
   {
@@ -281,8 +281,8 @@
     "cp": "2130",
     "algs": [
       "F R' F' R U2 R U2 R'",
-      "F L' U' L U2 L F2 L'",
-      "B U' B' R B' R2 B U B U' B' R"
+      "y2 x' U R' F' R F2 R U2 R'",
+      "y R U' R' F R' F2 R U R U' R' F"
     ]
   },
   {
@@ -291,7 +291,7 @@
     "co": "2220",
     "cp": "2103",
     "algs": [
-      "L U L' U L' B L B' L U2 L'",
+      "y2 R U R' U R' F R F' R U2 R'",
       "U2 R U R' U R' F R F' R U2 R'",
       "R U R' U' R' F R F' R U' R' F R' F' R"
     ]
@@ -304,7 +304,7 @@
     "algs": [
       "R U R' U R U2 R'",
       "R U R2 U' R2 U R",
-      "F' U2 F U F' U F"
+      "y' R' U2 R U R' U R"
     ]
   },
   {
@@ -313,9 +313,9 @@
     "co": "0210",
     "cp": "2310",
     "algs": [
-      "F U F' U' F' L F L'",
-      "L' U' L U B L B'",
-      "U' L F R' F' L' F R F'"
+      "y' R U R' U' R' F R F'",
+      "y2 R' U' R U F R F'",
+      "U' x L U R' U' L' U R U' x'"
     ]
   },
   {
@@ -324,9 +324,9 @@
     "co": "0210",
     "cp": "3201",
     "algs": [
-      "F' U' F U F R' F' R",
-      "B' R' B U B U' B' R",
-      "R U R' U' F' U' F"
+      "y L' U' L U L F' L' F",
+      "y R' F' R U R U' R' F",
+      "R U R' U' y L' U' L"
     ]
   },
   {
@@ -336,8 +336,8 @@
     "cp": "3210",
     "algs": [
       "F U' R U2 R' U' F2 R U R'",
-      "B U2 B2 R B R' B U' B' U B U2 B'",
-      "L U B L' B' L U2 L U2 L2"
+      "y R U2 R2 F R F' R U' R' U R U2 R'",
+      "y2 R U F R' F' R U2 R U2 R2"
     ]
   },
   {
@@ -347,8 +347,8 @@
     "cp": "2301",
     "algs": [
       "R' U R U2 R2 F' R U' R' F2 R2",
-      "B' U B' R U' B U R2 B2",
-      "L' U L' U2 L U2 L' U L2 U' L'"
+      "y R' U R' F U' R U F2 R2",
+      "y2 R' U R' U2 R U2 R' U R2 U' R'"
     ]
   },
   {
@@ -357,9 +357,9 @@
     "co": "0210",
     "cp": "0231",
     "algs": [
-      "B L U L' U' L U' L' U' L U L' B'",
-      "F U F' U' F U' F' L' U' L F U F'",
-      "B U B' U2 B U B' U B' R B R'"
+      "y2 F R U R' U' R U' R' U' R U R' F'",
+      "y' R U R' U' R U' R' F' U' F R U R'",
+      "y R U R' U2 R U R' U R' F R F'"
     ]
   },
   {
@@ -369,8 +369,8 @@
     "cp": "2031",
     "algs": [
       "R' U R U2 R2 F R F' R",
-      "U' F U' F' U' R U2 F' U' F' U F U' R'",
-      "L U' L' U2 R2 B' R' U R'"
+      "U2 y z R U R' U' R' F R2 U' R' U' R U R' F'",
+      "y2 R U' R' U2 L2 F' L' U L'"
     ]
   },
   {
@@ -379,8 +379,8 @@
     "co": "0120",
     "cp": "2103",
     "algs": [
-      "L F U F' U' L'",
-      "R U B U' B' R'",
+      "y' F R U R' U' F'",
+      "y F U R U' R' F'",
       "R' F' U' F U R"
     ]
   },
@@ -391,7 +391,7 @@
     "cp": "3012",
     "algs": [
       "R' U' R2 U R' U2 R U2 R' U R'",
-      "F2 L2 F U F' L F2 U2 F' U' F",
+      "y' R2 F2 R U R' F R2 U2 R' U' R",
       "R' F U' R U' R' U2 F2 R"
     ]
   },
@@ -401,9 +401,9 @@
     "co": "0120",
     "cp": "0213",
     "algs": [
-      "B L U L' U2 B' L U' L' B",
+      "y2 F R U R' U2 F' R U' R' F",
       "R' F R U' R' U' R U R' F' R U R' U' R' F R F' R",
-      "F U2 F U' F' L F' L2 U' L"
+      "y' R U2 R U' R' F R' F2 U' F"
     ]
   },
   {
@@ -412,9 +412,9 @@
     "co": "0120",
     "cp": "2013",
     "algs": [
-      "L F' L' F U' F U' F' U2 F U' F'",
+      "y' F R' F' R U' R U' R' U2 R U' R'",
       "F R U' R' U R U R' U R U' R' F'",
-      "R' B U B' U' B' R B2 U B' U B U2 B'"
+      "y F' R U R' U' R' F R2 U R' U R U2 R'"
     ]
   },
   {
@@ -424,7 +424,7 @@
     "cp": "1203",
     "algs": [
       "R U' R2 F R F' R U R' U' R U R'",
-      "L U2 L' U L' B2 L B' L' B2 L",
+      "y2 R U2 R' U R' F2 R F' R' F2 R",
       "R2 D' R U2 R' D R U2 R"
     ]
   },
