@@ -74,3 +74,11 @@ El contenido conserva el agarre y los ajustes de apertura de las secuencias publ
 ### Aislamiento del worker de mezclas
 
 Los workers de mezclas y de casos tienen puntos de entrada y clientes independientes. Vite puede ubicar dependencias compartidas de cubing.js en un punto de entrada de CubeLab. Si un worker interno de cubing.js termina importándolo, el manejador solo procesa el discriminador propio. Los mensajes de Comlink conservan su canal y su formato. El Timer y el Entrenador exponen el mensaje del fallo y permiten reintentar. El cliente termina trabajos sin respuesta a los diez segundos. La prueba de arranque carga los módulos de producción y espera la primera respuesta de cada worker.
+
+## Fase 6 · Cierre del MVP
+
+- La primera apertura ofrece tres pantallas y recuerda su finalización. La ruta de aprendizaje comienza por Notación para el puzzle elegido. Los ajustes se guardan con el modelo existente de Dexie y el borrado vacía sus tablas en una transacción. La caché reconstruible y los archivos instalados de la PWA se conservan.
+- Las compilaciones de preview y release tienen distinta base de Vite. El alcance del service worker y el espacio de datos se derivan de esa base. La instalación del precache arranca tras la carga inicial. Se conserva el paquete completo para abrir por primera vez Timer, Academia, Solucionador y Entrenador desde el modo avión.
+- Se fijaron ESLint 10.15.0, @eslint/js 10.0.1 y typescript-eslint 8.73.0 por soporte y por los avisos del parser. Se fijaron Vite 6.4.6 y Vitest 4.1.12 para resolver los avisos de sus ramas. Workbox usa glob 14.0.6 mediante un override limitado a ese árbol. npm audit pasó de 15 hallazgos a 0 sin aplicar --force.
+- Se probó cubing 0.66.1 en una copia aislada con build y 17 pruebas de academia, entrenador y solucionador. La prueba no redujo el tamaño del motor 3D y aumentó el precache en unos 22 KiB en la compilación de comparación. El MVP conserva 0.63.8, que pasa la auditoría y tiene sus flujos de producción comprobados. [Notas de cubing 0.66.1](https://github.com/cubing/cubing.js/releases/tag/v0.66.1)
+- El navegador de referencia para el informe local fue Chrome 157. Lighthouse 13.6.0 dio 99 en Performance y 100 en Accessibility tanto en el build previo como en la primera apertura del nuevo preview. La instalación de Android se valida desde la URL de Pages.

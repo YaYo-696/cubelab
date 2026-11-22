@@ -56,13 +56,13 @@ export function LastLayerImage({
             active = false;
         };
     }, [key, puzzle, setup, pattern, includeLower]);
-    if (!image || image.key !== key) return <svg viewBox="0 0 100 100" role="img" aria-label={label} />;
+    if (!image || image.key !== key) return <svg className="cube-stickers" viewBox="0 0 100 100" role="img" aria-label={label} />;
     const { size, top, strips, lower } = image.state,
         step = 66 / size;
     const fill = (c: string) =>
         pattern?.kind === 'fullOLL' && c !== 'y' ? '#6f7e88' : (colors[c] ?? '#788491');
     return (
-        <svg viewBox={includeLower ? '0 0 100 132' : '0 0 100 100'} role="img" aria-label={label}>
+        <svg className="cube-stickers" viewBox={includeLower ? '0 0 100 132' : '0 0 100 100'} role="img" aria-label={label}>
             {[...top].map((v, i) => (
                 <rect
                     key={i}

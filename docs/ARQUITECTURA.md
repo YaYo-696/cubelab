@@ -116,3 +116,7 @@ La navegación desde Estadísticas usa el UUID del intento. El worker del soluci
 ## Entrenador
 
 PuzzleModule publica trainingSets y reutiliza caseGenerators por identificador de set. El núcleo del entrenador maneja progreso, cola de repaso, estadísticas, respuestas y evidencias para Evaluación. Los generadores del worker pueden adjuntar el ajuste que alinea el caso con el algoritmo de la academia. TrainerCase conserva el agregado por puzzle, set y caso. TrainerAttempt guarda cada práctica cronometrada o reconocimiento. Ambos se incluyen en el respaldo.
+
+## Primera apertura y canales de instalación
+
+El arranque carga la introducción antes de montar el Timer. La página prepara el service worker después de la carga inicial y mantiene los módulos de las funciones principales en el precache. La ruta base de Vite define los alcances de instalación y el espacio de IndexedDB y de claves locales. El borrado borra datos de usuario de la instalación activa mediante una transacción de tablas y conserva la caché de recursos reconstruibles.

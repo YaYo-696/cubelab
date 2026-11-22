@@ -3,8 +3,8 @@
     gap: 1rem;
 }
 .stats-card {
-    background: #1a2630;
-    border: 1px solid #43535e;
+    background: var(--surface);
+    border: 1px solid var(--line);
     border-radius: 12px;
     padding: 1rem;
     min-width: 0;
@@ -41,7 +41,7 @@
 .stats-card td,
 .stats-card th {
     text-align: left;
-    border-bottom: 1px solid #43535e;
+    border-bottom: 1px solid var(--line);
     padding: 0.55rem 0.3rem;
 }
 .stats-card td button {
@@ -84,7 +84,7 @@
     color: #eebc78;
 }
 .stats-card details {
-    border-top: 1px solid #43535e;
+    border-top: 1px solid var(--line);
     padding: 0.6rem 0;
     overflow-wrap: anywhere;
 }

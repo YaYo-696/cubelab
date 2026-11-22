@@ -1,0 +1,113 @@
+.skip-link {
+    position: fixed;
+    inset: 0.5rem auto auto 0.5rem;
+    z-index: 20;
+    transform: translateY(-200%);
+    background: var(--accent);
+    color: var(--accent-ink);
+    padding: 0.7rem 1rem;
+    border-radius: 6px;
+}
+.skip-link:focus {
+    transform: translateY(0);
+}
+.onboarding {
+    display: grid;
+    justify-items: center;
+}
+.intro-panel,
+.settings-card,
+.settings-dialog {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: clamp(20px, 6vw, 44px);
+}
+.intro-panel {
+    width: min(100%, 39rem);
+}
+.intro-panel h1 {
+    font-size: clamp(2rem, 8vw, 3.8rem);
+}
+.intro-panel fieldset {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+}
+.intro-panel label {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+}
+.intro-step {
+    margin-block: 0.8rem 0.35rem;
+    font-weight: 650;
+}
+.intro-actions {
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-block: 1rem;
+}
+.intro-actions button,
+.text-button {
+    margin: 0;
+}
+.secondary,
+.text-button {
+    color: var(--ink);
+    background: var(--control);
+    border: 1px solid var(--line);
+}
+.text-button {
+    background: transparent;
+    text-decoration: underline;
+}
+.danger {
+    background: #9d2638;
+    color: #fff;
+}
+.settings-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+.settings-card {
+    padding: clamp(16px, 4vw, 26px);
+}
+.settings-control {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    align-items: center;
+    margin-block: 0.7rem;
+}
+.settings-control :is(select, input) {
+    max-width: 55%;
+}
+.settings-control input[type='number'] {
+    width: 7rem;
+}
+.settings-dialog {
+    max-width: min(34rem, 95vw);
+    color: var(--ink);
+}
+.settings-dialog::backdrop {
+    background: #080e17b3;
+}
+:root[data-timer-size='compact'] {
+    --timer-digits: clamp(2rem, 12vw, 5rem);
+}
+:root[data-timer-size='large'] {
+    --timer-digits: clamp(3rem, 20vw, 10rem);
+}
+:root[data-cube-colors='contrast'] :is(.cube-stickers, twisty-player) {
+    filter: saturate(1.32) contrast(1.28);
+}
+
+:root[data-theme='light'] :is(.accepted, .mix-board small) {
+    color: var(--link);
+}

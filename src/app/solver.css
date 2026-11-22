@@ -20,7 +20,7 @@
     padding-inline-start: 1.35rem;
 }
 .solver-view a {
-    color: #a3e8c9;
+    color: var(--accent);
     text-decoration: underline;
 }
 .solver-view code {

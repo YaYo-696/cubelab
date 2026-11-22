@@ -7,6 +7,8 @@ interface Options {
     inspection: boolean;
     threshold: number;
     enabled: boolean;
+    sound?: boolean;
+    vibration?: boolean;
     finish: (result: Finish) => void;
 }
 export function useTimerInput(options: Options) {
@@ -39,7 +41,7 @@ export function useTimerInput(options: Options) {
                 if (mark > alerts) {
                     alerts = mark;
                     try {
-                        if (audio?.state === 'running') {
+                        if (latest.current.sound !== false && audio?.state === 'running') {
                             const tone = audio.createOscillator(),
                                 gain = audio.createGain();
                             gain.gain.value = 0.09;
@@ -53,7 +55,7 @@ export function useTimerInput(options: Options) {
                                 gain.disconnect();
                             };
                         }
-                        navigator.vibrate?.(100);
+                        if (latest.current.vibration !== false) navigator.vibrate?.(100);
                     } catch {
                         /* optional feedback */
                     }
@@ -73,7 +75,7 @@ export function useTimerInput(options: Options) {
             const before = machine.phase;
             machine.down(id, opt.rules, opt.inspection, opt.threshold, repeat);
             if (before === 'idle' && machine.phase !== 'idle') finishAttempt = opt.finish;
-            if (before === 'idle' && machine.phase === 'inspecting') {
+            if (before === 'idle' && machine.phase === 'inspecting' && opt.sound !== false) {
                 try {
                     audio ??= new AudioContext();
                     void audio.resume().catch(() => {});

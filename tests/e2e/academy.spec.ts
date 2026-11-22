@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures';
 import { questionBank } from '../../src/core/academy/questions';
 
 test('completa notación 3×3 y desbloquea cruz después de recargar', async ({ page }) => {

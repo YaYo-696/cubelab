@@ -1,3 +1,4 @@
+import { storageKey } from '../../config/storageScope';
 import Dexie from 'dexie';
 import { db, type CubeDatabase, type Solve } from './db';
 
@@ -67,7 +68,7 @@ export function attemptRepository(database: CubeDatabase) {
 export const attempts = attemptRepository(db);
 
 // Each UUID gets its own entry so tabs cannot overwrite each other's pending attempts.
-const prefix = 'cubelab.pending.';
+const prefix = storageKey('pending.');
 const pending = new Map<string, Solve>();
 export async function persistAttempt(solve: Solve) {
     pending.set(solve.id, solve);

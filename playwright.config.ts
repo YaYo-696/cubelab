@@ -1,5 +1,5 @@
 import { defineConfig } from '@playwright/test';
-declare const process: { platform: string; env: { CUBELAB_E2E_BROWSER?: string } };
+declare const process: { platform: string; env: { CUBELAB_E2E_BROWSER?: string; CUBELAB_E2E_EXECUTABLE?: string } };
 
 const browser = process.env.CUBELAB_E2E_BROWSER ?? (process.platform === 'win32' ? 'msedge' : 'chromium');
 if (browser !== 'msedge' && browser !== 'chromium') {
@@ -11,6 +11,7 @@ export default defineConfig({
     use: {
         browserName: 'chromium',
         channel: browser === 'msedge' ? 'msedge' : undefined,
+        launchOptions: { executablePath: process.env.CUBELAB_E2E_EXECUTABLE },
         baseURL: 'http://localhost:4173',
     },
     webServer: {

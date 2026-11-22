@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures';
 
 test('cinco solves, edición histórica, respaldo y restauración', async ({ page }, testInfo) => {
     await page.goto('/');

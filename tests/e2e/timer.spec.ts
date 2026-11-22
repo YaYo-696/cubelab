@@ -1,6 +1,7 @@
 import type { Solve } from '../../src/core/storage/db';
 import { formatTime } from '../../src/core/timer/times';
-import { expect, test, type Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
+import { expect, test } from './fixtures';
 
 async function openTimer(page: Page) {
     await page.goto('/');

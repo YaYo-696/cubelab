@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures';
 test('navegación móvil, contenido diferido, persistencia y mezcla offline', async ({ page, context }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto('/');

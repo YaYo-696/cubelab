@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures';
 
 test('registra tres prácticas de PLL completo y conserva el intento con ayuda', async ({ page }) => {
     await page.goto('/');

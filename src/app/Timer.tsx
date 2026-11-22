@@ -1,3 +1,4 @@
+import { readHoldMs, type Preferences } from '../core/storage/preferences';
 import { useApp } from './state';
 import '../ui/timer.css';
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
@@ -15,9 +16,9 @@ import { useTimerInput } from './useTimerInput';
 
 const Cube3D = lazy(() => import('./AcademyPlayer').then((m) => ({ default: m.AcademyPlayer })));
 type T = (key: string, params?: Record<string, string | number>) => string;
-type Props = { mod: PuzzleModule<string>; rules: EventRules; t: T };
+type Props = { mod: PuzzleModule<string>; rules: EventRules; prefs: Preferences; t: T };
 
-export function Timer({ mod, rules, t }: Props) {
+export function Timer({ mod, rules, prefs, t }: Props) {
     const mix = useScrambles(mod, rules.id);
     const rememberMix = useApp((state) => state.rememberMix);
     const currentMix = mix.current?.text;
@@ -69,8 +70,7 @@ export function Timer({ mod, rules, t }: Props) {
             setSession(id);
             activeSession.current = id;
             setInspection(inspect?.value !== 'off');
-            const ms = Number(hold?.value);
-            setThreshold(Number.isInteger(ms) && ms >= 0 && ms <= 3000 ? ms : 300);
+            setThreshold(readHoldMs(hold?.value));
             setMessage('');
             setReady(true);
         }
@@ -106,6 +106,8 @@ export function Timer({ mod, rules, t }: Props) {
         rules,
         inspection,
         threshold,
+        sound: prefs.sounds === 'on',
+        vibration: prefs.vibration === 'on',
         enabled: ready && !!mix.current && !pending && !inFlight.current,
         finish: (result) => record(result.timeMs, result.penalty, 'timer'),
     });
@@ -213,7 +215,7 @@ export function Timer({ mod, rules, t }: Props) {
             customInput.current?.setSelectionRange(pos, pos + 1);
         }
     }
-    const [showCube3d, setCube3d] = useState(false);
+    const [showCube3d, setCube3d] = useState(prefs.timerPreview === '3D');
     const Preview = mod.ui?.preview,
         InputPanel = mod.ui?.inputPanel;
     const preview = useMemo(

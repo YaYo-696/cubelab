@@ -23,7 +23,7 @@
     padding: 8px;
     border: 1px solid #54656e;
     border-radius: 5px;
-    background: #16232d;
+    background: var(--surface);
     color: inherit;
     font: inherit;
 }
@@ -31,7 +31,7 @@
     width: 6em;
 }
 .timer-page input[type='checkbox'] {
-    accent-color: #a3e8c9;
+    accent-color: var(--accent);
 }
 .mix-board,
 .times,
@@ -39,7 +39,7 @@
     padding: 18px 22px;
     border: 1px solid #394b55;
     border-radius: 12px;
-    background: #1a2630;
+    background: var(--surface);
 }
 .mix-board {
     display: grid;
@@ -67,7 +67,7 @@
 }
 .timer-stage {
     position: relative;
-    background: #15232c;
+    background: var(--surface-hi);
     border: 1px solid #435962;
     border-radius: 12px;
 }
@@ -100,9 +100,9 @@
     box-sizing: border-box;
 }
 .timer-stage .digits {
-    font:
-        600 clamp(48px, 12vw, 128px) / 1.2 ui-monospace,
-        monospace;
+    font-size: var(--timer-digits, clamp(2.6rem, 15vw, 7rem));
+    font-family: ui-monospace, monospace;
+    font-weight: 700;
     font-variant-numeric: tabular-nums;
 }
 .phase-holding {
@@ -115,7 +115,7 @@
     color: #ffda86;
 }
 .phase-running {
-    background: #10181f;
+    background: var(--page);
 }
 .phase-name {
     font-weight: bold;
@@ -153,7 +153,7 @@
 .times li {
     padding: 8px 12px;
     border-radius: 6px;
-    background: #263945;
+    background: var(--control);
 }
 .times li span {
     display: block;
@@ -181,3 +181,6 @@
         min-height: 44px;
     }
 }
+
+:root[data-theme=light] .phase-holding .digits { color:#982d27; }
+:root[data-theme=light] .phase-ready .digits { color:#146344; }

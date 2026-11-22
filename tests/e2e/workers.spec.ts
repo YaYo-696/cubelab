@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures';
 
 declare const process: { getBuiltinModule(name: 'node:fs'): { readdirSync(path: URL): string[] } };
 

@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures';
 
 test('abre un solve del timer en CFOP y reproduce etapas con el total comprobado', async ({ page }) => {
     await page.goto('/');

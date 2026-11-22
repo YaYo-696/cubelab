@@ -18,7 +18,7 @@ const faces = [
 export function CubeNet({ state, label }: { state: string; label: string }) {
     const n = Math.sqrt(state.length / 6);
     return (
-        <svg viewBox="0 0 160 120" role="img" aria-label={label}>
+        <svg className="cube-stickers" viewBox="0 0 160 120" role="img" aria-label={label}>
             {faces.map(({ face, x, y, index }) => (
                 <g key={face} transform={`translate(${40 * x} ${40 * y})`}>
                     {Array.from({ length: n * n }, (_, i) => {

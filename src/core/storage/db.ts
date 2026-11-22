@@ -1,3 +1,4 @@
+import { storageScope } from '../../config/storageScope';
 import type { TrainerCase, TrainerAttempt } from '../trainer/model';
 import type { EvaluationAttempt } from '../academy/evaluation';
 import Dexie, { type Table } from 'dexie';
@@ -89,7 +90,7 @@ export class CubeDatabase extends Dexie {
         });
     }
 }
-export const db = new CubeDatabase();
+export const db = new CubeDatabase(storageScope);
 export function solvesForEvent(eventId: string) {
     return db.solves
         .where('[eventId+createdAt]')

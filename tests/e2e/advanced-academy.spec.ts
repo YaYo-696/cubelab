@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures';
 
 test('selecciona un PLL por su vista superior, lo reproduce y reconoce el caso', async ({ page }) => {
     await page.addInitScript(() => sessionStorage.setItem('cubelab.test.progressGates', 'on'));

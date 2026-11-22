@@ -1,5 +1,5 @@
 ﻿<#
-  CubeLab - Diagnostico del proyecto (Fase 5)
+  CubeLab - Diagnostico del proyecto (Fase 6)
   Revisa herramientas, git, dependencias, el navegador de Playwright
   y corre las comprobaciones del proyecto. Genera
   el log, dist/ y los resultados de Playwright.
@@ -217,6 +217,9 @@ if ($Rapido) {
   $build = Invoke-Step 'Build' 'npm run build'
   if ($build.Code -eq 0) {
     Add-Result 'Build' 'OK' "compilo ($($build.Secs) s)"
+    $pwa = Invoke-Step 'Manifiesto y rutas offline' 'node tools/check-pwa.mjs dist'
+    if ($pwa.Code -eq 0) { Add-Result 'PWA' 'OK' 'Manifiesto, iconos y precache de funciones verificados' }
+    else { Add-Result 'PWA' 'FALLA' 'Manifiesto o precache inválido'; Show-Tail $pwa }
     foreach ($f in @('dist\index.html', 'dist\sw.js', 'dist\manifest.webmanifest')) {
       if (Test-Path (Join-Path $root $f)) { Add-Result 'PWA' 'OK' "existe $f" }
       else { Add-Result 'PWA' 'FALLA' "falta $f despues del build" }
@@ -229,7 +232,7 @@ if (-not $ConE2E) {
 } elseif ($build.Code -ne 0) {
   Add-Result 'Tests e2e' 'FALLA' 'El build de producción falló.'
 } else {
-  $e2e = Invoke-Step 'Tests e2e (offline, timer, estadisticas, respaldo, academia, evaluacion, solucionador, entrenador y arranque de workers)' 'npm run test:e2e'
+  $e2e = Invoke-Step 'Tests e2e (offline, timer, estadisticas, respaldo, academia, evaluacion, solucionador, entrenador, workers y flujo MVP)' 'npm run test:e2e'
   if ($e2e.Code -eq 0) { Add-Result 'Tests e2e' 'OK' "pasaron ($($e2e.Secs) s)" }
   else { Add-Result 'Tests e2e' 'FALLA' 'fallaron'; Show-Tail $e2e 30 }
 }

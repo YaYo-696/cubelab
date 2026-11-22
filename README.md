@@ -1,129 +1,76 @@
 # CubeLab
 
-Cronómetro offline de speedcubing para 2×2, 3×3 y 3×3 a ciegas. Guarda el intento, la mezcla y sus penalizaciones en la sesión del evento. [Arquitectura](docs/ARQUITECTURA.md) · [Decisiones](docs/DECISIONES.md)
+PWA bilingüe de speedcubing para 2×2, 3×3 y 3×3 a ciegas. Incluye Timer, sesiones y estadísticas, una Academia con catálogos verificados, un Solucionador por etapas y un Entrenador con repetición espaciada. Las funciones principales quedan disponibles sin conexión después de preparar la instalación.
 
-## Arranque en PC
+[Changelog 1.0.0](CHANGELOG.md) · [Arquitectura](docs/ARQUITECTURA.md) · [Decisiones](docs/DECISIONES.md) · [Fuentes](docs/FUENTES.md)
 
-Con Node 22.16 o posterior y npm, ejecutar desde esta carpeta:
+## Capturas
 
-```sh
-npm install
-npm run dev
+![Primera apertura de CubeLab en el perfil móvil](docs/screenshots/onboarding.png)
+
+![Timer de 3×3 con mezcla y vista plana](docs/screenshots/timer.png)
+
+## Arranque y diagnóstico
+
+Requiere Node 22.16 o superior y npm.
+
+```powershell
+npm.cmd ci
+npm.cmd run dev
 ```
 
-## Diagnóstico de aceptación en Windows
-
-Desde PowerShell, en la raíz del repo con las dependencias instaladas, ejecutar:
+En Windows, ejecuta el diagnóstico de aceptación con Microsoft Edge:
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\diagnostico.ps1 -ConE2E
 ```
 
-El diagnóstico comprueba dependencias y tipos, ejecuta lint, filtros, Vitest y build, revisa el manifiesto y el service worker, y ejecuta Playwright con Edge. Devuelve código 0 si pasa y guarda el detalle en `diagnostico-*.log`. La opción `-Rapido` ejecuta un subconjunto. Para instalar desde cero según el lockfile, usar `npm.cmd ci`.
+El diagnóstico incluye tipos, lint, filtros de mezclas, Vitest, build, manifiesto, precache y Playwright. Guarda el detalle en `diagnostico-*.log`. La variante `-Rapido` omite comprobaciones largas. En Linux, CI usa Chromium de Playwright. Para probar en otro Chromium ya instalado, establece `CUBELAB_E2E_BROWSER=chromium` y apunta `CUBELAB_E2E_EXECUTABLE` al ejecutable.
 
-## Comprobaciones
+## Publicación
 
-```sh
-npm run lint
-npm test
-npm run build
-npm run test:e2e
-```
+El workflow publica un preview con etiqueta DEV a partir de `main`. El release se construye desde un tag y solo se publica tras pasar `release:check` y las pruebas. Queda desactivado mientras `CUBELAB_RELEASE_REF` esté sin definir. [Pasos exactos para crear el repositorio, hacer push y conectar GitHub Pages](docs/PUBLICACION.md)
 
-En Windows, Playwright usa el Microsoft Edge instalado mediante el canal `msedge`. En otros sistemas usa Chromium de Playwright. Para elegir Chromium explícitamente en otro equipo Windows, usar `$env:CUBELAB_E2E_BROWSER = "chromium"` en PowerShell. En CI se puede fijar `CUBELAB_E2E_BROWSER=chromium` en el entorno del job, ejecutar `npx playwright install --with-deps chromium` allí y correr el build y los e2e. Para volver al valor predeterminado en PowerShell, ejecutar `Remove-Item Env:CUBELAB_E2E_BROWSER -ErrorAction SilentlyContinue`.
+El preview se publica en `https://TU_USUARIO.github.io/cubelab/preview/`. Preview y release guardan los datos por separado. **Ajustes → Datos locales** permite exportar un respaldo JSON y borrar los datos de la instalación actual. En Estadísticas puedes importar el respaldo. Se admiten respaldos v1, v2 y v3.
 
-`npm run test:filter` verifica con KPuzzle las distancias exactas a ambos lados del umbral en las 24 orientaciones y recorre 1.000 muestras por modalidad.
+## Rendimiento móvil
 
-Vitest genera 1.000 mezclas por modalidad activa y comprueba cada una con un modelo independiente de cubing.js. El test de navegador sirve el build de producción, activa el modo sin conexión y pide una mezcla. `npm run format` formatea el proyecto con Prettier.
+Lighthouse 13.6.0, perfil móvil, Chrome 157, perfil nuevo y build de producción.
 
-## Teléfono y PWA
+| Medición | Antes, entrada a Timer | Después, primera apertura |
+| --- | ---: | ---: |
+| Performance | 99 | 99 |
+| Accessibility | 100 | 100 |
+| LCP | 2,0 s | 2,0 s |
 
-Para abrir la interfaz en la misma Wi-Fi, ejecutar `npm run dev -- --host 0.0.0.0` y usar la dirección Network que imprime Vite. Para probar instalación y workers que requieren un contexto seguro, servir el contenido de `dist/` por HTTPS con un certificado de confianza en el teléfono. En PC se puede usar `npm run preview` y abrir localhost. En Android usar la opción de instalar del navegador. En iOS, abrir en Safari y elegir Compartir → Agregar al inicio. Tras la primera carga completa, activar el modo avión, cerrar, reabrir y generar una mezcla de cada evento.
+El visor 3D se ejecuta bajo demanda. Una prueba con el service worker bloqueado verifica que Timer en 2D no solicita el motor de 511 kB hasta habilitar la vista 3D. El service worker descarga una copia para uso sin conexión después de la carga inicial. El precache completo del preview ocupa alrededor de 3,03 MiB sin compresión. Incluye las lecciones, los catálogos y los módulos que usan sus workers para que sea posible abrirlos por primera vez en modo avión.
 
-### Prueba de producción en un teléfono
+Lighthouse retiró la categoría PWA. La instalación se verifica mediante el manifiesto, el service worker, las pruebas offline y la instalación real en Android. [Criterio de Chrome](https://developer.chrome.com/blog/update-install-criteria)
 
-**Android por USB**. Con las Android Platform Tools en PATH, la depuración USB activada y el teléfono autorizado, ejecutar en el PC:
-
-```powershell
-adb devices
-adb reverse tcp:4173 tcp:4173
-npm.cmd run preview -- --host 127.0.0.1 --port 4173 --strictPort
-```
-
-En Chrome del teléfono abrir `http://localhost:4173`. El reenvío permite usar localhost como contexto seguro. Instalar CubeLab desde el menú de Chrome, abrirla una vez, cerrar, desconectar el cable y activar modo avión con Wi-Fi apagado. Reabrir desde el icono y generar una mezcla para 2×2, 3×3 y 3×3 a ciegas. Comprobar la etiqueta de criterios WCA y abrir una lección. Cambiar el idioma, cerrar y confirmar que se conserva al reabrir.
-
-**Android o iPhone por Wi-Fi con HTTPS local**. Con mkcert instalado en el PC, seleccionar la IPv4 de la interfaz Wi-Fi usando `ipconfig`. En PowerShell, desde el repo y con el build generado:
+Para repetir la medición, sirve el build con `npm.cmd run preview`. En Edge o Chrome, abre DevTools → **Lighthouse**, elige móvil y las categorías Performance y Accessibility. Usa un perfil nuevo para medir la primera apertura. Para guardar un informe JSON, con Node 22.19 o superior:
 
 ```powershell
-$ip = Read-Host 'IPv4 Wi-Fi del PC'
-$cert = Join-Path $env:TEMP 'cubelab-cert.pem'
-$key = Join-Path $env:TEMP 'cubelab-key.pem'
-mkcert -cert-file $cert -key-file $key $ip
-mkcert -CAROOT
-Write-Host "Abrir https://${ip}:4173"
-npx.cmd --yes --package=http-server@14.1.1 -- http-server dist -a $ip -p 4173 -S -C $cert -K $key -c-1
+npx.cmd --yes --package=lighthouse@13.6.0 lighthouse http://localhost:4173/ --form-factor=mobile --only-categories=performance,accessibility --output=json --output-path=lighthouse.json
 ```
 
-Transferir al teléfono únicamente el certificado público `rootCA.pem` de la carpeta indicada por `mkcert -CAROOT`. Instalarlo como CA de confianza. En iOS activar también la confianza total para esa raíz en Ajustes → General → Información → Ajustes de confianza de certificados. Con ambos dispositivos en la misma Wi-Fi, abrir la URL impresa en Chrome o Safari y comprobar que el certificado se acepta. En iPhone usar Compartir → Agregar al inicio. Repetir la comprobación en modo avión indicada arriba. Cerrar el servidor con Ctrl+C al terminar y retirar la confianza de prueba del teléfono si se habilitó solo para esta sesión.
+## Prueba manual del MVP
 
-### Aceptación de la fase 1
+**PC en Edge**
 
-En Windows ejecutar `npm.cmd ci` y después `powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\diagnostico.ps1 -ConE2E`. Vitest incluye los límites del timer, las entradas manuales y el repositorio Dexie con fake-indexeddb. Playwright prueba la PWA de producción en Edge, el guardado por teclado, la recarga y una inspección con +2 mediante un reloj simulado.
+1. Abre el preview en una ventana InPrivate para ver la primera apertura. Prueba la elección de puzzle y la ruta de principiante. En una instalación ya inicializada, Ajustes permite restablecer el flujo tras exportar los datos.
+2. En Timer guarda un solve. Luego abre el intento en Estadísticas y usa **Ver en el solucionador**. Resuelve y revisa al menos una etapa.
+3. Completa Notación en Academia, prepara un caso en Entrenador y responde una Evaluación. Cambia tema, tamaño del timer y vista previa en Ajustes, y confirma que se mantienen tras recargar.
 
-En PC, seleccionar la modalidad y la sesión. Con inspección habilitada, una pulsación de espacio inicia la inspección. Mantener espacio hasta «Listo», soltar para correr y pulsar una tecla para detener. Probar soltar antes del umbral, activar y quitar +2 y DNF, comentar y borrar/deshacer. En ingreso manual, 1:02.34 y 62.34 deben producir el mismo tiempo. Para probar notación, introducir R U3 y comprobar que se señala el 3. En 3×3 a ciegas, la primera presión ya prepara el timer.
+**Android desde el preview**
 
-En Android abrir la PWA de producción con adb reverse como se indica arriba. Verificar que se ve «Últimos cinco tiempos» y anotar el contador de una sesión. Activar modo avión, desconectar el USB y completar **12 intentos cronometrados consecutivos en la misma sesión**. Mantener el dedo hasta «Listo», soltar para correr y tocar para detener. Verificar que el contador aumentó en 12, anotar los últimos cinco y el ao5, cerrar por completo y reabrir desde el icono. El contador, los cinco tiempos y el ao5 deben coincidir. Si el teléfono ya tenía la fase 0, abrir primero con conexión al servidor actualizado y dejar que el service worker descargue la nueva versión.
-
-### Aceptación de la fase 2
-
-Ejecutar el diagnóstico de aceptación de Windows con Edge. Incluye el límite de 1.000 ms para estadísticas completas y PB con 10.000 intentos, las transacciones de sesiones y la restauración JSON con Playwright.
-
-En Estadísticas, elegir el evento y la sesión. Después de cinco intentos, abrir el desglose del ao5. Cambiar +2 en un intento antiguo y revisar tanto la nueva media como los descartes. Crear otra sesión del mismo evento y mover un intento con su casilla de selección. Fusionar las sesiones y verificar el conteo. Exportar JSON y restaurarlo en un perfil desechable del navegador. El CSV exporta los intentos activos y el JSON incluye también los borrados recuperables. No hace falta borrar el perfil habitual.
-
-En Android, abrir el build actualizado usando el procedimiento USB anterior. En modo avión, confirmar que funcionan el panel, el gráfico, el desglose y la edición. Exportar el JSON desde el teléfono y conservarlo antes de probar la importación en otro perfil.
-
-Para contrastar con csTimer, activar el recorte predeterminado del 5 % por extremo e ingresar 10.00, 12.00 (+2), 14.00, 15.00, 18.00 (DNF), 11.00, 13.00, 10.00, 12.00 (+2), 9.00, 16.00 y 12.00. Single actual/mejor 12.00/9.00, mo3 12.33/11.00, ao5 12.00/11.33, ao12 12.90/12.90. Media 12.55. Los promedios de 25 intentos o más quedan vacíos.
-
-### Aceptación de la fase 3A
-
-Ejecuta el diagnóstico de Windows con Edge. En Academia, selecciona 3×3, abre Notación y prueba reproducir, pausar, avanzar y retroceder un giro, y cambiar la velocidad. Completa el minitest. La cruz debe desbloquearse y seguir disponible después de recargar. Repite el flujo de Notación con 2×2 y comprueba que el progreso se guarda por curso.
-
-En Android sirve el build actualizado con Vite Preview y adb reverse como en las fases anteriores. Abre la PWA en línea para actualizar el service worker, activa modo avión y entra en Academia. Abre una lección, usa el glosario, completa el minitest, cierra y reabre. En una lección de última capa, prepara uno de los casos mostrados con un cubo físico y comprueba la solución por etapas. [Fuentes y criterios de verificación](docs/FUENTES.md)
-
-### Aceptación de la fase 3A.1
-
-En Notación de 3×3, confirma que el cubo grande se deja girar sin perder el paso de la animación. Cambia la velocidad, pausa, avanza un paso y compara con la vista plana. Activa las caras ocultas. Completa la lección básica para abrir Notación avanzada, donde se animan Rw, r, M, E, S y las rotaciones. En Timer alterna entre plano y 3D.
-
-Abre Evaluación, elige Principiante y responde las 12 preguntas. Falla a propósito alguna de notación y sigue el enlace de repaso. Recarga y comprueba el historial. En Android, actualiza la PWA con adb reverse, entra en modo avión y repite el flujo. La posición de la cámara cambia al arrastrar con un dedo, y la vista plana aparece debajo del 3D.
-
-El historial de evaluaciones se incluye en los respaldos JSON v2. Se mantienen compatibles los respaldos v1 anteriores.
-
-### Aceptación de la fase 3B
-
-Ejecuta el diagnóstico de Windows con Edge. En Academia, completa los prerrequisitos de un grupo de PLL. Abre «PLL · Solo esquinas», selecciona Aa en la vista superior, reproduce la secuencia y reconoce el caso en el minitest. Repite con CLL en 2×2 y abre Evaluación en nivel Avanzado para revisar las recomendaciones por grupo.
-
-En Android, actualiza la PWA mediante Vite Preview y adb reverse, activa modo avión y abre un grupo de OLL que no hayas usado antes. Comprueba que aparecen las miniaturas, que puedes cambiar de caso en 3D y que un intento de evaluación reaparece después de cerrar y reabrir.
-
-### Aceptación de la fase 3B.1
-
-En Windows ejecuta el diagnóstico con Edge. En Academia abre «PLL · Solo esquinas», selecciona Aa y avanza un paso. El primer movimiento gira el cubo completo con x y la secuencia conserva sus giros D2. Repite con E y OLL 9. En 2×2, completa Notación avanzada y abre CLL Anti-Sune. En CLL AS 1, el principal muestra el agarre y la segunda alternativa empieza con un ajuste U2. Al cambiar de variante deben actualizarse la miniatura, la preparación y el reproductor.
-
-En Android, actualiza el build mediante Vite Preview y adb reverse como arriba. Activa modo avión, abre los mismos casos y comprueba que puedes reproducirlos, avanzar un movimiento y cambiar de variante sin conexión. [Comparación de algoritmos](docs/ALGORITMOS-CAMBIOS.md)
-
-### Aceptación de la fase 4
-
-Ejecuta `powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\diagnostico.ps1 -ConE2E`. El aviso de DEV-FLAG es esperado en desarrollo. Vitest recorre 200 mezclas por método y Playwright prueba el enlace al solucionador desde un intento cronometrado.
-
-En Edge, guarda un intento real de 3×3 en Timer. En Estadísticas, expande el intento y usa «Ver en el solucionador». Elige CFOP completo y presiona «Resolver». Reproduce la cruz y los cuatro pares por separado, verifica el total frente a la suma y abre una lección desde su etapa. Prueba también CFOP 4LLL, principiante, cruz neutra y la entrada manual con una mezcla inválida. En 2×2, compara óptimo, principiante y Ortega. En Academia, abre directamente una lección avanzada y genera un ejercicio con una mezcla real. El aviso DEV debe aparecer en la cabecera.
-
-### Aceptación de la fase 5
-
-Ejecuta el diagnóstico de Windows con Edge. En Entrenador abre PLL completo, selecciona un caso y practica tres veces con Espacio. En una de ellas usa «Mostrar algoritmo» y comprueba la reproducción. Revisa los tres tiempos y la marca «Con ayuda». Recarga y confirma que siguen en el historial.
-
-Prueba los filtros de grupos, «En práctica» y «Los cinco casos más lentos». Cambia un caso a Aprendido. En Reconocimiento, comprueba las cuatro opciones, el puntaje y la racha. Tras registrar un caso lento, abre Evaluación y sigue la recomendación hasta ese caso. El respaldo JSON v3 incluye los intentos del entrenador. El importador acepta también respaldos v1 y v2.
+1. Abre la URL HTTPS en Chrome. Comprueba la etiqueta DEV y elige **Instalar app** en el menú del navegador. Abre CubeLab desde el icono.
+2. En **Ajustes → Datos locales**, espera **Listo para usar sin conexión**. Cierra la app.
+3. Activa modo avión con Wi-Fi apagado y reabre desde el icono. Genera una mezcla, registra un solve y revisa que persista al volver a abrir.
+4. En modo avión, reproduce una lección 3D, solicita una solución y pide un caso nuevo en Entrenador. Entra a Evaluación y verifica que carga el cuestionario.
 
 ## Antes del lanzamiento
 
-1. Apaga todos los interruptores DEV-FLAG en `src/config/devFlags.ts` y ejecuta `npm.cmd run release:check`.
-2. Ejecuta `tools\diagnostico.ps1 -ConE2E` y revisa el build de producción en Edge.
-3. Verifica con un perfil nuevo que no aparezca DEV y que los prerrequisitos se apliquen.
+- [ ] Apaga los `DEV-FLAG` en la referencia de release y ejecuta `npm.cmd run release:check`.
+- [ ] Ejecuta el diagnóstico completo con Edge y comprueba **FALLAS: 0**.
+- [ ] Activa el release de acuerdo con la guía de publicación y comprueba su URL.
+- [ ] Instala desde la URL de release en Android y comprueba su reapertura y funciones en modo avión.

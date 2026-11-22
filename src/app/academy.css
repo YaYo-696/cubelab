@@ -5,8 +5,8 @@
     align-items: start;
 }
 .academy-card {
-    background: #1a2630;
-    border: 1px solid #43535e;
+    background: var(--surface);
+    border: 1px solid var(--line);
     border-radius: 12px;
     min-width: 0;
     padding: 1rem;
@@ -50,7 +50,7 @@
     height: 240px;
 }
 .academy fieldset {
-    border: 1px solid #596c77;
+    border: 1px solid var(--control-line);
     border-radius: 0.4rem;
     margin: 0.8rem 0;
     padding: 0.6rem;
@@ -66,7 +66,7 @@
     max-width: 100%;
 }
 .academy small {
-    color: #c4d5dc;
+    color: var(--muted);
 }
 @media (max-width: 720px) {
     .academy {
@@ -134,7 +134,7 @@
 }
 .evaluation a {
     text-decoration: underline;
-    color: #a8e6cf;
+    color: var(--link);
 }
 .evaluation .academy-card li {
     margin: 0.35rem 0;
@@ -150,8 +150,8 @@
     display: grid;
     gap: 0.25rem;
     justify-items: center;
-    background: #293b47;
-    color: #f2f4f7;
+    background: var(--control);
+    color: var(--ink);
     text-align: center;
     font-size: 0.9rem;
 }
@@ -167,7 +167,7 @@
     margin: 0.5rem 0;
 }
 .academy a {
-    color: #a8e6cf;
+    color: var(--link);
     text-decoration: underline;
 }
 
