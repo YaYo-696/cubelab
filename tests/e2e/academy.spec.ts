@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test';
 import { questionBank } from '../../src/core/academy/questions';
 
 test('completa notación 3×3 y desbloquea cruz después de recargar', async ({ page }) => {
+    await page.addInitScript(() => sessionStorage.setItem('cubelab.test.progressGates', 'on'));
     await page.goto('/#academy');
     await page.getByLabel('Evento').selectOption('333');
     const notation = page.getByRole('button', { name: 'Notación', exact: true });

@@ -1,0 +1,28 @@
+.solver-view textarea {
+    display: block;
+    width: 100%;
+    font: inherit;
+    margin-block: 0.4rem;
+}
+.solver-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem 1rem;
+    flex-wrap: wrap;
+    margin-block: 0.7rem;
+}
+.solver-controls button {
+    margin: 0;
+}
+.solver-view ol {
+    display: grid;
+    gap: 0.35rem;
+    padding-inline-start: 1.35rem;
+}
+.solver-view a {
+    color: #a3e8c9;
+    text-decoration: underline;
+}
+.solver-view code {
+    overflow-wrap: anywhere;
+}

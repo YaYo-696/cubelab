@@ -1,5 +1,5 @@
 ﻿<#
-  CubeLab - Diagnostico del proyecto (Fase 3B)
+  CubeLab - Diagnostico del proyecto (Fase 4)
   Revisa herramientas, git, dependencias, el navegador de Playwright
   y corre las comprobaciones del proyecto. Genera
   el log, dist/ y los resultados de Playwright.
@@ -189,6 +189,10 @@ if ($browser -eq 'msedge') {
 
 Write-Section '6. Comprobaciones del proyecto'
 
+$release = Invoke-Step 'Preparación para lanzamiento' 'npm run release:check'
+if ($release.Code -eq 0) { Add-Result 'DEV-FLAG' 'OK' 'Todos apagados' }
+else { Add-Result 'DEV-FLAG' 'AVISO' 'Revisa los interruptores antes del lanzamiento'; Show-Tail $release 8 }
+
 $tsc = Invoke-Step 'TypeScript' 'node_modules\.bin\tsc --noEmit'
 if ($tsc.Code -eq 0) { Add-Result 'TypeScript' 'OK' "sin errores ($($tsc.Secs) s)" }
 else { Add-Result 'TypeScript' 'FALLA' 'errores de tipos'; Show-Tail $tsc }
@@ -206,7 +210,7 @@ if ($Rapido) {
   Add-Result 'Build' 'OMITIDO' 'modo -Rapido'
 } else {
   Write-Host '     (los tests unitarios generan miles de mezclas: pueden tardar varios minutos)' -ForegroundColor DarkGray
-  $unit = Invoke-Step 'Tests unitarios (timer, mezclas, Dexie, respaldo, rendimiento, academia, catalogos y evaluacion)' 'npm test'
+  $unit = Invoke-Step 'Tests unitarios (timer, mezclas, Dexie, respaldo, rendimiento, academia, catalogos, evaluacion y solucionador)' 'npm test'
   if ($unit.Code -eq 0) { Add-Result 'Tests unitarios' 'OK' "pasaron ($($unit.Secs) s)" }
   else { Add-Result 'Tests unitarios' 'FALLA' 'hay tests fallando'; Show-Tail $unit 30 }
 
@@ -225,7 +229,7 @@ if (-not $ConE2E) {
 } elseif ($build.Code -ne 0) {
   Add-Result 'Tests e2e' 'FALLA' 'El build de producción falló.'
 } else {
-  $e2e = Invoke-Step 'Tests e2e (offline, timer, estadisticas, respaldo, academia y evaluacion)' 'npm run test:e2e'
+  $e2e = Invoke-Step 'Tests e2e (offline, timer, estadisticas, respaldo, academia, evaluacion y solucionador)' 'npm run test:e2e'
   if ($e2e.Code -eq 0) { Add-Result 'Tests e2e' 'OK' "pasaron ($($e2e.Secs) s)" }
   else { Add-Result 'Tests e2e' 'FALLA' 'fallaron'; Show-Tail $e2e 30 }
 }

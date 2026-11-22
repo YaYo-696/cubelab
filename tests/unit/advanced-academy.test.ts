@@ -198,3 +198,20 @@ it('preserva una evaluacion avanzada de CLL al exportar e importar', async () =>
         await target.delete();
     }
 });
+
+it('los algoritmos publicados utilizan sufijos de giro WCA', async () => {
+    for (const cube of ['222', '333'] as const) {
+        const mod = await registry[cube]();
+        for (const id of mod.algSets) {
+            const set = await mod.loadAlgSet(id);
+            for (const entry of set.cases as AcademyCase[]) {
+                const visible = [entry.referenceSetup, ...entry.algorithms, ...(entry.alternativeSetups ?? [])];
+                for (const sequence of visible) {
+                    const tokens = sequence.replace(/[()]/g, ' ').match(/\S+/g) ?? [];
+                    for (const token of tokens)
+                        expect(token, entry.id + ': ' + sequence).toMatch(/^(?:[RLUDFB]w?|[rludfbMESxyz])(?:2|')?$/);
+                }
+            }
+        }
+    }
+});

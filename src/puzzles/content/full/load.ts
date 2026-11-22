@@ -1,3 +1,4 @@
+import { standardHalfTurns } from '../../notation';
 import { Alg } from 'cubing/alg';
 import { inverseInInitialFrame } from '../../../core/academy/execution';
 import type { AlgSet } from '../../../core/contracts';
@@ -22,7 +23,7 @@ const sources = {
 export async function loadFullSet(kind: LastLayerPattern['kind']): Promise<AlgSet> {
     const rows: Row[] = await sources[kind]();
     const cases = rows.map(({ id, group, co, cp, eo, ep, down, algs }): AcademyCase => {
-        const setups = algs.map((alg) => inverseInInitialFrame(new Alg(alg)).toString());
+        const setups = algs.map((alg) => standardHalfTurns(inverseInInitialFrame(new Alg(alg)).expand().toString()));
         return {
             id,
             nameKey: 'case.' + id,

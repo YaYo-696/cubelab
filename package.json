@@ -11,6 +11,7 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "test": "vitest run",
+    "release:check": "node --experimental-strip-types tools/release-check.mjs",
     "test:e2e": "playwright test",
     "lint": "eslint .",
     "format": "prettier --write .",

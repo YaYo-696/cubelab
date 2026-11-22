@@ -1,8 +1,9 @@
+import { unlockAllProgress } from '../../config/devFlags';
 import type { Course, Lesson } from '../contracts';
 import type { CubeDatabase } from '../storage/db';
 export type Completion = { lessonId: string; revision: number; completedAt?: number };
 export function unlocked(course: Course, lesson: Lesson, progress: readonly Completion[]) {
-    return lesson.requires.every((id) =>
+    return unlockAllProgress() || lesson.requires.every((id) =>
         progress.some(
             (row) =>
                 row.lessonId === id && row.revision === course.revision && row.completedAt !== undefined,

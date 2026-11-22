@@ -1,3 +1,4 @@
+import { useApp } from './state';
 import '../ui/timer.css';
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { liveQuery } from 'dexie';
@@ -18,6 +19,9 @@ type Props = { mod: PuzzleModule<string>; rules: EventRules; t: T };
 
 export function Timer({ mod, rules, t }: Props) {
     const mix = useScrambles(mod, rules.id);
+    const rememberMix = useApp((state) => state.rememberMix);
+    const currentMix = mix.current?.text;
+    useEffect(() => { if (currentMix) rememberMix(mod.id, currentMix); }, [currentMix, mod.id, rememberMix]);
     const [sessions, setSessions] = useState<Session[]>([]),
         [session, setSession] = useState('');
     const [inspection, setInspection] = useState(true),

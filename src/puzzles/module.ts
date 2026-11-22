@@ -1,4 +1,6 @@
-import type { PuzzleModule } from '../core/contracts';
+import { requestSolution } from '../workers/solverClient';
+import type { SolveMethod } from '../core/solver/options';
+import type { PuzzleModule, Solver } from '../core/contracts';
 import { cubeEvent, type CubeId } from './events';
 import { normalizeCube } from './notation';
 import { cubeModel } from './cube';
@@ -6,6 +8,8 @@ import { loadAlgSet, loadCourse } from './content';
 import { run } from '../workers/client';
 export function makeCube(id: CubeId): PuzzleModule<string> {
     const model = cubeModel(id === '222' ? 2 : 3);
+    const solve = (method: SolveMethod): Solver => (input, signal, options) =>
+        requestSolution(id, method, input, signal, options);
     return {
         id,
         nameKey: id,
@@ -17,6 +21,13 @@ export function makeCube(id: CubeId): PuzzleModule<string> {
         solvedState: () => model.solved,
         applyAlg: model.apply,
         isSolved: model.isSolved,
+        solvers: {
+            shortestKnown: solve('shortest'),
+            practice: id === '222' ? { cllPractice: solve('cllPractice'), egPractice: solve('egPractice') } : undefined,
+            byMethod: id === '222'
+                ? { beginner: solve('beginner'), ortega: solve('ortega') }
+                : { beginner: solve('beginner'), cfop4: solve('cfop4'), cfopFull: solve('cfopFull') },
+        },
         algSets: [
             'basic',
             'drills' + id,

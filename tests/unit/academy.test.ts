@@ -1,5 +1,9 @@
+import { devFlags, unlockAllProgress } from '../../src/config/devFlags';
 import 'fake-indexeddb/auto';
-import { expect, it } from 'vitest';
+import { expect, it, beforeEach, afterEach } from 'vitest';
+const developmentUnlock = devFlags.UNLOCK_ALL;
+beforeEach(() => { devFlags.UNLOCK_ALL = false; });
+afterEach(() => { devFlags.UNLOCK_ALL = developmentUnlock; });
 import { puzzles } from 'cubing/puzzles';
 import { registry } from '../../src/puzzles/registry';
 import { matchesStage, matchesCase, verifyCase, type AcademyCase } from '../../src/core/academy/cases';
@@ -141,4 +145,19 @@ it('guarda el progreso por puzzle y revisión y valida los prerrequisitos al esc
     } finally {
         await db.delete();
     }
+});
+
+it('UNLOCK_ALL permite entrar y guardar avance sin completar los prerrequisitos', async () => {
+    const m = await registry['333']();
+    const course = await m.loadCourse(m.courses[0]);
+    const lesson = course.modules.flatMap((item) => item.lessons).find((item) => item.id === 'cross')!;
+    expect(unlockAllProgress()).toBe(false);
+    expect(unlocked(course, lesson, [])).toBe(false);
+    devFlags.UNLOCK_ALL = true;
+    const db = new CubeDatabase('development-progress');
+    try {
+        expect(unlocked(course, lesson, [])).toBe(true);
+        await submitLesson(db, course, lesson.id, lesson.quiz.map((question) => question.correct));
+        expect((await db.lessons.get([course.id, lesson.id]))?.completedAt).toBeTypeOf('number');
+    } finally { await db.delete(); }
 });

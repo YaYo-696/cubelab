@@ -37,8 +37,10 @@ MVP: solo 2x2 y 3x3. La arquitectura debe permitir agregar puzzles nuevos como "
 ## Forma de trabajo
 - Trabajamos por FASES. Te pasaré el prompt de cada fase. No avances a la siguiente sin mi "ok fase N".
 - Al empezar una fase: resume en 5–10 líneas lo que vas a hacer y empieza. Solo pregunta si estás bloqueado.
-- Al cerrar una fase entrega: (a) lista de archivos creados o modificados, (b) comandos para correr y probar, (c) resultados de tests y lint, (d) cómo probarla manualmente en PC y teléfono, (e) pendientes y riesgos.
+- Al cerrar una fase entrega: (a) lista de archivos creados o modificados, (b) comandos para correr y probar, (c) resultados de tests y lint, (d) cómo probarla manualmente en Edge en PC. Incluir teléfono solo si se cambia el control táctil, la instalación o el modo offline, (e) pendientes y riesgos.
 - El entorno de Codex tiene restricciones de escritura en .git y de ejecución de subprocesos (spawn EPERM). Deja los cambios en los archivos. No crees commits ni bundles. Al cerrar cada fase, sugiere solo un mensaje de commit según la convención feat/fix/test/docs/refactor. El usuario hará un único commit cuando pase el diagnóstico.
+- En e2e, preferir getByRole con nombre accesible; no usar getByLabel exact sobre select envueltos en label.
 - El usuario confirma la aceptación de cada fase ejecutando tools\diagnostico.ps1 -ConE2E en Windows. Si se añade un tipo de prueba nuevo, intégralo en ese script.
+- Los bloqueos por progreso deben respetar UNLOCK_ALL desde el primer día. En desarrollo, usa los interruptores de src/config/devFlags.ts (marca DEV-FLAG) para que todo esté desbloqueado mientras se sigue guardando el progreso. Las pruebas de bloqueos fuerzan los interruptores a false. Antes de lanzar, apaga todos los interruptores y ejecuta npm run release:check.
 - Mantén actualizados README.md, AGENTS.md (si cambian reglas o decisiones) y docs/DECISIONES.md (registro breve de decisiones técnicas con su motivo).
 - Si una petición mía contradice estas reglas, avísame antes de hacerla.

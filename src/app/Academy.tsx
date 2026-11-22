@@ -1,6 +1,7 @@
+import { exerciseMethod, generatedPractice } from '../core/academy/generatedPractice';
 import { isFullPattern } from '../core/academy/lastLayer';
 import { LastLayerImage } from './LastLayerImage';
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { liveQuery } from 'dexie';
 import type { Course, Lesson, PuzzleModule, AlgSet } from '../core/contracts';
 import { db } from '../core/storage/db';
@@ -22,6 +23,30 @@ function LessonView({
     lesson,
     completed,
 }: { course: Course; lesson: Lesson; completed: boolean } & Props) {
+    const method = exerciseMethod(lesson);
+    const exerciseRequest = useRef<AbortController>();
+    const [exercise, setExercise] = useState<Awaited<ReturnType<typeof generatedPractice>>>();
+    const [exerciseStatus, setExerciseStatus] = useState('');
+    const [exerciseReveal, setExerciseReveal] = useState(false);
+    useEffect(() => () => exerciseRequest.current?.abort(), []);
+    async function newExercise() {
+        if (!method) return;
+        exerciseRequest.current?.abort();
+        const control = new AbortController();
+        exerciseRequest.current = control;
+        setExercise(undefined);
+        setExerciseReveal(false);
+        setExerciseStatus('solvePracticeLoading');
+        try {
+            const value = await generatedPractice(mod, lesson, method, control.signal);
+            if (!control.signal.aborted) {
+                setExercise(value);
+                setExerciseStatus('');
+            }
+        } catch {
+            if (!control.signal.aborted) setExerciseStatus('solvePracticeError');
+        }
+    }
     const [set, setSet] = useState<AlgSet>(),
         [caseId, setCase] = useState(lesson.caseIds[0]);
     const [position, setPosition] = useState<{ setup: string; caseId: string; variant: number }>(),
@@ -65,6 +90,7 @@ function LessonView({
         return item.pattern && isFullPattern(item.pattern);
     });
     const selectCase = (id: string) => {
+        setExercise(undefined);
         setCase(id);
         setVariant(0);
         setMove('');
@@ -174,7 +200,7 @@ function LessonView({
                 </ol>
             ) : null}
             {selected && !selected.algorithms.length && <p>{t('aPendingCase')}</p>}
-            {alg !== undefined && playerSetup !== undefined && (
+            {!exercise && alg !== undefined && playerSetup !== undefined && (
                 <Suspense fallback={<p>{t('aLoading')}</p>}>
                     <Player puzzle={puzzle} setup={playerSetup} alg={alg} autoplay={!!symbol} t={t} />
                 </Suspense>
@@ -188,6 +214,7 @@ function LessonView({
                                 key={sequence}
                                 aria-pressed={variant === i && !symbol}
                                 onClick={() => {
+                                    setExercise(undefined);
                                     setVariant(i);
                                     setMove('');
                                 }}
@@ -214,7 +241,33 @@ function LessonView({
             <h3>{t('aPractice')}</h3>
             <p>{t('aFrame')}</p>
             <p>{t(lesson.exerciseKey)}</p>
-            {setup && (
+            {method && (
+                <div className="actions">
+                    <button type="button" onClick={() => void newExercise()} disabled={exerciseStatus === 'solvePracticeLoading'}>
+                        {t('solvePracticeNew')}
+                    </button>
+                    {exerciseStatus === 'solvePracticeLoading' && <button type="button" onClick={() => {
+                        exerciseRequest.current?.abort();
+                        setExerciseStatus('');
+                    }}>{t('solveCancel')}</button>}
+                </div>
+            )}
+            {exerciseStatus && <p role="status">{t(exerciseStatus)}</p>}
+            {exercise && (
+                <div>
+                    <p>{t('scramble')} · <code>{exercise.scramble}</code></p>
+                    <p>{t('aSetup')} · <code>{exercise.setup}</code></p>
+                    <Suspense fallback={<p>{t('aLoading')}</p>}>
+                        <Player puzzle={puzzle} setup={exercise.setup} alg={exerciseReveal ? exercise.stage.alg : ''}
+                            still={!exerciseReveal} t={t} />
+                    </Suspense>
+                    <button type="button" onClick={() => setExerciseReveal((visible) => !visible)}>
+                        {t(exerciseReveal ? 'solvePractice' : 'solveReveal')}
+                    </button>
+                    {exerciseReveal && <p><code>{exercise.stage.alg}</code></p>}
+                </div>
+            )}
+            {!method && setup && (
                 <p>
                     {t('aSetup')} · <code>{setup}</code>
                 </p>

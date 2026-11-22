@@ -1,3 +1,4 @@
+import { standardHalfTurns } from '../notation';
 import { Alg } from 'cubing/alg';
 import type { AlgSet } from '../../core/contracts';
 import type { AcademyCase, CasePattern, StageGoal } from '../../core/academy/cases';
@@ -52,9 +53,9 @@ function lastLayer(id: string, size: 2 | 3, pattern: CasePattern, goal: StageGoa
         id,
         nameKey: 'aCase_' + (size === 2 && ['tperm', 'yperm'].includes(id) ? id + '222' : id),
         standardName: name,
-        referenceSetup: new Alg(alg).invert().toString(),
+        referenceSetup: standardHalfTurns(new Alg(alg).invert().expand().toString()),
         algorithms: alternative ? [alg, alternative] : [alg],
-        alternativeSetups: alternative ? [new Alg(alternative).invert().toString()] : undefined,
+        alternativeSetups: alternative ? [standardHalfTurns(new Alg(alternative).invert().expand().toString())] : undefined,
         fingertrickKey:
             id === 'zperm' || id === 'hperm'
                 ? 'fingerSlice'

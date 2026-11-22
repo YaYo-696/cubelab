@@ -109,3 +109,15 @@ En Android, actualiza la PWA mediante Vite Preview y adb reverse, activa modo av
 En Windows ejecuta el diagnóstico con Edge. En Academia abre «PLL · Solo esquinas», selecciona Aa y avanza un paso. El primer movimiento gira el cubo completo con x y la secuencia conserva sus giros D2. Repite con E y OLL 9. En 2×2, completa Notación avanzada y abre CLL Anti-Sune. En CLL AS 1, el principal muestra el agarre y la segunda alternativa empieza con un ajuste U2. Al cambiar de variante deben actualizarse la miniatura, la preparación y el reproductor.
 
 En Android, actualiza el build mediante Vite Preview y adb reverse como arriba. Activa modo avión, abre los mismos casos y comprueba que puedes reproducirlos, avanzar un movimiento y cambiar de variante sin conexión. [Comparación de algoritmos](docs/ALGORITMOS-CAMBIOS.md)
+
+### Aceptación de la fase 4
+
+Ejecuta `powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\diagnostico.ps1 -ConE2E`. El aviso de DEV-FLAG es esperado en desarrollo. Vitest recorre 200 mezclas por método y Playwright prueba el enlace al solucionador desde un intento cronometrado.
+
+En Edge, guarda un intento real de 3×3 en Timer. En Estadísticas, expande el intento y usa «Ver en el solucionador». Elige CFOP completo y presiona «Resolver». Reproduce la cruz y los cuatro pares por separado, verifica el total frente a la suma y abre una lección desde su etapa. Prueba también CFOP 4LLL, principiante, cruz neutra y la entrada manual con una mezcla inválida. En 2×2, compara óptimo, principiante y Ortega. En Academia, abre directamente una lección avanzada y genera un ejercicio con una mezcla real. El aviso DEV debe aparecer en la cabecera.
+
+## Antes del lanzamiento
+
+1. Apaga todos los interruptores DEV-FLAG en `src/config/devFlags.ts` y ejecuta `npm.cmd run release:check`.
+2. Ejecuta `tools\diagnostico.ps1 -ConE2E` y revisa el build de producción en Edge.
+3. Verifica con un perfil nuevo que no aparezca DEV y que los prerrequisitos se apliquen.

@@ -1,3 +1,4 @@
+import type { SolveOptions } from './solver/options';
 import type { ComponentType, LazyExoticComponent } from 'react';
 export interface EventRules {
     id: string;
@@ -59,6 +60,9 @@ export interface Stage {
     moves: number;
     explanationKey: string;
     explanationParams: Record<string, string | number>;
+    mainAlgorithm?: string;
+    preAdjustment?: string;
+    postAdjustment?: string;
     lessonId?: string;
     caseId?: string;
 }
@@ -75,7 +79,7 @@ export type SearchResult =
           status: 'timeout' | 'cancelled' | 'invalidInput';
       };
 export type WorkerTask<Result> = (input: string, signal: AbortSignal) => Promise<Result>;
-export type Solver = WorkerTask<SearchResult>;
+export type Solver = (input: string, signal: AbortSignal, options?: SolveOptions) => Promise<SearchResult>;
 export type VerifiedCase = {
     scramble: string;
     verified: true;
@@ -107,6 +111,7 @@ export interface PuzzleModule<State> {
     solvers?: {
         shortestKnown?: Solver;
         byMethod?: Readonly<Record<string, Solver>>;
+        practice?: Readonly<Record<string, Solver>>;
     };
     algSets: readonly string[];
     courses: readonly string[];

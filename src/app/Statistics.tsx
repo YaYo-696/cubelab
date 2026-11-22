@@ -343,6 +343,7 @@ export function Statistics({ rules, puzzleId, t }: { rules: EventRules; puzzleId
                             · {date(s)}
                         </summary>
                         <p>{s.scramble}</p>
+                        {s.scramble && <a href={'#solver/' + encodeURIComponent(s.id)}>{t('solveOpen')}</a>}
                         <p>
                             {t('penalty')} ·{' '}
                             {s.penalty === 'none' ? t('none') : s.penalty === 'dnf' ? 'DNF' : '+2'}

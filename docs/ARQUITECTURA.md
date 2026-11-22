@@ -106,3 +106,9 @@ Las fases de corte se configuran por ronda. La modalidad de duelo directo está 
 3. Probar la instalación móvil sobre HTTPS de confianza con la versión de producción. El service worker precargará la interfaz, las traducciones y los recursos locales del MVP, incluidos módulos dinámicos, workers y archivos de datos necesarios. Tras completar la caché, cerrar la app, activar el modo avión y volver a abrirla. Al implementar el timer, repetir la prueba generando una mezcla de cada evento y recuperando el último intento tras reiniciar.
 
 El esqueleto implementa el catálogo, la navegación y el flujo de mezclas. La aceptación de instalación y funcionamiento offline requiere ejecutar el build y la prueba de navegador con las dependencias instaladas.
+
+## Solucionador por etapas
+
+Cada PuzzleModule expone un Solver corto y las variantes de método. El contrato admite AbortSignal y opciones de color neutro y progreso. Los Solvers de práctica internos se anuncian por separado de los métodos seleccionables. El resultado verificado incluye el total, la métrica, la calidad y las etapas. Una etapa de catálogo puede incluir mainAlgorithm, preAdjustment y postAdjustment para distinguir la ejecución literal de los ajustes. lessonId y caseId enlazan la solución con el contenido de la academia.
+
+La navegación desde Estadísticas usa el UUID del intento. El worker del solucionador calcula, reproduce y valida el resultado antes de enviarlo. El cliente cancela terminando ese worker dedicado. El cálculo normal y la solución corta comparativa pueden avanzar en paralelo.

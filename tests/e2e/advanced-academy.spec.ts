@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 test('selecciona un PLL por su vista superior, lo reproduce y reconoce el caso', async ({ page }) => {
+    await page.addInitScript(() => sessionStorage.setItem('cubelab.test.progressGates', 'on'));
     await page.goto('/');
     await expect(page.getByRole('button', { name: 'Siguiente mezcla', exact: true })).toBeEnabled();
     await page.evaluate(
