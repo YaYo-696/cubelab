@@ -283,7 +283,7 @@ export function Timer({ mod, rules, t }: Props) {
                 <div>
                     <h2>{t('scramble')}</h2>
                     <p className="sequence" data-testid="scramble">
-                        {mix.current?.text ?? t('busy')}
+                        {mix.current?.text ?? t(mix.error === undefined ? 'busy' : 'mixUnavailable')}
                     </p>
                     {mix.current && <small>{t(mix.current.generated ? 'criteria' : 'customMix')}</small>}
                     <div className="actions">
@@ -320,7 +320,12 @@ export function Timer({ mod, rules, t }: Props) {
                             {t(showCube3d ? 'aFlatView' : 'aView3d')}
                         </button>
                     )}
-                    {mix.failed && <button onClick={mix.retry}>{t('retryMix')}</button>}
+                    {mix.error !== undefined && (
+                        <div>
+                            <p role="alert">{t('mixError', { detail: mix.error })}</p>
+                            <button type="button" onClick={mix.retry}>{t('retryMix')}</button>
+                        </div>
+                    )}
                 </div>
                 <Suspense>
                     {Preview ? (
@@ -358,7 +363,9 @@ export function Timer({ mod, rules, t }: Props) {
                     onContextMenu={(e) => e.preventDefault()}
                 >
                     <span className={phase === 'running' ? 'screen-reader' : 'phase-name'}>
-                        {phase === 'idle' && (!ready || !mix.current) ? t('busy') : t('phase_' + phase)}
+                        {phase === 'idle' && mix.error === undefined && (!ready || !mix.current)
+                            ? t('busy')
+                            : t('phase_' + phase)}
                     </span>
                     <strong className="digits" data-testid="digits">
                         {display}

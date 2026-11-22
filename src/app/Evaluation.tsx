@@ -1,3 +1,5 @@
+import { practiceEvidence } from '../core/trainer/model';
+import { trainingCases } from '../core/trainer/storage';
 import { LastLayerImage } from './LastLayerImage';
 import { isFullPattern, type LastLayerPattern } from '../core/academy/lastLayer';
 import type { AcademyCase } from '../core/academy/cases';
@@ -17,6 +19,7 @@ import {
     recommendations,
     saveEvaluation,
     type EvaluationAttempt,
+    type Evidence,
 } from '../core/academy/evaluation';
 import './academy.css';
 
@@ -83,6 +86,7 @@ function AssessmentPicture({
     );
 }
 export function Evaluation({ mod, t }: { mod: PuzzleModule<string>; t: T }) {
+    const [timedEvidence, setTimedEvidence] = useState<Evidence[]>([]);
     const [level, setLevel] = useState<Level>('beginner');
     const [course, setCourse] = useState<Course>();
     const [history, setHistory] = useState<EvaluationAttempt[]>([]);
@@ -108,12 +112,49 @@ export function Evaluation({ mod, t }: { mod: PuzzleModule<string>; t: T }) {
                 .reverse()
                 .toArray(),
         ).subscribe({ next: setHistory, error: () => setError(true) });
+        let practiceRevision = 0;
+        const practice = liveQuery(() => trainingCases(db, mod.id)).subscribe({
+            next: (rows) => {
+                const revision = ++practiceRevision;
+                const current = () => active && revision === practiceRevision;
+                void practiceEvidence(mod, rows)
+                    .then((value) => {
+                        if (current()) setTimedEvidence(value);
+                    })
+                    .catch(() => {
+                        if (current()) setTimedEvidence([]);
+                    });
+            },
+            error: () => {
+                if (active) setTimedEvidence([]);
+            },
+        });
         return () => {
             active = false;
             sub.unsubscribe();
+            practice.unsubscribe();
         };
     }, [mod]);
     const question = questions[index];
+    const practiceSuggestions = timedEvidence.flatMap((item) => {
+        if (
+            item.source !== 'practice' ||
+            !item.nameKey ||
+            !item.setNameKey ||
+            !item.setId ||
+            !item.caseId ||
+            !recommendations([item]).length
+        )
+            return [];
+        return [
+            {
+                nameKey: item.nameKey,
+                setNameKey: item.setNameKey,
+                href:
+                    '#trainer/' + encodeURIComponent(item.setId) + '/' + encodeURIComponent(item.caseId),
+            },
+        ];
+    });
     const lessonName = (id: string) =>
         course?.modules.flatMap((m) => m.lessons).find((l) => l.id === id)?.titleKey;
     const evidence = result
@@ -148,6 +189,23 @@ export function Evaluation({ mod, t }: { mod: PuzzleModule<string>; t: T }) {
     }
     return (
         <div className="evaluation">
+            {!question && !!practiceSuggestions.length && (
+                <section className="academy-card">
+                    <h2>{t('trainerRecommendations')}</h2>
+                    <ul>
+                        {practiceSuggestions.map((item) => (
+                            <li key={item.href}>
+                                <a href={item.href}>
+                                    {t('trainerRecommendCase', {
+                                        caseName: t(item.nameKey),
+                                        setName: t(item.setNameKey),
+                                    })}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+            )}
             <section className="academy-card">
                 {!question && (
                     <div className="actions">

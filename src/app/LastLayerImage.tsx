@@ -15,13 +15,15 @@ export function LastLayerImage({
     pattern,
     setup,
     label,
+    includeLower = false,
 }: {
     puzzle: string;
-    pattern: LastLayerPattern;
+    pattern?: LastLayerPattern;
+    includeLower?: boolean;
     setup: string;
     label: string;
 }) {
-    const key = puzzle + '|' + pattern.kind + '|' + setup + '|' + JSON.stringify(pattern);
+    const key = JSON.stringify([puzzle, pattern, setup, includeLower]);
     const [image, setImage] = useState<{ key: string; state: ReturnType<typeof lastLayerStickers> }>();
     useEffect(() => {
         let active = true;
@@ -40,7 +42,8 @@ export function LastLayerImage({
         model
             .then((solved) => {
                 const state = lastLayerStickers(
-                    setup ? solved.applyAlg(setup) : patternFromVectors(solved, pattern),
+                    pattern && !setup ? patternFromVectors(solved, pattern) : solved.applyAlg(setup),
+                    includeLower,
                 );
                 if (cache.size >= 256) cache.delete(cache.keys().next().value!);
                 cache.set(key, state);
@@ -52,14 +55,14 @@ export function LastLayerImage({
         return () => {
             active = false;
         };
-    }, [key, puzzle, setup, pattern]);
+    }, [key, puzzle, setup, pattern, includeLower]);
     if (!image || image.key !== key) return <svg viewBox="0 0 100 100" role="img" aria-label={label} />;
-    const { size, top, strips } = image.state,
+    const { size, top, strips, lower } = image.state,
         step = 66 / size;
     const fill = (c: string) =>
-        pattern.kind === 'fullOLL' && c !== 'y' ? '#6f7e88' : (colors[c] ?? '#788491');
+        pattern?.kind === 'fullOLL' && c !== 'y' ? '#6f7e88' : (colors[c] ?? '#788491');
     return (
-        <svg viewBox="0 0 100 100" role="img" aria-label={label}>
+        <svg viewBox={includeLower ? '0 0 100 132' : '0 0 100 100'} role="img" aria-label={label}>
             {[...top].map((v, i) => (
                 <rect
                     key={i}
@@ -87,6 +90,19 @@ export function LastLayerImage({
                         />
                     );
                 }),
+            )}
+            {lower.map((side, face) =>
+                [...side].map((v, i) => (
+                    <rect
+                        key={'lower:' + face + ':' + i}
+                        x={6 + face * 22 + i * 10}
+                        y={110}
+                        width={9}
+                        height={12}
+                        rx="1"
+                        fill={fill(v)}
+                    />
+                )),
             )}
         </svg>
     );

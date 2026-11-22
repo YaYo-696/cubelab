@@ -1,3 +1,4 @@
+import type { TrainerCase, TrainerAttempt } from '../trainer/model';
 import type { EvaluationAttempt } from '../academy/evaluation';
 import Dexie, { type Table } from 'dexie';
 export interface Session {
@@ -38,19 +39,6 @@ export interface Solve {
     splitsMs?: number[];
     reconstruction?: string;
 }
-interface TrainerCase {
-    puzzleId: string;
-    setId: string;
-    caseId: string;
-    dueAt: number;
-    status: 'new' | 'learning' | 'learned';
-    attempts: number;
-    correct: number;
-    totalMs: number;
-    validTimes: number;
-    bestMs?: number;
-    lastSeenAt?: number;
-}
 interface LessonProgress {
     courseId: string;
     lessonId: string;
@@ -73,6 +61,7 @@ export class CubeDatabase extends Dexie {
     evaluations!: Table<EvaluationAttempt, string>;
     sessions!: Table<Session, string>;
     solves!: Table<Solve, string>;
+    trainerAttempts!: Table<TrainerAttempt, string>;
     trainerCases!: Table<TrainerCase, [string, string, string]>;
     lessons!: Table<LessonProgress, [string, string]>;
     rounds!: Table<CompetitionRound, string>;
@@ -94,6 +83,10 @@ export class CubeDatabase extends Dexie {
             settings: 'key',
         });
         this.version(2).stores({ evaluations: 'id,[puzzleId+createdAt]' });
+        this.version(3).stores({
+            trainerCases: '[puzzleId+setId+caseId],dueAt,puzzleId,[puzzleId+setId]',
+            trainerAttempts: 'id,[puzzleId+setId+createdAt]',
+        });
     }
 }
 export const db = new CubeDatabase();

@@ -1,3 +1,4 @@
+import type { TrainingSet } from './trainer/catalog';
 import type { SolveOptions } from './solver/options';
 import type { ComponentType, LazyExoticComponent } from 'react';
 export interface EventRules {
@@ -83,6 +84,7 @@ export type Solver = (input: string, signal: AbortSignal, options?: SolveOptions
 export type VerifiedCase = {
     scramble: string;
     verified: true;
+    preAdjustment?: string;
 };
 export type CaseGenerator = WorkerTask<VerifiedCase>;
 export type Panel = LazyExoticComponent<
@@ -114,6 +116,7 @@ export interface PuzzleModule<State> {
         practice?: Readonly<Record<string, Solver>>;
     };
     algSets: readonly string[];
+    trainingSets?: readonly TrainingSet[];
     courses: readonly string[];
     loadAlgSet: (id: string) => Promise<AlgSet>;
     loadCourse: (id: string) => Promise<Course>;

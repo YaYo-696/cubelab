@@ -112,3 +112,7 @@ El esqueleto implementa el catálogo, la navegación y el flujo de mezclas. La a
 Cada PuzzleModule expone un Solver corto y las variantes de método. El contrato admite AbortSignal y opciones de color neutro y progreso. Los Solvers de práctica internos se anuncian por separado de los métodos seleccionables. El resultado verificado incluye el total, la métrica, la calidad y las etapas. Una etapa de catálogo puede incluir mainAlgorithm, preAdjustment y postAdjustment para distinguir la ejecución literal de los ajustes. lessonId y caseId enlazan la solución con el contenido de la academia.
 
 La navegación desde Estadísticas usa el UUID del intento. El worker del solucionador calcula, reproduce y valida el resultado antes de enviarlo. El cliente cancela terminando ese worker dedicado. El cálculo normal y la solución corta comparativa pueden avanzar en paralelo.
+
+## Entrenador
+
+PuzzleModule publica trainingSets y reutiliza caseGenerators por identificador de set. El núcleo del entrenador maneja progreso, cola de repaso, estadísticas, respuestas y evidencias para Evaluación. Los generadores del worker pueden adjuntar el ajuste que alinea el caso con el algoritmo de la academia. TrainerCase conserva el agregado por puzzle, set y caso. TrainerAttempt guarda cada práctica cronometrada o reconocimiento. Ambos se incluyen en el respaldo.

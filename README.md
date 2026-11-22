@@ -116,6 +116,12 @@ Ejecuta `powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\diagnos
 
 En Edge, guarda un intento real de 3×3 en Timer. En Estadísticas, expande el intento y usa «Ver en el solucionador». Elige CFOP completo y presiona «Resolver». Reproduce la cruz y los cuatro pares por separado, verifica el total frente a la suma y abre una lección desde su etapa. Prueba también CFOP 4LLL, principiante, cruz neutra y la entrada manual con una mezcla inválida. En 2×2, compara óptimo, principiante y Ortega. En Academia, abre directamente una lección avanzada y genera un ejercicio con una mezcla real. El aviso DEV debe aparecer en la cabecera.
 
+### Aceptación de la fase 5
+
+Ejecuta el diagnóstico de Windows con Edge. En Entrenador abre PLL completo, selecciona un caso y practica tres veces con Espacio. En una de ellas usa «Mostrar algoritmo» y comprueba la reproducción. Revisa los tres tiempos y la marca «Con ayuda». Recarga y confirma que siguen en el historial.
+
+Prueba los filtros de grupos, «En práctica» y «Los cinco casos más lentos». Cambia un caso a Aprendido. En Reconocimiento, comprueba las cuatro opciones, el puntaje y la racha. Tras registrar un caso lento, abre Evaluación y sigue la recomendación hasta ese caso. El respaldo JSON v3 incluye los intentos del entrenador. El importador acepta también respaldos v1 y v2.
+
 ## Antes del lanzamiento
 
 1. Apaga todos los interruptores DEV-FLAG en `src/config/devFlags.ts` y ejecuta `npm.cmd run release:check`.

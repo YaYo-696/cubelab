@@ -3,7 +3,17 @@ import type { Level, Question, Skill } from './questions';
 export type SkillScore = { skill: Skill; correct: number; total: number };
 export type Evidence =
     | { source: 'answer'; skill: Skill; lessonId: string; correct: boolean }
-    | { source: 'practice'; skill: Skill; lessonId: string; timeMs: number; targetMs: number };
+    | {
+          source: 'practice';
+          skill: Skill;
+          lessonId: string;
+          timeMs: number;
+          targetMs: number;
+          caseId?: string;
+          nameKey?: string;
+          setId?: string;
+          setNameKey?: string;
+      };
 export type EvaluationAttempt = {
     id: string;
     puzzleId: string;

@@ -2,7 +2,7 @@ import type { SearchResult } from '../core/contracts';
 import type { CubeId } from '../puzzles/events';
 import type { SolveMethod, SolveOptions, SolveProgress } from '../core/solver/options';
 
-export type SolverJob = { puzzle: CubeId; input: string; method: SolveMethod; neutral: boolean };
+export type SolverJob = { kind: 'solve'; puzzle: CubeId; input: string; method: SolveMethod; neutral: boolean };
 type Reply = { progress: SolveProgress } | { result: SearchResult } | { error: string };
 
 let spare: Worker | undefined;
@@ -50,6 +50,7 @@ export function requestSolution(
         };
         try {
             worker.postMessage({
+                kind: 'solve',
                 puzzle,
                 method,
                 input,

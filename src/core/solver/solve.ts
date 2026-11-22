@@ -26,7 +26,7 @@ import {
     turns,
     type Piece,
 } from './coordinates';
-import { optimal222 } from './optimal222';
+import { centersHome, shortestPattern } from './shortest';
 import type { SolveMethod, SolveProgress } from './options';
 
 export function moveCount(algorithm: string) {
@@ -38,8 +38,6 @@ export function moveCount(algorithm: string) {
     }
     return count;
 }
-const centersHome = (pattern: KPattern) =>
-    pattern.patternData.CENTERS?.pieces.every((piece, i) => piece === i) ?? true;
 const candidates = (pattern: KPattern) => {
     const kp = pattern.kpuzzle;
     const basic = actions(kp, movesFor('UDRLFB'));
@@ -206,17 +204,10 @@ export async function solvePuzzle(
     let neutralFrame = '';
     if (method === 'shortest') {
         progress({ key: 'solveProgressSearch', value: 0 });
-        const alg =
-            cube === '222'
-                ? await optimal222(state, (n) =>
-                      progress({ key: 'solveProgressTable', value: Math.floor(n * 100) }),
-                  )
-                : (
-                      await (
-                          await import('cubing/search')
-                      ).experimentalSolve3x3x3IgnoringCenters(state.applyAlg(alignment))
-                  ).toString();
-        add('shortest', sequence(alignment, alg), viable);
+        const alg = await shortestPattern(cube, state, (value) =>
+            progress({ key: 'solveProgressTable', value }),
+        );
+        add('shortest', alg, viable);
     } else {
         const moves = prepare.get(cube) ?? candidates(state);
         prepare.set(cube, moves);

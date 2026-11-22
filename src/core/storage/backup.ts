@@ -4,6 +4,7 @@ const names = [
     'sessions',
     'solves',
     'trainerCases',
+    'trainerAttempts',
     'lessons',
     'rounds',
     'settings',
@@ -71,9 +72,35 @@ function rowKey(name: TableName, r: Row): string | string[] {
                     integerFields(r, ['dueAt', 'attempts', 'correct', 'totalMs', 'validTimes']) &&
                     ['new', 'learning', 'learned'].includes(r.status as string) &&
                     optional(r.bestMs, count) &&
-                    optional(r.lastSeenAt, count),
+                    optional(r.lastSeenAt, count) &&
+                    ['timedAttempts', 'assistedAttempts', 'streak', 'intervalDays'].every((key) =>
+                        optional(r[key], count),
+                    ) &&
+                    (!count(r.timedAttempts) ||
+                        (count(r.validTimes) &&
+                            count(r.attempts) &&
+                            r.timedAttempts >= r.validTimes &&
+                            r.timedAttempts <= r.attempts)) &&
+                    (!count(r.assistedAttempts) ||
+                        (count(r.timedAttempts) && r.assistedAttempts <= r.timedAttempts)),
             );
             return [r.puzzleId, r.setId, r.caseId] as string[];
+        case 'trainerAttempts':
+            check(
+                uuid(r.id) &&
+                    textFields(r, ['puzzleId', 'setId', 'caseId', 'scramble']) &&
+                    count(r.createdAt) &&
+                    typeof r.correct === 'boolean',
+            );
+            check(
+                (r.mode === 'timed' &&
+                    typeof r.assisted === 'boolean' &&
+                    (r.correct ? count(r.timeMs) : optional(r.timeMs, count))) ||
+                    (r.mode === 'recognition' &&
+                        string(r.answerId) &&
+                        r.correct === (r.answerId === r.caseId)),
+            );
+            return r.id;
         case 'lessons':
             check(
                 textFields(r, ['courseId', 'lessonId']) &&
@@ -135,17 +162,21 @@ export async function exportBackup(database = db) {
             const data = await Promise.all(
                 names.map(async (name) => [name, await database.table(name).toArray()]),
             );
-            return JSON.stringify({ version: 2, tables: Object.fromEntries(data) }, null, 2);
+            return JSON.stringify({ version: 3, tables: Object.fromEntries(data) }, null, 2);
         },
     );
 }
 export async function importBackup(source: string, database = db) {
     const file = object(JSON.parse(source));
-    check(file.version === 1 || file.version === 2);
+    check(file.version === 1 || file.version === 2 || file.version === 3);
     const tables = object(file.tables);
     const rows = new Map(
         names.map((name) => {
-            const input = file.version === 1 && name === 'evaluations' ? [] : tables[name];
+            const input =
+                (file.version === 1 && name === 'evaluations') ||
+                (file.version !== 3 && name === 'trainerAttempts')
+                    ? []
+                    : tables[name];
             check(Array.isArray(input));
             const seen = new Set<string>();
             const values = input.map((value) => {
@@ -173,6 +204,15 @@ export async function importBackup(source: string, database = db) {
                             session &&
                                 session.eventId === row.eventId &&
                                 session.puzzleId === row.puzzleId,
+                        );
+                    }
+                    if (name === 'trainerAttempts') {
+                        check(
+                            await database.trainerCases.get([
+                                row.puzzleId,
+                                row.setId,
+                                row.caseId,
+                            ] as string[]),
                         );
                     }
                     if (name === 'rounds') {

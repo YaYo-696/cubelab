@@ -5,7 +5,7 @@ type Mix = { text: string; generated: boolean };
 
 export function useScrambles(mod: PuzzleModule<string>, eventId: string) {
     const [queue, setQueue] = useState<Mix[]>([]);
-    const [failed, setFailed] = useState(false);
+    const [error, setError] = useState<string>();
     const items = useRef<Mix[]>([]);
     const fill = useRef<() => void>(() => {});
 
@@ -17,7 +17,7 @@ export function useScrambles(mod: PuzzleModule<string>, eventId: string) {
         async function replenish() {
             if (loading || control.signal.aborted) return;
             loading = true;
-            setFailed(false);
+            setError(undefined);
             try {
                 while (items.current.length < 2) {
                     const text = await mod.generateScramble(eventId, control.signal);
@@ -25,8 +25,9 @@ export function useScrambles(mod: PuzzleModule<string>, eventId: string) {
                     items.current = [...items.current, { text, generated: true }];
                     setQueue(items.current);
                 }
-            } catch {
-                if (!control.signal.aborted) setFailed(true);
+            } catch (reason) {
+                if (!control.signal.aborted)
+                    setError(reason instanceof Error ? reason.message : String(reason));
             } finally {
                 loading = false;
             }
@@ -44,7 +45,7 @@ export function useScrambles(mod: PuzzleModule<string>, eventId: string) {
     return {
         current: queue[0],
         hasNext: queue.length > 1,
-        failed,
+        error,
         retry: () => fill.current(),
         next: () => replace(items.current.slice(1)),
         custom: (text: string) => replace([{ text, generated: false }, ...items.current.slice(1)]),
