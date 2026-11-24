@@ -1,0 +1,180 @@
+{
+  "version": 1,
+  "lessons": [
+    {
+      "id": "skewb-notation",
+      "title": {
+        "es": "Notación del Skewb",
+        "en": "Skewb notation"
+      },
+      "objective": {
+        "es": "Leer y ejecutar R, U, L y B en notación WCA.",
+        "en": "Read and perform R, U, L and B in WCA notation."
+      },
+      "body": {
+        "es": "Sostén el Skewb con una cara arriba (U) y una esquina apuntando hacia ti, de modo que veas tres caras completas: arriba (U), la de adelante a la izquierda (F) y la de adelante a la derecha (R). Esta es la notación oficial de la WCA ([Reglamento 12h](https://www.worldcubeassociation.org/regulations/#12h)). Para mezclar en competencia se usa blanco arriba y verde adelante a la izquierda (Reglamento 4d5).\n\nCada letra gira **la mitad del puzzle** que contiene una esquina, 120°:\n\n- **R**: la esquina visible de abajo a la derecha más lejana (DBR).\n- **U**: la esquina visible de arriba más lejana (UBL).\n- **L**: la esquina visible de abajo a la izquierda más lejana (DFL).\n- **B**: la esquina de atrás que no se ve (DBL).\n\nSin apóstrofo, el giro es en sentido horario mirando esa esquina desde afuera. Con apóstrofo (R', U', L', B') es antihorario. No existen giros dobles: R R R vuelve al inicio.",
+        "en": "Hold the Skewb with one face on top (U) and a corner pointing at you, so three faces are fully visible: up (U), front-left (F) and front-right (R). This is official WCA notation ([Regulation 12h](https://www.worldcubeassociation.org/regulations/#12h)). Competition scrambling uses white on top and green front-left (Regulation 4d5).\n\nEach letter turns **the half of the puzzle** containing one corner by 120°:\n\n- **R**: the farthest visible bottom-right corner (DBR).\n- **U**: the farthest visible upper corner (UBL).\n- **L**: the farthest visible bottom-left corner (DFL).\n- **B**: the non-visible back corner (DBL).\n\nWithout a prime the turn is clockwise looking at that corner from outside. With a prime (R', U', L', B') it is counterclockwise. There are no double turns: R R R returns to the start."
+      },
+      "algSetRefs": [],
+      "demos": [
+        {
+          "setup": "",
+          "alg": "R"
+        },
+        {
+          "setup": "",
+          "alg": "U"
+        },
+        {
+          "setup": "",
+          "alg": "L"
+        },
+        {
+          "setup": "",
+          "alg": "B"
+        }
+      ],
+      "prerequisites": []
+    },
+    {
+      "id": "skewb-sledge",
+      "title": {
+        "es": "La herramienta de 4 movimientos",
+        "en": "The 4-move tool"
+      },
+      "objective": {
+        "es": "Conocer R' B R B' y L B' L' B, la base del método.",
+        "en": "Learn R' B R B' and L B' L' B, the base of the method."
+      },
+      "body": {
+        "es": "Todo el método se apoya en dos secuencias cortas:\n\n- **R' B R B'**\n- **L B' L' B**\n\nLas dos dejan intacta la cara de arriba completa (su centro y sus 4 esquinas) y solo mueven piezas fuera de ella. Por eso, una vez que resuelves la primera capa arriba, puedes usarlas sin romperla.\n\nDos datos útiles, comprobados en el simulador:\n\n- Si repites cualquiera de las dos **6 veces**, el puzzle vuelve a como estaba.\n- Si la repites **3 veces**, las esquinas quedan como estaban y solo se intercambian centros: R' B R B' ×3 cambia D con B y R con L.",
+        "en": "The whole method relies on two short sequences:\n\n- **R' B R B'**\n- **L B' L' B**\n\nBoth leave the entire top face (its center and its 4 corners) untouched and only move pieces outside it. So once the first layer is solved on top, you can use them without breaking it.\n\nTwo useful facts, checked in the simulator:\n\n- Repeating either one **6 times** returns the puzzle to where it was.\n- Repeating it **3 times** leaves the corners as they were and only swaps centers: R' B R B' ×3 swaps D with B and R with L."
+      },
+      "algSetRefs": [],
+      "demos": [
+        {
+          "setup": "",
+          "alg": "R' B R B'"
+        },
+        {
+          "setup": "",
+          "alg": "R' B R B' R' B R B' R' B R B'"
+        }
+      ],
+      "prerequisites": [
+        "skewb-notation"
+      ]
+    },
+    {
+      "id": "skewb-first-layer",
+      "title": {
+        "es": "Primera capa",
+        "en": "First layer"
+      },
+      "objective": {
+        "es": "Resolver una cara con sus 4 esquinas y dejarla arriba.",
+        "en": "Solve one face with its 4 corners and keep it on top."
+      },
+      "body": {
+        "es": "La primera capa es un centro más las 4 esquinas que lo rodean, con los colores de los costados coincidiendo entre esquinas vecinas. Se resuelve de forma intuitiva:\n\n1. Elige un color y pon su centro arriba.\n2. Busca una esquina con ese color y llévala a su lugar con uno o dos giros. Muchas veces basta un giro para meter una esquina sin mover las que ya pusiste.\n3. Repite con las demás. Fíjate en los costados: dos esquinas vecinas deben compartir el color del lado.\n\n**Importante:** en esta academia los algoritmos siguientes suponen la primera capa **arriba (U)**, porque así R' B R B' y L B' L' B no la rompen.\n\nLas demos muestran dos mezclas cortas y la solución más corta solo de la primera capa.",
+        "en": "The first layer is one center plus the 4 corners around it, with side colors matching between neighbouring corners. It is solved intuitively:\n\n1. Pick a color and put its center on top.\n2. Find a corner with that color and bring it into place with one or two turns. Often a single turn inserts a corner without moving the ones you already placed.\n3. Repeat for the rest. Watch the sides: two neighbouring corners must share the side color.\n\n**Important:** in this academy the following algorithms assume the first layer **on top (U)**, because that way R' B R B' and L B' L' B do not break it.\n\nThe demos show two short scrambles and the shortest solution for the first layer only."
+      },
+      "algSetRefs": [],
+      "demos": [
+        {
+          "setup": "L' B U R'",
+          "alg": "U' B' L'"
+        },
+        {
+          "setup": "U B' R L U' R'",
+          "alg": "R' B"
+        }
+      ],
+      "prerequisites": [
+        "skewb-sledge"
+      ]
+    },
+    {
+      "id": "skewb-corners",
+      "title": {
+        "es": "Esquinas de abajo",
+        "en": "Bottom corners"
+      },
+      "objective": {
+        "es": "Orientar las 4 esquinas de abajo con la primera capa arriba.",
+        "en": "Orient the 4 bottom corners with the first layer on top."
+      },
+      "body": {
+        "es": "Con la primera capa arriba, las 4 esquinas de abajo ya están en su lugar: solo pueden estar **giradas**. Hay 8 casos posibles (más el resuelto).\n\nPara reconocerlos, mira dónde quedó el color de la cara de abajo (D) en cada esquina. En los nombres, **DFR→F** significa: en la esquina DFR, el color de D mira hacia F.\n\n- **4 esquinas giradas:** se resuelven con una sola herramienta de 4 movimientos (R' B R B', L B' L' B o sus parientes).\n- **2 esquinas giradas:** necesitan 7 movimientos.\n\nLos centros pueden quedar desordenados; eso se arregla en la lección siguiente. Practica los 8 casos en el Entrenador.",
+        "en": "With the first layer on top, the 4 bottom corners are already in place: they can only be **twisted**. There are 8 possible cases (plus solved).\n\nTo recognise them, look at where the bottom-face (D) color ended up on each corner. In the names, **DFR→F** means: on the DFR corner, the D color faces F.\n\n- **4 twisted corners:** solved with a single 4-move tool (R' B R B', L B' L' B or their relatives).\n- **2 twisted corners:** need 7 moves.\n\nCenters may end up scrambled; that is fixed in the next lesson. Practise the 8 cases in the Trainer."
+      },
+      "algSetRefs": [
+        "skewb-corners"
+      ],
+      "demos": [
+        {
+          "setup": "R' B R B'",
+          "alg": "B R' B' R"
+        },
+        {
+          "setup": "R' U' L' U B R' B'",
+          "alg": "B R B' U' L U R"
+        }
+      ],
+      "prerequisites": [
+        "skewb-first-layer"
+      ]
+    },
+    {
+      "id": "skewb-centers",
+      "title": {
+        "es": "Centros",
+        "en": "Centers"
+      },
+      "objective": {
+        "es": "Terminar el Skewb con dos algoritmos.",
+        "en": "Finish the Skewb with two algorithms."
+      },
+      "body": {
+        "es": "Con la primera capa arriba y las esquinas resueltas, solo faltan los 5 centros (D, F, R, B, L). Hay 59 casos, pero un principiante puede resolverlos **todos** con dos algoritmos:\n\n- **A = R U' L' U L B' L' B**: lleva el centro de L a D, el de D a R y el de R a L. No toca nada más.\n- **B = R U B' U' B L R' U'**: lleva el centro de F a L, el de L a R y el de R a F. No toca D ni B.\n\n**Paso 1 — centro de abajo (D).** Busca dónde está el centro del color de D:\n- En L: aplica A una vez.\n- En R: aplica A dos veces.\n- En F: gira todo el puzzle (y) para que quede en L y aplica A.\n- En B: gira todo el puzzle (y') para que quede en L y aplica A.\n\n**Paso 2 — costados.** Cuenta cuántos centros de los costados coinciden con sus esquinas:\n- Si hay uno bueno, gira todo el puzzle (y) hasta dejarlo atrás (B) y aplica B. Si no quedó, aplícalo otra vez.\n- Si no hay ninguno, aplica B una vez y vuelve a contar.\n\nComprobado en el simulador con los 59 casos: este plan siempre termina, con 5 aplicaciones como máximo. En el Entrenador está cada caso con su solución óptima por si quieres aprender atajos. En los nombres, **L→D** significa que el centro de L está en el lugar de D.",
+        "en": "With the first layer on top and the corners solved, only the 5 centers (D, F, R, B, L) remain. There are 59 cases, but a beginner can solve **all** of them with two algorithms:\n\n- **A = R U' L' U L B' L' B**: moves the L center to D, the D center to R and the R center to L. Nothing else moves.\n- **B = R U B' U' B L R' U'**: moves the F center to L, the L center to R and the R center to F. It does not touch D or B.\n\n**Step 1 — bottom center (D).** Find where the D-colored center is:\n- On L: apply A once.\n- On R: apply A twice.\n- On F: turn the whole puzzle (y) so it is on L, then apply A.\n- On B: turn the whole puzzle (y') so it is on L, then apply A.\n\n**Step 2 — sides.** Count how many side centers match their corners:\n- If one is correct, turn the whole puzzle (y) until it is at the back (B) and apply B. If it isn't solved, apply it again.\n- If none is correct, apply B once and count again.\n\nChecked in the simulator on all 59 cases: this plan always finishes, with at most 5 applications. The Trainer has every case with its optimal solution if you want to learn shortcuts. In the names, **L→D** means the L center is in D's place."
+      },
+      "algSetRefs": [
+        "skewb-centers"
+      ],
+      "demos": [
+        {
+          "setup": "B' L B L' U' L U R'",
+          "alg": "R U' L' U L B' L' B"
+        },
+        {
+          "setup": "U R L' B' U B U' R'",
+          "alg": "R U B' U' B L R' U'"
+        }
+      ],
+      "prerequisites": [
+        "skewb-corners"
+      ]
+    },
+    {
+      "id": "skewb-plan",
+      "title": {
+        "es": "Plan de práctica",
+        "en": "Practice plan"
+      },
+      "objective": {
+        "es": "Pasar del método completo a tiempos estables.",
+        "en": "Go from the full method to consistent times."
+      },
+      "body": {
+        "es": "1. **Semana 1:** primera capa intuitiva hasta hacerla en menos de 10 movimientos casi siempre. Usa mezclas del Timer y resuelve solo la capa.\n2. **Semana 2:** los 8 casos de esquinas en el Entrenador, hasta reconocerlos sin pensar.\n3. **Semana 3:** centros con A y B. Después, aprende en el Entrenador los casos de centros más frecuentes con su solución óptima (8 a 10 movimientos).\n4. Mide tus tiempos con Ao5 en el Timer y usa el Solucionador para revisar solves lentos: compara tu primera capa con la más corta.",
+        "en": "1. **Week 1:** intuitive first layer until you usually do it in under 10 moves. Use Timer scrambles and solve only the layer.\n2. **Week 2:** the 8 corner cases in the Trainer, until you recognise them without thinking.\n3. **Week 3:** centers with A and B. Then learn the most frequent center cases in the Trainer with their optimal solution (8 to 10 moves).\n4. Track your times with Ao5 in the Timer and use the Solver to review slow solves: compare your first layer with the shortest one."
+      },
+      "algSetRefs": [],
+      "demos": [],
+      "prerequisites": [
+        "skewb-centers"
+      ]
+    }
+  ]
+}

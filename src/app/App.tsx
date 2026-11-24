@@ -3,7 +3,7 @@ import { storageKey } from '../config/storageScope';
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { liveQuery } from 'dexie';
 import { translate } from '../i18n/translate';
-import { isTetra } from '../puzzles/events';
+import { isCubePuzzle } from '../puzzles/events';
 import { events, isPuzzleId, registry } from '../puzzles/registry';
 import { db } from '../core/storage/db';
 import {
@@ -205,7 +205,7 @@ export default function App() {
                             <Academy key={puzzle} mod={ready} t={t} language={appearance.language} lessonLink={id} />
                         )}
                         {route === 'evaluation' && ready && (
-                            isTetra(puzzle) ? <p>{t('evaluationNoQuestions')}</p> : <Evaluation key={puzzle} mod={ready} t={t} />
+                            !isCubePuzzle(puzzle) ? <p>{t('evaluationNoQuestions')}</p> : <Evaluation key={puzzle} mod={ready} t={t} />
                         )}
                         {route === 'settings' && <Settings prefs={prefs} t={t} />}
                         {route === 'stats' && (

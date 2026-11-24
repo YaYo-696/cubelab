@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "lessons": [{
+    "id": "skewb-fixture-lesson",
+    "title": {"es": "Prueba de importación", "en": "Import test"},
+    "objective": {"es": "Comprobar el formato.", "en": "Check the format."},
+    "body": {"es": "**Fixture técnico.**", "en": "**Technical fixture.**"},
+    "algSetRefs": ["skewb-fixture"],
+    "demos": [{"setup": "R", "alg": "R'"}],
+    "prerequisites": []
+  }]
+}

@@ -17,7 +17,9 @@ const Duo = lazy(() => import('./DuoPlayer').then((m) => ({ default: m.DuoPlayer
 export function AcademyPlayer(props: PlayerProps) {
     if (props.puzzle === 'pyraminx-duo')
         return <Suspense fallback={<p>{props.t('aLoading')}</p>}><Duo {...props} /></Suspense>;
-    return <Twisty {...props} puzzle={props.puzzle === 'pyraminx' ? 'pyraminx' : props.puzzle === '2x2x2' ? '2x2x2' : '3x3x3'} />;
+    const puzzle = props.puzzle === 'skewb' || props.puzzle === 'pyraminx' || props.puzzle === '2x2x2'
+        ? props.puzzle : '3x3x3';
+    return <Twisty {...props} puzzle={puzzle} />;
 }
 function Twisty({
     puzzle,
@@ -28,7 +30,7 @@ function Twisty({
     flatOnly = false,
     timerPreview = false,
     t,
-}: PlayerProps & { puzzle: '2x2x2' | '3x3x3' | 'pyraminx' }) {
+}: PlayerProps & { puzzle: '2x2x2' | '3x3x3' | 'pyraminx' | 'skewb' }) {
     const target = useRef<HTMLDivElement>(null);
     const net = useRef<HTMLDivElement>(null);
     const player = useRef<TwistyPlayer>();
@@ -40,7 +42,8 @@ function Twisty({
         const config = {
             puzzle,
             alg,
-            experimentalSetupAlg: timerPreview || puzzle === 'pyraminx' ? setup : ('z2 ' + setup).trim(),
+            experimentalSetupAlg: !timerPreview && (puzzle === '2x2x2' || puzzle === '3x3x3')
+                ? ('z2 ' + setup).trim() : setup,
             controlPanel: 'none' as const,
             background: 'none' as const,
             tempoScale: rate.current,

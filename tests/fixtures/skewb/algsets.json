@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "sets": [{
+    "id": "skewb-fixture",
+    "name": {"es": "Fixture técnico", "en": "Technical fixture"},
+    "stage": "Synthetic import check",
+    "cases": [{
+      "id": "skewb-fixture-case",
+      "name": {"es": "Caso de prueba", "en": "Test case"},
+      "group": "Fixture",
+      "setup": "R",
+      "algs": ["R'", "R' x y2 z'"],
+      "source": "generated: fixture"
+    }]
+  }]
+}

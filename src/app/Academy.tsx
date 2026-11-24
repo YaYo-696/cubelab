@@ -12,6 +12,7 @@ import { caseSetup, type AcademyCase } from '../core/academy/cases';
 import { openingMoves } from '../core/academy/execution';
 import { videoTopicForLesson, type VideoLanguage } from '../content/videoTopics';
 import { RecommendedVideos } from './RecommendedVideos';
+import { isCubePuzzle } from '../puzzles/events';
 import './academy.css';
 
 const Markdown = lazy(() => import('react-markdown'));
@@ -133,7 +134,7 @@ function LessonView({
                         setVariant(0);
                         selectSet(e.target.value);
                     }}>
-                        {lesson.algSetRefs.map((id) => <option key={id} value={id}>{t('pyram.set.' + id)}</option>)}
+                        {lesson.algSetRefs.map((id) => <option key={id} value={id}>{t(mod.id + '.set.' + id)}</option>)}
                     </select>
                 </label>
             )}
@@ -271,9 +272,10 @@ function LessonView({
                             </li>
                         </ol>
                     )}
-                    {selected.source ? <p><a href={selected.source}>{t('aSource')}</a></p>
-                        : mod.category === 'wca' && puzzle !== 'pyraminx'
-                            && <p>{t((selected as Partial<AcademyCase>).fingertrickKey ?? 'fingerUpper')}</p>}
+                    {selected.source ? <p>{selected.source.startsWith('generated:')
+                        ? t('aGeneratedSource') + ' · ' + selected.source.slice('generated:'.length).trim()
+                        : <a href={selected.source}>{t('aSource')}</a>}</p>
+                        : isCubePuzzle(mod.id) && <p>{t((selected as Partial<AcademyCase>).fingertrickKey ?? 'fingerUpper')}</p>}
                 </section>
             )}
             {lesson.exerciseKey && <>

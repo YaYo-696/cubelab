@@ -1,6 +1,6 @@
 # CubeLab
 
-PWA bilingüe de speedcubing para 2×2, 3×3, 3×3 a ciegas, Pyraminx y Pyraminx Duo. Incluye Timer, sesiones y estadísticas, una Academia con catálogos verificados, un Solucionador por etapas y un Entrenador con repetición espaciada. Las funciones principales quedan disponibles sin conexión después de preparar la instalación.
+PWA bilingüe de speedcubing para 2×2, 3×3, 3×3 a ciegas, Pyraminx, Pyraminx Duo y Skewb. Incluye Timer, sesiones y estadísticas, una Academia con catálogos verificados, un Solucionador por etapas y un Entrenador con repetición espaciada. Las funciones principales quedan disponibles sin conexión después de preparar la instalación.
 
 [Changelog 1.0.0](CHANGELOG.md) · [Arquitectura](docs/ARQUITECTURA.md) · [Decisiones](docs/DECISIONES.md) · [Fuentes](docs/FUENTES.md)
 
@@ -36,6 +36,12 @@ Las lecciones con recursos asociados muestran enlaces externos a YouTube y una b
 - **Pyraminx** usa el evento WCA con inspección de 15 s y Ao5. En Timer puedes alternar la vista plana y 3D. El Solucionador muestra la secuencia óptima en dos etapas, capas y puntas.
 - **Pyraminx Duo** es un evento de práctica. La academia, el entrenador y el solucionador muestran un desplegado en 2D. Elige la solución óptima o el método de dos pasos.
 - Para integrar el contenido de Pyraminx, copia `algsets.json` y `lessons.json` v1 en `content-drop/pyram/`, junto con su informe `VERIFICACION.md`, y vuelve a compilar. Los tests verifican el drop activo y muestran el set, caso y variante cuando falla un algoritmo. Si no hay ningún JSON, se usa el fixture. Si solo hay uno, la importación falla. [Contrato y criterios](docs/ARQUITECTURA.md#puzzles-tetraédricos)
+
+## Skewb
+
+En Timer, elige **Skewb** para usar el evento WCA con Ao5, inspección de 15 s y vista 2D o 3D. En Solucionador puedes elegir la ruta óptima o resolver en tres etapas, primera capa, esquinas de arriba y centros. Las mezclas escritas admiten `R U L B` con prima. Los algoritmos del drop también admiten `x y z`, con prima o con `2`.
+
+El contenido de Academia y Entrenador se incorpora al compilar desde `content-drop/skewb/algsets.json` y `content-drop/skewb/lessons.json`. El contrato es v1. Los IDs de sets empiezan con `skewb-` y la fuente puede ser una URL HTTP(S) o texto `generated:`. Si faltan ambos JSON se usa un fixture técnico. Si falta solo uno o una variante falla la verificación, Academia y Entrenador muestran el error.
 
 ## Publicación
 

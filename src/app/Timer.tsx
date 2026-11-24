@@ -10,7 +10,7 @@ import { adjusted, breakdown } from '../core/stats';
 import { useStatistics } from './useStatistics';
 import { db, solvesForEvent, type Solve, type Session } from '../core/storage/db';
 import { NotationError } from '../puzzles/notation';
-import { isTetra } from '../puzzles/events';
+import { isCubePuzzle } from '../puzzles/events';
 import { CubeNet } from '../ui/CubeNet';
 import { useScrambles } from './useScrambles';
 import { useTimerInput } from './useTimerInput';
@@ -216,14 +216,14 @@ export function Timer({ mod, rules, prefs, t }: Props) {
             customInput.current?.setSelectionRange(pos, pos + 1);
         }
     }
-    const tetra = isTetra(mod.id);
+    const cubeNet = isCubePuzzle(mod.id);
     const supports3d = mod.visualization.twistyPuzzleId !== 'pyraminx-duo';
     const [showCube3d, setCube3d] = useState(prefs.timerPreview === '3D');
     const Preview = mod.ui?.preview,
         InputPanel = mod.ui?.inputPanel;
     const preview = useMemo(
-        () => tetra ? '' : mod.applyAlg(mod.solvedState(), mix.current?.text ?? ''),
-        [mod, mix.current?.text, tetra],
+        () => cubeNet ? mod.applyAlg(mod.solvedState(), mix.current?.text ?? '') : '',
+        [mod, mix.current?.text, cubeNet],
     );
     return (
         <div className="timer-page">
@@ -339,7 +339,7 @@ export function Timer({ mod, rules, prefs, t }: Props) {
                             scramble={mix.current?.text ?? ''}
                             onChange={applyCustom}
                         />
-                    ) : !active && (showCube3d || tetra) ? (
+                    ) : !active && (showCube3d || !cubeNet) ? (
                         <Cube3D
                             puzzle={mod.visualization.twistyPuzzleId}
                             flatOnly={!supports3d || !showCube3d}
@@ -349,7 +349,7 @@ export function Timer({ mod, rules, prefs, t }: Props) {
                             timerPreview
                             t={t}
                         />
-                    ) : !tetra && (
+                    ) : cubeNet && (
                         <CubeNet state={preview} label={t('preview')} />
                     )}
                 </Suspense>

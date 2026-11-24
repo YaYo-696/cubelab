@@ -7,7 +7,9 @@ self.addEventListener('message', async ({ data }: MessageEvent<SolverJob>) => {
     try {
         const { puzzle, input, method, neutral } = data;
         const progress = (value: SolveProgress) => self.postMessage({ progress: value });
-        const result = isTetra(puzzle)
+        const result = puzzle === 'skewb'
+            ? await (await import('../puzzles/skewb/engine')).solveSkewb(input, method, progress)
+            : isTetra(puzzle)
             ? await (await import('../puzzles/tetra/engine')).solveTetra(puzzle, input, method, progress)
             : await (await import('../core/solver/solve')).solvePuzzle(puzzle, input, method, neutral, progress);
         self.postMessage({ result });

@@ -6,7 +6,7 @@ import { type Completion } from '../core/academy/progress';
 import { openingMoves } from '../core/academy/execution';
 import { isFullPattern } from '../core/academy/lastLayer';
 import type { AcademyCase } from '../core/academy/cases';
-import { isTetra } from '../puzzles/events';
+import { isCubePuzzle } from '../puzzles/events';
 import { LastLayerImage } from './LastLayerImage';
 import type { TrainingSet } from '../core/trainer/catalog';
 import {
@@ -251,7 +251,10 @@ function Session({
         setNotice('');
         setDetail('');
         try {
-            const mix = await mod.caseGenerators[config.id](entry.id, control.signal);
+            const generate = mod.caseGenerators[config.id]
+                ?? (await mod.loadContentInfo?.())?.caseGenerators?.[config.id];
+            if (!generate) throw new Error('Unknown training set: ' + config.id);
+            const mix = await generate(entry.id, control.signal);
             if (control.signal.aborted) return;
             if (!mix.verified) throw new Error('trainerCaseVerification');
             setCard({ entry, mix, options: choices(entry, catalog.cases) });
@@ -473,7 +476,7 @@ function Session({
             )}
             {showPicture && (mode !== 'recognition' || !view3d) && (
                 <div className="trainer-diagram">
-                    {isTetra(mod.id) ? <Suspense fallback={<p>{t('aLoading')}</p>}>
+                    {!isCubePuzzle(mod.id) ? <Suspense fallback={<p>{t('aLoading')}</p>}>
                         <Player puzzle={mod.visualization.twistyPuzzleId} setup={card.mix.scramble} alg="" still flatOnly t={t} />
                     </Suspense> : <LastLayerImage
                         puzzle={mod.id}

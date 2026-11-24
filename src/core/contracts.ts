@@ -124,6 +124,8 @@ export interface PuzzleModule<State> {
     trainingSets?: readonly TrainingSet[];
     loadContentInfo?: () => Promise<{
         trainingSets?: readonly TrainingSet[];
+        caseGenerators?: Readonly<Record<string, CaseGenerator>>;
+        algSets?: readonly string[];
         messages?: Record<'es' | 'en', Record<string, string>>;
     }>;
     courses: readonly string[];

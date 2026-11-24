@@ -1,0 +1,899 @@
+{
+  "version": 1,
+  "sets": [
+    {
+      "id": "skewb-corners",
+      "name": {
+        "es": "Skewb · Esquinas de abajo",
+        "en": "Skewb · Bottom corners"
+      },
+      "stage": "corners",
+      "cases": [
+        {
+          "id": "skewb-c1",
+          "name": {
+            "es": "Esquinas: DFR→F, DFL→L, DBR→B, DBL→L",
+            "en": "Corners: DFR→F, DFL→L, DBR→B, DBL→L"
+          },
+          "group": "4 esquinas giradas / 4 twisted corners",
+          "setup": "R' B R B'",
+          "algs": [
+            "B R' B' R"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-c2",
+          "name": {
+            "es": "Esquinas: DFR→R, DFL→L, DBR→B, DBL→B",
+            "en": "Corners: DFR→R, DFL→L, DBR→B, DBL→B"
+          },
+          "group": "4 esquinas giradas / 4 twisted corners",
+          "setup": "U' L U R'",
+          "algs": [
+            "R U' L' U"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-c3",
+          "name": {
+            "es": "Esquinas: DFR→R, DFL→F, DBR→R, DBL→B",
+            "en": "Corners: DFR→R, DFL→F, DBR→R, DBL→B"
+          },
+          "group": "4 esquinas giradas / 4 twisted corners",
+          "setup": "L' U R U'",
+          "algs": [
+            "U R' U' L"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-c4",
+          "name": {
+            "es": "Esquinas: DFR→F, DFL→F, DBR→R, DBL→L",
+            "en": "Corners: DFR→F, DFL→F, DBR→R, DBL→L"
+          },
+          "group": "4 esquinas giradas / 4 twisted corners",
+          "setup": "R U' L' U",
+          "algs": [
+            "U' L U R'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-c5",
+          "name": {
+            "es": "Esquinas: DFL→L, DBR→B",
+            "en": "Corners: DFL→L, DBR→B"
+          },
+          "group": "2 esquinas giradas / 2 twisted corners",
+          "setup": "R' U' L' U B R' B'",
+          "algs": [
+            "B R B' U' L U R"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-c6",
+          "name": {
+            "es": "Esquinas: DFL→F, DBR→R",
+            "en": "Corners: DFL→F, DBR→R"
+          },
+          "group": "2 esquinas giradas / 2 twisted corners",
+          "setup": "U R' U' L' B' L' B",
+          "algs": [
+            "B' L B L U R U'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-c7",
+          "name": {
+            "es": "Esquinas: DFR→F, DBL→L",
+            "en": "Corners: DFR→F, DBL→L"
+          },
+          "group": "2 esquinas giradas / 2 twisted corners",
+          "setup": "R B' U' L U B R",
+          "algs": [
+            "R' B' U' L' U B R'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-c8",
+          "name": {
+            "es": "Esquinas: DFR→R, DBL→B",
+            "en": "Corners: DFR→R, DBL→B"
+          },
+          "group": "2 esquinas giradas / 2 twisted corners",
+          "setup": "R U L R L' U' R",
+          "algs": [
+            "R' U L R' L' U' R'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        }
+      ]
+    },
+    {
+      "id": "skewb-centers",
+      "name": {
+        "es": "Skewb · Centros",
+        "en": "Skewb · Centers"
+      },
+      "stage": "centers",
+      "cases": [
+        {
+          "id": "skewb-x1",
+          "name": {
+            "es": "Centros: B→D, D→F, F→B",
+            "en": "Centers: B→D, D→F, F→B"
+          },
+          "group": "Ciclo de 3 con D / 3-cycle with D",
+          "setup": "L' B' U B U' R' U R",
+          "algs": [
+            "R' U' R U B' U' B L"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x2",
+          "name": {
+            "es": "Centros: B→F, D→B, F→D",
+            "en": "Centers: B→F, D→B, F→D"
+          },
+          "group": "Ciclo de 3 con D / 3-cycle with D",
+          "setup": "R' B R B' L' U R U'",
+          "algs": [
+            "U R' U' L B R' B' R"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x3",
+          "name": {
+            "es": "Centros: D→L, L→R, R→D",
+            "en": "Centers: D→L, L→R, R→D"
+          },
+          "group": "Ciclo de 3 con D / 3-cycle with D",
+          "setup": "B' L B L' U' L U R'",
+          "algs": [
+            "R U' L' U L B' L' B"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x4",
+          "name": {
+            "es": "Centros: D→R, L→D, R→L",
+            "en": "Centers: D→R, L→D, R→L"
+          },
+          "group": "Ciclo de 3 con D / 3-cycle with D",
+          "setup": "R B U' B' U L U' L'",
+          "algs": [
+            "L U L' U' B U B' R'",
+            "R U' L' U L B' L' B R U' L' U L B' L' B"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x5",
+          "name": {
+            "es": "Centros: B→D, D→L, L→B",
+            "en": "Centers: B→D, D→L, L→B"
+          },
+          "group": "Ciclo de 3 con D / 3-cycle with D",
+          "setup": "R' B U' B' U L U' L' R'",
+          "algs": [
+            "R L U L' U' B U B' R"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x6",
+          "name": {
+            "es": "Centros: B→D, D→R, R→B",
+            "en": "Centers: B→D, D→R, R→B"
+          },
+          "group": "Ciclo de 3 con D / 3-cycle with D",
+          "setup": "U L U R' B' L B L' U",
+          "algs": [
+            "U' L B' L' B R U' L' U'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x7",
+          "name": {
+            "es": "Centros: B→L, D→B, L→D",
+            "en": "Centers: B→L, D→B, L→D"
+          },
+          "group": "Ciclo de 3 con D / 3-cycle with D",
+          "setup": "R B' L B L' U' L U R",
+          "algs": [
+            "R' U' L' U L B' L' B R'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x8",
+          "name": {
+            "es": "Centros: B→R, D→B, R→D",
+            "en": "Centers: B→R, D→B, R→D"
+          },
+          "group": "Ciclo de 3 con D / 3-cycle with D",
+          "setup": "U' L B' L' B R U' L' U'",
+          "algs": [
+            "U L U R' B' L B L' U"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x9",
+          "name": {
+            "es": "Centros: D→F, F→L, L→D",
+            "en": "Centers: D→F, F→L, L→D"
+          },
+          "group": "Ciclo de 3 con D / 3-cycle with D",
+          "setup": "R' U B' U' B L R' U' R'",
+          "algs": [
+            "R U R L' B' U B U' R"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x10",
+          "name": {
+            "es": "Centros: D→F, F→R, R→D",
+            "en": "Centers: D→F, F→R, R→D"
+          },
+          "group": "Ciclo de 3 con D / 3-cycle with D",
+          "setup": "R B R B' L' U R U' R",
+          "algs": [
+            "R' U R' U' L B R' B' R'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x11",
+          "name": {
+            "es": "Centros: D→L, F→D, L→F",
+            "en": "Centers: D→L, F→D, L→F"
+          },
+          "group": "Ciclo de 3 con D / 3-cycle with D",
+          "setup": "R U R L' B' U B U' R",
+          "algs": [
+            "R' U B' U' B L R' U' R'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x12",
+          "name": {
+            "es": "Centros: D→R, F→D, R→F",
+            "en": "Centers: D→R, F→D, R→F"
+          },
+          "group": "Ciclo de 3 con D / 3-cycle with D",
+          "setup": "R' L' B' U B U' R' U R'",
+          "algs": [
+            "R U' R U B' U' B L R"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x13",
+          "name": {
+            "es": "Centros: B→F, F→L, L→B",
+            "en": "Centers: B→F, F→L, L→B"
+          },
+          "group": "Ciclo de 3 en los costados / 3-cycle on the sides",
+          "setup": "U B' U' B L R' U' R",
+          "algs": [
+            "R' U R L' B' U B U'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x14",
+          "name": {
+            "es": "Centros: B→F, F→R, R→B",
+            "en": "Centers: B→F, F→R, R→B"
+          },
+          "group": "Ciclo de 3 en los costados / 3-cycle on the sides",
+          "setup": "R L' B' U B U' R' U",
+          "algs": [
+            "U' R U B' U' B L R'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x15",
+          "name": {
+            "es": "Centros: B→L, F→B, L→F",
+            "en": "Centers: B→L, F→B, L→F"
+          },
+          "group": "Ciclo de 3 en los costados / 3-cycle on the sides",
+          "setup": "L B R' B' R U R' U'",
+          "algs": [
+            "U R U' R' B R B' L'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x16",
+          "name": {
+            "es": "Centros: B→L, L→R, R→B",
+            "en": "Centers: B→L, L→R, R→B"
+          },
+          "group": "Ciclo de 3 en los costados / 3-cycle on the sides",
+          "setup": "B U' B' U L U' L' R",
+          "algs": [
+            "R' L U L' U' B U B'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x17",
+          "name": {
+            "es": "Centros: B→R, F→B, R→F",
+            "en": "Centers: B→R, F→B, R→F"
+          },
+          "group": "Ciclo de 3 en los costados / 3-cycle on the sides",
+          "setup": "B R B' L' U R U' R'",
+          "algs": [
+            "R U R' U' L B R' B'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x18",
+          "name": {
+            "es": "Centros: B→R, L→B, R→L",
+            "en": "Centers: B→R, L→B, R→L"
+          },
+          "group": "Ciclo de 3 en los costados / 3-cycle on the sides",
+          "setup": "R' B' L B L' U' L U",
+          "algs": [
+            "U' L' U L B' L' B R"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x19",
+          "name": {
+            "es": "Centros: F→L, L→R, R→F",
+            "en": "Centers: F→L, L→R, R→F"
+          },
+          "group": "Ciclo de 3 en los costados / 3-cycle on the sides",
+          "setup": "R U B' U' B L R' U'",
+          "algs": [
+            "U R L' B' U B U' R'",
+            "R U B' U' B L R' U' R U B' U' B L R' U'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x20",
+          "name": {
+            "es": "Centros: F→R, L→F, R→L",
+            "en": "Centers: F→R, L→F, R→L"
+          },
+          "group": "Ciclo de 3 en los costados / 3-cycle on the sides",
+          "setup": "U R L' B' U B U' R'",
+          "algs": [
+            "R U B' U' B L R' U'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x21",
+          "name": {
+            "es": "Centros: B→D, D→B, F→L, L→F",
+            "en": "Centers: B→D, D→B, F→L, L→F"
+          },
+          "group": "Doble intercambio / Double swap",
+          "setup": "B' R U L B L' U' R'",
+          "algs": [
+            "R U L B' L' U' R' B"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x22",
+          "name": {
+            "es": "Centros: B→D, D→B, F→R, R→F",
+            "en": "Centers: B→D, D→B, F→R, R→F"
+          },
+          "group": "Doble intercambio / Double swap",
+          "setup": "B' L' B R L R L' R'",
+          "algs": [
+            "R L R' L' R' B' L B"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x23",
+          "name": {
+            "es": "Centros: B→D, D→B, L→R, R→L",
+            "en": "Centers: B→D, D→B, L→R, R→L"
+          },
+          "group": "Doble intercambio / Double swap",
+          "setup": "U R B U B' R' U' R'",
+          "algs": [
+            "R U R B U' B' R' U'",
+            "R' B R B' R' B R B' R' B R B'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x24",
+          "name": {
+            "es": "Centros: B→F, D→L, F→B, L→D",
+            "en": "Centers: B→F, D→L, F→B, L→D"
+          },
+          "group": "Doble intercambio / Double swap",
+          "setup": "B R U L B' L' U' R'",
+          "algs": [
+            "R U L B L' U' R' B'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x25",
+          "name": {
+            "es": "Centros: B→F, D→R, F→B, R→D",
+            "en": "Centers: B→F, D→R, F→B, R→D"
+          },
+          "group": "Doble intercambio / Double swap",
+          "setup": "L R U R U' R' L' R'",
+          "algs": [
+            "R L R U R' U' R' L'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x26",
+          "name": {
+            "es": "Centros: B→F, F→B, L→R, R→L",
+            "en": "Centers: B→F, F→B, L→R, R→L"
+          },
+          "group": "Doble intercambio / Double swap",
+          "setup": "B' U B' U R B' L R'",
+          "algs": [
+            "R L' B R' U' B U' B"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x27",
+          "name": {
+            "es": "Centros: B→L, D→F, F→D, L→B",
+            "en": "Centers: B→L, D→F, F→D, L→B"
+          },
+          "group": "Doble intercambio / Double swap",
+          "setup": "B' L R' B' U B' U R",
+          "algs": [
+            "R' U' B U' B R L' B"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x28",
+          "name": {
+            "es": "Centros: B→L, D→R, L→B, R→D",
+            "en": "Centers: B→L, D→R, L→B, R→D"
+          },
+          "group": "Doble intercambio / Double swap",
+          "setup": "B U' L' B L' B U R'",
+          "algs": [
+            "R U' B' L B' L U B'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x29",
+          "name": {
+            "es": "Centros: B→R, D→F, F→D, R→B",
+            "en": "Centers: B→R, D→F, F→D, R→B"
+          },
+          "group": "Doble intercambio / Double swap",
+          "setup": "B L U' L B' R' U R'",
+          "algs": [
+            "R U' R B L' U L' B'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x30",
+          "name": {
+            "es": "Centros: B→R, D→L, L→D, R→B",
+            "en": "Centers: B→R, D→L, L→D, R→B"
+          },
+          "group": "Doble intercambio / Double swap",
+          "setup": "L' R' L R U R U' R'",
+          "algs": [
+            "R U R' U' R' L' R L"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x31",
+          "name": {
+            "es": "Centros: D→F, F→D, L→R, R→L",
+            "en": "Centers: D→F, F→D, L→R, R→L"
+          },
+          "group": "Doble intercambio / Double swap",
+          "setup": "L B R B' L' R' L' R",
+          "algs": [
+            "R' L R L B R' B' L'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x32",
+          "name": {
+            "es": "Centros: D→L, F→R, L→D, R→F",
+            "en": "Centers: D→L, F→R, L→D, R→F"
+          },
+          "group": "Doble intercambio / Double swap",
+          "setup": "L U' L R U' L U' R'",
+          "algs": [
+            "R U L' U R' L' U L'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x33",
+          "name": {
+            "es": "Centros: D→R, F→L, L→F, R→D",
+            "en": "Centers: D→R, F→L, L→F, R→D"
+          },
+          "group": "Doble intercambio / Double swap",
+          "setup": "L B R' B' L' R' L R",
+          "algs": [
+            "R' L' R L B R B' L'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x34",
+          "name": {
+            "es": "Centros: B→L, F→R, L→B, R→F",
+            "en": "Centers: B→L, F→R, L→B, R→F"
+          },
+          "group": "Doble intercambio / Double swap",
+          "setup": "R' L B R B' L' R' L' R'",
+          "algs": [
+            "R L R L B R' B' L' R"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x35",
+          "name": {
+            "es": "Centros: B→R, F→L, L→F, R→B",
+            "en": "Centers: B→R, F→L, L→F, R→B"
+          },
+          "group": "Doble intercambio / Double swap",
+          "setup": "R' L B R' B' L' R' L R'",
+          "algs": [
+            "R L' R L B R B' L' R"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x36",
+          "name": {
+            "es": "Centros: B→D, D→F, F→L, L→R, R→B",
+            "en": "Centers: B→D, D→F, F→L, L→R, R→B"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "U L' U R' B' R' U R' B R",
+          "algs": [
+            "R' B' R U' R B R U' L U'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x37",
+          "name": {
+            "es": "Centros: B→D, D→F, F→R, L→B, R→L",
+            "en": "Centers: B→D, D→F, F→R, L→B, R→L"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "U R B' R B' L' B' R U' R",
+          "algs": [
+            "R' U R' B L B R' B R' U'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x38",
+          "name": {
+            "es": "Centros: B→D, D→L, F→B, L→R, R→F",
+            "en": "Centers: B→D, D→L, F→B, L→R, R→F"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "U' L' R' B U' R L U B' R",
+          "algs": [
+            "R' B U' L' R' U B' R L U"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x39",
+          "name": {
+            "es": "Centros: B→D, D→L, F→R, L→F, R→B",
+            "en": "Centers: B→D, D→L, F→R, L→F, R→B"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "U R' U' R' L U' L U L R'",
+          "algs": [
+            "R L' U' L' U L' R U R U'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x40",
+          "name": {
+            "es": "Centros: B→D, D→R, F→B, L→F, R→L",
+            "en": "Centers: B→D, D→R, F→B, L→F, R→L"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "L B R B' L R' B' L' B R'",
+          "algs": [
+            "R B' L B R L' B R' B' L'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x41",
+          "name": {
+            "es": "Centros: B→D, D→R, F→L, L→B, R→F",
+            "en": "Centers: B→D, D→R, F→L, L→B, R→F"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "U' B R L' U' L R' B' U R",
+          "algs": [
+            "R' U' B R L' U L R' B' U"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x42",
+          "name": {
+            "es": "Centros: B→F, D→B, F→L, L→R, R→D",
+            "en": "Centers: B→F, D→B, F→L, L→R, R→D"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "L' U' L' U L' R U R U' R",
+          "algs": [
+            "R' U R' U' R' L U' L U L"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x43",
+          "name": {
+            "es": "Centros: B→F, D→B, F→R, L→D, R→L",
+            "en": "Centers: B→F, D→B, F→R, L→D, R→L"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "B' R U' L' R' B U' R L U",
+          "algs": [
+            "U' L' R' U B' R L U R' B"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x44",
+          "name": {
+            "es": "Centros: B→F, D→L, F→D, L→R, R→B",
+            "en": "Centers: B→F, D→L, F→D, L→R, R→B"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "B' L R' B' L' B R' L B R",
+          "algs": [
+            "R' B' L' R B' L B R L' B"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x45",
+          "name": {
+            "es": "Centros: B→F, D→L, F→R, L→B, R→D",
+            "en": "Centers: B→F, D→L, F→R, L→B, R→D"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "B' L' B R' L B R B' L R'",
+          "algs": [
+            "R L' B R' B' L' R B' L B"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x46",
+          "name": {
+            "es": "Centros: B→F, D→R, F→D, L→B, R→L",
+            "en": "Centers: B→F, D→R, F→D, L→B, R→L"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "B' L' U' B U' B R U B' U",
+          "algs": [
+            "U' B U' R' B' U B' U L B"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x47",
+          "name": {
+            "es": "Centros: B→F, D→R, F→L, L→D, R→B",
+            "en": "Centers: B→F, D→R, F→L, L→D, R→B"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "L' U B' R' U L R' B U R'",
+          "algs": [
+            "R U' B' R L' U' R B U' L"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x48",
+          "name": {
+            "es": "Centros: B→L, D→B, F→D, L→R, R→F",
+            "en": "Centers: B→L, D→B, F→D, L→R, R→F"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "U L R' B R L' U' R B' R'",
+          "algs": [
+            "R B R' U L R' B' R L' U'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x49",
+          "name": {
+            "es": "Centros: B→L, D→B, F→R, L→F, R→D",
+            "en": "Centers: B→L, D→B, F→R, L→F, R→D"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "B L' B' R L B' R B L' R'",
+          "algs": [
+            "R L B' R' B L' R' B L B'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x50",
+          "name": {
+            "es": "Centros: B→L, D→F, F→B, L→R, R→D",
+            "en": "Centers: B→L, D→F, F→B, L→R, R→D"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "B R U L' U R' B' R' U R'",
+          "algs": [
+            "R U' R B R U' L U' R' B'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x51",
+          "name": {
+            "es": "Centros: B→L, D→F, F→R, L→D, R→B",
+            "en": "Centers: B→L, D→F, F→R, L→D, R→B"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "U' R B R U' L U' R' B' R",
+          "algs": [
+            "R' B R U L' U R' B' R' U"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x52",
+          "name": {
+            "es": "Centros: B→L, D→R, F→B, L→D, R→F",
+            "en": "Centers: B→L, D→R, F→B, L→D, R→F"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "B R' U L R' B' R L' U' R",
+          "algs": [
+            "R' U L R' B R L' U' R B'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x53",
+          "name": {
+            "es": "Centros: B→L, D→R, F→D, L→F, R→B",
+            "en": "Centers: B→L, D→R, F→D, L→F, R→B"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "R B' R' U L R' B R L' U'",
+          "algs": [
+            "U L R' B' R L' U' R B R'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x54",
+          "name": {
+            "es": "Centros: B→R, D→B, F→D, L→F, R→L",
+            "en": "Centers: B→R, D→B, F→D, L→F, R→L"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "U' B R L' U L R' B' U R'",
+          "algs": [
+            "R U' B R L' U' L R' B' U"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x55",
+          "name": {
+            "es": "Centros: B→R, D→B, F→L, L→D, R→F",
+            "en": "Centers: B→R, D→B, F→L, L→D, R→F"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "R L' U' L' U L' R U R U'",
+          "algs": [
+            "U R' U' R' L U' L U L R'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x56",
+          "name": {
+            "es": "Centros: B→R, D→F, F→B, L→D, R→L",
+            "en": "Centers: B→R, D→F, F→B, L→D, R→L"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "L U' L U L R' U R' U' R'",
+          "algs": [
+            "R U R U' R L' U' L' U L'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x57",
+          "name": {
+            "es": "Centros: B→R, D→F, F→L, L→B, R→D",
+            "en": "Centers: B→R, D→F, F→L, L→B, R→D"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "U L R' B' R L' U' R B R'",
+          "algs": [
+            "R B' R' U L R' B R L' U'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x58",
+          "name": {
+            "es": "Centros: B→R, D→L, F→B, L→F, R→D",
+            "en": "Centers: B→R, D→L, F→B, L→F, R→D"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "B' R U' R B R U' L U' R'",
+          "algs": [
+            "R U L' U R' B' R' U R' B"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        },
+        {
+          "id": "skewb-x59",
+          "name": {
+            "es": "Centros: B→R, D→L, F→D, L→B, R→F",
+            "en": "Centers: B→R, D→L, F→D, L→B, R→F"
+          },
+          "group": "Ciclo de 5 / 5-cycle",
+          "setup": "B U' L' R' U B' R L U R'",
+          "algs": [
+            "R U' L' R' B U' R L U B'"
+          ],
+          "source": "generated:cubelab-skewb-sim (búsqueda óptima, notación WCA 12h)"
+        }
+      ]
+    }
+  ]
+}
