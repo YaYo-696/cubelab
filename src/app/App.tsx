@@ -22,8 +22,9 @@ const Academy = lazy(() => import('./Academy').then((m) => ({ default: m.Academy
 const Statistics = lazy(() => import('./Statistics').then((m) => ({ default: m.Statistics })));
 const SolverView = lazy(() => import('./Solver').then((m) => ({ default: m.SolverView })));
 const Trainer = lazy(() => import('./Trainer').then((m) => ({ default: m.Trainer })));
+const CompetitionView = lazy(() => import('./Competition').then((m) => ({ default: m.CompetitionView })));
 const Settings = lazy(() => import('./Settings').then((m) => ({ default: m.Settings })));
-const routes = ['timer', 'academy', 'evaluation', 'trainer', 'solver', 'stats', 'settings'] as const;
+const routes = ['timer', 'academy', 'evaluation', 'trainer', 'solver', 'stats', 'competition', 'settings'] as const;
 function routeFromHash() {
     const [name, id, extra] = location.hash.slice(1).split('/');
     return { route: routes.find((r) => r === name) ?? 'timer', id, extra };
@@ -210,6 +211,7 @@ export default function App() {
                         {route === 'evaluation' && ready && (
                             !isCubePuzzle(puzzle) ? <p>{t('evaluationNoQuestions')}</p> : <Evaluation key={puzzle} mod={ready} t={t} />
                         )}
+                        {route === 'competition' && <CompetitionView prefs={prefs} t={t} initialId={id} />}
                         {route === 'settings' && <Settings prefs={prefs} t={t} />}
                         {route === 'stats' && (
                             <Statistics key={eventId} rules={rules} puzzleId={puzzle} t={t} />

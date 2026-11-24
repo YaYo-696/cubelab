@@ -1,6 +1,7 @@
 import { storageScope } from '../../config/storageScope';
 import type { TrainerCase, TrainerAttempt } from '../trainer/model';
 import type { EvaluationAttempt } from '../academy/evaluation';
+import type { Competition } from '../competition/round';
 import Dexie, { type Table } from 'dexie';
 export interface Session {
     id: string;
@@ -65,6 +66,7 @@ export class CubeDatabase extends Dexie {
     trainerAttempts!: Table<TrainerAttempt, string>;
     trainerCases!: Table<TrainerCase, [string, string, string]>;
     lessons!: Table<LessonProgress, [string, string]>;
+    competitions!: Table<Competition, string>;
     rounds!: Table<CompetitionRound, string>;
     settings!: Table<
         {
@@ -88,6 +90,7 @@ export class CubeDatabase extends Dexie {
             trainerCases: '[puzzleId+setId+caseId],dueAt,puzzleId,[puzzleId+setId]',
             trainerAttempts: 'id,[puzzleId+setId+createdAt]',
         });
+        this.version(4).stores({ competitions: 'id,createdAt' });
     }
 }
 export const db = new CubeDatabase(storageScope);

@@ -134,7 +134,7 @@ it('respalda los intentos y conserva el agregado de respaldos v1 y v2', async ()
         await saveTrainingAttempt(timed({ assisted: true }), 4500, source);
         await saveTrainingAttempt(recognized('Aa'), 4500, source);
         const data = JSON.parse(await exportBackup(source));
-        expect(data.version).toBe(3);
+        expect(data.version).toBe(4);
         await importBackup(JSON.stringify(data), target);
         expect(await target.trainerAttempts.toArray()).toEqual(await source.trainerAttempts.toArray());
         expect(await target.trainerCases.toArray()).toEqual(await source.trainerCases.toArray());

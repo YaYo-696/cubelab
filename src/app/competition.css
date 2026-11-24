@@ -1,0 +1,40 @@
+.competition-page {
+    display: grid;
+    gap: 1rem;
+}
+.competition-page form,
+.competition-picker,
+.competition-rules {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 0.65rem 1rem;
+}
+.competition-page form label,
+.competition-picker label {
+    display: grid;
+    gap: 0.3rem;
+}
+.competition-page input[type='number'] {
+    max-width: 11rem;
+}
+.competition-rules dd {
+    margin: 0;
+}
+.competition-table {
+    overflow-x: auto;
+    margin-bottom: 0.75rem;
+}
+.competition-table th,
+.competition-table td {
+    white-space: nowrap;
+}
+.competition-scrambles {
+    overflow-wrap: anywhere;
+}
+.competition-timer {
+    min-height: 12rem;
+}
+.competition-timer .touch-zone {
+    min-height: inherit;
+}

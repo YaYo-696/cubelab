@@ -11,6 +11,8 @@ import { resultText } from '../core/events/results';
 import { SpecialStats } from './SpecialStats';
 import { StatisticsCharts } from './StatisticsCharts';
 import { useStatistics } from './useStatistics';
+import { CompetitionStatistics } from './CompetitionResults';
+import './competition.css';
 import './statistics.css';
 
 type T = (key: string, params?: Record<string, string | number>) => string;
@@ -26,7 +28,21 @@ function download(text: string, name: string, type: string) {
     setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-export function Statistics({ rules, puzzleId, t }: { rules: EventRules; puzzleId: string; t: T }) {
+type Props = { rules: EventRules; puzzleId: string; t: T };
+export function Statistics({ rules, puzzleId, t }: Props) {
+    const [competition, setCompetition] = useState(false);
+    return <>
+        <label>{t('competitionStatsFilter')}{' '}
+            <select value={competition ? 'competition' : 'timer'} onChange={(e) => setCompetition(e.target.value === 'competition')}>
+                <option value="timer">{t('timer')}</option>
+                <option value="competition">{t('competition')}</option>
+            </select>
+        </label>
+        {competition ? <CompetitionStatistics eventId={rules.id} t={t} /> : <TimerStatistics rules={rules} puzzleId={puzzleId} t={t} />}
+    </>;
+}
+
+function TimerStatistics({ rules, puzzleId, t }: Props) {
     const [data, setData] = useState<{ sessions: Session[]; event: Solve[] }>();
     const [sessionId, setSession] = useState(''),
         [destination, setDestination] = useState('');

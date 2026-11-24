@@ -67,11 +67,15 @@ El selector de eventos incluye 3×3 a una mano, 3×3 menos movimientos, 4×4 y 5
 
 Estadísticas separa los resultados por modalidad. FMC muestra movimientos y Mo3. Multi‑Blind muestra el tiempo, los cubos resueltos y la clasificación por puntos. [Reglas aplicadas](docs/DECISIONES.md#fase-12--modalidades-wca)
 
+## Competencia local
+
+En **Competencia**, crea un torneo de práctica y prepara las rondas por evento. Cada ronda genera sus mezclas y dos reservas antes del primer intento. Revela una mezcla, cronometra y confirma la decisión del juez. Exporta la hoja en CSV o JSON. En **Estadísticas**, elige el evento y selecciona **Competencia** en **Origen de resultados**. [Reglas aplicadas](docs/DECISIONES.md#fase-13--competencia-local)
+
 ## Publicación
 
 El workflow publica un preview con etiqueta DEV a partir de `main`. El release se construye desde un tag y solo se publica tras pasar `release:check` y las pruebas. Queda desactivado mientras `CUBELAB_RELEASE_REF` esté sin definir. [Pasos exactos para crear el repositorio, hacer push y conectar GitHub Pages](docs/PUBLICACION.md)
 
-El preview se publica en `https://TU_USUARIO.github.io/cubelab/preview/`. Preview y release guardan los datos por separado. **Ajustes → Datos locales** permite exportar un respaldo JSON y borrar los datos de la instalación actual. En Estadísticas puedes importar el respaldo. Se admiten respaldos v1, v2 y v3.
+El preview se publica en `https://TU_USUARIO.github.io/cubelab/preview/`. Preview y release guardan los datos por separado. **Ajustes → Datos locales** permite exportar un respaldo JSON y borrar los datos de la instalación actual. En Estadísticas puedes importar el respaldo. Se admiten respaldos v1 a v4. El v4 incluye las competencias locales.
 
 ## Rendimiento móvil
 

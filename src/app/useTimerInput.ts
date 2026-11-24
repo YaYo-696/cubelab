@@ -6,6 +6,7 @@ interface Options {
     rules: EventRules;
     inspection: boolean;
     threshold: number;
+    competitionLimitMs?: number;
     enabled: boolean;
     sound?: boolean;
     splits?: boolean;
@@ -32,6 +33,11 @@ export function useTimerInput(options: Options) {
             frame = 0;
         function redraw() {
             machine.tick();
+            const limit = latest.current.competitionLimitMs;
+            if (limit !== undefined) {
+                const result = machine.enforceCompetitionLimit(limit);
+                if (result) finishAttempt?.(result);
+            }
             if (machine.phase === 'idle' || machine.inspectionStart === null) alerts = 0;
             if (
                 machine.inspectionStart !== null &&

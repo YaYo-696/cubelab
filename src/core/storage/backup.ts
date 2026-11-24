@@ -1,3 +1,4 @@
+import { validCompetition } from '../competition/storage';
 import { db, type CubeDatabase, type Session, type Solve } from './db';
 
 const names = [
@@ -9,6 +10,7 @@ const names = [
     'rounds',
     'settings',
     'evaluations',
+    'competitions',
 ] as const;
 type TableName = (typeof names)[number];
 type Row = Record<string, unknown>;
@@ -141,6 +143,9 @@ function rowKey(name: TableName, r: Row): string | string[] {
                     }),
             );
             return r.id;
+        case 'competitions':
+            check(validCompetition(r));
+            return r.id;
         case 'rounds':
             check(
                 uuid(r.id) &&
@@ -162,19 +167,20 @@ export async function exportBackup(database = db) {
             const data = await Promise.all(
                 names.map(async (name) => [name, await database.table(name).toArray()]),
             );
-            return JSON.stringify({ version: 3, tables: Object.fromEntries(data) }, null, 2);
+            return JSON.stringify({ version: 4, tables: Object.fromEntries(data) }, null, 2);
         },
     );
 }
 export async function importBackup(source: string, database = db) {
     const file = object(JSON.parse(source));
-    check(file.version === 1 || file.version === 2 || file.version === 3);
+    check([1, 2, 3, 4].includes(file.version as number));
     const tables = object(file.tables);
     const rows = new Map(
         names.map((name) => {
             const input =
                 (file.version === 1 && name === 'evaluations') ||
-                (file.version !== 3 && name === 'trainerAttempts')
+                ((file.version === 1 || file.version === 2) && name === 'trainerAttempts') ||
+                (file.version !== 4 && name === 'competitions')
                     ? []
                     : tables[name];
             check(Array.isArray(input));

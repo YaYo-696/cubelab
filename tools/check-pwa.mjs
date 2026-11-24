@@ -34,6 +34,7 @@ for (const feature of [
     'Academy-',
     'Solver-',
     'Trainer-',
+    'Competition-',
     'puzzle.worker-',
     'case.worker-',
     'solver.worker-',

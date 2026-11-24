@@ -74,6 +74,18 @@ export class TimerMachine {
         const elapsed = at - this.inspectionStart;
         return elapsed >= this.inspectMs + 2000 ? 'dnf' : elapsed >= this.inspectMs ? '+2' : 'none';
     }
+    enforceCompetitionLimit(timeLimitMs: number) {
+        const now = this.now();
+        const inspectionExpired =
+            this.inspectionStart !== null && this.phase !== 'idle' && this.phase !== 'stopped' &&
+            this.penalty(this.phase === 'running' ? this.startedAt : now) === 'dnf';
+        const solveExpired = this.phase === 'running' && now - this.startedAt >= timeLimitMs;
+        if (!inspectionExpired && !solveExpired) return;
+        this.result = { timeMs: inspectionExpired ? 0 : timeLimitMs, penalty: 'dnf' };
+        this.owner = null;
+        this.phase = 'stopped';
+        return this.result;
+    }
     markExecution() {
         if (this.phase === 'running' && this.memoryMs === null)
             this.memoryMs = Math.max(0, Math.floor(this.now() - this.startedAt));
