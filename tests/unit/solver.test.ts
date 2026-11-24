@@ -90,6 +90,13 @@ it.each(methods)(
             expect(result.moves).toBe(result.stages.reduce((sum, stage) => sum + stage.moves, 0));
             if (method === 'beginner')
                 for (const stage of result.stages) checkBeginnerStage(stage.lessonId ?? '', stage.alg);
+            if (method === 'cfop4')
+                expect(result.stages.slice(-4).map((stage) => stage.lessonId)).toEqual([
+                    'oll3',
+                    'oll3',
+                    'pll3',
+                    'pll3',
+                ]);
             if (cube === '333' && method !== 'shortest')
                 expect(result.stages[0].moves).toBeLessThanOrEqual(8);
             if (cube === '222' && method === 'shortest') {

@@ -1,4 +1,4 @@
-# CubeLab · Traspaso de contexto (24-11-2026, 19:40)
+# CubeLab · Traspaso de contexto (24-11-2026, 20:40)
 
 ## 1. Qué es
 PWA de speedcubing: timer, estadísticas, academia (lecciones y casos), solucionador, entrenador y modo competencia.
@@ -44,20 +44,17 @@ CONTEXTO DE TRABAJO: Claude y tú trabajan en paralelo sobre este repo, los dos 
 - `content-drop/<puzzle>/` = zona de contenido de Claude (`algsets.json`, `lessons.json`, `VERIFICACION.md`).
   `content-drop/333-222/` = textos y ejercicios del principiante (se integran a mano, ver su `CAMBIOS.md`).
   `content-drop/_simuladores/` = scripts de verificación de Claude.
-- **En curso: Fase 14 "Blindaje WCA" (Codex).**
-  A) integrar `content-drop/333-222` (incluye el solucionador principiante usando solo los 4 algoritmos),
-  B) prueba de contrato única para todos los WCA,
-  C) `SHOW_UNOFFICIAL`,
-  D) e2e de Square-1 a 30 s y medir la primera mezcla,
-  E) e2e de respaldo FMC/MBLD estable en CI.
-  *(Confirmar en el reporte de Codex que D y E estén incluidos.)*
+- **Fase 14 "Blindaje WCA": cerrada** (commit `feat: blinda los catálogos WCA y la visibilidad de puzzles`, push 24-11).
+  A, B, C y E hechos; diagnóstico `FALLAS: 0`, 204 unitarias, 38 e2e. **D quedó pendiente** (ver pendientes).
+- Corrección de Claude tras la Fase 14: en el solucionador, las 4 etapas de CFOP 4LLL enlazan a `oll3`/`pll3`
+  (antes a las lecciones principiante, que ahora enseñan otras secuencias). Prueba en `tests/unit/solver.test.ts`.
 
 ## 5. Pendientes
-1. **Cerrar la Fase 14:** reporte de Codex → Claude lo revisa → diagnóstico → prueba manual
-   (lecciones principiante 3x3/2x2, solucionador en modo principiante) → commit → push → Actions.
+1. **Fase 14-D (Codex):** e2e de Square-1 con espera de 30 s y medición de la primera mezcla
+   (`tests/e2e/side-events.spec.ts` sigue en 10 s; `audit-flows.spec.ts` en 15 s). Prompt entregado a Carlos.
 2. **Lecciones que faltan (pedir ok a Carlos antes):** 5x5, 6x6, 7x7, 3BLD/4BLD/5BLD/MBLD, FMC, OH. Tienen timer, no academia.
 3. **Fases siguientes:** smart cubes y Stackmat → app APK/escritorio. Puzzles personalizados: después del lanzamiento.
-4. **Antes del lanzamiento:**
+4. **`PRE-LANZAMIENTO` (se revisa al final de todo):**
    - `UNLOCK_ALL = false` y `SHOW_UNOFFICIAL = false` (buscar todas las `DEV-FLAG`).
    - Actualizar `CUBELAB_RELEASE_REF`.
    - cubing.js: fijada en 0.63.8, hay 0.66.1. Evaluar en una fase aparte con todas las pruebas; no actualizar a ciegas.

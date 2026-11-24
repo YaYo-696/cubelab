@@ -409,13 +409,14 @@ export async function solvePuzzle(
         async function finish(
             set: string,
             goal: StageGoal,
-            lesson: string,
+            stage: string,
             ids?: string[],
             allowBottom?: boolean,
+            lesson = stage,
         ) {
             const selection = await lastLayer(state, solved, cube, set, goal, lesson, ids, allowBottom);
             const { alg, lessonId, caseId, caseName, main, before, after } = selection;
-            add(lesson, alg, (p) => matchesStage(p, solved, goal), {
+            add(stage, alg, (p) => matchesStage(p, solved, goal), {
                 lessonId,
                 caseId,
                 mainAlgorithm: main,
@@ -471,18 +472,18 @@ export async function solvePuzzle(
             await finish('fullOLL', 'orientation', 'oll3');
             await finish('fullPLL', 'solved', 'pll3');
         } else {
-            await finish('oll333', 'edgeOrientation', 'yellowCross', ['dot', 'el', 'line']);
-            await finish('oll333', 'orientation', 'orient', [
-                'sune',
-                'antisune',
-                'pi',
-                'h',
-                't',
-                'l',
-                'u',
-            ]);
-            await finish('pll333', 'cornerPermutation', 'permCorners', ['tperm', 'yperm']);
-            await finish('pll333', 'solved', 'permEdges', ['ua', 'ub', 'hperm', 'zperm']);
+            // CFOP 4LLL keeps the beginner stage names, but its cases are taught in oll3/pll3.
+            await finish('oll333', 'edgeOrientation', 'yellowCross', ['dot', 'el', 'line'], undefined, 'oll3');
+            await finish(
+                'oll333',
+                'orientation',
+                'orient',
+                ['sune', 'antisune', 'pi', 'h', 't', 'l', 'u'],
+                undefined,
+                'oll3',
+            );
+            await finish('pll333', 'cornerPermutation', 'permCorners', ['tperm', 'yperm'], undefined, 'pll3');
+            await finish('pll333', 'solved', 'permEdges', ['ua', 'ub', 'hperm', 'zperm'], undefined, 'pll3');
         }
     }
     if (initialFrame) {
