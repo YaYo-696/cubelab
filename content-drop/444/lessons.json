@@ -1,0 +1,175 @@
+{
+  "version": 1,
+  "lessons": [
+    {
+      "id": "444-notation",
+      "title": {
+        "es": "Notación del 4x4",
+        "en": "4x4 notation"
+      },
+      "objective": {
+        "es": "Leer giros exteriores, dobles e interiores.",
+        "en": "Read outer, wide and inner-slice turns."
+      },
+      "body": {
+        "es": "Las caras son las del 3x3: **R L U D F B**, con ', 2 o nada.\n\n- **Rw** gira las 2 capas de la derecha juntas (también se escribe **2Rw**). En esta app, la letra minúscula **r** significa lo mismo que **Rw**.\n- **2R** gira solo la segunda capa desde la derecha (la capa interior).\n- **3Rw** gira 3 capas juntas (en 4x4 equivale a girar todo menos L).\n- **x, y, z** giran el cubo completo.\n\n**Ojo con otros tutoriales:** muchos sitios escriben **r** para la capa interior (lo que aquí es **2R**). Todos los algoritmos de esta academia ya están traducidos a la notación de la app.",
+        "en": "Faces are the same as on the 3x3: **R L U D F B**, with ', 2 or nothing.\n\n- **Rw** turns the 2 right layers together (also written **2Rw**). In this app, lowercase **r** means the same as **Rw**.\n- **2R** turns only the second layer from the right (the inner slice).\n- **3Rw** turns 3 layers together (on a 4x4 that is everything except L).\n- **x, y, z** rotate the whole cube.\n\n**Watch out with other tutorials:** many sites write **r** for the inner slice (what is **2R** here). Every algorithm in this academy is already translated to the app's notation."
+      },
+      "algSetRefs": [],
+      "demos": [
+        {
+          "setup": "",
+          "alg": "Rw"
+        },
+        {
+          "setup": "",
+          "alg": "2R"
+        },
+        {
+          "setup": "",
+          "alg": "Uw"
+        }
+      ],
+      "prerequisites": []
+    },
+    {
+      "id": "444-centers",
+      "title": {
+        "es": "Centros",
+        "en": "Centers"
+      },
+      "objective": {
+        "es": "Formar los 6 centros de 2x2.",
+        "en": "Build the 6 2x2 centers."
+      },
+      "body": {
+        "es": "Cada cara del 4x4 tiene un centro de 4 piezas que debes juntar. Es intuitivo:\n\n1. Arma un centro completo (por ejemplo blanco) y luego el **opuesto** (amarillo) usando giros de capa interior como 2R o Rw y giros de cara.\n2. Arma los 4 centros restantes respetando el orden de colores del 3x3 (con blanco arriba y verde al frente, el rojo va a la derecha). Si te equivocas aquí, el cubo no se puede terminar como un 3x3.\n\nTruco: forma primero barras de 2 piezas y luego une dos barras.",
+        "en": "Each 4x4 face has a 4-piece center you must assemble. It is intuitive:\n\n1. Build one full center (for example white) and then the **opposite** one (yellow) using inner-layer turns like 2R or Rw plus face turns.\n2. Build the remaining 4 centers keeping the 3x3 color scheme (with white on top and green in front, red goes on the right). If you get this wrong, the cube cannot be finished like a 3x3.\n\nTip: build 2-piece bars first, then join two bars."
+      },
+      "algSetRefs": [],
+      "demos": [],
+      "prerequisites": [
+        "444-notation"
+      ]
+    },
+    {
+      "id": "444-edges",
+      "title": {
+        "es": "Emparejar aristas",
+        "en": "Pair the edges"
+      },
+      "objective": {
+        "es": "Juntar las 12 aristas dobles.",
+        "en": "Join the 12 double edges."
+      },
+      "body": {
+        "es": "Cada arista del 4x4 son dos piezas que deben quedar juntas.\n\n1. Con los centros armados, busca dos mitades iguales, ponlas a la misma altura (una en FL y otra en FR) y únelas con Uw o Dw, guarda la arista nueva arriba con un giro de cara y deshaz el Uw/Dw. Así no rompes los centros.\n2. Repite hasta tener 10 aristas emparejadas.\n3. **Últimas 2 aristas:** con las mitades sueltas en FL y FR, usa **Dw R F' U R' F Dw'**. Comprobado en el simulador: cambia una mitad de FR por una mitad de FL y no toca ningún centro. Las demás piezas que mueve se ordenan después, en la etapa 3x3.",
+        "en": "Each 4x4 edge is two pieces that must end up together.\n\n1. With centers done, find two matching halves, place them at the same height (one in FL and one in FR) and join them with Uw or Dw, store the new edge on top with a face turn, and undo the Uw/Dw. This way you don't break the centers.\n2. Repeat until 10 edges are paired.\n3. **Last 2 edges:** with the loose halves in FL and FR, use **Dw R F' U R' F Dw'**. Checked in the simulator: it swaps a half of FR with a half of FL and touches no center. The other pieces it moves are sorted out later, in the 3x3 stage."
+      },
+      "algSetRefs": [],
+      "demos": [
+        {
+          "setup": "",
+          "alg": "Dw R F' U R' F Dw'"
+        }
+      ],
+      "prerequisites": [
+        "444-centers"
+      ]
+    },
+    {
+      "id": "444-3x3",
+      "title": {
+        "es": "Resolver como 3x3",
+        "en": "Solve like a 3x3"
+      },
+      "objective": {
+        "es": "Terminar con el método del 3x3.",
+        "en": "Finish with the 3x3 method."
+      },
+      "body": {
+        "es": "Con centros y aristas emparejados, el 4x4 se resuelve como un 3x3 usando **solo giros exteriores** (R, U, F...). Usa lo que ya aprendiste en la Academia de 3x3: cruz, F2L, OLL y PLL.\n\nHay dos situaciones que en un 3x3 son imposibles: las **paridades**. Aparecen en la última capa y tienen sus propias lecciones a continuación.",
+        "en": "With centers and paired edges, the 4x4 is solved like a 3x3 using **outer turns only** (R, U, F...). Use what you already learned in the 3x3 Academy: cross, F2L, OLL and PLL.\n\nThere are two situations that are impossible on a 3x3: the **parities**. They show up in the last layer and have their own lessons next."
+      },
+      "algSetRefs": [],
+      "demos": [],
+      "prerequisites": [
+        "444-edges"
+      ]
+    },
+    {
+      "id": "444-oll-parity",
+      "title": {
+        "es": "Paridad OLL",
+        "en": "OLL parity"
+      },
+      "objective": {
+        "es": "Arreglar una arista volteada imposible en 3x3.",
+        "en": "Fix a single flipped edge (impossible on 3x3)."
+      },
+      "body": {
+        "es": "Si al orientar la última capa te queda un número **impar** de aristas volteadas (1 o 3), tienes paridad OLL.\n\n- Pon una arista volteada adelante (UF) y aplica la **paridad OLL rápida** (cubeskills). Después sigue con OLL normal.\n- La **versión pura** voltea solo esa arista y no toca nada más: sirve si el resto ya estaba resuelto.\n\nLas dos están en el Entrenador.",
+        "en": "If, while orienting the last layer, you get an **odd** number of flipped edges (1 or 3), you have OLL parity.\n\n- Put a flipped edge in front (UF) and apply the **fast OLL parity** (cubeskills). Then continue with normal OLL.\n- The **pure version** flips only that edge and nothing else: useful when everything else was already solved.\n\nBoth are in the Trainer."
+      },
+      "algSetRefs": [
+        "444-oll-parity"
+      ],
+      "demos": [
+        {
+          "setup": "2R2 B2 2L F2 2R' F2 U2 2R' U2 2R U2 2L' U2 B2 2R2",
+          "alg": "2R2 B2 U2 2L U2 2R' U2 2R U2 F2 2R F2 2L' B2 2R2"
+        }
+      ],
+      "prerequisites": [
+        "444-3x3"
+      ]
+    },
+    {
+      "id": "444-pll-parity",
+      "title": {
+        "es": "Paridad PLL",
+        "en": "PLL parity"
+      },
+      "objective": {
+        "es": "Arreglar permutaciones imposibles en 3x3.",
+        "en": "Fix permutations that are impossible on 3x3."
+      },
+      "body": {
+        "es": "Si en la última capa ves dos aristas o dos esquinas intercambiadas y nada más, tienes paridad PLL.\n\n**Regla simple:** aplica **2R2 U2 2R2 Uw2 2R2 Uw2 U2**, que intercambia las aristas de adelante y atrás (UF y UB). Después, lo que quede es siempre una PLL normal de 3x3: resuélvela como siempre.\n\nEl Entrenador tiene los 4 casos puros con su algoritmo directo: aristas opuestas, aristas vecinas, esquinas vecinas y esquinas en diagonal. Los de esquinas son la paridad seguida de una PLL de 3x3 (combinación verificada en el simulador).",
+        "en": "If the last layer shows two swapped edges or two swapped corners and nothing else, you have PLL parity.\n\n**Simple rule:** apply **2R2 U2 2R2 Uw2 2R2 Uw2 U2**, which swaps the front and back edges (UF and UB). Whatever remains is always a normal 3x3 PLL: solve it as usual.\n\nThe Trainer has the 4 pure cases with a direct algorithm: opposite edges, adjacent edges, adjacent corners and diagonal corners. The corner ones are the parity followed by a 3x3 PLL (combination checked in the simulator)."
+      },
+      "algSetRefs": [
+        "444-pll-parity"
+      ],
+      "demos": [
+        {
+          "setup": "U2 Uw2 2R2 Uw2 2R2 U2 2R2",
+          "alg": "2R2 U2 2R2 Uw2 2R2 Uw2 U2"
+        }
+      ],
+      "prerequisites": [
+        "444-oll-parity"
+      ]
+    },
+    {
+      "id": "444-plan",
+      "title": {
+        "es": "Plan de práctica",
+        "en": "Practice plan"
+      },
+      "objective": {
+        "es": "Bajar tiempos en 4x4.",
+        "en": "Lower your 4x4 times."
+      },
+      "body": {
+        "es": "1. Primero termina el 4x4 completo con el método de reducción, aunque sea lento.\n2. **Centros:** practica los dos primeros centros sin mirar el cubo entero; son el paso más largo.\n3. **Aristas:** apunta a emparejar sin pausas largas entre una arista y la siguiente.\n4. Aprende la paridad OLL rápida y la regla de la paridad PLL antes que cualquier otra cosa.\n5. Mide con Ao5 en el Timer y compara la parte de 3x3 con tus tiempos de 3x3.",
+        "en": "1. First finish the whole 4x4 with the reduction method, even if slowly.\n2. **Centers:** practise the first two centers without looking at the whole cube; it is the longest step.\n3. **Edges:** aim to pair without long pauses between one edge and the next.\n4. Learn the fast OLL parity and the PLL parity rule before anything else.\n5. Track Ao5 in the Timer and compare the 3x3 part with your 3x3 times."
+      },
+      "algSetRefs": [],
+      "demos": [],
+      "prerequisites": [
+        "444-pll-parity"
+      ]
+    }
+  ]
+}

@@ -11,6 +11,7 @@ import { useStatistics } from './useStatistics';
 import { db, solvesForEvent, type Solve, type Session } from '../core/storage/db';
 import { NotationError } from '../puzzles/notation';
 import { isCubePuzzle } from '../puzzles/events';
+import { supportsTwisty3d } from '../puzzles/visualization';
 import { CubeNet } from '../ui/CubeNet';
 import { useScrambles } from './useScrambles';
 import { useTimerInput } from './useTimerInput';
@@ -218,7 +219,7 @@ export function Timer({ mod, rules, prefs, t }: Props) {
         }
     }
     const cubeNet = isCubePuzzle(mod.id);
-    const supports3d = mod.visualization.twistyPuzzleId !== 'pyraminx-duo';
+    const supports3d = supportsTwisty3d(mod.visualization.twistyPuzzleId);
     const [showCube3d, setCube3d] = useState(prefs.timerPreview === '3D');
     const Preview = mod.ui?.preview,
         InputPanel = mod.ui?.inputPanel;

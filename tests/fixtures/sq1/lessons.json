@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "lessons": [
+    {
+      "id": "sq1-fixture-lesson",
+      "title": {
+        "es": "Prueba de importación",
+        "en": "Import test"
+      },
+      "objective": {
+        "es": "Comprobar el formato.",
+        "en": "Check the format."
+      },
+      "body": {
+        "es": "**Fixture técnico.**",
+        "en": "**Technical fixture.**"
+      },
+      "algSetRefs": [
+        "sq1-fixture"
+      ],
+      "demos": [
+        {
+          "setup": "(1, 0) /",
+          "alg": "/ (-1, 0)"
+        }
+      ],
+      "prerequisites": []
+    }
+  ]
+}

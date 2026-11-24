@@ -11,6 +11,7 @@ type DropRules = {
     setId: (id: string) => boolean;
     normalize: (alg: string, variant: boolean) => string;
     allowGenerated?: boolean;
+    applySetup?: (solved: KPattern, setup: string) => KPattern;
     verify: (
         solved: KPattern,
         target: KPattern,
@@ -88,7 +89,13 @@ export async function parseAcademyDrop(
             if (!caseGroups.has(group)) caseGroups.set(group, []);
             caseGroups.get(group)!.push(caseId);
             const referenceSetup = algorithm(entry.setup, where + '.setup', true);
-            const target = solved.applyAlg(referenceSetup);
+            const target = (() => {
+                try {
+                    return rules.applySetup ? rules.applySetup(solved, referenceSetup) : solved.applyAlg(referenceSetup);
+                } catch {
+                    return fail(where + '.setup', 'invalid setup for the puzzle model');
+                }
+            })();
             const source = str(entry.source, where + '.source');
             if (
                 !/^https?:\/\/[^\s/]+/i.test(source) &&

@@ -1,4 +1,4 @@
-import { cubeEvent, tetraEvent, skewbEvent, minxEvent, bigCubeEvent, type PuzzleId } from './events';
+import { cubeEvent, tetraEvent, skewbEvent, minxEvent, bigCubeEvent, sideEvent, type PuzzleId } from './events';
 export const registry = {
     '222': () => import('./222/module').then(m => m.default),
     '333': () => import('./333/module').then(m => m.default),
@@ -10,6 +10,8 @@ export const registry = {
     '555': () => import('./bigCube/module').then(m => m.makeBigCube('555')),
     '666': () => import('./bigCube/module').then(m => m.makeBigCube('666')),
     '777': () => import('./bigCube/module').then(m => m.makeBigCube('777')),
+    sq1: () => import('./sideEvents/module').then(m => m.makeSideEvent('sq1')),
+    clock: () => import('./sideEvents/module').then(m => m.makeSideEvent('clock')),
 };
 export const events = [
     { puzzleId: '222', rules: cubeEvent('222') },
@@ -23,6 +25,8 @@ export const events = [
     { puzzleId: '555', rules: bigCubeEvent('555') },
     { puzzleId: '666', rules: bigCubeEvent('666') },
     { puzzleId: '777', rules: bigCubeEvent('777') },
+    { puzzleId: 'sq1', rules: sideEvent('sq1') },
+    { puzzleId: 'clock', rules: sideEvent('clock') },
 ] as const;
 export function isPuzzleId(id: string): id is PuzzleId {
     return Object.hasOwn(registry, id);

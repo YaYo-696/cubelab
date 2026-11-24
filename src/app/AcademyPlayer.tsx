@@ -2,6 +2,8 @@ import './academy.css';
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { TwistyPlayer } from 'cubing/twisty';
 import { Alg } from 'cubing/alg';
+import { clockPlayerAlg } from '../puzzles/sideEvents/clock';
+import { supportsTwisty3d } from '../puzzles/visualization';
 type T = (key: string) => string;
 export type PlayerProps = {
     puzzle: string;
@@ -14,13 +16,13 @@ export type PlayerProps = {
     t: T;
 };
 const Duo = lazy(() => import('./DuoPlayer').then((m) => ({ default: m.DuoPlayer })));
-const playerPuzzles = ['2x2x2', '3x3x3', '4x4x4', '5x5x5', '6x6x6', '7x7x7', 'pyraminx', 'skewb', 'megaminx'] as const;
+const playerPuzzles = ['2x2x2', '3x3x3', '4x4x4', '5x5x5', '6x6x6', '7x7x7', 'pyraminx', 'skewb', 'megaminx', 'square1', 'clock'] as const;
 type PlayerPuzzle = (typeof playerPuzzles)[number];
 export function AcademyPlayer(props: PlayerProps) {
     if (props.puzzle === 'pyraminx-duo')
         return <Suspense fallback={<p>{props.t('aLoading')}</p>}><Duo {...props} /></Suspense>;
     const puzzle = playerPuzzles.find((id) => id === props.puzzle) ?? '3x3x3';
-    return <Twisty {...props} puzzle={puzzle} />;
+    return <Twisty {...props} puzzle={puzzle} flatOnly={props.flatOnly || !supportsTwisty3d(puzzle)} />;
 }
 function Twisty({
     puzzle,
@@ -42,9 +44,10 @@ function Twisty({
     useEffect(() => {
         const config = {
             puzzle,
-            alg,
-            experimentalSetupAlg: !timerPreview && (puzzle === '2x2x2' || puzzle === '3x3x3')
-                ? ('z2 ' + setup).trim() : setup,
+            alg: puzzle === 'clock' ? clockPlayerAlg(alg) : alg,
+            experimentalSetupAlg: puzzle === 'clock' ? clockPlayerAlg(setup)
+                : !timerPreview && (puzzle === '2x2x2' || puzzle === '3x3x3')
+                    ? ('z2 ' + setup).trim() : setup,
             controlPanel: 'none' as const,
             background: 'none' as const,
             tempoScale: rate.current,

@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "sets": [
+    {
+      "id": "clock-fixture",
+      "name": {
+        "es": "Fixture técnico",
+        "en": "Technical fixture"
+      },
+      "stage": "Synthetic import check",
+      "cases": [
+        {
+          "id": "clock-fixture-case",
+          "name": {
+            "es": "Caso de prueba",
+            "en": "Test case"
+          },
+          "group": "Fixture",
+          "setup": "U UR1+",
+          "algs": [
+            "UR1- y2"
+          ],
+          "source": "generated: fixture"
+        }
+      ]
+    }
+  ]
+}

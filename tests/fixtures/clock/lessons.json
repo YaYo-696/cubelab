@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "lessons": [
+    {
+      "id": "clock-fixture-lesson",
+      "title": {
+        "es": "Prueba de importación",
+        "en": "Import test"
+      },
+      "objective": {
+        "es": "Comprobar el formato.",
+        "en": "Check the format."
+      },
+      "body": {
+        "es": "**Fixture técnico.**",
+        "en": "**Technical fixture.**"
+      },
+      "algSetRefs": [
+        "clock-fixture"
+      ],
+      "demos": [
+        {
+          "setup": "U UR1+",
+          "alg": "UR1- y2"
+        }
+      ],
+      "prerequisites": []
+    }
+  ]
+}

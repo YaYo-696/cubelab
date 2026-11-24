@@ -1,6 +1,6 @@
 # CubeLab
 
-PWA bilingüe de speedcubing para 2×2, 3×3, 3×3 a ciegas, Pyraminx, Pyraminx Duo, Skewb, Megaminx y cubos grandes de 4×4 a 7×7. Incluye Timer, sesiones y estadísticas, una Academia con catálogos verificados, un Solucionador por etapas y un Entrenador con repetición espaciada. Las funciones principales quedan disponibles sin conexión después de preparar la instalación.
+PWA bilingüe de speedcubing para 2×2, 3×3, 3×3 a ciegas, Pyraminx, Pyraminx Duo, Skewb, Megaminx y cubos grandes de 4×4 a 7×7, Square-1 y Clock. Incluye Timer, sesiones y estadísticas, una Academia con catálogos verificados, un Solucionador por etapas y un Entrenador con repetición espaciada. Las funciones principales quedan disponibles sin conexión después de preparar la instalación.
 
 [Changelog 1.0.0](CHANGELOG.md) · [Arquitectura](docs/ARQUITECTURA.md) · [Decisiones](docs/DECISIONES.md) · [Fuentes](docs/FUENTES.md)
 
@@ -54,6 +54,12 @@ Academia y Entrenador cargan el contrato v1 desde `content-drop/minx/algsets.jso
 En Timer, elige **4×4**, **5×5**, **6×6** o **7×7** y alterna entre 2D y 3D. Los cuatro tienen 15 s de inspección. El 4×4 y el 5×5 usan Ao5. El 6×6 y el 7×7 usan Mo3.
 
 Academia y Entrenador de 4×4 cargan el contrato v1 desde `content-drop/444/algsets.json` y `content-drop/444/lessons.json`. Los IDs de set usan el prefijo `444-`. Hay un fixture técnico para cuando falten ambos archivos. [Notación de contenido y rendimiento](docs/DECISIONES.md#fase-10--cubos-grandes)
+
+## Square-1 y Clock
+
+Ambos eventos usan Ao5, inspección de 15 s y vista 2D. Square-1 admite `(X, Y)` y `/` y marca un corte que partiría una pieza. Clock admite nombres de pines, giros con signo y `y2`. Desde Estadísticas se puede abrir la mezcla en Solucionador, que indica que estos eventos aún no disponen de solución.
+
+Academia y Entrenador leen el contrato v1 desde `content-drop/sq1/` y `content-drop/clock/`. Cuando faltan los dos JSON de un evento, se carga su fixture técnico. [Reglas y modelos](docs/DECISIONES.md#fase-11--square-1-y-clock)
 
 ## Publicación
 

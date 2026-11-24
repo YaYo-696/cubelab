@@ -1,4 +1,10 @@
 {
+  "sq1": "Square-1",
+  "clock": "Clock",
+  "sq1Fixture": "Technical Square-1 fixture",
+  "clockFixture": "Technical Clock fixture",
+  "sq1Content": "Lessons and cases",
+  "clockContent": "Lessons and cases",
   "444": "4×4",
   "555": "5×5",
   "666": "6×6",
@@ -80,7 +86,6 @@
   "train": "Practice this case and solve it with the inverse move.",
   "pair": "Pair {pair}",
   "caseName": "Case {caseName}",
-  "clock": "Time",
   "es": "Español",
   "en": "English",
   "333bf": "3×3 blindfolded",

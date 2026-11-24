@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "sets": [
+    {
+      "id": "444-oll-parity",
+      "name": {
+        "es": "4x4 · Paridad OLL",
+        "en": "4x4 · OLL parity"
+      },
+      "stage": "oll-parity",
+      "cases": [
+        {
+          "id": "444-oll-1",
+          "name": {
+            "es": "Paridad OLL (rápida)",
+            "en": "OLL parity (fast)"
+          },
+          "group": "Paridad OLL / OLL parity",
+          "setup": "Rw2 B2 Lw F2 Rw' F2 U2 Rw' U2 Rw U2 Lw' U2 B2 Rw2",
+          "algs": [
+            "Rw U2 x Rw U2 Rw U2 Rw' U2 Lw U2 Rw' U2 Rw U2 Rw' U2 Rw'",
+            "Rw2 B2 U2 Lw U2 Rw' U2 Rw U2 F2 Rw F2 Lw' B2 Rw2"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/easy-parity-cases.pdf"
+        },
+        {
+          "id": "444-oll-2",
+          "name": {
+            "es": "Paridad OLL (pura)",
+            "en": "OLL parity (pure)"
+          },
+          "group": "Paridad OLL / OLL parity",
+          "setup": "2R2 B2 2L F2 2R' F2 U2 2R' U2 2R U2 2L' U2 B2 2R2",
+          "algs": [
+            "2R2 B2 U2 2L U2 2R' U2 2R U2 F2 2R F2 2L' B2 2R2"
+          ],
+          "source": "https://kewbz.co.uk/blogs/solutions/4x4-parity-algorithms-oll-pll-algs-how-to-solve-a-4x4-rubiks-cube"
+        }
+      ]
+    },
+    {
+      "id": "444-pll-parity",
+      "name": {
+        "es": "4x4 · Paridad PLL",
+        "en": "4x4 · PLL parity"
+      },
+      "stage": "pll-parity",
+      "cases": [
+        {
+          "id": "444-pll-1",
+          "name": {
+            "es": "Aristas opuestas",
+            "en": "Opposite edges"
+          },
+          "group": "Aristas / Edges",
+          "setup": "U2 Uw2 2R2 Uw2 2R2 U2 2R2",
+          "algs": [
+            "2R2 U2 2R2 Uw2 2R2 Uw2 U2"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/easy-parity-cases.pdf"
+        },
+        {
+          "id": "444-pll-2",
+          "name": {
+            "es": "Aristas vecinas",
+            "en": "Adjacent edges"
+          },
+          "group": "Aristas / Edges",
+          "setup": "R' U R U' 2U2 2R2 Uw2 2R2 U2 2R2 U R' U' R",
+          "algs": [
+            "R' U R U' 2R2 U2 2R2 Uw2 2R2 2U2 U R' U' R"
+          ],
+          "source": "https://ca.speedcube.com.au/blogs/speedcubing-solutions/4x4-pll-parity-algorithms"
+        },
+        {
+          "id": "444-pll-3",
+          "name": {
+            "es": "Esquinas vecinas",
+            "en": "Adjacent corners"
+          },
+          "group": "Esquinas / Corners",
+          "setup": "F R U' R' U R U R2 F' R U R U' R' U Uw2 2R2 Uw2 2R2 U2 2R2",
+          "algs": [
+            "2R2 U2 2R2 Uw2 2R2 Uw2 U' R U R' U' R' F R2 U' R' U' R U R' F'"
+          ],
+          "source": "generated:[PLL parity de cubeskills] + PLL de 3x3 (combinación verificada)"
+        },
+        {
+          "id": "444-pll-4",
+          "name": {
+            "es": "Esquinas en diagonal",
+            "en": "Diagonal corners"
+          },
+          "group": "Esquinas / Corners",
+          "setup": "R' U R' F R F' R U' R' F' U F R U R' U' R U Uw2 2R2 Uw2 2R2 U2 2R2",
+          "algs": [
+            "2R2 U2 2R2 Uw2 2R2 Uw2 U' R' U R U' R' F' U' F R U R' F R' F' R U' R"
+          ],
+          "source": "generated:[PLL parity de cubeskills] + PLL de 3x3 (combinación verificada)"
+        }
+      ]
+    }
+  ]
+}

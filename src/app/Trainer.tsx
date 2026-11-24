@@ -7,6 +7,7 @@ import { openingMoves } from '../core/academy/execution';
 import { isFullPattern } from '../core/academy/lastLayer';
 import type { AcademyCase } from '../core/academy/cases';
 import { isCubePuzzle } from '../puzzles/events';
+import { supportsTwisty3d } from '../puzzles/visualization';
 import { LastLayerImage } from './LastLayerImage';
 import type { TrainingSet } from '../core/trainer/catalog';
 import {
@@ -467,7 +468,7 @@ function Session({
             {mode === 'recognition' && (
                 <>
                     <p>{t('trainerScore', score)}</p>
-                    {card && mod.visualization.twistyPuzzleId !== 'pyraminx-duo' && (
+                    {card && supportsTwisty3d(mod.visualization.twistyPuzzleId) && (
                         <button type="button" onClick={() => setView(!view3d)}>
                             {t(view3d ? 'trainerShowTop' : 'trainerShow3d')}
                         </button>

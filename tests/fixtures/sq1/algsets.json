@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "sets": [
+    {
+      "id": "sq1-fixture",
+      "name": {
+        "es": "Fixture técnico",
+        "en": "Technical fixture"
+      },
+      "stage": "Synthetic import check",
+      "cases": [
+        {
+          "id": "sq1-fixture-case",
+          "name": {
+            "es": "Caso de prueba",
+            "en": "Test case"
+          },
+          "group": "Fixture",
+          "setup": "(1, 0) /",
+          "algs": [
+            "/ (-1, 0)"
+          ],
+          "source": "generated: fixture"
+        }
+      ]
+    }
+  ]
+}
