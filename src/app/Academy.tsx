@@ -10,12 +10,14 @@ import { glossary } from '../core/academy/glossary';
 import { predefinedPractice } from '../core/academy/practice';
 import { caseSetup, type AcademyCase } from '../core/academy/cases';
 import { openingMoves } from '../core/academy/execution';
+import { videoTopicForLesson, type VideoLanguage } from '../content/videoTopics';
+import { RecommendedVideos } from './RecommendedVideos';
 import './academy.css';
 
 const Markdown = lazy(() => import('react-markdown'));
 const Player = lazy(() => import('./AcademyPlayer').then((m) => ({ default: m.AcademyPlayer })));
 type T = (key: string, params?: Record<string, string | number>) => string;
-type Props = { mod: PuzzleModule<string>; t: T };
+type Props = { mod: PuzzleModule<string>; t: T; language: VideoLanguage };
 
 function LessonView({
     mod,
@@ -23,8 +25,10 @@ function LessonView({
     course,
     lesson,
     completed,
+    language,
 }: { course: Course; lesson: Lesson; completed: boolean } & Props) {
     const method = exerciseMethod(lesson);
+    const videoTopic = videoTopicForLesson(course.id, lesson.id);
     const exerciseRequest = useRef<AbortController>();
     const [exercise, setExercise] = useState<Awaited<ReturnType<typeof generatedPractice>>>();
     const [exerciseStatus, setExerciseStatus] = useState('');
@@ -375,11 +379,12 @@ function LessonView({
                 )}
             </form>
             {error && <p role="alert">{t('failed')}</p>}
+            {videoTopic && <RecommendedVideos topic={videoTopic} language={language} t={t} />}
         </section>
     );
 }
 
-export function Academy({ mod, t, lessonLink }: Props & { lessonLink?: string }) {
+export function Academy({ mod, t, language, lessonLink }: Props & { lessonLink?: string }) {
     const [course, setCourse] = useState<Course>(),
         [progress, setProgress] = useState<Completion[]>([]);
     const [selected, setSelected] = useState(''),
@@ -452,6 +457,7 @@ export function Academy({ mod, t, lessonLink }: Props & { lessonLink?: string })
                     course={course}
                     lesson={lesson}
                     completed={done(lesson.id)}
+                    language={language}
                     mod={mod}
                     t={t}
                 />

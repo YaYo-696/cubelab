@@ -202,7 +202,7 @@ export default function App() {
                             />
                         )}
                         {route === 'academy' && ready && (
-                            <Academy key={puzzle} mod={ready} t={t} lessonLink={id} />
+                            <Academy key={puzzle} mod={ready} t={t} language={appearance.language} lessonLink={id} />
                         )}
                         {route === 'evaluation' && ready && (
                             isTetra(puzzle) ? <p>{t('evaluationNoQuestions')}</p> : <Evaluation key={puzzle} mod={ready} t={t} />

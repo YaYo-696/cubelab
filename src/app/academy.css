@@ -55,6 +55,18 @@
 .mix-board .cube-primary[data-visualization='2D'] twisty-player {
     height: 130px;
 }
+.recommended-videos {
+    margin-top: 1.25rem;
+}
+.recommended-videos .video-language {
+    border: 1px solid var(--control-line);
+    border-radius: 0.35rem;
+    padding-inline: 0.35rem;
+    text-decoration: none;
+}
+.recommended-videos [aria-disabled='true'] {
+    color: var(--muted);
+}
 .academy .lesson-markdown ul,
 .academy .lesson-markdown ol {
     display: block;
@@ -100,6 +112,18 @@
 .mix-board .duo-net,
 .mix-board .cube-primary[data-visualization='2D'] twisty-player {
     height: 130px;
+}
+.recommended-videos {
+    margin-top: 1.25rem;
+}
+.recommended-videos .video-language {
+    border: 1px solid var(--control-line);
+    border-radius: 0.35rem;
+    padding-inline: 0.35rem;
+    text-decoration: none;
+}
+.recommended-videos [aria-disabled='true'] {
+    color: var(--muted);
 }
 .academy .lesson-markdown ul,
 .academy .lesson-markdown ol {

@@ -27,6 +27,10 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\diagnostico.ps1 
 
 El diagnóstico incluye tipos, lint, filtros de mezclas, Vitest, build, manifiesto, precache y Playwright. Guarda el detalle en `diagnostico-*.log`. La variante `-Rapido` omite comprobaciones largas. En Linux, CI usa Chromium de Playwright 1.65.1 en `ubuntu-latest`, compatible con Ubuntu 26.04. Para probar en otro Chromium ya instalado, establece `CUBELAB_E2E_BROWSER=chromium` y apunta `CUBELAB_E2E_EXECUTABLE` al ejecutable.
 
+## Videos recomendados
+
+Las lecciones con recursos asociados muestran enlaces externos a YouTube y una búsqueda en el idioma de la app. Cuando el navegador está sin conexión, la sección conserva los títulos y muestra «Requiere internet».
+
 ## Pyraminx y Pyraminx Duo
 
 - **Pyraminx** usa el evento WCA con inspección de 15 s y Ao5. En Timer puedes alternar la vista plana y 3D. El Solucionador muestra la secuencia óptima en dos etapas, capas y puntas.

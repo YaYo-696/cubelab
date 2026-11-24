@@ -90,3 +90,7 @@ Los workers de mezclas y de casos tienen puntos de entrada y clientes independie
 - **Carga.** Cada worker importa el motor tetraédrico solo al recibir un trabajo de estos puzzles. El motor construye la tabla de capas de Pyraminx una vez por worker y conserva las 933.120 distancias alcanzables en memoria. Esto evita una tabla precacheada y permite reutilizar la tabla al precargar la siguiente mezcla o resolver otro estado.
 - **Contenido y Markdown.** Los dos JSON del drop se cargan bajo demanda y se verifican íntegramente antes de entregar catálogos. Las lecciones usan un chunk diferido de `react-markdown@10.1.0` (37 kB gzip en producción), con el saneamiento de enlaces por defecto y sin habilitar HTML crudo. El fixture usa un ID de curso propio para no transferir progreso de prueba al curso real.
 - **CI.** Playwright quedó fijado en 1.65.1. Sus requisitos oficiales incluyen Ubuntu 26.04 y el paquete instalado declara tanto sus dependencias nativas como sus descargas de Chromium y Chromium Headless Shell. Se restaura `ubuntu-latest`; Windows conserva el canal Edge. [Requisitos de Playwright](https://playwright.dev/docs/intro#system-requirements)
+
+## Videos recomendados en Academia
+
+El catálogo conserva los enlaces del drop y se asocia por ID de curso y lección. La app usa enlaces externos HTTPS de YouTube y la búsqueda del idioma activo. La sección escucha los cambios de conexión y desactiva los enlaces sin red. No añade iframes ni dependencias.
