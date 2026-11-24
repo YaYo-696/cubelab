@@ -137,7 +137,8 @@ export function choices<T extends { id: string }>(
 export function groupFor(set: TrainingSet, caseId: string) {
     return set.groups.find((group) => !group.ids || group.ids.includes(caseId));
 }
-export function groupOpen(course: Course, progress: readonly Completion[], lessonId: string) {
+export function groupOpen(course: Course, progress: readonly Completion[], lessonId?: string) {
+    if (!lessonId) return true;
     const lesson = course.modules.flatMap((m) => m.lessons).find((l) => l.id === lessonId);
     return !!lesson && unlocked(course, lesson, progress);
 }

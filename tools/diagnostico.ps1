@@ -1,4 +1,4 @@
-﻿<#
+<#
   CubeLab - Diagnostico del proyecto (Fase 6)
   Revisa herramientas, git, dependencias, el navegador de Playwright
   y corre las comprobaciones del proyecto. Genera
@@ -210,7 +210,7 @@ if ($Rapido) {
   Add-Result 'Build' 'OMITIDO' 'modo -Rapido'
 } else {
   Write-Host '     (los tests unitarios generan miles de mezclas: pueden tardar varios minutos)' -ForegroundColor DarkGray
-  $unit = Invoke-Step 'Tests unitarios (timer, mezclas, Dexie, respaldo, rendimiento, academia, catalogos, evaluacion, solucionador y entrenador)' 'npm test'
+  $unit = Invoke-Step 'Tests unitarios (timer, mezclas, Dexie, respaldo, rendimiento, academia, catalogos, evaluacion, solucionador, entrenador y puzzles tetraedricos)' 'npm test'
   if ($unit.Code -eq 0) { Add-Result 'Tests unitarios' 'OK' "pasaron ($($unit.Secs) s)" }
   else { Add-Result 'Tests unitarios' 'FALLA' 'hay tests fallando'; Show-Tail $unit 30 }
 

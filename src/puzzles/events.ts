@@ -1,6 +1,17 @@
 import type { EventRules } from '../core/contracts';
 export const minimumDistances = { '222': 4, '333': 2, pyram: 6, skewb: 7, sq1: 11 } as const;
 export type CubeId = '222' | '333';
+export type TetraId = 'pyram' | 'pyramduo';
+export type PuzzleId = CubeId | TetraId;
+export function isTetra(puzzle: string): puzzle is TetraId {
+    return puzzle === 'pyram' || puzzle === 'pyramduo';
+}
+export function tetraEvent(puzzle: TetraId): EventRules {
+    const official = puzzle === 'pyram';
+    return { id: puzzle, wcaEventId: official ? puzzle : undefined, nameKey: puzzle,
+        officialFormats: official ? ['ao5'] : [], inspectionSeconds: 15, scoring: 'time',
+        minSolveDistance: official ? minimumDistances.pyram : 1, randomOrientation: false };
+}
 export function cubeEvent(puzzle: CubeId, blind = false): EventRules {
     const id = blind ? puzzle + 'bf' : puzzle;
     if (blind && puzzle !== '333')

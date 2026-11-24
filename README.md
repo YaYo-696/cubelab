@@ -1,6 +1,6 @@
 # CubeLab
 
-PWA bilingüe de speedcubing para 2×2, 3×3 y 3×3 a ciegas. Incluye Timer, sesiones y estadísticas, una Academia con catálogos verificados, un Solucionador por etapas y un Entrenador con repetición espaciada. Las funciones principales quedan disponibles sin conexión después de preparar la instalación.
+PWA bilingüe de speedcubing para 2×2, 3×3, 3×3 a ciegas, Pyraminx y Pyraminx Duo. Incluye Timer, sesiones y estadísticas, una Academia con catálogos verificados, un Solucionador por etapas y un Entrenador con repetición espaciada. Las funciones principales quedan disponibles sin conexión después de preparar la instalación.
 
 [Changelog 1.0.0](CHANGELOG.md) · [Arquitectura](docs/ARQUITECTURA.md) · [Decisiones](docs/DECISIONES.md) · [Fuentes](docs/FUENTES.md)
 
@@ -25,7 +25,13 @@ En Windows, ejecuta el diagnóstico de aceptación con Microsoft Edge:
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tools\diagnostico.ps1 -ConE2E
 ```
 
-El diagnóstico incluye tipos, lint, filtros de mezclas, Vitest, build, manifiesto, precache y Playwright. Guarda el detalle en `diagnostico-*.log`. La variante `-Rapido` omite comprobaciones largas. En Linux, CI usa Chromium de Playwright. Para probar en otro Chromium ya instalado, establece `CUBELAB_E2E_BROWSER=chromium` y apunta `CUBELAB_E2E_EXECUTABLE` al ejecutable.
+El diagnóstico incluye tipos, lint, filtros de mezclas, Vitest, build, manifiesto, precache y Playwright. Guarda el detalle en `diagnostico-*.log`. La variante `-Rapido` omite comprobaciones largas. En Linux, CI usa Chromium de Playwright 1.65.1 en `ubuntu-latest`, compatible con Ubuntu 26.04. Para probar en otro Chromium ya instalado, establece `CUBELAB_E2E_BROWSER=chromium` y apunta `CUBELAB_E2E_EXECUTABLE` al ejecutable.
+
+## Pyraminx y Pyraminx Duo
+
+- **Pyraminx** usa el evento WCA con inspección de 15 s y Ao5. En Timer puedes alternar la vista plana y 3D. El Solucionador muestra la secuencia óptima en dos etapas, capas y puntas.
+- **Pyraminx Duo** es un evento de práctica. La academia, el entrenador y el solucionador muestran un desplegado en 2D. Elige la solución óptima o el método de dos pasos.
+- Para integrar el contenido de Pyraminx, copia `algsets.json` y `lessons.json` v1 en `content-drop/pyram/`, junto con su informe `VERIFICACION.md`, y vuelve a compilar. Los tests verifican el drop activo y muestran el set, caso y variante cuando falla un algoritmo. Si no hay ningún JSON, se usa el fixture. Si solo hay uno, la importación falla. [Contrato y criterios](docs/ARQUITECTURA.md#puzzles-tetraédricos)
 
 ## Publicación
 
@@ -43,7 +49,7 @@ Lighthouse 13.6.0, perfil móvil, Chrome 157, perfil nuevo y build de producció
 | Accessibility | 100 | 100 |
 | LCP | 2,0 s | 2,0 s |
 
-El visor 3D se ejecuta bajo demanda. Una prueba con el service worker bloqueado verifica que Timer en 2D no solicita el motor de 511 kB hasta habilitar la vista 3D. El service worker descarga una copia para uso sin conexión después de la carga inicial. El precache completo del preview ocupa alrededor de 3,03 MiB sin compresión. Incluye las lecciones, los catálogos y los módulos que usan sus workers para que sea posible abrirlos por primera vez en modo avión.
+El visor 3D se ejecuta bajo demanda. Una prueba con el service worker bloqueado verifica que Timer en 2D no solicita el motor de 511 kB hasta habilitar la vista 3D. El service worker descarga una copia para uso sin conexión después de la carga inicial. El precache de la fase 7 ocupa alrededor de 3,17 MiB sin compresión. Incluye las lecciones, los catálogos y los módulos que usan sus workers para que sea posible abrirlos por primera vez en modo avión.
 
 Lighthouse retiró la categoría PWA. La instalación se verifica mediante el manifiesto, el service worker, las pruebas offline y la instalación real en Android. [Criterio de Chrome](https://developer.chrome.com/blog/update-install-criteria)
 

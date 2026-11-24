@@ -1,0 +1,224 @@
+{
+  "version": 1,
+  "note": {
+    "es": "Videos externos (YouTube). Requieren internet. Solo se incluyen enlaces directos cuyo ID se confirmó en una fuente; para el resto se da una búsqueda en YouTube.",
+    "en": "External videos (YouTube). Require internet. Only direct links whose ID was confirmed in a source are included; for the rest a YouTube search is provided."
+  },
+  "topics": [
+    {
+      "topic": "333-beginner",
+      "appliesTo": {
+        "es": "3x3 · Método principiante por capas",
+        "en": "3x3 · Beginner layer-by-layer"
+      },
+      "videos": [
+        {
+          "title": "Resolver cubo de Rubik 3x3 (Principiantes) | Español",
+          "channel": "Cuby",
+          "lang": "es",
+          "url": "https://www.youtube.com/watch?v=GyY0OxDk5lI",
+          "verifiedFrom": "videohighlight.com/v/GyY0OxDk5lI"
+        },
+        {
+          "title": "Tutorial 3x3 para principiantes",
+          "channel": "J Perm",
+          "lang": "en",
+          "url": "https://www.youtube.com/watch?v=7Ron6MN45LY",
+          "verifiedFrom": "Lista de enlaces en la descripción de J Perm (copia indexada: analytics.wizdeo.com/en/videos/view/GhmYBgLoQQg) ; ukca.squarespace.com"
+        }
+      ],
+      "search": {
+        "es": "https://www.youtube.com/results?search_query=tutorial+cubo+rubik+3x3+principiantes+espa%C3%B1ol",
+        "en": "https://www.youtube.com/results?search_query=3x3+beginner+tutorial"
+      }
+    },
+    {
+      "topic": "333-cross",
+      "appliesTo": {
+        "es": "3x3 · Cruz eficiente",
+        "en": "3x3 · Efficient cross"
+      },
+      "videos": [
+        {
+          "title": "Consejos para la cruz",
+          "channel": "J Perm",
+          "lang": "en",
+          "url": "https://www.youtube.com/watch?v=IWXpkfwimo0",
+          "verifiedFrom": "Lista de enlaces en la descripción de J Perm (copia indexada: analytics.wizdeo.com/en/videos/view/GhmYBgLoQQg)"
+        }
+      ],
+      "search": {
+        "es": "https://www.youtube.com/results?search_query=cruz+cubo+rubik+consejos+cfop+espa%C3%B1ol",
+        "en": "https://www.youtube.com/results?search_query=cfop+cross+tips"
+      }
+    },
+    {
+      "topic": "333-f2l-intuitive",
+      "appliesTo": {
+        "es": "3x3 · F2L intuitivo",
+        "en": "3x3 · Intuitive F2L"
+      },
+      "videos": [
+        {
+          "title": "Tutorial de F2L intuitivo",
+          "channel": "J Perm",
+          "lang": "en",
+          "url": "https://www.youtube.com/watch?v=Ar_Zit1VLG0",
+          "verifiedFrom": "Lista de enlaces en la descripción de J Perm (copia indexada: analytics.wizdeo.com/en/videos/view/GhmYBgLoQQg)"
+        }
+      ],
+      "search": {
+        "es": "https://www.youtube.com/results?search_query=F2L+intuitivo+tutorial+espa%C3%B1ol",
+        "en": "https://www.youtube.com/results?search_query=intuitive+F2L+tutorial"
+      }
+    },
+    {
+      "topic": "333-2look-oll",
+      "appliesTo": {
+        "es": "3x3 · 2-look OLL",
+        "en": "3x3 · 2-look OLL"
+      },
+      "videos": [
+        {
+          "title": "Easy 2-Look OLL Tutorial (Beginner CFOP)",
+          "channel": "J Perm",
+          "lang": "en",
+          "url": "https://www.youtube.com/watch?v=GhmYBgLoQQg",
+          "verifiedFrom": "analytics.wizdeo.com/en/videos/view/GhmYBgLoQQg"
+        }
+      ],
+      "search": {
+        "es": "https://www.youtube.com/results?search_query=2-look+OLL+tutorial+espa%C3%B1ol",
+        "en": "https://www.youtube.com/results?search_query=2-look+OLL+tutorial"
+      }
+    },
+    {
+      "topic": "333-2look-pll",
+      "appliesTo": {
+        "es": "3x3 · 2-look PLL",
+        "en": "3x3 · 2-look PLL"
+      },
+      "videos": [
+        {
+          "title": "Easy 2-Look PLL Tutorial (Beginner CFOP)",
+          "channel": "J Perm",
+          "lang": "en",
+          "url": "https://www.youtube.com/watch?v=f_Yor-ydZjs",
+          "verifiedFrom": "Lista de enlaces en la descripción de J Perm (copia indexada: analytics.wizdeo.com/en/videos/view/GhmYBgLoQQg)"
+        }
+      ],
+      "search": {
+        "es": "https://www.youtube.com/results?search_query=2-look+PLL+tutorial+espa%C3%B1ol",
+        "en": "https://www.youtube.com/results?search_query=2-look+PLL+tutorial"
+      }
+    },
+    {
+      "topic": "333-full-oll",
+      "appliesTo": {
+        "es": "3x3 · OLL completo",
+        "en": "3x3 · Full OLL"
+      },
+      "videos": [
+        {
+          "title": "OLL: algoritmos y fingertricks",
+          "channel": "J Perm",
+          "lang": "en",
+          "url": "https://www.youtube.com/watch?v=47JfJxU7EjM",
+          "verifiedFrom": "Lista de enlaces en la descripción de J Perm (copia indexada: analytics.wizdeo.com/en/videos/view/GhmYBgLoQQg)"
+        }
+      ],
+      "search": {
+        "es": "https://www.youtube.com/results?search_query=OLL+completo+algoritmos+espa%C3%B1ol",
+        "en": "https://www.youtube.com/results?search_query=full+OLL+algorithms+finger+tricks"
+      }
+    },
+    {
+      "topic": "333-full-pll",
+      "appliesTo": {
+        "es": "3x3 · PLL completo",
+        "en": "3x3 · Full PLL"
+      },
+      "videos": [
+        {
+          "title": "PLL: algoritmos y fingertricks",
+          "channel": "J Perm",
+          "lang": "en",
+          "url": "https://www.youtube.com/watch?v=JvqGU0UZPcE",
+          "verifiedFrom": "Lista de enlaces en la descripción de J Perm (copia indexada: analytics.wizdeo.com/en/videos/view/GhmYBgLoQQg)"
+        }
+      ],
+      "search": {
+        "es": "https://www.youtube.com/results?search_query=PLL+completo+algoritmos+espa%C3%B1ol",
+        "en": "https://www.youtube.com/results?search_query=full+PLL+algorithms+finger+tricks"
+      }
+    },
+    {
+      "topic": "222-beginner",
+      "appliesTo": {
+        "es": "2x2 · Método principiante",
+        "en": "2x2 · Beginner method"
+      },
+      "videos": [
+        {
+          "title": "Tutorial 2x2 para principiantes",
+          "channel": "J Perm",
+          "lang": "en",
+          "url": "https://www.youtube.com/watch?v=GANnG5a19kg",
+          "verifiedFrom": "Lista de enlaces en la descripción de J Perm (copia indexada: analytics.wizdeo.com/en/videos/view/GhmYBgLoQQg)"
+        }
+      ],
+      "search": {
+        "es": "https://www.youtube.com/results?search_query=Cuby+resolver+cubo+de+rubik+2x2+principiantes",
+        "en": "https://www.youtube.com/results?search_query=2x2+beginner+tutorial"
+      }
+    },
+    {
+      "topic": "222-ortega",
+      "appliesTo": {
+        "es": "2x2 · Ortega",
+        "en": "2x2 · Ortega"
+      },
+      "videos": [],
+      "search": {
+        "es": "https://www.youtube.com/results?search_query=Cuby+Resolver+2x2+ORTEGA",
+        "en": "https://www.youtube.com/results?search_query=2x2+Ortega+Method+Tutorial+How+To+Be+Sub-5"
+      }
+    },
+    {
+      "topic": "222-cll",
+      "appliesTo": {
+        "es": "2x2 · CLL",
+        "en": "2x2 · CLL"
+      },
+      "videos": [],
+      "search": {
+        "es": "https://www.youtube.com/results?search_query=2x2+CLL+tutorial+espa%C3%B1ol",
+        "en": "https://www.youtube.com/results?search_query=2x2+CLL+Method+Tutorial+How+To+Be+Sub-4"
+      }
+    },
+    {
+      "topic": "pyram-beginner",
+      "appliesTo": {
+        "es": "Pyraminx · Principiante (primera capa y L3E)",
+        "en": "Pyraminx · Beginner (first layer and L3E)"
+      },
+      "videos": [],
+      "search": {
+        "es": "https://www.youtube.com/results?search_query=Cuby+Resolver+Pyraminx+Principiantes",
+        "en": "https://www.youtube.com/results?search_query=pyraminx+beginner+tutorial"
+      }
+    },
+    {
+      "topic": "pyram-l4e",
+      "appliesTo": {
+        "es": "Pyraminx · L4E",
+        "en": "Pyraminx · L4E"
+      },
+      "videos": [],
+      "search": {
+        "es": "https://www.youtube.com/results?search_query=pyraminx+L4E+tutorial+espa%C3%B1ol",
+        "en": "https://www.youtube.com/results?search_query=Pyraminx+Intuitive+L4E+Intermediate+Tutorial"
+      }
+    }
+  ]
+}

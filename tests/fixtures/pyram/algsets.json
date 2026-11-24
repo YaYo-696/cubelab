@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "sets": [
+    {
+      "id": "l3e",
+      "name": { "es": "Fixture técnico", "en": "Technical fixture" },
+      "stage": "Synthetic import check",
+      "cases": [
+        {
+          "id": "l3e-fixture",
+          "name": { "es": "Caso de prueba", "en": "Test case" },
+          "group": "Fixture",
+          "setup": "U",
+          "algs": ["U'"],
+          "source": "https://example.invalid/fixture"
+        }
+      ]
+    }
+  ]
+}

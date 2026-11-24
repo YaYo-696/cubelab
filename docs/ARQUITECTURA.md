@@ -120,3 +120,11 @@ PuzzleModule publica trainingSets y reutiliza caseGenerators por identificador d
 ## Primera apertura y canales de instalación
 
 El arranque carga la introducción antes de montar el Timer. La página prepara el service worker después de la carga inicial y mantiene los módulos de las funciones principales en el precache. La ruta base de Vite define los alcances de instalación y el espacio de IndexedDB y de claves locales. El borrado borra datos de usuario de la instalación activa mediante una transacción de tablas y conserva la caché de recursos reconstruibles.
+
+## Puzzles tetraédricos
+
+El registro separa el ID de puzzle y el evento. `pyram` es WCA (Ao5, 15 s de inspección, distancia mínima 6). `pyramduo` es de práctica y tiene sus propias sesiones. No requiere una migración de Dexie o del respaldo v3. El selector de Solucionador y la búsqueda de intentos consultan los eventos registrados. Las pantallas consumen la visualización del módulo en lugar de interpretar sus estados como un desplegado NxN. `loadContentInfo` permite diferir el índice de Entrenador y sus textos cuando proceden de contenido externo.
+
+`content-drop/pyram/algsets.json` y `lessons.json` conservan el contrato v1 original. Vite los incorpora al compilar. Si falta todo el drop, se usan los dos archivos sintéticos de `tests/fixtures/pyram/`; si llega un solo JSON, la importación falla. `VERIFICACION.md` es un informe del equipo de contenido y no se modifica ni se necesita en tiempo de ejecución.
+
+El importador comprueba versiones, traducciones, IDs, referencias, ciclos de prerrequisitos, fuentes y notación. En cada variante verifica con KPuzzle que **(a)** el estado construido desde `setup` queda resuelto y **(b)** el inverso construido desde resuelto reproduce ese estado exacto, incluidas las puntas. El campo `stage` se conserva como descripción. El contrato v1 no usa máscaras de piezas ni giros de agarre para verificar casos. Un error invalida todo el drop para Academia y Entrenador. Timer y Solucionador no lo cargan. Las demos se conservan en orden y se verifica su notación. Las lecciones importadas registran progreso mediante el botón de completar, ya que el contrato no contiene cuestionarios.

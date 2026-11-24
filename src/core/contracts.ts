@@ -1,5 +1,5 @@
 import type { TrainingSet } from './trainer/catalog';
-import type { SolveOptions } from './solver/options';
+import type { SolveMethod, SolveOptions } from './solver/options';
 import type { ComponentType, LazyExoticComponent } from 'react';
 export interface EventRules {
     id: string;
@@ -15,6 +15,7 @@ export interface AlgCase {
     id: string;
     nameKey: string;
     referenceSetup: string;
+    source?: string;
     algorithms: readonly string[];
 }
 export interface AlgSet {
@@ -22,6 +23,7 @@ export interface AlgSet {
     revision: number;
     nameKey: string;
     cases: readonly AlgCase[];
+    stage?: string;
 }
 export interface QuizQuestion {
     promptKey: string;
@@ -38,6 +40,9 @@ export interface Lesson {
     requires: readonly string[];
     demos: readonly { setup: string; alg: string }[];
     setId: string;
+    algSetRefs?: readonly string[];
+    markdown?: boolean;
+    practiceMethod?: SolveMethod;
     caseIds: readonly string[];
     quiz: readonly QuizQuestion[];
     milestones?: readonly { textKey: string; lessons: readonly string[] }[];
@@ -117,6 +122,10 @@ export interface PuzzleModule<State> {
     };
     algSets: readonly string[];
     trainingSets?: readonly TrainingSet[];
+    loadContentInfo?: () => Promise<{
+        trainingSets?: readonly TrainingSet[];
+        messages?: Record<'es' | 'en', Record<string, string>>;
+    }>;
     courses: readonly string[];
     loadAlgSet: (id: string) => Promise<AlgSet>;
     loadCourse: (id: string) => Promise<Course>;

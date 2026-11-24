@@ -1,9 +1,25 @@
 import './academy.css';
-import { useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { TwistyPlayer } from 'cubing/twisty';
 import { Alg } from 'cubing/alg';
 type T = (key: string) => string;
-export function AcademyPlayer({
+export type PlayerProps = {
+    puzzle: string;
+    setup: string;
+    alg: string;
+    autoplay?: boolean;
+    still?: boolean;
+    flatOnly?: boolean;
+    timerPreview?: boolean;
+    t: T;
+};
+const Duo = lazy(() => import('./DuoPlayer').then((m) => ({ default: m.DuoPlayer })));
+export function AcademyPlayer(props: PlayerProps) {
+    if (props.puzzle === 'pyraminx-duo')
+        return <Suspense fallback={<p>{props.t('aLoading')}</p>}><Duo {...props} /></Suspense>;
+    return <Twisty {...props} puzzle={props.puzzle === 'pyraminx' ? 'pyraminx' : props.puzzle === '2x2x2' ? '2x2x2' : '3x3x3'} />;
+}
+function Twisty({
     puzzle,
     setup,
     alg,
@@ -12,16 +28,7 @@ export function AcademyPlayer({
     flatOnly = false,
     timerPreview = false,
     t,
-}: {
-    puzzle: '2x2x2' | '3x3x3';
-    setup: string;
-    alg: string;
-    autoplay?: boolean;
-    still?: boolean;
-    flatOnly?: boolean;
-    timerPreview?: boolean;
-    t: T;
-}) {
+}: PlayerProps & { puzzle: '2x2x2' | '3x3x3' | 'pyraminx' }) {
     const target = useRef<HTMLDivElement>(null);
     const net = useRef<HTMLDivElement>(null);
     const player = useRef<TwistyPlayer>();
@@ -33,7 +40,7 @@ export function AcademyPlayer({
         const config = {
             puzzle,
             alg,
-            experimentalSetupAlg: timerPreview ? setup : ('z2 ' + setup).trim(),
+            experimentalSetupAlg: timerPreview || puzzle === 'pyraminx' ? setup : ('z2 ' + setup).trim(),
             controlPanel: 'none' as const,
             background: 'none' as const,
             tempoScale: rate.current,

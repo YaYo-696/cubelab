@@ -1,13 +1,13 @@
 import type { SearchResult } from '../core/contracts';
-import type { CubeId } from '../puzzles/events';
+import type { PuzzleId } from '../puzzles/events';
 import type { SolveMethod, SolveOptions, SolveProgress } from '../core/solver/options';
 
-export type SolverJob = { kind: 'solve'; puzzle: CubeId; input: string; method: SolveMethod; neutral: boolean };
+export type SolverJob = { kind: 'solve'; puzzle: PuzzleId; input: string; method: SolveMethod; neutral: boolean };
 type Reply = { progress: SolveProgress } | { result: SearchResult } | { error: string };
 
 let spare: Worker | undefined;
 export function requestSolution(
-    puzzle: CubeId,
+    puzzle: PuzzleId,
     method: SolveMethod,
     input: string,
     signal: AbortSignal,

@@ -1,7 +1,7 @@
-import type { CubeId } from '../puzzles/events';
+import type { PuzzleId } from '../puzzles/events';
 
-export type ScrambleJob = { id: number; kind: 'scramble'; puzzle: CubeId; input: string };
-export type CaseJob = { id: number; kind: 'case'; puzzle: CubeId; input: string; setId: string };
+export type ScrambleJob = { id: number; kind: 'scramble'; puzzle: PuzzleId; input: string };
+export type CaseJob = { id: number; kind: 'case'; puzzle: PuzzleId; input: string; setId: string };
 type Job = ScrambleJob | CaseJob;
 export type JobReply<T> = { id: number } & (
     | { result: T }

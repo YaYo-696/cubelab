@@ -6,6 +6,7 @@ import { type Completion } from '../core/academy/progress';
 import { openingMoves } from '../core/academy/execution';
 import { isFullPattern } from '../core/academy/lastLayer';
 import type { AcademyCase } from '../core/academy/cases';
+import { isTetra } from '../puzzles/events';
 import { LastLayerImage } from './LastLayerImage';
 import type { TrainingSet } from '../core/trainer/catalog';
 import {
@@ -50,39 +51,41 @@ export function Trainer({
     const [course, setCourse] = useState<Course>();
     const [progress, setProgress] = useState<Completion[]>();
     const [selected, setSelected] = useState(() => decode(link));
-    const [error, setError] = useState(false);
+    const [error, setError] = useState('');
+    const [catalogs, setCatalogs] = useState<readonly TrainingSet[]>(mod.trainingSets ?? []);
     const [sessionLocked, setSessionLocked] = useState(false);
     useEffect(() => {
         let active = true;
-        mod.loadCourse(mod.courses[0])
-            .then((value) => {
-                if (active) setCourse(value);
+        Promise.all([mod.loadCourse(mod.courses[0]), mod.loadContentInfo?.()])
+            .then(([value, info]) => {
+                if (active) { setCourse(value); setCatalogs(info?.trainingSets ?? mod.trainingSets ?? []); }
             })
-            .catch(() => {
-                if (active) setError(true);
+            .catch((reason: unknown) => {
+                if (active) setError(reason instanceof Error ? reason.message : String(reason));
             });
+        return () => { active = false; };
+    }, [mod]);
+    useEffect(() => {
+        if (!course) return;
         const sub = liveQuery(() =>
             db.lessons
                 .where({
-                    courseId: mod.courses[0],
+                    courseId: course.id,
                 })
                 .toArray(),
-        ).subscribe({ next: setProgress, error: () => setError(true) });
-        return () => {
-            active = false;
-            sub.unsubscribe();
-        };
-    }, [mod]);
+        ).subscribe({ next: setProgress, error: () => setError('storage') });
+        return () => sub.unsubscribe();
+    }, [course]);
     const available =
         course &&
         progress &&
-        mod.trainingSets?.filter((set) =>
+        catalogs.filter((set) =>
             set.groups.some((group) => groupOpen(course, progress, group.lessonId)),
         );
     const config = available?.find((set) => set.id === selected) ?? available?.[0];
-    if (error) return <p role="alert">{t('failed')}</p>;
+    if (error) return <p role="alert">{error === 'storage' ? t('failed') : error}</p>;
     if (!available || !course || !progress) return <p>{t('aLoading')}</p>;
-    if (!config) return <p>{t('trainerLocked')}</p>;
+    if (!config) return <p>{t(catalogs.length ? 'trainerLocked' : 'trainerNoSets')}</p>;
     return (
         <section className="academy-card trainer">
             <label>
@@ -356,7 +359,7 @@ function Session({
                             .filter((group) => groupOpen(course, progress, group.lessonId))
                             .map((group) => (
                                 <option key={group.id} value={group.id}>
-                                    {t('aTitle_' + group.lessonId)}
+                                    {t(group.nameKey ?? ('aTitle_' + group.lessonId))}
                                 </option>
                             ))}
                         <option value="learning">{t('trainerStatus_learning')}</option>
@@ -461,7 +464,7 @@ function Session({
             {mode === 'recognition' && (
                 <>
                     <p>{t('trainerScore', score)}</p>
-                    {card && (
+                    {card && mod.visualization.twistyPuzzleId !== 'pyraminx-duo' && (
                         <button type="button" onClick={() => setView(!view3d)}>
                             {t(view3d ? 'trainerShowTop' : 'trainerShow3d')}
                         </button>
@@ -470,20 +473,22 @@ function Session({
             )}
             {showPicture && (mode !== 'recognition' || !view3d) && (
                 <div className="trainer-diagram">
-                    <LastLayerImage
+                    {isTetra(mod.id) ? <Suspense fallback={<p>{t('aLoading')}</p>}>
+                        <Player puzzle={mod.visualization.twistyPuzzleId} setup={card.mix.scramble} alg="" still flatOnly t={t} />
+                    </Suspense> : <LastLayerImage
                         puzzle={mod.id}
                         pattern={pattern && isFullPattern(pattern) ? pattern : undefined}
                         setup={card.mix.scramble}
                         includeLower={config.lowerFace}
                         label={t('aTopCase')}
-                    />
+                    />}
                     {config.lowerFace && <small>{t('trainerLower')}</small>}
                 </div>
             )}
             {card && (helped || (mode === 'recognition' && view3d)) && (
                 <Suspense fallback={<p>{t('aLoading')}</p>}>
                     <Player
-                        puzzle={mod.id === '222' ? '2x2x2' : '3x3x3'}
+                        puzzle={mod.visualization.twistyPuzzleId}
                         setup={card.mix.scramble}
                         alg={helped ? [prep, main].filter(Boolean).join(' ') : ''}
                         still={!helped}

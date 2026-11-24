@@ -80,3 +80,26 @@ it('mueve y fusiona sin duplicar, conserva UUID y permite restaurar la sesión',
     expect(await source.sessions.get(a.id)).toMatchObject({ name: 'Otra práctica' });
     expect((await source.sessions.get(a.id))?.archivedAt).toBeUndefined();
 });
+
+it('restaura sesiones y solves tetraédricos en el respaldo v3', async () => {
+    const repo = attemptRepository(source);
+    for (const puzzleId of ['pyram', 'pyramduo']) {
+        const [session] = await repo.sessions(puzzleId, puzzleId);
+        await repo.save({
+            id: crypto.randomUUID(),
+            eventId: puzzleId,
+            puzzleId,
+            sessionId: session.id,
+            createdAt: 10,
+            result: { kind: 'time', timeMs: 1234 },
+            penalty: 'none',
+            source: 'timer',
+            scramble: puzzleId === 'pyram' ? "U L u b l r'" : "U L'",
+        });
+    }
+    const backup = await exportBackup(source);
+    await importBackup(backup, target);
+    expect(JSON.parse(await exportBackup(target))).toEqual(JSON.parse(backup));
+    expect(await target.solves.where('[eventId+createdAt]').equals(['pyram', 10]).count()).toBe(1);
+    expect(await target.solves.where('[eventId+createdAt]').equals(['pyramduo', 10]).count()).toBe(1);
+});

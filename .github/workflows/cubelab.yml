@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   test:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     env:
       CUBELAB_E2E_BROWSER: chromium
     steps:
@@ -30,7 +30,7 @@ jobs:
   publish:
     if: github.ref == 'refs/heads/main' && vars.CUBELAB_PAGES_ENABLED == 'true'
     needs: test
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       pages: write

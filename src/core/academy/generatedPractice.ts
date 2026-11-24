@@ -2,6 +2,7 @@ import type { Lesson, PuzzleModule } from '../contracts';
 import type { SolveMethod } from '../solver/options';
 
 export function exerciseMethod(lesson: Lesson): SolveMethod | undefined {
+    if (lesson.practiceMethod) return lesson.practiceMethod;
     if (lesson.setId === 'fullCLL') return 'cllPractice';
     if (lesson.setId === 'eg') return 'egPractice';
     if (lesson.setId === 'fullOLL' || lesson.setId === 'fullPLL') return 'cfopFull';

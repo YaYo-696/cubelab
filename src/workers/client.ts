@@ -1,5 +1,5 @@
 import type { VerifiedCase } from '../core/contracts';
-import type { CubeId } from '../puzzles/events';
+import type { PuzzleId } from '../puzzles/events';
 import type { CaseJob, JobReply, ScrambleJob } from './jobProtocol';
 
 const timeoutMs = 10000;
@@ -88,7 +88,7 @@ const caseTask = workerTask<CaseJob, VerifiedCase>(
     () => new Worker(new URL('./case.worker.ts', import.meta.url), { type: 'module' }),
 );
 
-export const requestScramble = (puzzle: CubeId, input: string, signal: AbortSignal) =>
+export const requestScramble = (puzzle: PuzzleId, input: string, signal: AbortSignal) =>
     scrambleTask({ kind: 'scramble', puzzle, input }, signal);
-export const requestCase = (puzzle: CubeId, setId: string, input: string, signal: AbortSignal) =>
+export const requestCase = (puzzle: PuzzleId, setId: string, input: string, signal: AbortSignal) =>
     caseTask({ kind: 'case', puzzle, setId, input }, signal);

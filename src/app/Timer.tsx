@@ -10,6 +10,7 @@ import { adjusted, breakdown } from '../core/stats';
 import { useStatistics } from './useStatistics';
 import { db, solvesForEvent, type Solve, type Session } from '../core/storage/db';
 import { NotationError } from '../puzzles/notation';
+import { isTetra } from '../puzzles/events';
 import { CubeNet } from '../ui/CubeNet';
 import { useScrambles } from './useScrambles';
 import { useTimerInput } from './useTimerInput';
@@ -215,12 +216,14 @@ export function Timer({ mod, rules, prefs, t }: Props) {
             customInput.current?.setSelectionRange(pos, pos + 1);
         }
     }
+    const tetra = isTetra(mod.id);
+    const supports3d = mod.visualization.twistyPuzzleId !== 'pyraminx-duo';
     const [showCube3d, setCube3d] = useState(prefs.timerPreview === '3D');
     const Preview = mod.ui?.preview,
         InputPanel = mod.ui?.inputPanel;
     const preview = useMemo(
-        () => mod.applyAlg(mod.solvedState(), mix.current?.text ?? ''),
-        [mod, mix.current?.text],
+        () => tetra ? '' : mod.applyAlg(mod.solvedState(), mix.current?.text ?? ''),
+        [mod, mix.current?.text, tetra],
     );
     return (
         <div className="timer-page">
@@ -287,7 +290,7 @@ export function Timer({ mod, rules, prefs, t }: Props) {
                     <p className="sequence" data-testid="scramble">
                         {mix.current?.text ?? t(mix.error === undefined ? 'busy' : 'mixUnavailable')}
                     </p>
-                    {mix.current && <small>{t(mix.current.generated ? 'criteria' : 'customMix')}</small>}
+                    {mix.current && <small>{t(mix.current.generated ? (rules.wcaEventId ? 'criteria' : 'practiceScramble') : 'customMix')}</small>}
                     <div className="actions">
                         <button
                             disabled={locked || !mix.hasNext}
@@ -313,7 +316,7 @@ export function Timer({ mod, rules, prefs, t }: Props) {
                             {t('copy')}
                         </button>
                     </div>
-                    {!Preview && (
+                    {!Preview && supports3d && (
                         <button
                             type="button"
                             aria-pressed={showCube3d}
@@ -336,16 +339,17 @@ export function Timer({ mod, rules, prefs, t }: Props) {
                             scramble={mix.current?.text ?? ''}
                             onChange={applyCustom}
                         />
-                    ) : showCube3d && !active ? (
+                    ) : !active && (showCube3d || tetra) ? (
                         <Cube3D
-                            puzzle={mod.id === '222' ? '2x2x2' : '3x3x3'}
+                            puzzle={mod.visualization.twistyPuzzleId}
+                            flatOnly={!supports3d || !showCube3d}
                             setup={mix.current?.text ?? ''}
                             alg=""
                             still
                             timerPreview
                             t={t}
                         />
-                    ) : (
+                    ) : !tetra && (
                         <CubeNet state={preview} label={t('preview')} />
                     )}
                 </Suspense>

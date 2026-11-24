@@ -3,9 +3,9 @@ import Dexie from 'dexie';
 import type { PuzzleModule, SearchResult } from '../core/contracts';
 import type { SolveProgress } from '../core/solver/options';
 import { db } from '../core/storage/db';
-import { registry } from '../puzzles/registry';
+import { events, isPuzzleId, registry } from '../puzzles/registry';
 import { NotationError } from '../puzzles/notation';
-import type { CubeId } from '../puzzles/events';
+import type { PuzzleId } from '../puzzles/events';
 import { useApp } from './state';
 import './academy.css';
 import './solver.css';
@@ -14,10 +14,10 @@ const Player = lazy(() => import('./AcademyPlayer').then((m) => ({ default: m.Ac
 type T = (key: string, params?: Record<string, string | number>) => string;
 type Solved = Extract<SearchResult, { status: 'solved' }>;
 
-async function latest(puzzle: CubeId) {
-    const events = puzzle === '222' ? ['222'] : ['333', '333bf'];
+async function latest(puzzle: PuzzleId) {
+    const modalities = events.filter((event) => event.puzzleId === puzzle);
     const rows = await Promise.all(
-        events.map((event) =>
+        modalities.map(({ rules: { id: event } }) =>
             db.solves
                 .where('[eventId+createdAt]')
                 .between([event, Dexie.minKey], [event, Dexie.maxKey])
@@ -33,7 +33,7 @@ export function SolverView({
     solveId,
     t,
 }: {
-    initialPuzzle: CubeId;
+    initialPuzzle: PuzzleId;
     solveId?: string;
     t: T;
 }) {
@@ -89,11 +89,11 @@ export function SolverView({
             .get(solveId)
             .then((row) => {
                 if (!active) return;
-                if (!row || row.deletedAt || !['222', '333'].includes(row.puzzleId)) {
+                if (!row || row.deletedAt || !isPuzzleId(row.puzzleId)) {
                     setStatus('solveMissing');
                     return;
                 }
-                setCube(row.puzzleId as CubeId);
+                setCube(row.puzzleId);
                 setInput(row.scramble);
             })
             .catch(() => {
@@ -201,11 +201,10 @@ export function SolverView({
                             reset();
                             setMethod('shortest');
                             setLast(undefined);
-                            setCube(e.target.value as CubeId);
+                            setCube(e.target.value as PuzzleId);
                         }}
                     >
-                        <option value="222">{t('222')}</option>
-                        <option value="333">{t('333')}</option>
+                        {Object.keys(registry).map((id) => <option key={id} value={id}>{t(id)}</option>)}
                     </select>
                 </label>
                 <label>
@@ -218,11 +217,11 @@ export function SolverView({
                         }}
                     >
                         <option value="shortest">
-                            {t(cube === '222' ? 'solveOptimal' : 'solveNear')}
+                            {t(cube === '333' ? 'solveNear' : 'solveOptimal')}
                         </option>
                         {Object.keys(mod?.id === cube ? (mod.solvers?.byMethod ?? {}) : {}).map((id) => (
                             <option key={id} value={id}>
-                                {t('solveMethod_' + id)}
+                                {t(cube === 'pyramduo' && id === 'beginner' ? 'duoLesson' : 'solveMethod_' + id)}
                             </option>
                         ))}
                     </select>
@@ -296,7 +295,9 @@ export function SolverView({
                                     ? 'solveOptimal'
                                     : method === 'shortest'
                                       ? 'solveNear'
-                                      : 'solveMethod_' + method,
+                                      : cube === 'pyramduo' && method === 'beginner'
+                                        ? 'duoLesson'
+                                        : 'solveMethod_' + method,
                             )}
                         </p>
                         {method !== 'shortest' && (
@@ -327,7 +328,7 @@ export function SolverView({
                         <h2>{stageText(stage, stage.nameKey)}</h2>
                         <Suspense fallback={<p>{t('aLoading')}</p>}>
                             <Player
-                                puzzle={cube === '222' ? '2x2x2' : '3x3x3'}
+                                puzzle={mod?.visualization.twistyPuzzleId ?? '3x3x3'}
                                 setup={setup}
                                 alg={practicing ? '' : stage.alg}
                                 still={practicing}

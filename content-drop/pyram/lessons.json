@@ -1,0 +1,188 @@
+{
+  "version": 1,
+  "lessons": [
+    {
+      "id": "pyram-notation",
+      "title": {
+        "es": "Notación del Pyraminx",
+        "en": "Pyraminx notation"
+      },
+      "objective": {
+        "es": "Conocer las piezas del Pyraminx y leer cualquier mezcla o algoritmo.",
+        "en": "Know the Pyraminx pieces and read any scramble or algorithm."
+      },
+      "body": {
+        "es": "## Las piezas\nEl Pyraminx tiene **4 puntas** (los triángulos pequeños de cada vértice, que giran solos), **4 centros** (la pieza de tres colores justo debajo de cada punta) y **6 aristas** (piezas de dos colores).\n\nLos centros nunca cambian de lugar, solo giran sobre sí mismos. Por eso son la referencia: cada arista debe quedar entre los dos centros que tienen sus colores.\n\n## Cómo sostenerlo\nUna cara mirando hacia ti, con un vértice arriba. Los cuatro vértices se llaman **U** (arriba), **L** (izquierda), **R** (derecha) y **B** (atrás).\n\n## Movimientos\n- **U, L, R, B** (mayúscula): giran las dos capas de ese vértice (punta, centro y tres aristas) un tercio de vuelta en sentido horario, mirando el vértice desde afuera.\n- **u, l, r, b** (minúscula): giran solo la punta.\n- **'** (prima): el mismo giro en sentido antihorario.\n\nEn el Pyraminx no se escribe **2**: dos giros horarios equivalen a uno antihorario (U U = U').\n\n## Las mezclas WCA\nPrimero vienen los giros de capa y, al final, los de puntas que hagan falta. Las puntas no afectan al resto del puzzle.",
+        "en": "## The pieces\nThe Pyraminx has **4 tips** (the small triangles at each vertex, which turn on their own), **4 centers** (the three-colored piece right under each tip) and **6 edges** (two-colored pieces).\n\nCenters never move to another place, they only twist. That makes them the reference: every edge must end up between the two centers that share its colors.\n\n## How to hold it\nOne face toward you, one vertex on top. The four vertices are **U** (up), **L** (left), **R** (right) and **B** (back).\n\n## Moves\n- **U, L, R, B** (uppercase): turn the two layers of that vertex (tip, center and three edges) one third of a turn clockwise, looking at the vertex from outside.\n- **u, l, r, b** (lowercase): turn only the tip.\n- **'** (prime): the same turn counterclockwise.\n\nOn the Pyraminx you never write **2**: two clockwise turns equal one counterclockwise turn (U U = U').\n\n## WCA scrambles\nLayer turns come first and any tip turns come at the end. Tips do not affect the rest of the puzzle."
+      },
+      "algSetRefs": [],
+      "demos": [
+        {
+          "setup": "",
+          "alg": "U"
+        },
+        {
+          "setup": "",
+          "alg": "U'"
+        },
+        {
+          "setup": "",
+          "alg": "R"
+        },
+        {
+          "setup": "",
+          "alg": "L'"
+        },
+        {
+          "setup": "",
+          "alg": "u"
+        }
+      ],
+      "prerequisites": []
+    },
+    {
+      "id": "pyram-tips-centers",
+      "title": {
+        "es": "Puntas y centros",
+        "en": "Tips and centers"
+      },
+      "objective": {
+        "es": "Resolver las 4 puntas y orientar los centros, el primer paso de todos los métodos.",
+        "en": "Solve the 4 tips and orient the centers, the first step of every method."
+      },
+      "body": {
+        "es": "## Puntas\nCada punta se resuelve con un solo giro (o ninguno): gira **u, l, r o b** hasta que sus tres colores coincidan con los del centro que tiene debajo. Son gratis, así que muchos speedcubers las dejan para el final o las resuelven durante la inspección.\n\n## Centros\nElige el color de la cara de abajo (por ejemplo, amarillo). Ese color aparece en los centros **L**, **R** y **B**. Gira cada una de esas capas hasta que su centro muestre el amarillo en la cara de abajo.\n\nEl centro **U** no tiene amarillo: se ajusta al final con giros **U**.\n\n## Consejo\nAntes de mover nada, ubica los colores de los cuatro centros. Con eso ya sabes de qué color es cada cara, aunque las aristas estén revueltas.",
+        "en": "## Tips\nEach tip takes one turn at most: turn **u, l, r or b** until its three colors match the center under it. They are free, so many speedcubers leave them for the end or solve them during inspection.\n\n## Centers\nPick the bottom color (for example, yellow). That color appears on the **L**, **R** and **B** centers. Turn each of those layers until its center shows yellow on the bottom face.\n\nThe **U** center has no yellow: it gets aligned at the end with **U** turns.\n\n## Tip\nBefore moving anything, read the colors of the four centers. That already tells you the color of every face, even with the edges scrambled."
+      },
+      "algSetRefs": [],
+      "demos": [
+        {
+          "setup": "u'",
+          "alg": "u"
+        },
+        {
+          "setup": "r",
+          "alg": "r'"
+        },
+        {
+          "setup": "R'",
+          "alg": "R"
+        }
+      ],
+      "prerequisites": [
+        "pyram-notation"
+      ]
+    },
+    {
+      "id": "pyram-first-layer",
+      "title": {
+        "es": "Primera capa (método principiante)",
+        "en": "First layer (beginner method)"
+      },
+      "objective": {
+        "es": "Colocar las 3 aristas de la cara de abajo y dejar lista la primera capa.",
+        "en": "Place the 3 bottom edges and complete the first layer."
+      },
+      "body": {
+        "es": "## Objetivo\nCon los centros orientados, coloca las tres aristas de la cara de abajo. Al terminar, toda la cara de abajo es de un color y cada lado muestra una franja del color correcto.\n\n## Insertar una arista desde arriba\nSostén el Pyraminx con el hueco a llenar abajo, adelante (entre L y R).\n- Si la arista está **arriba a la izquierda** de la cara de adelante, con su color de adelante coincidiendo con el centro de adelante: **R U' R'**.\n- Si está **arriba a la derecha**, en la misma situación: **L' U L**.\nUsa **U** para llevar la arista a una de esas dos posiciones antes de insertarla.\n\n## Casos especiales\n- **Arista abajo pero volteada:** sácala con **R U' R'**, ubícala con U y vuelve a insertarla.\n- **Arista abajo en otro hueco:** gira el puzzle para que ese hueco quede adelante, sácala de la misma forma y llévala al hueco correcto.\n\nRepite para las tres aristas. No hay que memorizar casi nada: es intuitivo.",
+        "en": "## Goal\nWith the centers oriented, place the three bottom edges. When you finish, the bottom face is one color and every side shows a strip of the correct color.\n\n## Inserting an edge from the top\nHold the Pyraminx with the empty slot at the bottom front (between L and R).\n- If the edge is **top left** of the front face, with its front color matching the front center: **R U' R'**.\n- If it is **top right**, in the same situation: **L' U L**.\nUse **U** to bring the edge to one of those two places before inserting it.\n\n## Special cases\n- **Edge in the bottom but flipped:** take it out with **R U' R'**, line it up with U and insert it again.\n- **Edge in another bottom slot:** rotate the puzzle so that slot is at the front, take the edge out the same way and bring it to the correct slot.\n\nRepeat for the three edges. Almost nothing to memorize: it is intuitive."
+      },
+      "algSetRefs": [],
+      "demos": [
+        {
+          "setup": "R U R'",
+          "alg": "R U' R'"
+        },
+        {
+          "setup": "L' U' L",
+          "alg": "L' U L"
+        }
+      ],
+      "prerequisites": [
+        "pyram-tips-centers"
+      ]
+    },
+    {
+      "id": "pyram-l3e",
+      "title": {
+        "es": "Última capa: 5 casos (L3E)",
+        "en": "Last layer: 5 cases (L3E)"
+      },
+      "objective": {
+        "es": "Terminar el Pyraminx con 5 algoritmos.",
+        "en": "Finish the Pyraminx with 5 algorithms."
+      },
+      "body": {
+        "es": "## Antes de empezar\nLa primera capa está completa. Gira **U** hasta que el centro de arriba coincida con los colores de los lados. Ahora solo quedan las **3 aristas de arriba**.\n\n## Reconocer el caso\n- **Ninguna arista en su lugar, pero ninguna volteada:** las tres giran en ciclo. Si deben avanzar en un sentido es **Sune**; en el otro, **Antisune**.\n- **Dos aristas en su lugar pero volteadas:** **volteo de 2 aristas**. Sostén el puzzle con la arista correcta atrás.\n- **Ciclo y además aristas volteadas:** uno de los dos casos de **ciclo con volteo** (versión derecha o izquierda).\n\nSune y Antisune tienen versiones con la mano izquierda (con L) que resuelven lo mismo: usa la que te resulte más cómoda.\n\n## Práctica\nUsa el Entrenador con el set **L3E** hasta reconocer los 5 casos sin pensar.",
+        "en": "## Before you start\nThe first layer is complete. Turn **U** until the top center matches the side colors. Now only the **3 top edges** are left.\n\n## Recognizing the case\n- **No edge in place, none flipped:** the three cycle. One direction is **Sune**; the other, **Antisune**.\n- **Two edges in place but flipped:** **2-edge flip**. Hold the puzzle with the correct edge at the back.\n- **Cycle plus flipped edges:** one of the two **cycle with flip** cases (right or left version).\n\nSune and Antisune have left-hand versions (with L) that solve the same case: use whichever feels better.\n\n## Practice\nUse the Trainer with the **L3E** set until you recognize the 5 cases without thinking."
+      },
+      "algSetRefs": [
+        "l3e"
+      ],
+      "demos": [
+        {
+          "setup": "R U' R' U' R U' R'",
+          "alg": "R U R' U R U R'"
+        },
+        {
+          "setup": "R U' R' U R' L R L'",
+          "alg": "L R' L' R U' R U R'"
+        }
+      ],
+      "prerequisites": [
+        "pyram-first-layer"
+      ]
+    },
+    {
+      "id": "pyram-l4e",
+      "title": {
+        "es": "Método L4E: últimas 4 aristas",
+        "en": "L4E method: last 4 edges"
+      },
+      "objective": {
+        "es": "Pasar al método más usado en competencia: V intuitiva y las últimas 4 aristas con algoritmos.",
+        "en": "Move to the most used competition method: intuitive V and the last 4 edges with algorithms."
+      },
+      "body": {
+        "es": "## La idea\nEn vez de completar la primera capa, haces una **V**: los centros **L, R y B** orientados y las **dos aristas de abajo que van hacia atrás** (entre L y B, y entre R y B). Eso suele tomar 2 a 4 movimientos y se planifica en la inspección.\n\nQuedan 4 aristas: la de **abajo adelante** y las **3 de arriba**. La capa U puede estar girada: si el algoritmo empieza con U o U', ese ajuste ya está incluido.\n\n## Reconocer el grupo\nSostén la V abajo, apuntando hacia atrás, y mira en este orden:\n1. **La arista de abajo adelante.** Si está resuelta, es un caso de última capa (los mismos 5 de L3E). Si está en su lugar pero volteada, es el grupo **arista inferior volteada**.\n2. **Si no está ahí,** busca una arista de arriba que ya esté bien respecto de sus dos centros: si está resuelta, el grupo es **arista superior resuelta**; si está volteada, **arista superior volteada**.\n3. **Si no hay ninguna,** el grupo es **nada colocado**.\n\n## Cómo aprenderlo\nSon 36 casos, pero muchos son espejos: aprende un caso y su espejo juntos. Empieza por **arista superior resuelta** (los algoritmos más cortos) y termina con **nada colocado**.",
+        "en": "## The idea\nInstead of finishing the first layer, you build a **V**: the **L, R and B** centers oriented and the **two bottom edges that go toward the back** (between L and B, and between R and B). That usually takes 2 to 4 moves and is planned during inspection.\n\n4 edges are left: the **bottom front** one and the **3 top** ones. The U layer may be turned: if the algorithm starts with U or U', that adjustment is already included.\n\n## Recognizing the group\nHold the V on the bottom, pointing back, and look in this order:\n1. **The bottom front edge.** If it is solved, it is a last-layer case (the same 5 as L3E). If it is in place but flipped, the group is **down edge flipped**.\n2. **If it is not there,** look for a top edge already correct relative to its two centers: if it is solved, the group is **upper edge solved**; if flipped, **upper edge flipped**.\n3. **If there is none,** the group is **nothing placed**.\n\n## How to learn it\nThere are 36 cases, but many are mirrors: learn a case and its mirror together. Start with **upper edge solved** (the shortest algorithms) and finish with **nothing placed**."
+      },
+      "algSetRefs": [
+        "l4e"
+      ],
+      "demos": [
+        {
+          "setup": "R U R'",
+          "alg": "R U' R'"
+        },
+        {
+          "setup": "L R' L' R",
+          "alg": "R' L R L'"
+        }
+      ],
+      "prerequisites": [
+        "pyram-l3e"
+      ]
+    },
+    {
+      "id": "pyram-plan",
+      "title": {
+        "es": "Plan de mejora en Pyraminx",
+        "en": "Pyraminx improvement plan"
+      },
+      "objective": {
+        "es": "Saber qué aprender y practicar en cada nivel de tiempo.",
+        "en": "Know what to learn and practice at each time level."
+      },
+      "body": {
+        "es": "## Por niveles\n- **Sub-20:** método principiante (puntas, centros, primera capa y los 5 casos de última capa). Haz sesiones de ao12 en el Timer.\n- **Sub-10:** cambia la primera capa por la V intuitiva y empieza L4E por el grupo **arista superior resuelta**.\n- **Sub-6:** L4E completo. En los 15 segundos de inspección planifica las puntas y la V completa.\n- **Sub-4:** reconoce el caso de L4E durante la inspección, ejecuta todo de corrido y busca soluciones más cortas para la V.\n\n## Otros métodos\nCuando domines L4E vale la pena conocer **Top-first**, **Keyhole** y **1-Flip**: resuelven la parte de arriba primero y tienen sus propios sets de casos.\n\n## Rutina sugerida\n1. 5 minutos de Entrenador con el set que estés aprendiendo.\n2. Una sesión de ao12 en el Timer.\n3. Revisa en Estadísticas tu ao12 y repite el set más lento.",
+        "en": "## By level\n- **Sub-20:** beginner method (tips, centers, first layer and the 5 last-layer cases). Do ao12 sessions in the Timer.\n- **Sub-10:** replace the first layer with the intuitive V and start L4E with the **upper edge solved** group.\n- **Sub-6:** full L4E. In the 15 seconds of inspection, plan the tips and the whole V.\n- **Sub-4:** recognize the L4E case during inspection, execute everything without pauses and look for shorter V solutions.\n\n## Other methods\nOnce you master L4E it is worth learning **Top-first**, **Keyhole** and **1-Flip**: they solve the top first and have their own case sets.\n\n## Suggested routine\n1. 5 minutes in the Trainer with the set you are learning.\n2. One ao12 session in the Timer.\n3. Check your ao12 in Statistics and repeat the slowest set."
+      },
+      "algSetRefs": [],
+      "demos": [],
+      "prerequisites": [
+        "pyram-l4e"
+      ]
+    }
+  ]
+}

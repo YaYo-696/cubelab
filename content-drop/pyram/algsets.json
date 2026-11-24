@@ -1,0 +1,603 @@
+{
+  "version": 1,
+  "sets": [
+    {
+      "id": "l3e",
+      "name": {
+        "es": "Última capa (L3E)",
+        "en": "Last layer (L3E)"
+      },
+      "stage": "Puntas, los 4 centros y la primera capa completa (aristas LR, LB y RB) resueltas; quedan las 3 aristas de arriba.",
+      "cases": [
+        {
+          "id": "l3e-sune",
+          "name": {
+            "es": "Sune (ciclo de 3 aristas)",
+            "en": "Sune (3-edge cycle)"
+          },
+          "group": "l3e",
+          "setup": "R U' R' U' R U' R'",
+          "algs": [
+            "R U R' U R U R'",
+            "R' U R U R' U R",
+            "L' U L U L' U L"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E ; https://twisty-puzzle.pages.dev/pyraminx-algorithms/",
+          "moves": 7
+        },
+        {
+          "id": "l3e-antisune",
+          "name": {
+            "es": "Antisune (ciclo inverso)",
+            "en": "Antisune (reverse cycle)"
+          },
+          "group": "l3e",
+          "setup": "R U R' U R U R'",
+          "algs": [
+            "R U' R' U' R U' R'",
+            "R' U' R U' R' U' R",
+            "L' U' L U' L' U' L"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E ; https://twisty-puzzle.pages.dev/pyraminx-algorithms/",
+          "moves": 7
+        },
+        {
+          "id": "l3e-2flip",
+          "name": {
+            "es": "Volteo de 2 aristas",
+            "en": "2-edge flip"
+          },
+          "group": "l3e",
+          "setup": "R U' R' U R' L R L'",
+          "algs": [
+            "L R' L' R U' R U R'"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 8
+        },
+        {
+          "id": "l3e-flip-cycle-r",
+          "name": {
+            "es": "Ciclo con volteo · R' (U' L' U L) R",
+            "en": "Cycle with flip · R' (U' L' U L) R"
+          },
+          "group": "l3e",
+          "setup": "R' L' U' L U R",
+          "algs": [
+            "R' U' L' U L R"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 6
+        },
+        {
+          "id": "l3e-flip-cycle-l",
+          "name": {
+            "es": "Ciclo con volteo · L (U R U' R') L'",
+            "en": "Cycle with flip · L (U R U' R') L'"
+          },
+          "group": "l3e",
+          "setup": "L R U R' U' L'",
+          "algs": [
+            "L U R U' R' L'"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 6
+        }
+      ]
+    },
+    {
+      "id": "l4e",
+      "name": {
+        "es": "Últimas 4 aristas (L4E)",
+        "en": "Last 4 edges (L4E)"
+      },
+      "stage": "Puntas resueltas y la V hecha: centros L, R y B con las aristas LB y RB. La capa U puede estar girada; quedan las aristas LR, UL, UR y UB.",
+      "cases": [
+        {
+          "id": "l4e-des-sune",
+          "name": {
+            "es": "Arista inferior resuelta · Sune",
+            "en": "Down edge solved · Sune"
+          },
+          "group": "des",
+          "setup": "R U' R' U' R U' R'",
+          "algs": [
+            "R U R' U R U R'"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 7
+        },
+        {
+          "id": "l4e-des-antisune",
+          "name": {
+            "es": "Arista inferior resuelta · Antisune",
+            "en": "Down edge solved · Antisune"
+          },
+          "group": "des",
+          "setup": "R U R' U R U R'",
+          "algs": [
+            "R U' R' U' R U' R'"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 7
+        },
+        {
+          "id": "l4e-des-2-flip",
+          "name": {
+            "es": "Arista inferior resuelta · 2-flip",
+            "en": "Down edge solved · 2-flip"
+          },
+          "group": "des",
+          "setup": "R U' R' U R' L R L'",
+          "algs": [
+            "L R' L' R U' R U R'"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 8
+        },
+        {
+          "id": "l4e-des-rp-unsexy-r",
+          "name": {
+            "es": "Arista inferior resuelta · R' unsexy R",
+            "en": "Down edge solved · R' unsexy R"
+          },
+          "group": "des",
+          "setup": "R' L' U' L U R",
+          "algs": [
+            "R' U' L' U L R"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 6
+        },
+        {
+          "id": "l4e-des-l-unsexy-lp",
+          "name": {
+            "es": "Arista inferior resuelta · L unsexy L'",
+            "en": "Down edge solved · L unsexy L'"
+          },
+          "group": "des",
+          "setup": "L R U R' U' L'",
+          "algs": [
+            "L U R U' R' L'"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 6
+        },
+        {
+          "id": "l4e-def-1",
+          "name": {
+            "es": "Arista inferior volteada · #1",
+            "en": "Down edge flipped · #1"
+          },
+          "group": "def",
+          "setup": "L R' L' R U' L R' L' R U' L R' L' R",
+          "algs": [
+            "R' L R L' U R' L R L' U R' L R L'"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 14
+        },
+        {
+          "id": "l4e-def-2",
+          "name": {
+            "es": "Arista inferior volteada · #2",
+            "en": "Down edge flipped · #2"
+          },
+          "group": "def",
+          "setup": "R' L R L' U' R' L R L'",
+          "algs": [
+            "L R' L' R U L R' L' R"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 9
+        },
+        {
+          "id": "l4e-def-3",
+          "name": {
+            "es": "Arista inferior volteada · #3",
+            "en": "Down edge flipped · #3"
+          },
+          "group": "def",
+          "setup": "L R' L' R U L R' L' R",
+          "algs": [
+            "R' L R L' U' R' L R L'"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 9
+        },
+        {
+          "id": "l4e-def-4a",
+          "name": {
+            "es": "Arista inferior volteada · #4a",
+            "en": "Down edge flipped · #4a"
+          },
+          "group": "def",
+          "setup": "R U R' L R' L' R U",
+          "algs": [
+            "U' R' L R L' R U' R'"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 8
+        },
+        {
+          "id": "l4e-def-4b",
+          "name": {
+            "es": "Arista inferior volteada · #4b",
+            "en": "Down edge flipped · #4b"
+          },
+          "group": "def",
+          "setup": "L' U' L R' L R L' U'",
+          "algs": [
+            "U L R' L' R L' U L"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 8
+        },
+        {
+          "id": "l4e-def-5",
+          "name": {
+            "es": "Arista inferior volteada · #5",
+            "en": "Down edge flipped · #5"
+          },
+          "group": "def",
+          "setup": "L' U L R U R' U",
+          "algs": [
+            "U' R U' R' L' U' L"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 7
+        },
+        {
+          "id": "l4e-def-6",
+          "name": {
+            "es": "Arista inferior volteada · #6",
+            "en": "Down edge flipped · #6"
+          },
+          "group": "def",
+          "setup": "R U' R' L' U' L U'",
+          "algs": [
+            "U L' U L R U R'"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 7
+        },
+        {
+          "id": "l4e-ues-1",
+          "name": {
+            "es": "Arista superior resuelta · #1",
+            "en": "Upper edge solved · #1"
+          },
+          "group": "ues",
+          "setup": "L' U L U'",
+          "algs": [
+            "U L' U' L"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 4
+        },
+        {
+          "id": "l4e-ues-2",
+          "name": {
+            "es": "Arista superior resuelta · #2",
+            "en": "Upper edge solved · #2"
+          },
+          "group": "ues",
+          "setup": "R U' R' U",
+          "algs": [
+            "U' R U R'"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 4
+        },
+        {
+          "id": "l4e-ues-3",
+          "name": {
+            "es": "Arista superior resuelta · #3",
+            "en": "Upper edge solved · #3"
+          },
+          "group": "ues",
+          "setup": "R' L R L'",
+          "algs": [
+            "L R' L' R"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 4
+        },
+        {
+          "id": "l4e-ues-4",
+          "name": {
+            "es": "Arista superior resuelta · #4",
+            "en": "Upper edge solved · #4"
+          },
+          "group": "ues",
+          "setup": "L R' L' R",
+          "algs": [
+            "R' L R L'"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 4
+        },
+        {
+          "id": "l4e-ues-5",
+          "name": {
+            "es": "Arista superior resuelta · #5",
+            "en": "Upper edge solved · #5"
+          },
+          "group": "ues",
+          "setup": "L' U' L' R' L' R",
+          "algs": [
+            "R' L R L U L"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 6
+        },
+        {
+          "id": "l4e-ues-6",
+          "name": {
+            "es": "Arista superior resuelta · #6",
+            "en": "Upper edge solved · #6"
+          },
+          "group": "ues",
+          "setup": "R U R L R L'",
+          "algs": [
+            "L R' L' R' U' R'"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 6
+        },
+        {
+          "id": "l4e-ues-7",
+          "name": {
+            "es": "Arista superior resuelta · #7",
+            "en": "Upper edge solved · #7"
+          },
+          "group": "ues",
+          "setup": "R U R'",
+          "algs": [
+            "R U' R'"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 3
+        },
+        {
+          "id": "l4e-ues-8",
+          "name": {
+            "es": "Arista superior resuelta · #8",
+            "en": "Upper edge solved · #8"
+          },
+          "group": "ues",
+          "setup": "L' U' L",
+          "algs": [
+            "L' U L"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 3
+        },
+        {
+          "id": "l4e-uef-1",
+          "name": {
+            "es": "Arista superior volteada · #1",
+            "en": "Upper edge flipped · #1"
+          },
+          "group": "uef",
+          "setup": "L R' L' R U' R U' R'",
+          "algs": [
+            "R U R' U R' L R L'"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 8
+        },
+        {
+          "id": "l4e-uef-2",
+          "name": {
+            "es": "Arista superior volteada · #2",
+            "en": "Upper edge flipped · #2"
+          },
+          "group": "uef",
+          "setup": "R' L R L' U L' U L",
+          "algs": [
+            "L' U' L U' L R' L' R"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 8
+        },
+        {
+          "id": "l4e-uef-3",
+          "name": {
+            "es": "Arista superior volteada · #3",
+            "en": "Upper edge flipped · #3"
+          },
+          "group": "uef",
+          "setup": "R U' R' U L' U' L U'",
+          "algs": [
+            "U L' U L U' R U R'"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 8
+        },
+        {
+          "id": "l4e-uef-4",
+          "name": {
+            "es": "Arista superior volteada · #4",
+            "en": "Upper edge flipped · #4"
+          },
+          "group": "uef",
+          "setup": "L' U L U' R U R' U",
+          "algs": [
+            "U' R U' R' U L' U' L"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 8
+        },
+        {
+          "id": "l4e-uef-5",
+          "name": {
+            "es": "Arista superior volteada · #5",
+            "en": "Upper edge flipped · #5"
+          },
+          "group": "uef",
+          "setup": "L' U' L U' R U' R'",
+          "algs": [
+            "R U R' U L' U L"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 7
+        },
+        {
+          "id": "l4e-uef-6",
+          "name": {
+            "es": "Arista superior volteada · #6",
+            "en": "Upper edge flipped · #6"
+          },
+          "group": "uef",
+          "setup": "R U R' U L' U L",
+          "algs": [
+            "L' U' L U' R U' R'"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 7
+        },
+        {
+          "id": "l4e-uef-7",
+          "name": {
+            "es": "Arista superior volteada · #7",
+            "en": "Upper edge flipped · #7"
+          },
+          "group": "uef",
+          "setup": "L' U' L U' L R' L' R U'",
+          "algs": [
+            "U R' L R L' U L' U L"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 9
+        },
+        {
+          "id": "l4e-uef-8",
+          "name": {
+            "es": "Arista superior volteada · #8",
+            "en": "Upper edge flipped · #8"
+          },
+          "group": "uef",
+          "setup": "R U R' U R' L R L' U",
+          "algs": [
+            "U' L R' L' R U' R U' R'"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 9
+        },
+        {
+          "id": "l4e-np-1",
+          "name": {
+            "es": "Nada colocado · #1",
+            "en": "Nothing placed · #1"
+          },
+          "group": "np",
+          "setup": "L R' L' R' U R' U'",
+          "algs": [
+            "U R U' R L R L'"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 7
+        },
+        {
+          "id": "l4e-np-2",
+          "name": {
+            "es": "Nada colocado · #2",
+            "en": "Nothing placed · #2"
+          },
+          "group": "np",
+          "setup": "R' L R L U' L U",
+          "algs": [
+            "U' L' U L' R' L' R"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 7
+        },
+        {
+          "id": "l4e-np-3",
+          "name": {
+            "es": "Nada colocado · #3",
+            "en": "Nothing placed · #3"
+          },
+          "group": "np",
+          "setup": "R U' R' U' L' U L U",
+          "algs": [
+            "U' L' U' L U R U R'"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 8
+        },
+        {
+          "id": "l4e-np-4",
+          "name": {
+            "es": "Nada colocado · #4",
+            "en": "Nothing placed · #4"
+          },
+          "group": "np",
+          "setup": "L' U L U R U' R' U'",
+          "algs": [
+            "U R U R' U' L' U' L"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 8
+        },
+        {
+          "id": "l4e-np-5",
+          "name": {
+            "es": "Nada colocado · #5",
+            "en": "Nothing placed · #5"
+          },
+          "group": "np",
+          "setup": "R U' R' U R U R' U'",
+          "algs": [
+            "U R U' R' U' R U R'"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 8
+        },
+        {
+          "id": "l4e-np-6",
+          "name": {
+            "es": "Nada colocado · #6",
+            "en": "Nothing placed · #6"
+          },
+          "group": "np",
+          "setup": "L' U L U' L' U' L U",
+          "algs": [
+            "U' L' U L U L' U' L"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 8
+        },
+        {
+          "id": "l4e-np-7",
+          "name": {
+            "es": "Nada colocado · #7",
+            "en": "Nothing placed · #7"
+          },
+          "group": "np",
+          "setup": "R U R' L' U' L U",
+          "algs": [
+            "U' L' U L R U' R'"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 7
+        },
+        {
+          "id": "l4e-np-8",
+          "name": {
+            "es": "Nada colocado · #8",
+            "en": "Nothing placed · #8"
+          },
+          "group": "np",
+          "setup": "L' U' L R U R' U'",
+          "algs": [
+            "U R U' R' L' U L"
+          ],
+          "source": "https://cubingapp.com/algorithms/Pyraminx-L4E",
+          "moves": 7
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "lessons": [
+    {
+      "id": "fixture",
+      "title": { "es": "Prueba de importación", "en": "Import test" },
+      "objective": { "es": "Comprobar el formato.", "en": "Check the format." },
+      "body": { "es": "**Fixture técnico.**", "en": "**Technical fixture.**" },
+      "algSetRefs": ["l3e"],
+      "demos": [{ "setup": "U", "alg": "U'" }],
+      "prerequisites": []
+    }
+  ]
+}

@@ -3,7 +3,8 @@ import { storageKey } from '../config/storageScope';
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { liveQuery } from 'dexie';
 import { translate } from '../i18n/translate';
-import { events, registry } from '../puzzles/registry';
+import { isTetra } from '../puzzles/events';
+import { events, isPuzzleId, registry } from '../puzzles/registry';
 import { db } from '../core/storage/db';
 import {
     defaults,
@@ -55,13 +56,24 @@ export default function App() {
     const [failed, setFailed] = useState(false);
     const [loadFailed, setLoadFailed] = useState(false);
     const appearance = prefs ?? defaults;
-    const t: T = (key, params) => translate(appearance.language, key, params);
+    const [contentMessages, setContentMessages] = useState<{ puzzle: string; messages: Record<'es' | 'en', Record<string, string>> }>();
+    const t: T = (key, params) =>
+        (contentMessages?.puzzle === puzzle ? contentMessages.messages[appearance.language][key] : undefined)
+        ?? translate(appearance.language, key, params);
+    useEffect(() => {
+        if (mod?.id !== puzzle || !mod.loadContentInfo || !['academy', 'trainer'].includes(route)) return;
+        let active = true;
+        void mod.loadContentInfo().then(({ messages }) => {
+            if (active && messages) setContentMessages({ puzzle, messages });
+        }).catch(() => { /* The active content screen reports the import error. */ });
+        return () => { active = false; };
+    }, [mod, puzzle, route]);
 
     useEffect(() => {
         function change() {
             const path = routeFromHash();
             setPath(path);
-            if (path.route === 'academy' && (path.extra === '222' || path.extra === '333'))
+            if (path.route === 'academy' && path.extra && isPuzzleId(path.extra))
                 setEvent(path.extra);
         }
         change();
@@ -150,7 +162,7 @@ export default function App() {
                     </nav>
                 )}
             </header>
-            {!onboarded && prefs && <Onboarding t={t} initialPuzzle={puzzle} finish={complete} />}
+            {!onboarded && prefs && <Onboarding t={t} initialPuzzle={puzzle === '222' ? '222' : '333'} finish={complete} />}
             {onboarded && prefs && (
                 <main id="main" tabIndex={-1}>
                     <div className="heading">
@@ -193,7 +205,7 @@ export default function App() {
                             <Academy key={puzzle} mod={ready} t={t} lessonLink={id} />
                         )}
                         {route === 'evaluation' && ready && (
-                            <Evaluation key={puzzle} mod={ready} t={t} />
+                            isTetra(puzzle) ? <p>{t('evaluationNoQuestions')}</p> : <Evaluation key={puzzle} mod={ready} t={t} />
                         )}
                         {route === 'settings' && <Settings prefs={prefs} t={t} />}
                         {route === 'stats' && (

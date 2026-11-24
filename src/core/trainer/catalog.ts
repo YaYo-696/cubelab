@@ -5,6 +5,6 @@ export type TrainingSet = {
     nameKey: string;
     skill: Skill;
     targetMs: number;
-    groups: readonly { id: string; lessonId: string; ids?: readonly string[] }[];
+    groups: readonly { id: string; lessonId?: string; nameKey?: string; ids?: readonly string[] }[];
     lowerFace?: boolean;
 };

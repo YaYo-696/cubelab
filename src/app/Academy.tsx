@@ -12,6 +12,7 @@ import { caseSetup, type AcademyCase } from '../core/academy/cases';
 import { openingMoves } from '../core/academy/execution';
 import './academy.css';
 
+const Markdown = lazy(() => import('react-markdown'));
 const Player = lazy(() => import('./AcademyPlayer').then((m) => ({ default: m.AcademyPlayer })));
 type T = (key: string, params?: Record<string, string | number>) => string;
 type Props = { mod: PuzzleModule<string>; t: T };
@@ -47,6 +48,8 @@ function LessonView({
             if (!control.signal.aborted) setExerciseStatus('solvePracticeError');
         }
     }
+    const [activeSet, selectSet] = useState(lesson.setId);
+    const [demoIndex, selectDemo] = useState(0);
     const [set, setSet] = useState<AlgSet>(),
         [caseId, setCase] = useState(lesson.caseIds[0]);
     const [position, setPosition] = useState<{ setup: string; caseId: string; variant: number }>(),
@@ -56,10 +59,15 @@ function LessonView({
         [result, setResult] = useState<number>(),
         [error, setError] = useState(false);
     useEffect(() => {
+        if (!activeSet) return;
         let active = true;
-        mod.loadAlgSet(lesson.setId)
+        mod.loadAlgSet(activeSet)
             .then((data) => {
-                if (active) setSet(data);
+                if (active) {
+                    setSet(data);
+                    setCase((previous) => data.cases.some((item) => item.id === previous)
+                        ? previous : data.cases.find((item) => lesson.caseIds.includes(item.id))?.id ?? '');
+                }
             })
             .catch(() => {
                 if (active) setError(true);
@@ -67,7 +75,7 @@ function LessonView({
         return () => {
             active = false;
         };
-    }, [mod, lesson.setId]);
+    }, [mod, activeSet, lesson.caseIds]);
     useEffect(() => {
         if (!set || !caseId) return;
         let active = true;
@@ -96,9 +104,9 @@ function LessonView({
         setMove('');
     };
     const selected = cases?.find((c) => c.id === caseId);
-    const puzzle = mod.id === '222' ? '2x2x2' : '3x3x3';
+    const puzzle = mod.visualization.twistyPuzzleId;
     const symbol = glossary(mod.id, lesson.glossary).find((entry) => entry.move === move);
-    const demo = lesson.demos[0];
+    const demo = lesson.demos[demoIndex];
     const alg = symbol?.alg ?? (variant === -1 ? demo?.alg : selected?.algorithms[variant]);
     const playerSetup = symbol ? '' : variant === -1 ? demo?.setup : setup;
     const opening = full && alg && !symbol && variant >= 0 ? openingMoves(alg) : undefined;
@@ -109,7 +117,31 @@ function LessonView({
             <p>
                 <strong>{t('aGoal')}</strong> · {t(lesson.objectiveKey)}
             </p>
-            <p>{t(lesson.bodyKey)}</p>
+            {lesson.markdown
+                ? <div className="lesson-markdown"><Suspense fallback={<p>{t('aLoading')}</p>}><Markdown>{t(lesson.bodyKey)}</Markdown></Suspense></div>
+                : <p>{t(lesson.bodyKey)}</p>}
+            {lesson.algSetRefs && lesson.algSetRefs.length > 1 && (
+                <label>{t('trainerSet')}{' '}
+                    <select value={activeSet} onChange={(e) => {
+                        setSet(undefined);
+                        setCase('');
+                        setMove('');
+                        setVariant(0);
+                        selectSet(e.target.value);
+                    }}>
+                        {lesson.algSetRefs.map((id) => <option key={id} value={id}>{t('pyram.set.' + id)}</option>)}
+                    </select>
+                </label>
+            )}
+            {lesson.demos.length > 1 && (
+                <label>{t('aDemo')}{' '}<select value={demoIndex} onChange={(e) => {
+                    selectDemo(Number(e.target.value));
+                    setMove('');
+                    setVariant(-1);
+                }}>
+                    {lesson.demos.map((_, index) => <option value={index} key={index}>{index + 1}</option>)}
+                </select></label>
+            )}
             {lesson.glossary && (
                 <section>
                     <h3>
@@ -235,12 +267,16 @@ function LessonView({
                             </li>
                         </ol>
                     )}
-                    <p>{t((selected as Partial<AcademyCase>).fingertrickKey ?? 'fingerUpper')}</p>
+                    {selected.source ? <p><a href={selected.source}>{t('aSource')}</a></p>
+                        : mod.category === 'wca' && puzzle !== 'pyraminx'
+                            && <p>{t((selected as Partial<AcademyCase>).fingertrickKey ?? 'fingerUpper')}</p>}
                 </section>
             )}
-            <h3>{t('aPractice')}</h3>
-            <p>{t('aFrame')}</p>
-            <p>{t(lesson.exerciseKey)}</p>
+            {lesson.exerciseKey && <>
+                <h3>{t('aPractice')}</h3>
+                {puzzle === '2x2x2' || puzzle === '3x3x3' ? <p>{t('aFrame')}</p> : null}
+                <p>{t(lesson.exerciseKey)}</p>
+            </>}
             {method && (
                 <div className="actions">
                     <button type="button" onClick={() => void newExercise()} disabled={exerciseStatus === 'solvePracticeLoading'}>
@@ -283,7 +319,7 @@ function LessonView({
                     }
                 }}
             >
-                <h3>{t('aQuiz')}</h3>
+                {lesson.quiz.length > 0 && <h3>{t('aQuiz')}</h3>}
                 {lesson.quiz.map((question, index) => {
                     const picture = cases?.find((c) => c.id === question.caseId) as
                         | AcademyCase
@@ -333,8 +369,8 @@ function LessonView({
                         </fieldset>
                     );
                 })}
-                <button>{t('aCheck')}</button>
-                {result !== undefined && (
+                <button>{t(lesson.quiz.length ? 'aCheck' : 'aCompleteLesson')}</button>
+                {result !== undefined && lesson.quiz.length > 0 && (
                     <p role="status">{t('aScore', { correct: result, total: lesson.quiz.length })}</p>
                 )}
             </form>
@@ -347,15 +383,15 @@ export function Academy({ mod, t, lessonLink }: Props & { lessonLink?: string })
     const [course, setCourse] = useState<Course>(),
         [progress, setProgress] = useState<Completion[]>([]);
     const [selected, setSelected] = useState(''),
-        [error, setError] = useState(false);
+        [error, setError] = useState('');
     useEffect(() => {
         let active = true;
         mod.loadCourse(mod.courses[0])
             .then((data) => {
                 if (active) setCourse(data);
             })
-            .catch(() => {
-                if (active) setError(true);
+            .catch((reason: unknown) => {
+                if (active) setError(reason instanceof Error ? reason.message : String(reason));
             });
         return () => {
             active = false;
@@ -368,10 +404,10 @@ export function Academy({ mod, t, lessonLink }: Props & { lessonLink?: string })
                 .where('[courseId+lessonId]')
                 .between([course.id, ''], [course.id, '\uffff'], true, true)
                 .toArray(),
-        ).subscribe({ next: setProgress, error: () => setError(true) });
+        ).subscribe({ next: setProgress, error: () => setError('storage') });
         return () => sub.unsubscribe();
     }, [course]);
-    if (!course) return <p>{t(error ? 'failed' : 'aLoading')}</p>;
+    if (!course) return error ? <p role="alert">{error === 'storage' ? t('failed') : error}</p> : <p>{t('aLoading')}</p>;
     const lesson = course.modules
         .flatMap((m) => m.lessons)
         .find((l) => l.id === (lessonLink ?? selected));
@@ -421,7 +457,7 @@ export function Academy({ mod, t, lessonLink }: Props & { lessonLink?: string })
                 />
             )}
             {lesson && !unlocked(course, lesson, progress) && <p>{t('aLocked')}</p>}
-            {error && <p role="alert">{t('failed')}</p>}
+            {error && <p role="alert">{error === 'storage' ? t('failed') : error}</p>}
         </div>
     );
 }
