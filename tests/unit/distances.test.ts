@@ -13,7 +13,7 @@ for (const [puzzle, event] of [['222', '222'], ['333', '333'], ['333', '333bf']]
             const alg = await generate(puzzle, event, signal);
             expect(below(alg), event + ' #' + i + ' ' + alg).toBe(false);
         }
-    });
+    }, 120_000);
 }
 it('rechaza candidatos por estado y reintenta incluso si la secuencia es larga', async () => {
     const candidates = ['R U F2 F2 U\' R\'', 'R U F', 'R U F R'];

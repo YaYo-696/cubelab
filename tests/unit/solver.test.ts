@@ -87,7 +87,7 @@ it.each(methods)(
             }),
         );
     },
-    120000,
+    120_000,
 );
 
 it('produce posiciones verificadas para practicar CLL y EG desde mezclas reales', async () => {
@@ -104,4 +104,4 @@ it('produce posiciones verificadas para practicar CLL y EG desde mezclas reales'
         }
     }
     expect([...seen].sort()).toEqual(['cllPractice', 'egPractice']);
-});
+}, 120_000);

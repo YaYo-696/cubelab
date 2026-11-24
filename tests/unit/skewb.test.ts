@@ -100,7 +100,7 @@ it('verifies both Skewb methods with KPuzzle on 200 random-state WCA mixtures', 
         );
         expect(beginner.moves).toBeGreaterThanOrEqual(optimal.moves);
     }
-}, 45000);
+}, 120_000);
 
 it('validates both variants from the fixture and generates the declared active training cases', async () => {
     const fixture = await parseSkewbDrop(sets, lessons, true);

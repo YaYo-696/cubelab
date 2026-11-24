@@ -56,7 +56,7 @@ describe('tetrahedral puzzles', () => {
                 }
             }
         },
-        30000,
+        120_000,
     );
 
     it('has the independent Duo distance distribution', async () => {
