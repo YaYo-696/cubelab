@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "sets": [{
+    "id": "444-fixture",
+    "name": {"es": "Fixture técnico", "en": "Technical fixture"},
+    "stage": "Synthetic import check",
+    "cases": [{
+      "id": "444-fixture-case",
+      "name": {"es": "Caso de prueba", "en": "Test case"},
+      "group": "Fixture",
+      "setup": "2R U",
+      "algs": ["U' 2R'", "U' 2R' z"],
+      "source": "generated: fixture"
+    }]
+  }]
+}

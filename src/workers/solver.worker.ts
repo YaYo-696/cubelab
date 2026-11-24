@@ -1,4 +1,4 @@
-import { isTetra } from '../puzzles/events';
+import { isBigCube, isTetra } from '../puzzles/events';
 import type { SolveProgress } from '../core/solver/options';
 import type { SolverJob } from './solverClient';
 
@@ -6,7 +6,7 @@ self.addEventListener('message', async ({ data }: MessageEvent<SolverJob>) => {
     if (data?.kind !== 'solve') return;
     try {
         const { puzzle, input, method, neutral } = data;
-        if (puzzle === 'minx') {
+        if (puzzle === 'minx' || isBigCube(puzzle)) {
             self.postMessage({ result: { status: 'invalidInput' } });
             return;
         }

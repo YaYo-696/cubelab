@@ -186,9 +186,10 @@ export function Timer({ mod, rules, prefs, t }: Props) {
               : 'DNF'
         : formatTime(elapsed);
     const locked = !ready || active || !!pending || phase === 'stopped';
-    const ao = useMemo(() => breakdown([...recent].reverse(), 'ao5')?.value ?? null, [recent]);
+    const averageMetric = rules.officialFormats.includes('mo3') ? 'mo3' : 'ao5';
+    const average = useMemo(() => breakdown([...recent].reverse(), averageMetric)?.value ?? null, [recent, averageMetric]);
     const newPbs = pbStats?.records.filter(
-        (r) => r.solve.id === lastSaved && ['single', 'ao5', 'ao12'].includes(r.metric),
+        (r) => r.solve.id === lastSaved && ['single', averageMetric, 'ao12'].includes(r.metric),
     );
     const last = recent[0];
     const show = (s: Solve) =>
@@ -475,7 +476,7 @@ export function Timer({ mod, rules, prefs, t }: Props) {
                 <h2>{t('latestFive')}</h2>
                 <span data-testid="session-count">{t('sessionCount', { count: total })}</span>
                 <p>
-                    ao5 <strong>{ao === null ? '—' : ao === Infinity ? 'DNF' : formatTime(ao)}</strong>
+                    {averageMetric} <strong>{average === null ? '—' : average === Infinity ? 'DNF' : formatTime(average)}</strong>
                 </p>
                 {newPbs?.length ? (
                     <p role="status">

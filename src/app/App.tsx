@@ -192,7 +192,7 @@ export default function App() {
                             <Timer key={eventId} mod={ready} rules={rules} prefs={prefs} t={t} />
                         )}
                         {route === 'trainer' && ready && (
-                            <Trainer
+                            !ready.courses.length ? <p>{t('trainerNoSets')}</p> : <Trainer
                                 key={eventId + (id ?? '') + (extra ?? '')}
                                 mod={ready}
                                 rules={rules}
@@ -202,7 +202,7 @@ export default function App() {
                             />
                         )}
                         {route === 'academy' && ready && (
-                            <Academy key={puzzle} mod={ready} t={t} language={appearance.language} lessonLink={id} />
+                            !ready.courses.length ? <p>{t('aNoCourse')}</p> : <Academy key={puzzle} mod={ready} t={t} language={appearance.language} lessonLink={id} />
                         )}
                         {route === 'evaluation' && ready && (
                             !isCubePuzzle(puzzle) ? <p>{t('evaluationNoQuestions')}</p> : <Evaluation key={puzzle} mod={ready} t={t} />

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "lessons": [{
+    "id": "444-fixture-lesson",
+    "title": {"es": "Prueba de importación", "en": "Import test"},
+    "objective": {"es": "Comprobar el formato.", "en": "Check the format."},
+    "body": {"es": "**Fixture técnico.**", "en": "**Technical fixture.**"},
+    "algSetRefs": ["444-fixture"],
+    "demos": [{"setup": "2R U", "alg": "U' 2R'"}],
+    "prerequisites": []
+  }]
+}

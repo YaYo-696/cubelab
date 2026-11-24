@@ -1,4 +1,11 @@
 {
+  "444": "4×4",
+  "555": "5×5",
+  "666": "6×6",
+  "777": "7×7",
+  "444Fixture": "Fixture técnico de 4×4",
+  "444Content": "Lecciones y casos",
+  "aNoCourse": "Aún no hay lecciones para este puzzle.",
   "minx": "Megaminx",
   "minxFixture": "Fixture técnico de Megaminx",
   "minxContent": "Lecciones y casos",

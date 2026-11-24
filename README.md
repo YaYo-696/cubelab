@@ -1,6 +1,6 @@
 # CubeLab
 
-PWA bilingüe de speedcubing para 2×2, 3×3, 3×3 a ciegas, Pyraminx, Pyraminx Duo, Skewb y Megaminx. Incluye Timer, sesiones y estadísticas, una Academia con catálogos verificados, un Solucionador por etapas y un Entrenador con repetición espaciada. Las funciones principales quedan disponibles sin conexión después de preparar la instalación.
+PWA bilingüe de speedcubing para 2×2, 3×3, 3×3 a ciegas, Pyraminx, Pyraminx Duo, Skewb, Megaminx y cubos grandes de 4×4 a 7×7. Incluye Timer, sesiones y estadísticas, una Academia con catálogos verificados, un Solucionador por etapas y un Entrenador con repetición espaciada. Las funciones principales quedan disponibles sin conexión después de preparar la instalación.
 
 [Changelog 1.0.0](CHANGELOG.md) · [Arquitectura](docs/ARQUITECTURA.md) · [Decisiones](docs/DECISIONES.md) · [Fuentes](docs/FUENTES.md)
 
@@ -48,6 +48,12 @@ El contenido de Academia y Entrenador se incorpora al compilar desde `content-dr
 En Timer, elige **Megaminx** para usar Ao5, inspección de 15 s y mezclas Pochmann. Puedes alternar la vista 2D y 3D. El historial conserva los intentos y su mezcla. Al abrir un intento en Solucionador aparece el aviso de que este puzzle aún no tiene solucionador.
 
 Academia y Entrenador cargan el contrato v1 desde `content-drop/minx/algsets.json` y `content-drop/minx/lessons.json`. Los sets usan IDs `minx-…`. Si faltan ambos archivos, se muestra un fixture técnico. Consulta [la notación de contenido](docs/DECISIONES.md#fase-9--megaminx) para preparar los setups y algoritmos.
+
+## Cubos grandes
+
+En Timer, elige **4×4**, **5×5**, **6×6** o **7×7** y alterna entre 2D y 3D. Los cuatro tienen 15 s de inspección. El 4×4 y el 5×5 usan Ao5. El 6×6 y el 7×7 usan Mo3.
+
+Academia y Entrenador de 4×4 cargan el contrato v1 desde `content-drop/444/algsets.json` y `content-drop/444/lessons.json`. Los IDs de set usan el prefijo `444-`. Hay un fixture técnico para cuando falten ambos archivos. [Notación de contenido y rendimiento](docs/DECISIONES.md#fase-10--cubos-grandes)
 
 ## Publicación
 
