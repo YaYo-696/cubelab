@@ -1,4 +1,4 @@
-import { cubeEvent, tetraEvent, skewbEvent, minxEvent, bigCubeEvent, sideEvent, type PuzzleId } from './events';
+import { cubeEvent, tetraEvent, skewbEvent, minxEvent, bigCubeEvent, sideEvent, modality, type PuzzleId } from './events';
 export const registry = {
     '222': () => import('./222/module').then(m => m.default),
     '333': () => import('./333/module').then(m => m.default),
@@ -27,6 +27,11 @@ export const events = [
     { puzzleId: '777', rules: bigCubeEvent('777') },
     { puzzleId: 'sq1', rules: sideEvent('sq1') },
     { puzzleId: 'clock', rules: sideEvent('clock') },
+    { puzzleId: '333', rules: modality('333oh') },
+    { puzzleId: '333', rules: modality('333fm') },
+    { puzzleId: '444', rules: modality('444bf') },
+    { puzzleId: '555', rules: modality('555bf') },
+    { puzzleId: '333', rules: modality('333mbf') },
 ] as const;
 export function isPuzzleId(id: string): id is PuzzleId {
     return Object.hasOwn(registry, id);

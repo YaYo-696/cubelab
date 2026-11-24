@@ -14,7 +14,7 @@ export type Metric = keyof typeof windows;
 export const metrics = Object.keys(windows) as Metric[];
 export const trim = (size: number) => (size <= 3 ? 0 : Math.ceil(size / 20));
 export function principal(rules: EventRules): Metric {
-    return rules.officialFormats.includes('bo5')
+    return rules.officialFormats.includes('bo5') || rules.officialFormats.includes('bo3')
         ? 'single'
         : rules.officialFormats.includes('mo3')
           ? 'mo3'

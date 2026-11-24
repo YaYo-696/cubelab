@@ -2,7 +2,7 @@ import { trainingSets } from './content/trainer';
 import { requestSolution } from '../workers/solverClient';
 import type { SolveMethod } from '../core/solver/options';
 import type { PuzzleModule, Solver } from '../core/contracts';
-import { cubeEvent, type CubeId } from './events';
+import { cubeEvent, modality, type CubeId } from './events';
 import { normalizeCube } from './notation';
 import { cubeModel } from './cube';
 import { loadAlgSet, loadCourse } from './content';
@@ -17,7 +17,7 @@ export function makeCube(id: CubeId): PuzzleModule<string> {
         id,
         nameKey: id,
         category: 'wca',
-        events: id === '333' ? [cubeEvent(id), cubeEvent(id, true)] : [cubeEvent(id)],
+        events: id === '333' ? [cubeEvent(id), cubeEvent(id, true), modality('333oh'), modality('333fm'), modality('333mbf')] : [cubeEvent(id)],
         notation: { normalize: normalizeCube },
         visualization: { twistyPuzzleId: id === '222' ? '2x2x2' : '3x3x3', defaultView: '2D' },
         generateScramble: (event, signal) => requestScramble(id, event, signal),

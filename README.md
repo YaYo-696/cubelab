@@ -61,6 +61,12 @@ Ambos eventos usan Ao5, inspección de 15 s y vista 2D. Square-1 admite `(X, Y)`
 
 Academia y Entrenador leen el contrato v1 desde `content-drop/sq1/` y `content-drop/clock/`. Cuando faltan los dos JSON de un evento, se carga su fixture técnico. [Reglas y modelos](docs/DECISIONES.md#fase-11--square-1-y-clock)
 
+## Modalidades WCA
+
+El selector de eventos incluye 3×3 a una mano, 3×3 menos movimientos, 4×4 y 5×5 a ciegas y 3×3 Multi‑Blind. FMC tiene 60 minutos y verifica la solución escrita. Multi‑Blind genera una mezcla por cubo y aplica el límite de 10 minutos por cubo, hasta un máximo de 60. En 3×3, 4×4 y 5×5 a ciegas se puede activar la separación de memoria y ejecución y marcar el cambio con **M**.
+
+Estadísticas separa los resultados por modalidad. FMC muestra movimientos y Mo3. Multi‑Blind muestra el tiempo, los cubos resueltos y la clasificación por puntos. [Reglas aplicadas](docs/DECISIONES.md#fase-12--modalidades-wca)
+
 ## Publicación
 
 El workflow publica un preview con etiqueta DEV a partir de `main`. El release se construye desde un tag y solo se publica tras pasar `release:check` y las pruebas. Queda desactivado mientras `CUBELAB_RELEASE_REF` esté sin definir. [Pasos exactos para crear el repositorio, hacer push y conectar GitHub Pages](docs/PUBLICACION.md)

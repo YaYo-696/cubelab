@@ -20,6 +20,16 @@ export function bigCubeEvent(id: BigCubeId): EventRules {
     return { id, wcaEventId: id, nameKey: id, officialFormats: [bigCubeSize[id] < 6 ? 'ao5' : 'mo3'],
         inspectionSeconds: 15, scoring: 'time', minSolveDistance: minimumDistances[id], randomOrientation: false };
 }
+export function modality(id: '333oh' | '333fm' | '444bf' | '555bf' | '333mbf'): EventRules {
+    const base = id === '444bf' || id === '555bf' ? bigCubeEvent(id === '444bf' ? '444' : '555') : cubeEvent('333');
+    const blindfolded = id.endsWith('bf');
+    return { ...base, id, wcaEventId: id, nameKey: id, blindfolded,
+        randomOrientation: blindfolded,
+        inspectionSeconds: id === '333oh' ? 15 : null,
+        officialFormats: id === '333fm' ? ['mo3', 'bo1', 'bo2'] :
+            id === '333mbf' ? ['bo1', 'bo2', 'bo3'] : blindfolded ? ['bo3'] : ['ao5'],
+        scoring: id === '333fm' ? 'moves' : id === '333mbf' ? 'multiBlind' : 'time' };
+}
 export function isCubePuzzle(puzzle: string): puzzle is CubeId {
     return puzzle === '222' || puzzle === '333';
 }
@@ -44,5 +54,5 @@ export function cubeEvent(puzzle: CubeId, blind = false): EventRules {
     const id = blind ? puzzle + 'bf' : puzzle;
     if (blind && puzzle !== '333')
         throw new RangeError(id);
-    return { id, wcaEventId: id, nameKey: id, officialFormats: [blind ? 'bo5' : 'ao5'], inspectionSeconds: blind ? null : 15, scoring: 'time', minSolveDistance: minimumDistances[puzzle], randomOrientation: blind };
+    return { id, wcaEventId: id, nameKey: id, officialFormats: [blind ? 'bo5' : 'ao5'], inspectionSeconds: blind ? null : 15, scoring: 'time', minSolveDistance: minimumDistances[puzzle], randomOrientation: blind, blindfolded: blind };
 }

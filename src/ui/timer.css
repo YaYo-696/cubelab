@@ -72,6 +72,11 @@
     border: 1px solid #435962;
     border-radius: 12px;
 }
+.bld-split {
+    position: absolute;
+    bottom: 1rem;
+    z-index: 1;
+}
 .touch-zone {
     min-height: 200px;
     padding: 20px;
@@ -96,7 +101,12 @@
     overscroll-behavior: none;
     touch-action: none;
 }
-.expanded .touch-zone {
+.expanded .bld-split {
+    position: absolute;
+    bottom: 1rem;
+    z-index: 1;
+}
+.touch-zone {
     height: 100%;
     box-sizing: border-box;
 }
@@ -172,7 +182,12 @@
         padding: 12px;
         gap: 6px;
     }
-    .touch-zone {
+    .bld-split {
+    position: absolute;
+    bottom: 1rem;
+    z-index: 1;
+}
+.touch-zone {
         min-height: 170px;
     }
     .session-bar {

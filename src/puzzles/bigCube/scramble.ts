@@ -31,17 +31,20 @@ export async function filterBigCube(
     id: BigCubeId,
     pick: () => Promise<string>,
     signal: AbortSignal,
+    blind = false,
 ) {
     for (;;) {
         signal.throwIfAborted();
-        const candidate = normalizeBigCube(id, await pick());
+        const candidate = normalizeBigCube(id, await pick(), blind);
         const tooClose = await bigCubeTooClose(id, candidate);
         signal.throwIfAborted();
         if (!tooClose) return candidate;
     }
 }
 
-export async function scrambleBigCube(id: BigCubeId, signal: AbortSignal) {
+export async function scrambleBigCube(id: BigCubeId, signal: AbortSignal, event: string = id) {
     const { randomScrambleForEvent } = await import('cubing/scramble');
-    return filterBigCube(id, async () => (await randomScrambleForEvent(id)).toString(), signal);
+    const blind = (id === '444' && event === '444bf') || (id === '555' && event === '555bf');
+    if (!blind && event !== id) throw new RangeError(event);
+    return filterBigCube(id, async () => (await randomScrambleForEvent(event)).toString(), signal, blind);
 }

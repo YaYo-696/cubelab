@@ -256,7 +256,7 @@ export function solvesCsv(solves: Solve[], sessions: Session[]) {
         );
     };
     return [
-        ['date', 'event', 'session', 'time_ms', 'penalty', 'scramble', 'comment'],
+        ['date', 'event', 'session', 'time_ms', 'penalty', 'scramble', 'comment', 'moves', 'solved', 'attempted', 'points', 'solution'],
         ...solves
             .filter((s) => s.deletedAt === undefined)
             .map((s) => [
@@ -267,6 +267,11 @@ export function solvesCsv(solves: Solve[], sessions: Session[]) {
                 s.penalty,
                 s.scramble,
                 s.comment ?? '',
+                s.result.kind === 'moves' ? s.result.moves : '',
+                s.result.kind === 'multiBlind' ? s.result.solved : '',
+                s.result.kind === 'multiBlind' ? s.result.attempted : '',
+                s.result.kind === 'multiBlind' ? s.result.solved * 2 - s.result.attempted : '',
+                s.reconstruction ?? '',
             ]),
     ]
         .map((row) => row.map(escape).join(','))

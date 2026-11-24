@@ -8,6 +8,7 @@ interface Options {
     threshold: number;
     enabled: boolean;
     sound?: boolean;
+    splits?: boolean;
     vibration?: boolean;
     finish: (result: Finish) => void;
 }
@@ -90,7 +91,14 @@ export function useTimerInput(options: Options) {
         const key = (e: KeyboardEvent) => {
             if (e.isComposing) return;
             if (machine.phase === 'running') {
+                if (e.target instanceof Element && e.target.closest('[data-timer-split]') &&
+                    (e.code === 'Space' || e.code === 'Enter')) return;
                 e.preventDefault();
+                if (latest.current.splits && e.code === 'KeyM' && !e.repeat) {
+                    machine.markExecution();
+                    redraw();
+                    return;
+                }
                 down('key:' + e.code, e.repeat);
                 return;
             }
@@ -108,6 +116,7 @@ export function useTimerInput(options: Options) {
             redraw();
         };
         const press = (e: PointerEvent) => {
+            if (e.target instanceof Element && e.target.closest('[data-timer-split]')) return;
             const inside = element.contains(e.target as Node);
             if (!inside && !pointers.size && machine.phase !== 'running') return;
             e.preventDefault();
@@ -187,6 +196,7 @@ export function useTimerInput(options: Options) {
     return {
         machine,
         area,
+        markExecution: () => { machine.markExecution(); render(); },
         saved: () => {
             machine.saved();
             render();

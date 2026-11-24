@@ -97,3 +97,8 @@
     background: #253d3c;
     padding: 0.7rem;
 }
+
+.history-sequence {
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+}

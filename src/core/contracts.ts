@@ -10,6 +10,7 @@ export interface EventRules {
     scoring: 'time' | 'moves' | 'multiBlind';
     minSolveDistance: number;
     randomOrientation: boolean;
+    blindfolded?: boolean;
 }
 export interface AlgCase {
     id: string;

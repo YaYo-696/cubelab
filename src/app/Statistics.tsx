@@ -4,9 +4,11 @@ import { db, solvesForEvent, type Session, type Solve } from '../core/storage/db
 import { attempts } from '../core/storage/attempts';
 import { sessionActions } from '../core/storage/sessions';
 import { exportBackup, exportCsv, importBackup } from '../core/storage/backup';
-import { adjusted, breakdown, principal, type Metric } from '../core/stats';
+import { breakdown, principal, type Metric } from '../core/stats';
 import type { EventRules } from '../core/contracts';
 import { formatTime } from '../core/timer/times';
+import { resultText } from '../core/events/results';
+import { SpecialStats } from './SpecialStats';
 import { StatisticsCharts } from './StatisticsCharts';
 import { useStatistics } from './useStatistics';
 import './statistics.css';
@@ -62,7 +64,7 @@ export function Statistics({ rules, puzzleId, t }: { rules: EventRules; puzzleId
                 : undefined,
         [data, id],
     );
-    const computation = useStatistics(input, id);
+    const computation = useStatistics(rules.scoring === 'time' ? input : undefined, id);
     const solves = input?.session ?? [];
     const reverse = useMemo(() => [...solves].reverse(), [solves]);
     const maxPage = Math.max(0, Math.ceil(reverse.length / 25) - 1);
@@ -106,6 +108,7 @@ export function Statistics({ rules, puzzleId, t }: { rules: EventRules; puzzleId
             ? breakdown(detailSolves.slice(0, detailIndex + 1), detail.metric)
             : null;
     const main = principal(rules);
+    const blindFormat = rules.officialFormats.includes('bo3') ? 'Bo3' : rules.officialFormats.includes('bo5') ? 'Bo5' : '';
     const bestByEvent = useMemo(
         () => new Map(computation?.records.map((r) => [r.metric, r])),
         [computation],
@@ -202,6 +205,7 @@ export function Statistics({ rules, puzzleId, t }: { rules: EventRules; puzzleId
             </section>
             <section className="stats-card">
                 <h2>{t('summary')}</h2>
+                {rules.scoring === 'time' ? <>
                 <table>
                     <thead>
                         <tr>
@@ -216,11 +220,10 @@ export function Statistics({ rules, puzzleId, t }: { rules: EventRules; puzzleId
                             <tr key={r.metric} className={main === r.metric ? 'main-metric' : undefined}>
                                 <th scope="row">
                                     {t(r.metric)}
-                                    {main === r.metric && rules.officialFormats.includes('bo5')
-                                        ? ' · Bo5'
+                                    {main === r.metric && blindFormat
+                                        ? ' · ' + blindFormat
                                         : ''}
-                                    {rules.officialFormats.includes('bo5') &&
-                                        ['ao5', 'mo3'].includes(r.metric) && (
+                                    {(blindFormat === 'Bo3' ? r.metric === 'mo3' : blindFormat === 'Bo5' && r.metric === 'ao5') && (
                                             <small> · {t('informational')}</small>
                                         )}
                                 </th>
@@ -317,6 +320,7 @@ export function Statistics({ rules, puzzleId, t }: { rules: EventRules; puzzleId
                         )}
                     </details>
                 )}
+                </> : <SpecialStats kind={rules.scoring} session={solves} event={data?.event ?? []} t={t} />}
             </section>
             <section className="stats-card">
                 <h2>{t('history')}</h2>
@@ -337,13 +341,16 @@ export function Statistics({ rules, puzzleId, t }: { rules: EventRules; puzzleId
                     <details key={s.id} data-testid="history-solve">
                         <summary>
                             <strong>
-                                {display(adjusted(s))}
-                                {s.penalty === '+2' ? ' (+2)' : ''}
+                                {resultText(s, t)}
                             </strong>{' '}
                             · {date(s)}
                         </summary>
-                        <p>{s.scramble}</p>
-                        {s.scramble && <a href={'#solver/' + encodeURIComponent(s.id)}>{t('solveOpen')}</a>}
+                        <p className="history-sequence">{s.scramble}</p>
+                        {s.reconstruction && <p className="history-sequence">{t('fmcSolution')} · <code>{s.reconstruction}</code></p>}
+                        {s.splitsMs?.length === 2 && <p>{t('blindBreakdown', {
+                            memory: formatTime(s.splitsMs[0]), execution: formatTime(s.splitsMs[1]),
+                        })}</p>}
+                        {s.scramble && s.result.kind !== 'multiBlind' && <a href={'#solver/' + encodeURIComponent(s.id)}>{t('solveOpen')}</a>}
                         <p>
                             {t('penalty')} ·{' '}
                             {s.penalty === 'none' ? t('none') : s.penalty === 'dnf' ? 'DNF' : '+2'}
@@ -363,6 +370,7 @@ export function Statistics({ rules, puzzleId, t }: { rules: EventRules; puzzleId
                             {t('selectSolve')}
                         </label>
                         <div className="actions">
+                            {s.result.kind === 'time' && <>
                             <button
                                 disabled={busy}
                                 aria-pressed={s.penalty === '+2'}
@@ -389,6 +397,7 @@ export function Statistics({ rules, puzzleId, t }: { rules: EventRules; puzzleId
                             >
                                 DNF
                             </button>
+                            </>}
                             <button
                                 disabled={busy}
                                 onClick={() =>

@@ -3,13 +3,14 @@ import type { Solve } from '../storage/db';
 
 export type Phase = 'idle' | 'inspecting' | 'holding' | 'ready' | 'running' | 'stopped';
 export type Penalty = Solve['penalty'];
-export type Finish = { timeMs: number; penalty: Penalty };
+export type Finish = { timeMs: number; penalty: Penalty; splitsMs?: number[] };
 
 export class TimerMachine {
     phase: Phase = 'idle';
     inspectionStart: number | null = null;
     heldAt = 0;
     startedAt = 0;
+    memoryMs: number | null = null;
     result: Finish | null = null;
     private owner: string | null = null;
     private stored = false;
@@ -24,6 +25,7 @@ export class TimerMachine {
             this.result = {
                 timeMs: Math.max(0, Math.floor(now - this.startedAt)),
                 penalty: this.penalty(this.startedAt),
+                ...(this.memoryMs === null ? {} : { splitsMs: [this.memoryMs, Math.max(0, Math.floor(now - this.startedAt) - this.memoryMs)] }),
             };
             this.owner = id;
             this.phase = 'stopped';
@@ -72,6 +74,10 @@ export class TimerMachine {
         const elapsed = at - this.inspectionStart;
         return elapsed >= this.inspectMs + 2000 ? 'dnf' : elapsed >= this.inspectMs ? '+2' : 'none';
     }
+    markExecution() {
+        if (this.phase === 'running' && this.memoryMs === null)
+            this.memoryMs = Math.max(0, Math.floor(this.now() - this.startedAt));
+    }
     saved() {
         this.stored = true;
         this.resetIfStored();
@@ -81,6 +87,7 @@ export class TimerMachine {
         this.phase = 'idle';
         this.inspectionStart = null;
         this.result = null;
+        this.memoryMs = null;
         this.stored = false;
     }
 }

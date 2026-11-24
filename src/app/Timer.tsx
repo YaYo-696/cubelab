@@ -27,6 +27,7 @@ export function Timer({ mod, rules, prefs, t }: Props) {
     useEffect(() => { if (currentMix) rememberMix(mod.id, currentMix); }, [currentMix, mod.id, rememberMix]);
     const [sessions, setSessions] = useState<Session[]>([]),
         [session, setSession] = useState('');
+    const [split, setSplit] = useState(false);
     const [inspection, setInspection] = useState(true),
         [threshold, setThreshold] = useState(300);
     const [ready, setReady] = useState(false),
@@ -107,11 +108,12 @@ export function Timer({ mod, rules, prefs, t }: Props) {
     const timer = useTimerInput({
         rules,
         inspection,
+        splits: split,
         threshold,
         sound: prefs.sounds === 'on',
         vibration: prefs.vibration === 'on',
         enabled: ready && !!mix.current && !pending && !inFlight.current,
-        finish: (result) => record(result.timeMs, result.penalty, 'timer'),
+        finish: (result) => record(result.timeMs, result.penalty, 'timer', result.splitsMs),
     });
     const { machine } = timer;
 
@@ -147,7 +149,7 @@ export function Timer({ mod, rules, prefs, t }: Props) {
         const timeout = window.setTimeout(() => void store(pending), 3000);
         return () => clearTimeout(timeout);
     }, [writeFailed, pending]); // retries retain the original UUID, session and scramble
-    function record(timeMs: number, p: Solve['penalty'], source: Solve['source']) {
+    function record(timeMs: number, p: Solve['penalty'], source: Solve['source'], splitsMs?: number[]) {
         if (!mix.current || !session || pending || inFlight.current) return;
         void store({
             id: crypto.randomUUID(),
@@ -159,6 +161,7 @@ export function Timer({ mod, rules, prefs, t }: Props) {
             result: { kind: 'time', timeMs },
             penalty: p,
             source,
+            splitsMs,
         });
     }
     const now = performance.now(),
@@ -187,7 +190,7 @@ export function Timer({ mod, rules, prefs, t }: Props) {
               : 'DNF'
         : formatTime(elapsed);
     const locked = !ready || active || !!pending || phase === 'stopped';
-    const averageMetric = rules.officialFormats.includes('mo3') ? 'mo3' : 'ao5';
+    const averageMetric = rules.officialFormats.some((format) => format === 'mo3' || format === 'bo3') ? 'mo3' : 'ao5';
     const average = useMemo(() => breakdown([...recent].reverse(), averageMetric)?.value ?? null, [recent, averageMetric]);
     const newPbs = pbStats?.records.filter(
         (r) => r.solve.id === lastSaved && ['single', averageMetric, 'ao12'].includes(r.metric),
@@ -266,6 +269,8 @@ export function Timer({ mod, rules, prefs, t }: Props) {
                     />{' '}
                     {t('inspection')}
                 </label>
+                {rules.blindfolded && <label><input type="checkbox" disabled={locked} checked={split}
+                    onChange={(e) => { setSplit(e.target.checked); e.target.blur(); }} /> {t('blindSplit')}</label>}
                 <label>
                     {t('holdMs')}{' '}
                     <input
@@ -385,6 +390,11 @@ export function Timer({ mod, rules, prefs, t }: Props) {
                     )}
                     {phase === 'inspecting' && <span>{t('startHold')}</span>}
                 </div>
+                {split && phase === 'running' && (
+                    machine.memoryMs === null
+                        ? <button type="button" className="bld-split" data-timer-split onClick={timer.markExecution}>{t('blindMarkExecution')}</button>
+                        : <span className="bld-split">{t('blindExecuting')}</span>
+                )}
                 {touchMode && !active && (
                     <button className="exit-touch" onClick={() => setTouchMode(false)}>
                         {t('exitTouch')}

@@ -1,7 +1,7 @@
 import { KPattern } from 'cubing/kpuzzle';
 import type { CaseGenerator, PuzzleModule } from '../../core/contracts';
 import { requestCase, requestScramble } from '../../workers/client';
-import { bigCubeEvent, type BigCubeId } from '../events';
+import { bigCubeEvent, modality, type BigCubeId } from '../events';
 import { bigCubeModel, twistyIds } from './model';
 import { normalizeBigCube } from './notation';
 
@@ -14,7 +14,7 @@ export async function makeBigCube(id: BigCubeId): Promise<PuzzleModule<string>> 
         id,
         nameKey: id,
         category: 'wca',
-        events: [bigCubeEvent(id)],
+        events: [bigCubeEvent(id), ...(id === '444' || id === '555' ? [modality(id === '444' ? '444bf' : '555bf')] : [])],
         notation: { normalize: (input) => normalizeBigCube(id, input) },
         visualization: { twistyPuzzleId: twistyIds[id], defaultView: '2D' },
         generateScramble: (event, signal) => requestScramble(id, event, signal),

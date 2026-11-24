@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "sets": [
+    {
+      "id": "clock-corners",
+      "name": {
+        "es": "Clock · Esquinas sueltas",
+        "en": "Clock · Single corners"
+      },
+      "stage": "corners",
+      "cases": [
+        {
+          "id": "clock-corner-ul",
+          "name": {
+            "es": "Esquina arriba-izquierda (+3)",
+            "en": "Top-left corner (+3)"
+          },
+          "group": "Esquinas / Corners",
+          "setup": "ALL3+ R3- D3- DR3+",
+          "algs": [
+            "DR3- D3+ R3+ ALL3-"
+          ],
+          "source": "generated:cubelab-clock-sim (método por capas verificado)"
+        },
+        {
+          "id": "clock-corner-ur",
+          "name": {
+            "es": "Esquina arriba-derecha (+3)",
+            "en": "Top-right corner (+3)"
+          },
+          "group": "Esquinas / Corners",
+          "setup": "ALL3+ L3- D3- DL3+",
+          "algs": [
+            "DL3- D3+ L3+ ALL3-"
+          ],
+          "source": "generated:cubelab-clock-sim (método por capas verificado)"
+        },
+        {
+          "id": "clock-corner-dl",
+          "name": {
+            "es": "Esquina abajo-izquierda (+3)",
+            "en": "Bottom-left corner (+3)"
+          },
+          "group": "Esquinas / Corners",
+          "setup": "ALL3+ R3- U3- UR3+",
+          "algs": [
+            "UR3- U3+ R3+ ALL3-"
+          ],
+          "source": "generated:cubelab-clock-sim (método por capas verificado)"
+        },
+        {
+          "id": "clock-corner-dr",
+          "name": {
+            "es": "Esquina abajo-derecha (+3)",
+            "en": "Bottom-right corner (+3)"
+          },
+          "group": "Esquinas / Corners",
+          "setup": "ALL3+ L3- U3- UL3+",
+          "algs": [
+            "UL3- U3+ L3+ ALL3-"
+          ],
+          "source": "generated:cubelab-clock-sim (método por capas verificado)"
+        }
+      ]
+    }
+  ]
+}

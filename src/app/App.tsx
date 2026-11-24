@@ -15,6 +15,7 @@ import {
 import type { PuzzleModule } from '../core/contracts';
 import { Onboarding } from './Onboarding';
 
+const SpecialTimer = lazy(() => import('./SpecialTimer').then((m) => ({ default: m.SpecialTimer })));
 const Timer = lazy(() => import('./Timer').then((m) => ({ default: m.Timer })));
 const Evaluation = lazy(() => import('./Evaluation').then((m) => ({ default: m.Evaluation })));
 const Academy = lazy(() => import('./Academy').then((m) => ({ default: m.Academy })));
@@ -189,7 +190,9 @@ export default function App() {
                     {(failed || loadFailed) && <p role="alert">{t('failed')}</p>}
                     <Suspense fallback={<p role="status">{t('aLoading')}</p>}>
                         {route === 'timer' && ready && (
-                            <Timer key={eventId} mod={ready} rules={rules} prefs={prefs} t={t} />
+                            rules.scoring === 'time'
+                                ? <Timer key={eventId} mod={ready} rules={rules} prefs={prefs} t={t} />
+                                : <SpecialTimer key={eventId} mod={ready} rules={rules} t={t} />
                         )}
                         {route === 'trainer' && ready && (
                             !ready.courses.length ? <p>{t('trainerNoSets')}</p> : <Trainer
