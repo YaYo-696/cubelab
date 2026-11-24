@@ -1,0 +1,2915 @@
+{
+  "version": 1,
+  "sets": [
+    {
+      "id": "sq1-shape",
+      "name": {
+        "es": "Square-1 · Volver a cubo",
+        "en": "Square-1 · Cube shape"
+      },
+      "stage": "shape",
+      "cases": [
+        {
+          "id": "sq1-shape-1",
+          "name": {
+            "es": "Forma #1 (1 corte)",
+            "en": "Shape #1 (1 slice)"
+          },
+          "group": "1 corte / 1 slice",
+          "setup": "/",
+          "algs": [
+            "/"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-2",
+          "name": {
+            "es": "Forma #2 (2 cortes)",
+            "en": "Shape #2 (2 slices)"
+          },
+          "group": "2 cortes / 2 slices",
+          "setup": "/ (0, 3) /",
+          "algs": [
+            "/ (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-3",
+          "name": {
+            "es": "Forma #3 (2 cortes)",
+            "en": "Shape #3 (2 slices)"
+          },
+          "group": "2 cortes / 2 slices",
+          "setup": "/ (3, 3) /",
+          "algs": [
+            "/ (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-4",
+          "name": {
+            "es": "Forma #4 (2 cortes)",
+            "en": "Shape #4 (2 slices)"
+          },
+          "group": "2 cortes / 2 slices",
+          "setup": "/ (3, 6) /",
+          "algs": [
+            "/ (-3, 6) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-5",
+          "name": {
+            "es": "Forma #5 (3 cortes)",
+            "en": "Shape #5 (3 slices)"
+          },
+          "group": "3 cortes / 3 slices",
+          "setup": "/ (3, 3) / (1, 2) /",
+          "algs": [
+            "/ (-1, -2) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-6",
+          "name": {
+            "es": "Forma #6 (3 cortes)",
+            "en": "Shape #6 (3 slices)"
+          },
+          "group": "3 cortes / 3 slices",
+          "setup": "/ (0, 3) / (-5, -4) /",
+          "algs": [
+            "/ (5, 4) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-7",
+          "name": {
+            "es": "Forma #7 (3 cortes)",
+            "en": "Shape #7 (3 slices)"
+          },
+          "group": "3 cortes / 3 slices",
+          "setup": "/ (0, 3) / (-5, 2) /",
+          "algs": [
+            "/ (5, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-8",
+          "name": {
+            "es": "Forma #8 (3 cortes)",
+            "en": "Shape #8 (3 slices)"
+          },
+          "group": "3 cortes / 3 slices",
+          "setup": "/ (3, 3) / (1, 0) /",
+          "algs": [
+            "/ (-1, 0) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-9",
+          "name": {
+            "es": "Forma #9 (3 cortes)",
+            "en": "Shape #9 (3 slices)"
+          },
+          "group": "3 cortes / 3 slices",
+          "setup": "/ (0, 3) / (-5, 6) /",
+          "algs": [
+            "/ (5, 6) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-10",
+          "name": {
+            "es": "Forma #10 (3 cortes)",
+            "en": "Shape #10 (3 slices)"
+          },
+          "group": "3 cortes / 3 slices",
+          "setup": "/ (0, 3) / (1, -4) /",
+          "algs": [
+            "/ (-1, 4) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-11",
+          "name": {
+            "es": "Forma #11 (3 cortes)",
+            "en": "Shape #11 (3 slices)"
+          },
+          "group": "3 cortes / 3 slices",
+          "setup": "/ (3, 3) / (0, 2) /",
+          "algs": [
+            "/ (0, -2) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-12",
+          "name": {
+            "es": "Forma #12 (3 cortes)",
+            "en": "Shape #12 (3 slices)"
+          },
+          "group": "3 cortes / 3 slices",
+          "setup": "/ (0, 3) / (6, -4) /",
+          "algs": [
+            "/ (6, 4) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-13",
+          "name": {
+            "es": "Forma #13 (3 cortes)",
+            "en": "Shape #13 (3 slices)"
+          },
+          "group": "3 cortes / 3 slices",
+          "setup": "/ (0, 3) / (1, 2) /",
+          "algs": [
+            "/ (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-14",
+          "name": {
+            "es": "Forma #14 (3 cortes)",
+            "en": "Shape #14 (3 slices)"
+          },
+          "group": "3 cortes / 3 slices",
+          "setup": "/ (0, 3) / (0, 3) /",
+          "algs": [
+            "/ (0, -3) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-15",
+          "name": {
+            "es": "Forma #15 (3 cortes)",
+            "en": "Shape #15 (3 slices)"
+          },
+          "group": "3 cortes / 3 slices",
+          "setup": "/ (0, 3) / (6, -3) /",
+          "algs": [
+            "/ (6, 3) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-16",
+          "name": {
+            "es": "Forma #16 (3 cortes)",
+            "en": "Shape #16 (3 slices)"
+          },
+          "group": "3 cortes / 3 slices",
+          "setup": "/ (0, 3) / (1, 0) /",
+          "algs": [
+            "/ (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-17",
+          "name": {
+            "es": "Forma #17 (3 cortes)",
+            "en": "Shape #17 (3 slices)"
+          },
+          "group": "3 cortes / 3 slices",
+          "setup": "/ (0, 3) / (0, 2) /",
+          "algs": [
+            "/ (0, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-18",
+          "name": {
+            "es": "Forma #18 (4 cortes)",
+            "en": "Shape #18 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (3, 3) / (1, 2) / (-4, -2) /",
+          "algs": [
+            "/ (4, 2) / (-1, -2) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-19",
+          "name": {
+            "es": "Forma #19 (4 cortes)",
+            "en": "Shape #19 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, -4) / (-4, -2) /",
+          "algs": [
+            "/ (4, 2) / (-1, 4) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-20",
+          "name": {
+            "es": "Forma #20 (4 cortes)",
+            "en": "Shape #20 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (3, 3) / (1, 0) / (-2, -2) /",
+          "algs": [
+            "/ (2, 2) / (-1, 0) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-21",
+          "name": {
+            "es": "Forma #21 (4 cortes)",
+            "en": "Shape #21 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (3, 3) / (1, 2) / (0, -4) /",
+          "algs": [
+            "/ (0, 4) / (-1, -2) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-22",
+          "name": {
+            "es": "Forma #22 (4 cortes)",
+            "en": "Shape #22 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, -2) /",
+          "algs": [
+            "/ (-3, 2) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-23",
+          "name": {
+            "es": "Forma #23 (4 cortes)",
+            "en": "Shape #23 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (3, 3) / (1, 0) / (6, -2) /",
+          "algs": [
+            "/ (6, 2) / (-1, 0) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-24",
+          "name": {
+            "es": "Forma #24 (4 cortes)",
+            "en": "Shape #24 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (3, 3) / (1, 0) / (2, -2) /",
+          "algs": [
+            "/ (-2, 2) / (-1, 0) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-25",
+          "name": {
+            "es": "Forma #25 (4 cortes)",
+            "en": "Shape #25 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, -4) /",
+          "algs": [
+            "/ (-3, 4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-26",
+          "name": {
+            "es": "Forma #26 (4 cortes)",
+            "en": "Shape #26 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, -4) / (6, -2) /",
+          "algs": [
+            "/ (6, 2) / (-1, 4) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-27",
+          "name": {
+            "es": "Forma #27 (4 cortes)",
+            "en": "Shape #27 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (3, 3) / (1, 0) / (0, -2) /",
+          "algs": [
+            "/ (0, 2) / (-1, 0) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-28",
+          "name": {
+            "es": "Forma #28 (4 cortes)",
+            "en": "Shape #28 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, 2) / (0, -4) /",
+          "algs": [
+            "/ (0, 4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-29",
+          "name": {
+            "es": "Forma #29 (4 cortes)",
+            "en": "Shape #29 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, -4) / (0, -2) /",
+          "algs": [
+            "/ (0, 2) / (-1, 4) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-30",
+          "name": {
+            "es": "Forma #30 (4 cortes)",
+            "en": "Shape #30 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, 2) / (6, -2) /",
+          "algs": [
+            "/ (6, 2) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-31",
+          "name": {
+            "es": "Forma #31 (4 cortes)",
+            "en": "Shape #31 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, 2) / (0, -2) /",
+          "algs": [
+            "/ (0, 2) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-32",
+          "name": {
+            "es": "Forma #32 (4 cortes)",
+            "en": "Shape #32 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, -2) /",
+          "algs": [
+            "/ (0, 2) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-33",
+          "name": {
+            "es": "Forma #33 (4 cortes)",
+            "en": "Shape #33 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, 0) / (2, -2) /",
+          "algs": [
+            "/ (-2, 2) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-34",
+          "name": {
+            "es": "Forma #34 (4 cortes)",
+            "en": "Shape #34 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (3, 3) / (0, 2) / (1, 6) /",
+          "algs": [
+            "/ (-1, 6) / (0, -2) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-35",
+          "name": {
+            "es": "Forma #35 (4 cortes)",
+            "en": "Shape #35 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, 2) / (-3, -4) /",
+          "algs": [
+            "/ (3, 4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-36",
+          "name": {
+            "es": "Forma #36 (4 cortes)",
+            "en": "Shape #36 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, 2) / (-3, -2) /",
+          "algs": [
+            "/ (3, 2) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-37",
+          "name": {
+            "es": "Forma #37 (4 cortes)",
+            "en": "Shape #37 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (0, 2) / (0, 1) /",
+          "algs": [
+            "/ (0, -1) / (0, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-38",
+          "name": {
+            "es": "Forma #38 (4 cortes)",
+            "en": "Shape #38 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (0, 3) / (-3, 1) /",
+          "algs": [
+            "/ (3, -1) / (0, -3) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-39",
+          "name": {
+            "es": "Forma #39 (4 cortes)",
+            "en": "Shape #39 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (0, 2) / (1, 6) /",
+          "algs": [
+            "/ (-1, 6) / (0, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-40",
+          "name": {
+            "es": "Forma #40 (4 cortes)",
+            "en": "Shape #40 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (3, 3) / (1, 2) / (0, 4) /",
+          "algs": [
+            "/ (0, -4) / (-1, -2) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-41",
+          "name": {
+            "es": "Forma #41 (4 cortes)",
+            "en": "Shape #41 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (0, 3) / (3, 1) /",
+          "algs": [
+            "/ (-3, -1) / (0, -3) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-42",
+          "name": {
+            "es": "Forma #42 (4 cortes)",
+            "en": "Shape #42 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (0, 2) / (0, -5) /",
+          "algs": [
+            "/ (0, 5) / (0, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-43",
+          "name": {
+            "es": "Forma #43 (4 cortes)",
+            "en": "Shape #43 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, 2) / (-3, 4) /",
+          "algs": [
+            "/ (3, -4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-44",
+          "name": {
+            "es": "Forma #44 (4 cortes)",
+            "en": "Shape #44 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, 2) / (6, 2) /",
+          "algs": [
+            "/ (6, -2) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-45",
+          "name": {
+            "es": "Forma #45 (4 cortes)",
+            "en": "Shape #45 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (3, 3) / (0, 2) / (0, -5) /",
+          "algs": [
+            "/ (0, 5) / (0, -2) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-46",
+          "name": {
+            "es": "Forma #46 (4 cortes)",
+            "en": "Shape #46 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (0, 2) / (1, 0) /",
+          "algs": [
+            "/ (-1, 0) / (0, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-47",
+          "name": {
+            "es": "Forma #47 (4 cortes)",
+            "en": "Shape #47 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (3, 3) / (1, 0) / (0, 4) /",
+          "algs": [
+            "/ (0, -4) / (-1, 0) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-48",
+          "name": {
+            "es": "Forma #48 (4 cortes)",
+            "en": "Shape #48 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, 2) /",
+          "algs": [
+            "/ (-3, -2) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-49",
+          "name": {
+            "es": "Forma #49 (4 cortes)",
+            "en": "Shape #49 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, -4) / (2, 0) /",
+          "algs": [
+            "/ (-2, 0) / (-1, 4) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-50",
+          "name": {
+            "es": "Forma #50 (4 cortes)",
+            "en": "Shape #50 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (3, 3) / (1, 0) / (4, -4) /",
+          "algs": [
+            "/ (-4, 4) / (-1, 0) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-51",
+          "name": {
+            "es": "Forma #51 (4 cortes)",
+            "en": "Shape #51 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, 4) /",
+          "algs": [
+            "/ (-3, -4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-52",
+          "name": {
+            "es": "Forma #52 (4 cortes)",
+            "en": "Shape #52 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, 2) / (-3, 2) /",
+          "algs": [
+            "/ (3, -2) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-53",
+          "name": {
+            "es": "Forma #53 (4 cortes)",
+            "en": "Shape #53 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, 2) / (0, 4) /",
+          "algs": [
+            "/ (0, -4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-54",
+          "name": {
+            "es": "Forma #54 (4 cortes)",
+            "en": "Shape #54 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (3, 3) / (1, 2) / (2, 4) /",
+          "algs": [
+            "/ (-2, -4) / (-1, -2) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-55",
+          "name": {
+            "es": "Forma #55 (4 cortes)",
+            "en": "Shape #55 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, -4) / (0, 4) /",
+          "algs": [
+            "/ (0, -4) / (-1, 4) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-56",
+          "name": {
+            "es": "Forma #56 (4 cortes)",
+            "en": "Shape #56 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, 2) / (0, 2) /",
+          "algs": [
+            "/ (0, -2) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-57",
+          "name": {
+            "es": "Forma #57 (4 cortes)",
+            "en": "Shape #57 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, 4) /",
+          "algs": [
+            "/ (0, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-58",
+          "name": {
+            "es": "Forma #58 (4 cortes)",
+            "en": "Shape #58 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, 0) / (2, 4) /",
+          "algs": [
+            "/ (-2, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-59",
+          "name": {
+            "es": "Forma #59 (4 cortes)",
+            "en": "Shape #59 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (3, 3) / (1, 0) / (2, 4) /",
+          "algs": [
+            "/ (-2, -4) / (-1, 0) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-60",
+          "name": {
+            "es": "Forma #60 (4 cortes)",
+            "en": "Shape #60 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (0, 3) / (1, -4) / (2, 4) /",
+          "algs": [
+            "/ (-2, -4) / (-1, 4) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-61",
+          "name": {
+            "es": "Forma #61 (4 cortes)",
+            "en": "Shape #61 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (3, 3) / (1, 0) / (4, 4) /",
+          "algs": [
+            "/ (-4, -4) / (-1, 0) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-62",
+          "name": {
+            "es": "Forma #62 (5 cortes)",
+            "en": "Shape #62 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (0, 3) / (3, 1) / (6, 4) /",
+          "algs": [
+            "/ (6, -4) / (-3, -1) / (0, -3) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-63",
+          "name": {
+            "es": "Forma #63 (5 cortes)",
+            "en": "Shape #63 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (0, 2) / (0, 1) / (4, -3) /",
+          "algs": [
+            "/ (-4, 3) / (0, -1) / (0, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-64",
+          "name": {
+            "es": "Forma #64 (5 cortes)",
+            "en": "Shape #64 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (0, 2) / (1, 0) / (3, -4) /",
+          "algs": [
+            "/ (-3, 4) / (-1, 0) / (0, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-65",
+          "name": {
+            "es": "Forma #65 (5 cortes)",
+            "en": "Shape #65 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, -4) / (4, 3) /",
+          "algs": [
+            "/ (-4, -3) / (-3, 4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-66",
+          "name": {
+            "es": "Forma #66 (5 cortes)",
+            "en": "Shape #66 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (0, 2) / (0, 1) / (4, 0) /",
+          "algs": [
+            "/ (-4, 0) / (0, -1) / (0, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-67",
+          "name": {
+            "es": "Forma #67 (5 cortes)",
+            "en": "Shape #67 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (0, 2) / (1, 0) / (0, -4) /",
+          "algs": [
+            "/ (0, 4) / (-1, 0) / (0, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-68",
+          "name": {
+            "es": "Forma #68 (5 cortes)",
+            "en": "Shape #68 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, -2) / (2, 1) /",
+          "algs": [
+            "/ (-2, -1) / (-3, 2) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-69",
+          "name": {
+            "es": "Forma #69 (5 cortes)",
+            "en": "Shape #69 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, -4) / (2, 4) / (1, 0) /",
+          "algs": [
+            "/ (-1, 0) / (-2, -4) / (-1, 4) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-70",
+          "name": {
+            "es": "Forma #70 (5 cortes)",
+            "en": "Shape #70 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, -4) / (-4, -3) /",
+          "algs": [
+            "/ (4, 3) / (-3, 4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-71",
+          "name": {
+            "es": "Forma #71 (5 cortes)",
+            "en": "Shape #71 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, 2) / (-4, 6) /",
+          "algs": [
+            "/ (4, 6) / (-3, -2) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-72",
+          "name": {
+            "es": "Forma #72 (5 cortes)",
+            "en": "Shape #72 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (0, 4) / (3, 6) /",
+          "algs": [
+            "/ (-3, 6) / (0, -4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-73",
+          "name": {
+            "es": "Forma #73 (5 cortes)",
+            "en": "Shape #73 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (0, 4) / (3, 4) /",
+          "algs": [
+            "/ (-3, -4) / (0, -4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-74",
+          "name": {
+            "es": "Forma #74 (5 cortes)",
+            "en": "Shape #74 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (0, 2) / (6, 4) /",
+          "algs": [
+            "/ (6, -4) / (0, -2) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-75",
+          "name": {
+            "es": "Forma #75 (5 cortes)",
+            "en": "Shape #75 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, -4) / (-4, 0) /",
+          "algs": [
+            "/ (4, 0) / (-3, 4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-76",
+          "name": {
+            "es": "Forma #76 (5 cortes)",
+            "en": "Shape #76 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (0, 4) / (-3, 6) /",
+          "algs": [
+            "/ (3, 6) / (0, -4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-77",
+          "name": {
+            "es": "Forma #77 (5 cortes)",
+            "en": "Shape #77 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (3, 3) / (1, 0) / (0, 4) / (-1, -4) /",
+          "algs": [
+            "/ (1, 4) / (0, -4) / (-1, 0) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-78",
+          "name": {
+            "es": "Forma #78 (5 cortes)",
+            "en": "Shape #78 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (0, -4) / (6, 3) /",
+          "algs": [
+            "/ (6, -3) / (0, 4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-79",
+          "name": {
+            "es": "Forma #79 (5 cortes)",
+            "en": "Shape #79 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (0, 4) / (-3, 4) /",
+          "algs": [
+            "/ (3, -4) / (0, -4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-80",
+          "name": {
+            "es": "Forma #80 (5 cortes)",
+            "en": "Shape #80 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (0, 2) / (0, 1) / (4, 6) /",
+          "algs": [
+            "/ (-4, 6) / (0, -1) / (0, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-81",
+          "name": {
+            "es": "Forma #81 (5 cortes)",
+            "en": "Shape #81 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (0, 2) / (1, 0) / (6, -4) /",
+          "algs": [
+            "/ (6, 4) / (-1, 0) / (0, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-82",
+          "name": {
+            "es": "Forma #82 (5 cortes)",
+            "en": "Shape #82 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, -2) / (-4, -5) /",
+          "algs": [
+            "/ (4, 5) / (-3, 2) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-83",
+          "name": {
+            "es": "Forma #83 (5 cortes)",
+            "en": "Shape #83 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (0, -4) / (2, 4) /",
+          "algs": [
+            "/ (-2, -4) / (0, 4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-84",
+          "name": {
+            "es": "Forma #84 (5 cortes)",
+            "en": "Shape #84 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, -2) / (6, -5) /",
+          "algs": [
+            "/ (6, 5) / (-3, 2) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-85",
+          "name": {
+            "es": "Forma #85 (5 cortes)",
+            "en": "Shape #85 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (3, 3) / (1, 0) / (0, 4) / (5, 4) /",
+          "algs": [
+            "/ (-5, -4) / (0, -4) / (-1, 0) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-86",
+          "name": {
+            "es": "Forma #86 (5 cortes)",
+            "en": "Shape #86 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, 4) / (5, 6) /",
+          "algs": [
+            "/ (-5, 6) / (0, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-87",
+          "name": {
+            "es": "Forma #87 (5 cortes)",
+            "en": "Shape #87 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, 2) / (-3, 6) /",
+          "algs": [
+            "/ (3, 6) / (-3, -2) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-88",
+          "name": {
+            "es": "Forma #88 (5 cortes)",
+            "en": "Shape #88 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 0) / (2, 4) / (-2, 4) /",
+          "algs": [
+            "/ (2, -4) / (-2, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-89",
+          "name": {
+            "es": "Forma #89 (5 cortes)",
+            "en": "Shape #89 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, 4) / (5, -4) /",
+          "algs": [
+            "/ (-5, 4) / (0, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-90",
+          "name": {
+            "es": "Forma #90 (5 cortes)",
+            "en": "Shape #90 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, -4) / (2, 4) / (-5, 0) /",
+          "algs": [
+            "/ (5, 0) / (-2, -4) / (-1, 4) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-91",
+          "name": {
+            "es": "Forma #91 (5 cortes)",
+            "en": "Shape #91 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, -2) / (0, 1) /",
+          "algs": [
+            "/ (0, -1) / (-3, 2) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-92",
+          "name": {
+            "es": "Forma #92 (5 cortes)",
+            "en": "Shape #92 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, -4) / (0, -1) /",
+          "algs": [
+            "/ (0, 1) / (-3, 4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-93",
+          "name": {
+            "es": "Forma #93 (5 cortes)",
+            "en": "Shape #93 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, -4) / (0, -2) / (-4, -5) /",
+          "algs": [
+            "/ (4, 5) / (0, 2) / (-1, 4) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-94",
+          "name": {
+            "es": "Forma #94 (5 cortes)",
+            "en": "Shape #94 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, 4) / (6, -4) /",
+          "algs": [
+            "/ (6, 4) / (0, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-95",
+          "name": {
+            "es": "Forma #95 (5 cortes)",
+            "en": "Shape #95 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (3, 3) / (1, 0) / (0, 4) / (6, 4) /",
+          "algs": [
+            "/ (6, -4) / (0, -4) / (-1, 0) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-96",
+          "name": {
+            "es": "Forma #96 (5 cortes)",
+            "en": "Shape #96 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, -4) / (0, -2) / (6, -5) /",
+          "algs": [
+            "/ (6, 5) / (0, 2) / (-1, 4) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-97",
+          "name": {
+            "es": "Forma #97 (5 cortes)",
+            "en": "Shape #97 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, -4) / (2, 3) /",
+          "algs": [
+            "/ (-2, -3) / (-3, 4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-98",
+          "name": {
+            "es": "Forma #98 (5 cortes)",
+            "en": "Shape #98 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, -4) / (6, 5) /",
+          "algs": [
+            "/ (6, -5) / (-3, 4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-99",
+          "name": {
+            "es": "Forma #99 (5 cortes)",
+            "en": "Shape #99 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (0, 4) / (2, 4) /",
+          "algs": [
+            "/ (-2, -4) / (0, -4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-100",
+          "name": {
+            "es": "Forma #100 (5 cortes)",
+            "en": "Shape #100 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (3, 3) / (1, 0) / (2, -2) / (4, -5) /",
+          "algs": [
+            "/ (-4, 5) / (-2, 2) / (-1, 0) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-101",
+          "name": {
+            "es": "Forma #101 (5 cortes)",
+            "en": "Shape #101 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, 4) / (2, -4) /",
+          "algs": [
+            "/ (-2, 4) / (0, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-102",
+          "name": {
+            "es": "Forma #102 (5 cortes)",
+            "en": "Shape #102 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 0) / (2, 4) / (-5, 6) /",
+          "algs": [
+            "/ (5, 6) / (-2, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-103",
+          "name": {
+            "es": "Forma #103 (5 cortes)",
+            "en": "Shape #103 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, 4) / (3, 6) /",
+          "algs": [
+            "/ (-3, 6) / (-3, -4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-104",
+          "name": {
+            "es": "Forma #104 (5 cortes)",
+            "en": "Shape #104 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 0) / (2, 4) / (-5, 4) /",
+          "algs": [
+            "/ (5, -4) / (-2, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-105",
+          "name": {
+            "es": "Forma #105 (5 cortes)",
+            "en": "Shape #105 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, -4) / (-2, -3) /",
+          "algs": [
+            "/ (2, 3) / (-3, 4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-106",
+          "name": {
+            "es": "Forma #106 (5 cortes)",
+            "en": "Shape #106 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, -4) / (2, 6) /",
+          "algs": [
+            "/ (-2, 6) / (-3, 4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-107",
+          "name": {
+            "es": "Forma #107 (5 cortes)",
+            "en": "Shape #107 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, 2) / (2, 0) /",
+          "algs": [
+            "/ (-2, 0) / (-3, -2) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-108",
+          "name": {
+            "es": "Forma #108 (5 cortes)",
+            "en": "Shape #108 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (3, 3) / (1, 0) / (0, 4) / (-1, 2) /",
+          "algs": [
+            "/ (1, -2) / (0, -4) / (-1, 0) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-109",
+          "name": {
+            "es": "Forma #109 (5 cortes)",
+            "en": "Shape #109 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (3, 3) / (1, 0) / (2, -2) / (2, 1) /",
+          "algs": [
+            "/ (-2, -1) / (-2, 2) / (-1, 0) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-110",
+          "name": {
+            "es": "Forma #110 (5 cortes)",
+            "en": "Shape #110 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (0, 4) / (-3, 0) /",
+          "algs": [
+            "/ (3, 0) / (0, -4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-111",
+          "name": {
+            "es": "Forma #111 (5 cortes)",
+            "en": "Shape #111 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, -4) / (0, -2) / (2, 1) /",
+          "algs": [
+            "/ (-2, -1) / (0, 2) / (-1, 4) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-112",
+          "name": {
+            "es": "Forma #112 (5 cortes)",
+            "en": "Shape #112 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, 4) / (-4, 2) /",
+          "algs": [
+            "/ (4, -2) / (0, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-113",
+          "name": {
+            "es": "Forma #113 (5 cortes)",
+            "en": "Shape #113 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, 4) / (-1, 0) /",
+          "algs": [
+            "/ (1, 0) / (0, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-114",
+          "name": {
+            "es": "Forma #114 (5 cortes)",
+            "en": "Shape #114 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, 4) / (0, 2) /",
+          "algs": [
+            "/ (0, -2) / (0, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-115",
+          "name": {
+            "es": "Forma #115 (5 cortes)",
+            "en": "Shape #115 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 0) / (2, 4) / (1, 0) /",
+          "algs": [
+            "/ (-1, 0) / (-2, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-116",
+          "name": {
+            "es": "Forma #116 (5 cortes)",
+            "en": "Shape #116 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (0, 4) / (3, 0) /",
+          "algs": [
+            "/ (-3, 0) / (0, -4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-117",
+          "name": {
+            "es": "Forma #117 (5 cortes)",
+            "en": "Shape #117 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, 2) / (3, 0) /",
+          "algs": [
+            "/ (-3, 0) / (-3, -2) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-118",
+          "name": {
+            "es": "Forma #118 (5 cortes)",
+            "en": "Shape #118 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (3, 3) / (1, 0) / (0, 4) / (0, -2) /",
+          "algs": [
+            "/ (0, 2) / (0, -4) / (-1, 0) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-119",
+          "name": {
+            "es": "Forma #119 (5 cortes)",
+            "en": "Shape #119 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, 4) / (-3, 0) /",
+          "algs": [
+            "/ (3, 0) / (-3, -4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-120",
+          "name": {
+            "es": "Forma #120 (5 cortes)",
+            "en": "Shape #120 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (0, 4) / (-3, -2) /",
+          "algs": [
+            "/ (3, 2) / (0, -4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-121",
+          "name": {
+            "es": "Forma #121 (5 cortes)",
+            "en": "Shape #121 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 0) / (2, 4) / (4, -2) /",
+          "algs": [
+            "/ (-4, 2) / (-2, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-122",
+          "name": {
+            "es": "Forma #122 (5 cortes)",
+            "en": "Shape #122 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, -4) / (0, -2) / (0, 1) /",
+          "algs": [
+            "/ (0, -1) / (0, 2) / (-1, 4) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-123",
+          "name": {
+            "es": "Forma #123 (5 cortes)",
+            "en": "Shape #123 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (0, 2) / (0, 1) / (-2, 6) /",
+          "algs": [
+            "/ (2, 6) / (0, -1) / (0, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-124",
+          "name": {
+            "es": "Forma #124 (5 cortes)",
+            "en": "Shape #124 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (0, 3) / (3, 1) / (0, -2) /",
+          "algs": [
+            "/ (0, 2) / (-3, -1) / (0, -3) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-125",
+          "name": {
+            "es": "Forma #125 (5 cortes)",
+            "en": "Shape #125 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (3, 3) / (1, 0) / (0, 4) / (5, 2) /",
+          "algs": [
+            "/ (-5, -2) / (0, -4) / (-1, 0) / (-3, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-126",
+          "name": {
+            "es": "Forma #126 (5 cortes)",
+            "en": "Shape #126 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (0, 2) / (1, 0) / (6, 2) /",
+          "algs": [
+            "/ (6, -2) / (-1, 0) / (0, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-127",
+          "name": {
+            "es": "Forma #127 (5 cortes)",
+            "en": "Shape #127 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (0, -4) / (0, -3) /",
+          "algs": [
+            "/ (0, 3) / (0, 4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-128",
+          "name": {
+            "es": "Forma #128 (5 cortes)",
+            "en": "Shape #128 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (0, 2) / (0, -2) /",
+          "algs": [
+            "/ (0, 2) / (0, -2) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-129",
+          "name": {
+            "es": "Forma #129 (5 cortes)",
+            "en": "Shape #129 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, 4) / (-1, 2) /",
+          "algs": [
+            "/ (1, -2) / (0, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-130",
+          "name": {
+            "es": "Forma #130 (5 cortes)",
+            "en": "Shape #130 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 0) / (2, 4) / (1, -2) /",
+          "algs": [
+            "/ (-1, 2) / (-2, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-131",
+          "name": {
+            "es": "Forma #131 (5 cortes)",
+            "en": "Shape #131 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (1, 2) / (0, 4) / (3, -2) /",
+          "algs": [
+            "/ (-3, 2) / (0, -4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-132",
+          "name": {
+            "es": "Forma #132 (5 cortes)",
+            "en": "Shape #132 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (0, 2) / (0, 1) / (-2, 3) /",
+          "algs": [
+            "/ (2, -3) / (0, -1) / (0, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-133",
+          "name": {
+            "es": "Forma #133 (5 cortes)",
+            "en": "Shape #133 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (0, 2) / (0, 1) / (-2, 0) /",
+          "algs": [
+            "/ (2, 0) / (0, -1) / (0, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-134",
+          "name": {
+            "es": "Forma #134 (5 cortes)",
+            "en": "Shape #134 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (0, 2) / (1, 0) / (-3, 2) /",
+          "algs": [
+            "/ (3, -2) / (-1, 0) / (0, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-135",
+          "name": {
+            "es": "Forma #135 (5 cortes)",
+            "en": "Shape #135 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (0, 2) / (1, 0) / (0, 2) /",
+          "algs": [
+            "/ (0, -2) / (-1, 0) / (0, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-136",
+          "name": {
+            "es": "Forma #136 (6 cortes)",
+            "en": "Shape #136 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, -4) / (2, 3) / (2, 0) /",
+          "algs": [
+            "/ (-2, 0) / (-2, -3) / (-3, 4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-137",
+          "name": {
+            "es": "Forma #137 (6 cortes)",
+            "en": "Shape #137 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, -4) / (0, -1) / (-4, 0) /",
+          "algs": [
+            "/ (4, 0) / (0, 1) / (-3, 4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-138",
+          "name": {
+            "es": "Forma #138 (6 cortes)",
+            "en": "Shape #138 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (0, 2) / (0, 1) / (4, -3) / (0, -5) /",
+          "algs": [
+            "/ (0, 5) / (-4, 3) / (0, -1) / (0, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-139",
+          "name": {
+            "es": "Forma #139 (6 cortes)",
+            "en": "Shape #139 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (0, 3) / (3, 1) / (0, -2) / (0, -4) /",
+          "algs": [
+            "/ (0, 4) / (0, 2) / (-3, -1) / (0, -3) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-140",
+          "name": {
+            "es": "Forma #140 (6 cortes)",
+            "en": "Shape #140 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, 4) / (5, 6) / (-4, 3) /",
+          "algs": [
+            "/ (4, -3) / (-5, 6) / (0, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-141",
+          "name": {
+            "es": "Forma #141 (6 cortes)",
+            "en": "Shape #141 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, 4) / (2, -4) / (4, -3) /",
+          "algs": [
+            "/ (-4, 3) / (-2, 4) / (0, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-142",
+          "name": {
+            "es": "Forma #142 (6 cortes)",
+            "en": "Shape #142 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, 4) / (0, 2) / (-3, 4) /",
+          "algs": [
+            "/ (3, -4) / (0, -2) / (0, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-143",
+          "name": {
+            "es": "Forma #143 (6 cortes)",
+            "en": "Shape #143 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 0) / (2, 4) / (1, 0) / (-3, 4) /",
+          "algs": [
+            "/ (3, -4) / (-1, 0) / (-2, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-144",
+          "name": {
+            "es": "Forma #144 (6 cortes)",
+            "en": "Shape #144 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, 4) / (5, 6) / (2, -3) /",
+          "algs": [
+            "/ (-2, 3) / (-5, 6) / (0, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-145",
+          "name": {
+            "es": "Forma #145 (6 cortes)",
+            "en": "Shape #145 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, 4) / (0, 2) / (0, -4) /",
+          "algs": [
+            "/ (0, 4) / (0, -2) / (0, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-146",
+          "name": {
+            "es": "Forma #146 (6 cortes)",
+            "en": "Shape #146 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, 4) / (5, -4) / (-4, 1) /",
+          "algs": [
+            "/ (4, -1) / (-5, 4) / (0, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-147",
+          "name": {
+            "es": "Forma #147 (6 cortes)",
+            "en": "Shape #147 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, -4) / (2, 3) / (6, 2) /",
+          "algs": [
+            "/ (6, -2) / (-2, -3) / (-3, 4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-148",
+          "name": {
+            "es": "Forma #148 (6 cortes)",
+            "en": "Shape #148 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, 4) / (5, 6) / (-4, 6) /",
+          "algs": [
+            "/ (4, 6) / (-5, 6) / (0, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-149",
+          "name": {
+            "es": "Forma #149 (6 cortes)",
+            "en": "Shape #149 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, 4) / (2, -4) / (-2, 3) /",
+          "algs": [
+            "/ (2, -3) / (-2, 4) / (0, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-150",
+          "name": {
+            "es": "Forma #150 (6 cortes)",
+            "en": "Shape #150 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, 4) / (5, -4) / (2, 1) /",
+          "algs": [
+            "/ (-2, -1) / (-5, 4) / (0, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-151",
+          "name": {
+            "es": "Forma #151 (6 cortes)",
+            "en": "Shape #151 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 0) / (2, 4) / (1, -2) / (2, -2) /",
+          "algs": [
+            "/ (-2, 2) / (-1, 2) / (-2, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-152",
+          "name": {
+            "es": "Forma #152 (6 cortes)",
+            "en": "Shape #152 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, 4) / (0, 2) / (3, 2) /",
+          "algs": [
+            "/ (-3, -2) / (0, -2) / (0, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-153",
+          "name": {
+            "es": "Forma #153 (6 cortes)",
+            "en": "Shape #153 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, -4) / (2, 3) / (0, -4) /",
+          "algs": [
+            "/ (0, 4) / (-2, -3) / (-3, 4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-154",
+          "name": {
+            "es": "Forma #154 (6 cortes)",
+            "en": "Shape #154 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, -4) / (0, -1) / (6, -2) /",
+          "algs": [
+            "/ (6, 2) / (0, 1) / (-3, 4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-155",
+          "name": {
+            "es": "Forma #155 (6 cortes)",
+            "en": "Shape #155 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 2) / (0, 4) / (2, 4) / (4, 0) /",
+          "algs": [
+            "/ (-4, 0) / (-2, -4) / (0, -4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-156",
+          "name": {
+            "es": "Forma #156 (6 cortes)",
+            "en": "Shape #156 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 0) / (2, 4) / (1, 0) / (3, -2) /",
+          "algs": [
+            "/ (-3, 2) / (-1, 0) / (-2, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-157",
+          "name": {
+            "es": "Forma #157 (6 cortes)",
+            "en": "Shape #157 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 0) / (2, 4) / (1, -2) / (2, 4) /",
+          "algs": [
+            "/ (-2, -4) / (-1, 2) / (-2, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-158",
+          "name": {
+            "es": "Forma #158 (6 cortes)",
+            "en": "Shape #158 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, -4) / (0, -1) / (0, 4) /",
+          "algs": [
+            "/ (0, -4) / (0, 1) / (-3, 4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-159",
+          "name": {
+            "es": "Forma #159 (6 cortes)",
+            "en": "Shape #159 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, 4) / (0, 2) / (0, -2) /",
+          "algs": [
+            "/ (0, 2) / (0, -2) / (0, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-160",
+          "name": {
+            "es": "Forma #160 (6 cortes)",
+            "en": "Shape #160 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 0) / (2, 4) / (1, 0) / (6, 4) /",
+          "algs": [
+            "/ (6, -4) / (-1, 0) / (-2, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-161",
+          "name": {
+            "es": "Forma #161 (6 cortes)",
+            "en": "Shape #161 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, 4) / (5, 6) / (2, 0) /",
+          "algs": [
+            "/ (-2, 0) / (-5, 6) / (0, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-162",
+          "name": {
+            "es": "Forma #162 (6 cortes)",
+            "en": "Shape #162 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 2) / (0, 4) / (2, 4) / (-2, 6) /",
+          "algs": [
+            "/ (2, 6) / (-2, -4) / (0, -4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-163",
+          "name": {
+            "es": "Forma #163 (6 cortes)",
+            "en": "Shape #163 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 0) / (2, 4) / (1, 0) / (0, -2) /",
+          "algs": [
+            "/ (0, 2) / (-1, 0) / (-2, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-164",
+          "name": {
+            "es": "Forma #164 (6 cortes)",
+            "en": "Shape #164 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, -4) / (2, 3) / (-4, 6) /",
+          "algs": [
+            "/ (4, 6) / (-2, -3) / (-3, 4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-165",
+          "name": {
+            "es": "Forma #165 (6 cortes)",
+            "en": "Shape #165 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (0, 2) / (0, 1) / (4, -3) / (6, 1) /",
+          "algs": [
+            "/ (6, -1) / (-4, 3) / (0, -1) / (0, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-166",
+          "name": {
+            "es": "Forma #166 (6 cortes)",
+            "en": "Shape #166 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (0, 3) / (3, 1) / (0, -2) / (6, 2) /",
+          "algs": [
+            "/ (6, -2) / (0, 2) / (-3, -1) / (0, -3) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-167",
+          "name": {
+            "es": "Forma #167 (6 cortes)",
+            "en": "Shape #167 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "/ (0, 3) / (1, 2) / (3, -4) / (0, -1) / (2, 6) /",
+          "algs": [
+            "/ (-2, 6) / (0, 1) / (-3, 4) / (-1, -2) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-168",
+          "name": {
+            "es": "Forma #168 (7 cortes)",
+            "en": "Shape #168 (7 slices)"
+          },
+          "group": "7 cortes / 7 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, 4) / (0, 2) / (0, -4) / (5, 6) /",
+          "algs": [
+            "/ (-5, 6) / (0, 4) / (0, -2) / (0, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-shape-169",
+          "name": {
+            "es": "Forma #169 (7 cortes)",
+            "en": "Shape #169 (7 slices)"
+          },
+          "group": "7 cortes / 7 slices",
+          "setup": "/ (0, 3) / (1, 0) / (0, 4) / (0, 2) / (0, -4) / (2, -3) /",
+          "algs": [
+            "/ (-2, 3) / (0, 4) / (0, -2) / (0, -4) / (-1, 0) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        }
+      ]
+    },
+    {
+      "id": "sq1-co",
+      "name": {
+        "es": "Square-1 · Esquinas a su capa (CO)",
+        "en": "Square-1 · Corners to their layer (CO)"
+      },
+      "stage": "co",
+      "cases": [
+        {
+          "id": "sq1-co-1",
+          "name": {
+            "es": "CO #1 · 2 esquina(s) en la capa equivocada",
+            "en": "CO #1 · 2 corner(s) in the wrong layer"
+          },
+          "group": "1 corte / 1 slice",
+          "setup": "(0, 2) / (0, 1)",
+          "algs": [
+            "(0, -1) / (0, -2)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-co-2",
+          "name": {
+            "es": "CO #2 · 4 esquina(s) en la capa equivocada",
+            "en": "CO #2 · 4 corner(s) in the wrong layer"
+          },
+          "group": "2 cortes / 2 slices",
+          "setup": "(1, 2) / (6, 6) /",
+          "algs": [
+            "/ (6, 6) / (-1, -2)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-co-3",
+          "name": {
+            "es": "CO #3 · 3 esquina(s) en la capa equivocada",
+            "en": "CO #3 · 3 corner(s) in the wrong layer"
+          },
+          "group": "2 cortes / 2 slices",
+          "setup": "(0, 2) / (-3, 6) / (0, -2)",
+          "algs": [
+            "(0, 2) / (3, 6) / (0, -2)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-co-4",
+          "name": {
+            "es": "CO #4 · 2 esquina(s) en la capa equivocada",
+            "en": "CO #4 · 2 corner(s) in the wrong layer"
+          },
+          "group": "2 cortes / 2 slices",
+          "setup": "(0, 2) / (-3, -3) / (0, -2)",
+          "algs": [
+            "(0, 2) / (3, 3) / (0, -2)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-co-5",
+          "name": {
+            "es": "CO #5 · 1 esquina(s) en la capa equivocada",
+            "en": "CO #5 · 1 corner(s) in the wrong layer"
+          },
+          "group": "2 cortes / 2 slices",
+          "setup": "(0, 2) / (0, -3) / (0, 4)",
+          "algs": [
+            "(0, -4) / (0, 3) / (0, -2)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-co-6",
+          "name": {
+            "es": "CO #6 · 2 esquina(s) en la capa equivocada",
+            "en": "CO #6 · 2 corner(s) in the wrong layer"
+          },
+          "group": "3 cortes / 3 slices",
+          "setup": "(0, 2) / (0, 3) / (0, 3) / (0, -2)",
+          "algs": [
+            "(0, 2) / (0, -3) / (0, -3) / (0, -2)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-co-7",
+          "name": {
+            "es": "CO #7 · 2 esquina(s) en la capa equivocada",
+            "en": "CO #7 · 2 corner(s) in the wrong layer"
+          },
+          "group": "3 cortes / 3 slices",
+          "setup": "(0, 2) / (3, 6) / (-3, 0) / (0, -5)",
+          "algs": [
+            "(0, 5) / (3, 0) / (-3, 6) / (0, -2)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        }
+      ]
+    },
+    {
+      "id": "sq1-eo",
+      "name": {
+        "es": "Square-1 · Aristas a su capa (EO)",
+        "en": "Square-1 · Edges to their layer (EO)"
+      },
+      "stage": "eo",
+      "cases": [
+        {
+          "id": "sq1-eo-1",
+          "name": {
+            "es": "EO #1 · 2 arista(s) en la capa equivocada",
+            "en": "EO #1 · 2 edge(s) in the wrong layer"
+          },
+          "group": "2 cortes / 2 slices",
+          "setup": "(1, 0) / (-1, -1) / (0, -5)",
+          "algs": [
+            "(0, 5) / (1, 1) / (-1, 0)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-eo-2",
+          "name": {
+            "es": "EO #2 · 2 arista(s) en la capa equivocada",
+            "en": "EO #2 · 2 edge(s) in the wrong layer"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "(1, 0) / (0, 3) / (2, 2) / (0, 3) / (0, 4)",
+          "algs": [
+            "(0, -4) / (0, -3) / (-2, -2) / (0, -3) / (-1, 0)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-eo-3",
+          "name": {
+            "es": "EO #3 · 4 arista(s) en la capa equivocada",
+            "en": "EO #3 · 4 edge(s) in the wrong layer"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "(0, 2) / (1, 1) / (3, 3) / (-1, -1) / (0, -2)",
+          "algs": [
+            "(0, 2) / (1, 1) / (-3, -3) / (-1, -1) / (0, -2)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-eo-4",
+          "name": {
+            "es": "EO #4 · 1 arista(s) en la capa equivocada",
+            "en": "EO #4 · 1 edge(s) in the wrong layer"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "(1, 0) / (-4, -1) / (-5, -2) / (-4, 5) / (0, -3) / (0, -2)",
+          "algs": [
+            "(0, 2) / (0, 3) / (4, -5) / (5, 2) / (4, 1) / (-1, 0)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-eo-5",
+          "name": {
+            "es": "EO #5 · 2 arista(s) en la capa equivocada",
+            "en": "EO #5 · 2 edge(s) in the wrong layer"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "(0, 2) / (-5, -2) / (-4, -1) / (-3, 0) / (0, 3) / (0, -2)",
+          "algs": [
+            "(0, 2) / (0, -3) / (3, 0) / (4, 1) / (5, 2) / (0, -2)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-eo-6",
+          "name": {
+            "es": "EO #6 · 2 arista(s) en la capa equivocada",
+            "en": "EO #6 · 2 edge(s) in the wrong layer"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "(0, 2) / (-5, -2) / (-4, -1) / (-2, 1) / (-1, 2) / (0, -2)",
+          "algs": [
+            "(0, 2) / (1, -2) / (2, -1) / (4, 1) / (5, 2) / (0, -2)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-eo-7",
+          "name": {
+            "es": "EO #7 · 3 arista(s) en la capa equivocada",
+            "en": "EO #7 · 3 edge(s) in the wrong layer"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "(1, 0) / (-4, -1) / (-5, -2) / (-3, 6) / (-1, -4) / (0, -2)",
+          "algs": [
+            "(0, 2) / (1, 4) / (3, 6) / (5, 2) / (4, 1) / (-1, 0)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        }
+      ]
+    },
+    {
+      "id": "sq1-cp",
+      "name": {
+        "es": "Square-1 · Permutar esquinas (CP)",
+        "en": "Square-1 · Corner permutation (CP)"
+      },
+      "stage": "cp",
+      "cases": [
+        {
+          "id": "sq1-cp-1",
+          "name": {
+            "es": "CP #1 (3 cortes)",
+            "en": "CP #1 (3 slices)"
+          },
+          "group": "3 cortes / 3 slices",
+          "setup": "(0, 6) / (3, -3) / (-3, 3) /",
+          "algs": [
+            "/ (3, -3) / (-3, 3) / (0, 6)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-2",
+          "name": {
+            "es": "CP #2 (4 cortes)",
+            "en": "CP #2 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "(3, 2) / (-3, 0) / (3, 3) / (0, -3) / (-3, -2)",
+          "algs": [
+            "(3, 2) / (0, 3) / (-3, -3) / (3, 0) / (-3, -2)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-3",
+          "name": {
+            "es": "CP #3 (4 cortes)",
+            "en": "CP #3 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "(3, 5) / (-3, 0) / (3, 3) / (0, -3) / (-3, -5)",
+          "algs": [
+            "(3, 5) / (0, 3) / (-3, -3) / (3, 0) / (-3, -5)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-4",
+          "name": {
+            "es": "CP #4 (4 cortes)",
+            "en": "CP #4 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "(3, -3) / (-3, 0) / (3, 3) / (0, -3) / (-3, 0)",
+          "algs": [
+            "(3, 0) / (0, 3) / (-3, -3) / (3, 0) / (-3, 3)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-5",
+          "name": {
+            "es": "CP #5 (4 cortes)",
+            "en": "CP #5 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "(3, -1) / (-3, 0) / (3, 3) / (0, -3) / (-3, 4)",
+          "algs": [
+            "(3, -4) / (0, 3) / (-3, -3) / (3, 0) / (-3, 1)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-6",
+          "name": {
+            "es": "CP #6 (4 cortes)",
+            "en": "CP #6 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "(0, -4) / (3, 0) / (-3, -3) / (0, 3) / (0, 4)",
+          "algs": [
+            "(0, -4) / (0, -3) / (3, 3) / (-3, 0) / (0, 4)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-7",
+          "name": {
+            "es": "CP #7 (4 cortes)",
+            "en": "CP #7 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "/ (3, 0) / (-3, -3) / (0, 3) /",
+          "algs": [
+            "/ (0, -3) / (3, 3) / (-3, 0) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-8",
+          "name": {
+            "es": "CP #8 (4 cortes)",
+            "en": "CP #8 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "(0, 2) / (3, 0) / (-3, -3) / (0, 3) / (0, -5)",
+          "algs": [
+            "(0, 5) / (0, -3) / (3, 3) / (-3, 0) / (0, -2)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-9",
+          "name": {
+            "es": "CP #9 (4 cortes)",
+            "en": "CP #9 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "(0, 5) / (3, 0) / (-3, -3) / (0, 3) / (0, -2)",
+          "algs": [
+            "(0, 2) / (0, -3) / (3, 3) / (-3, 0) / (0, -5)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-10",
+          "name": {
+            "es": "CP #10 (4 cortes)",
+            "en": "CP #10 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "(3, -4) / (0, -3) / (-3, -3) / (0, -3) / (0, -2)",
+          "algs": [
+            "(0, 2) / (0, 3) / (3, 3) / (0, 3) / (-3, 4)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-11",
+          "name": {
+            "es": "CP #11 (4 cortes)",
+            "en": "CP #11 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "(3, -1) / (0, -3) / (-3, -3) / (0, -3) / (0, -5)",
+          "algs": [
+            "(0, 5) / (0, 3) / (3, 3) / (0, 3) / (-3, 1)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-12",
+          "name": {
+            "es": "CP #12 (4 cortes)",
+            "en": "CP #12 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "(3, 3) / (0, -3) / (-3, -3) / (0, -3) /",
+          "algs": [
+            "/ (0, 3) / (3, 3) / (0, 3) / (-3, -3)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-13",
+          "name": {
+            "es": "CP #13 (4 cortes)",
+            "en": "CP #13 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "(3, 5) / (0, -3) / (-3, -3) / (0, -3) / (0, 4)",
+          "algs": [
+            "(0, -4) / (0, 3) / (3, 3) / (0, 3) / (-3, -5)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-14",
+          "name": {
+            "es": "CP #14 (4 cortes)",
+            "en": "CP #14 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "(0, 2) / (0, 3) / (3, 3) / (0, 3) / (-3, 4)",
+          "algs": [
+            "(3, -4) / (0, -3) / (-3, -3) / (0, -3) / (0, -2)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-15",
+          "name": {
+            "es": "CP #15 (4 cortes)",
+            "en": "CP #15 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "(0, 6) / (0, 3) / (3, 3) / (0, 3) / (-3, 0)",
+          "algs": [
+            "(3, 0) / (0, -3) / (-3, -3) / (0, -3) / (0, 6)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-16",
+          "name": {
+            "es": "CP #16 (4 cortes)",
+            "en": "CP #16 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "(0, -4) / (0, 3) / (3, 3) / (0, 3) / (-3, -5)",
+          "algs": [
+            "(3, 5) / (0, -3) / (-3, -3) / (0, -3) / (0, 4)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-17",
+          "name": {
+            "es": "CP #17 (4 cortes)",
+            "en": "CP #17 (4 slices)"
+          },
+          "group": "4 cortes / 4 slices",
+          "setup": "(0, -1) / (0, 3) / (3, 3) / (0, 3) / (-3, -2)",
+          "algs": [
+            "(3, 2) / (0, -3) / (-3, -3) / (0, -3) / (0, 1)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-18",
+          "name": {
+            "es": "CP #18 (5 cortes)",
+            "en": "CP #18 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (0, -3) / (0, 3) / (0, -3) /",
+          "algs": [
+            "/ (0, 3) / (0, -3) / (0, 3) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-19",
+          "name": {
+            "es": "CP #19 (5 cortes)",
+            "en": "CP #19 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "(3, 0) / (0, 3) / (0, -3) / (0, 3) / (0, -3) / (-3, 0)",
+          "algs": [
+            "(3, 0) / (0, 3) / (0, -3) / (0, 3) / (0, -3) / (-3, 0)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-20",
+          "name": {
+            "es": "CP #20 (5 cortes)",
+            "en": "CP #20 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (-3, 6) / (3, 6) / (0, 3) / (-3, 0) / (-3, 0)",
+          "algs": [
+            "(3, 0) / (3, 0) / (0, -3) / (-3, 6) / (3, 6) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-21",
+          "name": {
+            "es": "CP #21 (5 cortes)",
+            "en": "CP #21 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "(3, 0) / (-3, 6) / (3, 6) / (0, 3) / (-3, 0) /",
+          "algs": [
+            "/ (3, 0) / (0, -3) / (-3, 6) / (3, 6) / (-3, 0)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-22",
+          "name": {
+            "es": "CP #22 (5 cortes)",
+            "en": "CP #22 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "/ (0, 3) / (3, 6) / (-3, 6) / (0, -3) /",
+          "algs": [
+            "/ (0, 3) / (3, 6) / (-3, 6) / (0, -3) /"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-23",
+          "name": {
+            "es": "CP #23 (5 cortes)",
+            "en": "CP #23 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "(0, 2) / (0, 3) / (3, 6) / (-3, 6) / (0, -3) / (0, -2)",
+          "algs": [
+            "(0, 2) / (0, 3) / (3, 6) / (-3, 6) / (0, -3) / (0, -2)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-24",
+          "name": {
+            "es": "CP #24 (5 cortes)",
+            "en": "CP #24 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "(0, -1) / (-3, 6) / (0, -3) / (-3, 6) / (-3, 0) / (0, -2)",
+          "algs": [
+            "(0, 2) / (3, 0) / (3, 6) / (0, 3) / (3, 6) / (0, 1)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-25",
+          "name": {
+            "es": "CP #25 (5 cortes)",
+            "en": "CP #25 (5 slices)"
+          },
+          "group": "5 cortes / 5 slices",
+          "setup": "(0, 3) / (-3, 6) / (0, -3) / (-3, 6) / (-3, 0) /",
+          "algs": [
+            "/ (3, 0) / (3, 6) / (0, 3) / (3, 6) / (0, -3)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-26",
+          "name": {
+            "es": "CP #26 (6 cortes)",
+            "en": "CP #26 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "(3, 0) / (-3, 0) / (3, 0) / (0, -3) / (-3, 3) / (0, -3) /",
+          "algs": [
+            "/ (0, 3) / (3, -3) / (0, 3) / (-3, 0) / (3, 0) / (-3, 0)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-27",
+          "name": {
+            "es": "CP #27 (6 cortes)",
+            "en": "CP #27 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "(0, -3) / (6, -3) / (0, -3) / (0, 3) / (-3, 0) / (-3, 3) /",
+          "algs": [
+            "/ (3, -3) / (3, 0) / (0, -3) / (0, 3) / (6, 3) / (0, 3)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-28",
+          "name": {
+            "es": "CP #28 (6 cortes)",
+            "en": "CP #28 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "(0, 6) / (-3, 6) / (0, -3) / (-3, 6) / (0, -3) / (-3, 3) /",
+          "algs": [
+            "/ (3, -3) / (0, 3) / (3, 6) / (0, 3) / (3, 6) / (0, 6)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-29",
+          "name": {
+            "es": "CP #29 (6 cortes)",
+            "en": "CP #29 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "(3, 3) / (0, -3) / (0, 3) / (-3, 3) / (0, 3) / (0, -3) /",
+          "algs": [
+            "/ (0, 3) / (0, -3) / (3, -3) / (0, -3) / (0, 3) / (-3, -3)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-30",
+          "name": {
+            "es": "CP #30 (6 cortes)",
+            "en": "CP #30 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "(0, 3) / (-3, -3) / (0, -3) / (-3, -3) / (0, -3) / (-3, -3) /",
+          "algs": [
+            "/ (3, 3) / (0, 3) / (3, 3) / (0, 3) / (3, 3) / (0, -3)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-31",
+          "name": {
+            "es": "CP #31 (6 cortes)",
+            "en": "CP #31 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "(0, 3) / (-3, 0) / (6, -3) / (-3, 0) / (-3, 3) / (0, -3) /",
+          "algs": [
+            "/ (0, 3) / (3, -3) / (3, 0) / (6, 3) / (3, 0) / (0, -3)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-32",
+          "name": {
+            "es": "CP #32 (6 cortes)",
+            "en": "CP #32 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "(3, 6) / (-3, 6) / (3, 6) / (0, 3) / (0, -3) / (-3, 3) /",
+          "algs": [
+            "/ (3, -3) / (0, 3) / (0, -3) / (-3, 6) / (3, 6) / (-3, 6)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-33",
+          "name": {
+            "es": "CP #33 (6 cortes)",
+            "en": "CP #33 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "(0, 6) / (6, -3) / (3, 6) / (-3, 6) / (-3, 0) / (-3, 3) /",
+          "algs": [
+            "/ (3, -3) / (3, 0) / (3, 6) / (-3, 6) / (6, 3) / (0, 6)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-34",
+          "name": {
+            "es": "CP #34 (6 cortes)",
+            "en": "CP #34 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "(0, 6) / (3, -3) / (-3, 6) / (0, -3) / (0, 3) / (0, -3) /",
+          "algs": [
+            "/ (0, 3) / (0, -3) / (0, 3) / (3, 6) / (-3, 3) / (0, 6)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-cp-35",
+          "name": {
+            "es": "CP #35 (6 cortes)",
+            "en": "CP #35 (6 slices)"
+          },
+          "group": "6 cortes / 6 slices",
+          "setup": "(0, 3) / (-3, -3) / (6, -3) / (-3, -3) / (0, -3) / (-3, -3) /",
+          "algs": [
+            "/ (3, 3) / (0, 3) / (3, 3) / (6, 3) / (3, 3) / (0, -3)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        }
+      ]
+    },
+    {
+      "id": "sq1-ep",
+      "name": {
+        "es": "Square-1 · Aristas y paridad",
+        "en": "Square-1 · Edges and parity"
+      },
+      "stage": "ep",
+      "cases": [
+        {
+          "id": "sq1-ep-t",
+          "name": {
+            "es": "Ciclo de 3 aristas (T)",
+            "en": "3-edge cycle (T)"
+          },
+          "group": "Aristas / Edges",
+          "setup": "(1, 0) / (0, -3) / (-1, 0) / (3, 0) / (1, 0) / (0, 3) / (-1, 0) / (-3, 0) /",
+          "algs": [
+            "/ (3, 0) / (1, 0) / (0, -3) / (-1, 0) / (-3, 0) / (1, 0) / (0, 3) / (-1, 0)"
+          ],
+          "source": "generated:cubelab-sq1-sim (búsqueda óptima por cortes con el modelo de la app)"
+        },
+        {
+          "id": "sq1-ep-p",
+          "name": {
+            "es": "Paridad (2 aristas)",
+            "en": "Parity (2 edges)"
+          },
+          "group": "Paridad / Parity",
+          "setup": "(0, -3) / (0, 3) / (1, -4) / (0, -2) / (0, 2) / (-4, 0) / (2, 0) / (0, -2) / (-2, 0) / (0, -3) / (0, 3) / (0, -3) / (3, 0) /",
+          "algs": [
+            "/ (-3, 0) / (0, 3) / (0, -3) / (0, 3) / (2, 0) / (0, 2) / (-2, 0) / (4, 0) / (0, -2) / (0, 2) / (-1, 4) / (0, -3) / (0, 3)"
+          ],
+          "source": "https://speedcube.com.au/blogs/speedcubing-solutions/how-to-solve-a-square-1-in-6-steps-easy-to-follow-beginners-steps"
+        }
+      ]
+    }
+  ]
+}

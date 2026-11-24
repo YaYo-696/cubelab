@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "lessons": [
+    {
+      "id": "sq1-notation",
+      "title": {
+        "es": "Notación del Square-1",
+        "en": "Square-1 notation"
+      },
+      "objective": {
+        "es": "Leer (x, y) y /.",
+        "en": "Read (x, y) and /."
+      },
+      "body": {
+        "es": "El Square-1 tiene una capa de arriba, una de abajo y una capa del medio que se parte en dos. Notación WCA ([Reglamento 12c](https://www.worldcubeassociation.org/regulations/#12c)):\n\n- **(x, y)**: gira la capa de arriba **x** pasos y la de abajo **y** pasos. Un paso es 1/12 de vuelta (30°): una arista ocupa 1 paso y una esquina 2. Los números negativos giran al revés. **(3, 0)** gira solo arriba un cuarto de vuelta.\n- **/** (corte): gira media vuelta la mitad derecha del puzzle. Solo se puede hacer si ninguna esquina queda atravesada por la línea del corte.\n\nEn esta academia todos los algoritmos ya están comprobados con el mismo modelo que usa el Timer. Las demos muestran hacia dónde gira cada número.",
+        "en": "The Square-1 has a top layer, a bottom layer and a middle layer that splits in two. WCA notation ([Regulation 12c](https://www.worldcubeassociation.org/regulations/#12c)):\n\n- **(x, y)**: turn the top layer **x** steps and the bottom layer **y** steps. One step is 1/12 of a turn (30°): an edge takes 1 step and a corner 2. Negative numbers turn the other way. **(3, 0)** turns only the top a quarter turn.\n- **/** (slice): turn the right half of the puzzle 180°. It is only possible when no corner sits across the slice line.\n\nEvery algorithm in this academy is checked with the same model the Timer uses. The demos show which way each number turns."
+      },
+      "algSetRefs": [],
+      "demos": [
+        {
+          "setup": "",
+          "alg": "(3, 0)"
+        },
+        {
+          "setup": "",
+          "alg": "(0, 3)"
+        },
+        {
+          "setup": "",
+          "alg": "/"
+        }
+      ],
+      "prerequisites": []
+    },
+    {
+      "id": "sq1-shape",
+      "title": {
+        "es": "Paso 1: volver a cubo",
+        "en": "Step 1: cube shape"
+      },
+      "objective": {
+        "es": "Llevar el puzzle a forma de cubo.",
+        "en": "Bring the puzzle back to a cube shape."
+      },
+      "body": {
+        "es": "Mezclado, el Square-1 pierde la forma de cubo. El primer paso es recuperarla sin importar los colores.\n\n- Hay **169 formas** distintas (sin contar giros de capa) y todas vuelven a cubo en **7 cortes o menos**. Comprobado en el simulador recorriendo las 3.678 posiciones de forma.\n- Consejo para empezar ([Ruwix](https://ruwix.com/twisty-puzzles/square-1-back-to-square-one/)): junta las piezas chicas (aristas) unas con otras, o deja como mucho una arista sola entre dos esquinas; así las formas se vuelven fáciles de reconocer.\n- El Entrenador tiene las 169 formas con su solución más corta, agrupadas por cantidad de cortes. Empieza por las de 1 a 3 cortes: son las que más aparecen al final de este paso.",
+        "en": "Scrambled, the Square-1 loses its cube shape. The first step is getting it back, ignoring colors.\n\n- There are **169 different shapes** (not counting layer turns) and every one returns to a cube in **7 slices or fewer**. Checked in the simulator over all 3,678 shape positions.\n- Starting tip ([Ruwix](https://ruwix.com/twisty-puzzles/square-1-back-to-square-one/)): gather the small pieces (edges) together, or leave at most one lone edge between two corners; the shapes then become easy to recognise.\n- The Trainer has all 169 shapes with their shortest solution, grouped by number of slices. Start with the 1–3 slice ones: they show up most at the end of this step."
+      },
+      "algSetRefs": [
+        "sq1-shape"
+      ],
+      "demos": [
+        {
+          "setup": "/",
+          "alg": "/"
+        }
+      ],
+      "prerequisites": [
+        "sq1-notation"
+      ]
+    },
+    {
+      "id": "sq1-co",
+      "title": {
+        "es": "Paso 2: esquinas a su capa",
+        "en": "Step 2: corners to their layer"
+      },
+      "objective": {
+        "es": "Dejar las 4 esquinas de arriba arriba y las de abajo abajo.",
+        "en": "Put the 4 top corners on top and the bottom ones at the bottom."
+      },
+      "body": {
+        "es": "Con forma de cubo, mira solo las **esquinas**: las 4 del color de arriba deben quedar arriba y las 4 del color de abajo, abajo (sin importar el orden).\n\nHay **7 casos** y todos se resuelven en 3 cortes o menos, sin perder la forma de cubo al final. Están en el Entrenador.",
+        "en": "In cube shape, look only at the **corners**: the 4 top-colored ones must be on top and the 4 bottom-colored ones at the bottom (order doesn't matter).\n\nThere are **7 cases** and all are solved in 3 slices or fewer, ending in cube shape. They are in the Trainer."
+      },
+      "algSetRefs": [
+        "sq1-co"
+      ],
+      "demos": [
+        {
+          "setup": "(0, 2) / (0, 1)",
+          "alg": "(0, -1) / (0, -2)"
+        }
+      ],
+      "prerequisites": [
+        "sq1-shape"
+      ]
+    },
+    {
+      "id": "sq1-eo",
+      "title": {
+        "es": "Paso 3: aristas a su capa",
+        "en": "Step 3: edges to their layer"
+      },
+      "objective": {
+        "es": "Dejar las aristas en su capa.",
+        "en": "Put the edges in their layer."
+      },
+      "body": {
+        "es": "Igual que el paso anterior, ahora con las **aristas**: las 4 del color de arriba, arriba. Estos algoritmos no sacan ninguna esquina de su capa.\n\nHay **7 casos**, de 2 a 5 cortes. Practícalos en el Entrenador.",
+        "en": "Same as the previous step, now with the **edges**: the 4 top-colored ones on top. These algorithms keep every corner in its layer.\n\nThere are **7 cases**, from 2 to 5 slices. Practise them in the Trainer."
+      },
+      "algSetRefs": [
+        "sq1-eo"
+      ],
+      "demos": [
+        {
+          "setup": "(1, 0) / (-1, -1) / (0, -5)",
+          "alg": "(0, 5) / (1, 1) / (-1, 0)"
+        }
+      ],
+      "prerequisites": [
+        "sq1-co"
+      ]
+    },
+    {
+      "id": "sq1-cp",
+      "title": {
+        "es": "Paso 4: ordenar las esquinas",
+        "en": "Step 4: permute the corners"
+      },
+      "objective": {
+        "es": "Poner las esquinas en su lugar en ambas capas.",
+        "en": "Put the corners in place on both layers."
+      },
+      "body": {
+        "es": "Ahora las esquinas de cada capa deben quedar en el orden correcto (las aristas todavía no importan, pero se mantienen en su capa).\n\nHay **35 combinaciones** (arriba y abajo a la vez) y cada una tiene en el Entrenador su solución más corta, de 3 a 6 cortes. Empieza por las de 3 y 4 cortes.",
+        "en": "Now the corners of each layer must be in the right order (edges don't matter yet, but they stay in their layer).\n\nThere are **35 combinations** (top and bottom together) and each has its shortest solution in the Trainer, from 3 to 6 slices. Start with the 3- and 4-slice ones."
+      },
+      "algSetRefs": [
+        "sq1-cp"
+      ],
+      "demos": [
+        {
+          "setup": "(0, 6) / (3, -3) / (-3, 3) /",
+          "alg": "/ (3, -3) / (-3, 3) / (0, 6)"
+        }
+      ],
+      "prerequisites": [
+        "sq1-eo"
+      ]
+    },
+    {
+      "id": "sq1-ep",
+      "title": {
+        "es": "Paso 5: aristas, paridad y capa del medio",
+        "en": "Step 5: edges, parity and middle layer"
+      },
+      "objective": {
+        "es": "Terminar el Square-1.",
+        "en": "Finish the Square-1."
+      },
+      "body": {
+        "es": "Con las esquinas listas, ordena las aristas **una capa a la vez** con estos algoritmos:\n\n- **T = / (3, 0) / (1, 0) / (0, -3) / (-1, 0) / (-3, 0) / (1, 0) / (0, 3) / (-1, 0)**: mueve 3 aristas de arriba y deja una quieta (la demo muestra cuál).\n- **P = / (-3, 0) / (0, 3) / (0, -3) / (0, 3) / (2, 0) / (0, 2) / (-2, 0) / (4, 0) / (0, -2) / (0, 2) / (-1, 4) / (0, -3) / (0, 3)**: la **paridad**. Intercambia 2 aristas de arriba. Fuente: [speedcube.com.au](https://speedcube.com.au/blogs/speedcubing-solutions/how-to-solve-a-square-1-in-6-steps-easy-to-follow-beginners-steps).\n- **Cambiar de capa**: `/ (6, 6) / (-1, 1)` lleva la capa de abajo arriba; `(1, -1) / (6, 6) /` la devuelve.\n- **Capa del medio**: `/ (6, 0) / (6, 0) / (6, 0)` la endereza sin tocar nada más.\n\n**Capa de arriba:**\n1. Si hay 2 aristas intercambiadas o las 4 en ciclo, aplica **P** primero.\n2. Si hay **1 arista bien**, gira la capa de arriba de a (3, 0) hasta que quede en el lugar que T no toca, aplica T y, si no quedó, T otra vez. Después deshaz el giro.\n3. Si no hay ninguna bien, aplica T una vez y vuelve al punto 2.\n\n**Capa de abajo:** súbela con `/ (6, 6) / (-1, 1)`, repite los mismos pasos y bájala con `(1, -1) / (6, 6) /`. Al final, si la capa del medio quedó torcida, aplica la de la capa del medio, y alinea las capas con (3, 0) o (0, 3).\n\nComprobado en el simulador con las 1.152 combinaciones de aristas y capa del medio: todas se resuelven, con 8 aplicaciones de T o P como máximo.",
+        "en": "With the corners done, sort the edges **one layer at a time** with these algorithms:\n\n- **T = / (3, 0) / (1, 0) / (0, -3) / (-1, 0) / (-3, 0) / (1, 0) / (0, 3) / (-1, 0)**: moves 3 top edges and leaves one in place (the demo shows which).\n- **P = / (-3, 0) / (0, 3) / (0, -3) / (0, 3) / (2, 0) / (0, 2) / (-2, 0) / (4, 0) / (0, -2) / (0, 2) / (-1, 4) / (0, -3) / (0, 3)**: the **parity**. Swaps 2 top edges. Source: [speedcube.com.au](https://speedcube.com.au/blogs/speedcubing-solutions/how-to-solve-a-square-1-in-6-steps-easy-to-follow-beginners-steps).\n- **Switch layers**: `/ (6, 6) / (-1, 1)` brings the bottom layer up; `(1, -1) / (6, 6) /` sends it back.\n- **Middle layer**: `/ (6, 0) / (6, 0) / (6, 0)` straightens it without touching anything else.\n\n**Top layer:**\n1. If 2 edges are swapped or all 4 are in a cycle, apply **P** first.\n2. If **1 edge is correct**, turn the top layer by (3, 0) steps until it sits where T doesn't touch, apply T and, if it isn't solved, T again. Then undo the turn.\n3. If none is correct, apply T once and go back to step 2.\n\n**Bottom layer:** bring it up with `/ (6, 6) / (-1, 1)`, repeat the same steps and send it down with `(1, -1) / (6, 6) /`. Finally, if the middle layer is crooked, apply the middle-layer algorithm and align the layers with (3, 0) or (0, 3).\n\nChecked in the simulator on all 1,152 edge and middle-layer combinations: all are solved, with at most 8 applications of T or P."
+      },
+      "algSetRefs": [
+        "sq1-ep"
+      ],
+      "demos": [
+        {
+          "setup": "(1, 0) / (0, -3) / (-1, 0) / (3, 0) / (1, 0) / (0, 3) / (-1, 0) / (-3, 0) /",
+          "alg": "/ (3, 0) / (1, 0) / (0, -3) / (-1, 0) / (-3, 0) / (1, 0) / (0, 3) / (-1, 0)"
+        },
+        {
+          "setup": "(0, -3) / (0, 3) / (1, -4) / (0, -2) / (0, 2) / (-4, 0) / (2, 0) / (0, -2) / (-2, 0) / (0, -3) / (0, 3) / (0, -3) / (3, 0) /",
+          "alg": "/ (-3, 0) / (0, 3) / (0, -3) / (0, 3) / (2, 0) / (0, 2) / (-2, 0) / (4, 0) / (0, -2) / (0, 2) / (-1, 4) / (0, -3) / (0, 3)"
+        },
+        {
+          "setup": "",
+          "alg": "/ (6, 0) / (6, 0) / (6, 0)"
+        }
+      ],
+      "prerequisites": [
+        "sq1-cp"
+      ]
+    },
+    {
+      "id": "sq1-plan",
+      "title": {
+        "es": "Plan de práctica",
+        "en": "Practice plan"
+      },
+      "objective": {
+        "es": "Pasar del método completo a tiempos estables.",
+        "en": "Go from the full method to consistent times."
+      },
+      "body": {
+        "es": "1. Termina el Square-1 completo con los 5 pasos, aunque sea lento.\n2. **Forma de cubo:** es el paso que más se repite; aprende en el Entrenador las formas de 1 a 3 cortes y después las de 4.\n3. **Esquinas y aristas a su capa:** son 14 casos cortos; apréndelos todos.\n4. **Esquinas:** los 35 casos, empezando por los de 3 y 4 cortes.\n5. Mide con Ao5 en el Timer.",
+        "en": "1. Finish the whole Square-1 with the 5 steps, even if slowly.\n2. **Cube shape:** it is the most repeated step; learn the 1–3 slice shapes in the Trainer, then the 4-slice ones.\n3. **Corners and edges to their layer:** 14 short cases; learn them all.\n4. **Corners:** the 35 cases, starting with the 3- and 4-slice ones.\n5. Track Ao5 in the Timer."
+      },
+      "algSetRefs": [],
+      "demos": [],
+      "prerequisites": [
+        "sq1-ep"
+      ]
+    }
+  ]
+}
