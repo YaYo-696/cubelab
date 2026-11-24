@@ -1,8 +1,8 @@
 {
   "version": 1,
   "note": {
-    "es": "Videos externos (YouTube). Requieren internet. Solo se incluyen enlaces directos cuyo ID se confirmó en una fuente; para el resto se da una búsqueda en YouTube.",
-    "en": "External videos (YouTube). Require internet. Only direct links whose ID was confirmed in a source are included; for the rest a YouTube search is provided."
+    "es": "Videos externos (YouTube). Requieren internet. Solo se incluyen enlaces directos cuyo ID se confirmó en una fuente; para el resto se da una búsqueda en YouTube. Los videos pueden usar una notación distinta a la de la app: los algoritmos de la Academia están en notación WCA.",
+    "en": "External videos (YouTube). Require internet. Only direct links whose ID was confirmed in a source are included; for the rest a YouTube search is provided. Videos may use a different notation from the app: Academy algorithms are in WCA notation."
   },
   "topics": [
     {
@@ -160,6 +160,13 @@
       },
       "videos": [
         {
+          "title": "Resolver CUBO de RUBIK 2X2 (el método más fácil)",
+          "channel": "Cuby",
+          "lang": "es",
+          "url": "https://www.youtube.com/watch?v=f85wqJTIDlw",
+          "verifiedFrom": "Resultado de búsqueda web con la URL de YouTube, el título y la descripción del video (24-11-2026)"
+        },
+        {
           "title": "Tutorial 2x2 para principiantes",
           "channel": "J Perm",
           "lang": "en",
@@ -202,7 +209,15 @@
         "es": "Pyraminx · Principiante (primera capa y L3E)",
         "en": "Pyraminx · Beginner (first layer and L3E)"
       },
-      "videos": [],
+      "videos": [
+        {
+          "title": "Resolver Pyraminx (Principiantes) | Muy fácil | Tutorial | Español",
+          "channel": "Cuby",
+          "lang": "es",
+          "url": "https://www.youtube.com/watch?v=4cJJe9RAzAU",
+          "verifiedFrom": "Resultado de búsqueda web con la URL de YouTube, el título y la descripción del video (24-11-2026)"
+        }
+      ],
       "search": {
         "es": "https://www.youtube.com/results?search_query=Cuby+Resolver+Pyraminx+Principiantes",
         "en": "https://www.youtube.com/results?search_query=pyraminx+beginner+tutorial"
@@ -218,6 +233,138 @@
       "search": {
         "es": "https://www.youtube.com/results?search_query=pyraminx+L4E+tutorial+espa%C3%B1ol",
         "en": "https://www.youtube.com/results?search_query=Pyraminx+Intuitive+L4E+Intermediate+Tutorial"
+      }
+    },
+    {
+      "topic": "333-notation",
+      "appliesTo": {
+        "es": "3x3 · Notación",
+        "en": "3x3 · Notation"
+      },
+      "videos": [
+        {
+          "title": "Notación de algoritmos (Cubo de Rubik)",
+          "channel": "Cuby",
+          "lang": "es",
+          "url": "https://www.youtube.com/watch?v=j3nxbQhTLtc",
+          "verifiedFrom": "Resultado de búsqueda web con la URL de YouTube, el título y la descripción del video (24-11-2026)"
+        }
+      ],
+      "search": {
+        "es": "https://www.youtube.com/results?search_query=notaci%C3%B3n+cubo+de+rubik+espa%C3%B1ol",
+        "en": "https://www.youtube.com/results?search_query=rubik%27s+cube+notation"
+      }
+    },
+    {
+      "topic": "skewb-beginner",
+      "appliesTo": {
+        "es": "Skewb · Método principiante (el video puede usar otra notación)",
+        "en": "Skewb · Beginner method (the video may use a different notation)"
+      },
+      "videos": [
+        {
+          "title": "Resolver Skewb (Principiantes)",
+          "channel": "Cuby",
+          "lang": "es",
+          "url": "https://www.youtube.com/watch?v=wxQX3HhPgds",
+          "verifiedFrom": "Resultado de búsqueda web con la URL de YouTube, el título y la descripción del video (24-11-2026)"
+        }
+      ],
+      "search": {
+        "es": "https://www.youtube.com/results?search_query=tutorial+skewb+principiantes+espa%C3%B1ol",
+        "en": "https://www.youtube.com/results?search_query=skewb+beginner+tutorial"
+      }
+    },
+    {
+      "topic": "minx-beginner",
+      "appliesTo": {
+        "es": "Megaminx · Método principiante",
+        "en": "Megaminx · Beginner method"
+      },
+      "videos": [
+        {
+          "title": "Resolver Megaminx (Principiantes) | HD | Tutorial | Español",
+          "channel": "Cuby",
+          "lang": "es",
+          "url": "https://www.youtube.com/watch?v=xuKbT6Il0Ko",
+          "verifiedFrom": "Resultado de búsqueda web con la URL de YouTube, el título y la descripción del video (24-11-2026)"
+        }
+      ],
+      "search": {
+        "es": "https://www.youtube.com/results?search_query=tutorial+megaminx+principiantes+espa%C3%B1ol",
+        "en": "https://www.youtube.com/results?search_query=megaminx+beginner+tutorial"
+      }
+    },
+    {
+      "topic": "444-beginner",
+      "appliesTo": {
+        "es": "4x4 · Método de reducción",
+        "en": "4x4 · Reduction method"
+      },
+      "videos": [
+        {
+          "title": "Resolver cubo de Rubik 4x4 (Principiantes) | HD | Tutorial | Español",
+          "channel": "Cuby",
+          "lang": "es",
+          "url": "https://www.youtube.com/watch?v=d_4xk1r9hxU",
+          "verifiedFrom": "Resultado de búsqueda web con la URL de YouTube, el título y la descripción del video (24-11-2026)"
+        }
+      ],
+      "search": {
+        "es": "https://www.youtube.com/results?search_query=tutorial+4x4+principiantes+reducci%C3%B3n+espa%C3%B1ol",
+        "en": "https://www.youtube.com/results?search_query=4x4+beginner+tutorial+reduction"
+      }
+    },
+    {
+      "topic": "444-parity",
+      "appliesTo": {
+        "es": "4x4 · Paridades (en los videos 'r' suele ser la capa interior; en la app es 2R)",
+        "en": "4x4 · Parities (videos often use 'r' for the inner slice; the app uses 2R)"
+      },
+      "videos": [
+        {
+          "title": "Resolver Paridad 4x4 muy Fácil - Todos los casos",
+          "channel": "CubosCubik",
+          "lang": "es",
+          "url": "https://www.youtube.com/watch?v=8CZrnhONSPY",
+          "verifiedFrom": "Resultado de búsqueda web con la URL de YouTube, el título y la descripción del video (24-11-2026)"
+        }
+      ],
+      "search": {
+        "es": "https://www.youtube.com/results?search_query=paridad+4x4+tutorial+espa%C3%B1ol",
+        "en": "https://www.youtube.com/results?search_query=4x4+parity+algorithms+tutorial"
+      }
+    },
+    {
+      "topic": "sq1-beginner",
+      "appliesTo": {
+        "es": "Square-1 · Método principiante",
+        "en": "Square-1 · Beginner method"
+      },
+      "videos": [
+        {
+          "title": "Resolver SQUARE-1 (Principiantes)",
+          "channel": "Cuby",
+          "lang": "es",
+          "url": "https://www.youtube.com/watch?v=mGtHDWj_i1o",
+          "verifiedFrom": "Resultado de búsqueda web con la URL de YouTube, el título y la descripción del video (24-11-2026)"
+        }
+      ],
+      "search": {
+        "es": "https://www.youtube.com/results?search_query=tutorial+square-1+principiantes+espa%C3%B1ol",
+        "en": "https://www.youtube.com/results?search_query=square-1+beginner+tutorial"
+      }
+    },
+    {
+      "topic": "clock-beginner",
+      "appliesTo": {
+        "es": "Clock · Método principiante",
+        "en": "Clock · Beginner method"
+      },
+      "videos": [],
+      "search": {
+        "es": "https://www.youtube.com/results?search_query=tutorial+rubik%27s+clock+principiantes+espa%C3%B1ol",
+        "en": "https://www.youtube.com/results?search_query=rubik%27s+clock+beginner+tutorial"
       }
     }
   ]
