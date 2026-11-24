@@ -98,5 +98,28 @@ El catálogo conserva los enlaces del drop y se asocia por ID de curso y lecció
 ## Fase 8 · Skewb
 
 - WCA 4b3c exige siete giros. TNoodle fija el mínimo en siete y `Puzzle.generateWcaScramble` descarta cualquier estado para el cual `SkewbPuzzle.solveIn(6)` devuelve una solución. Su solver usa los cuatro ejes y las dos direcciones de 120°, cada giro con coste unitario, en un marco que elimina la orientación global. CubeLab usa las mezclas de cubing.js y calcula la distancia con esos mismos giros R/U/L/B. Los centros de un Skewb estándar no tienen orientación visible. [WCA 4b3c](https://www.worldcubeassociation.org/regulations/#4b3c) · [Notación 12h](https://www.worldcubeassociation.org/regulations/#12h) · [SkewbPuzzle.java](https://github.com/thewca/tnoodle-lib/blob/master/scrambles/src/main/java/org/worldcubeassociation/tnoodle/puzzle/SkewbPuzzle.java) · [SkewbSolver.java](https://github.com/thewca/tnoodle-lib/blob/master/scrambles/src/main/java/org/worldcubeassociation/tnoodle/puzzle/SkewbSolver.java) · [Filtro de Puzzle.java](https://github.com/thewca/tnoodle-lib/blob/master/scrambles/src/main/java/org/worldcubeassociation/tnoodle/scrambles/Puzzle.java)
-- El worker genera desde KPuzzle las transiciones de 8.748 configuraciones de esquinas y 360 de centros. La búsqueda en anchura visita las 3.149.280 combinaciones y mide el mínimo exacto. Las tablas adicionales de Principiante se crean bajo demanda. La primera etapa resuelve la capa inferior amarilla. La segunda completa las esquinas y mantiene la capa inferior resuelta al final de la etapa. La tercera completa el puzzle. Cada etapa se verifica con KPuzzle y la ruta completa se etiqueta como heurística.
+- El worker genera desde KPuzzle las transiciones de 8.748 configuraciones de esquinas y 360 de centros. La búsqueda en anchura visita las 3.149.280 combinaciones y mide el mínimo exacto. Las tablas adicionales de Principiante se crean bajo demanda. La primera etapa resuelve la capa superior U. La segunda completa las esquinas y mantiene la capa superior resuelta al final de la etapa. La tercera completa el puzzle. Cada etapa se verifica con KPuzzle y la ruta completa se etiqueta como heurística.
 - Se reutiliza el importador v1 de Pyraminx. Skewb aplica una política propia de IDs, fuentes y giros. Los setups usan notación WCA. Para algoritmos con rotaciones se compara con las 24 orientaciones del estado resuelto. Se aplica también el inverso desde la orientación que efectivamente produjo el algoritmo y se comprueba el setup exacto. Las fuentes `generated:` se muestran como texto.
+
+## Fase 9 · Megaminx
+
+- **Mezclas.** WCA 4b3e prescribe muchos movimientos aleatorios y una distancia mínima de dos. La notación Pochmann de Megaminx está en el artículo **12d** del reglamento vigente. CubeLab conserva los renglones de `randomScrambleForEvent('minx')` y permite únicamente `R++ R-- D++ D-- U U'` al escribir una mezcla. El filtro contrasta el estado con el resuelto y los estados a un giro, salvo las 60 orientaciones globales. Incluye los giros de cara y de bloque que TNoodle enumera en `getSuccessorsByName`. Los centros monocromáticos no tienen orientación visible. [WCA 4b3e](https://www.worldcubeassociation.org/regulations/#4b3e) · [WCA 12d](https://www.worldcubeassociation.org/regulations/#12d) · [MegaminxPuzzle.java](https://github.com/thewca/tnoodle-lib/blob/master/scrambles/src/main/java/org/worldcubeassociation/tnoodle/puzzle/MegaminxPuzzle.java)
+- **Notación del contenido.** Se usa el KPuzzle de Megaminx de cubing.js 0.63.8. Orienta `U` (blanco) arriba y `F` (verde oscuro) al frente. Cada giro de cara sin número o con `1` es de 72° horario mirando esa cara desde fuera. `2` son 144° y la prima invierte cualquiera de las dos cantidades. Los nombres de la columna «Geometría» identifican las caras de PuzzleGeometry, mientras los símbolos de la primera columna son los que se escriben en el JSON.
+
+| Símbolo KPuzzle | Ubicación con U arriba y F al frente | Opuesta | Geometría y color de referencia |
+| --- | --- | --- | --- |
+| `U` | Polo superior | `D` | `U`, blanco |
+| `F` | Superior frontal | `B` | `F`, verde oscuro |
+| `R` | Superior frontal derecha | `DL` | `R`, rojo |
+| `BR` | Superior trasera derecha | `FL` | `BR`, azul |
+| `BL` | Superior trasera izquierda | `FR` | `BL`, amarillo |
+| `L` | Superior frontal izquierda | `DR` | `L`, morado |
+| `D` | Polo inferior | `U` | `D`, gris |
+| `FR` | Inferior frontal derecha, debajo de F/R | `BL` | `C`, beige |
+| `DR` | Inferior derecha, debajo de R/BR | `L` | `E`, rosa |
+| `B` | Inferior trasera, debajo de BR/BL | `F` | `BF`, verde lima |
+| `DL` | Inferior izquierda, debajo de BL/L | `R` | `I`, naranja |
+| `FL` | Inferior frontal izquierda, debajo de L/F | `BR` | `A`, celeste |
+
+- **Rotaciones del contenido.** `y` equivale a `Uv`. Los ejes de cara se escriben con su símbolo seguido de `v` (por ejemplo `FRv`) y tienen orden cinco. Los ejes de vértice tienen orden tres y se escriben `U_F_Rv U_L_Fv FL_F_Lv U_BL_Lv DL_L_BLv U_BR_BLv B_BL_BRv U_R_BRv FR_R_Fv DR_BR_Rv`. Los ejes de arista tienen orden dos y se escriben `U_Fv U_Lv F_Lv U_BLv BL_Lv U_BRv F_Rv BR_BLv U_Rv FR_Fv FL_Lv BR_Rv FR_Rv F_FLv DL_Lv`. Se admiten `1`, `2` y prima en esos ejes. `x` y `z` no son giros válidos de este modelo.
+- **Importación.** El esquema compartido comprueba el setup y cada variante con KPuzzle. Si un algoritmo tiene rotaciones, acepta el estado resuelto en cualquiera de sus orientaciones y verifica el inverso desde el agarre final. El Entrenador reproduce el setup verificado del catálogo. Timer usa su propio generador y Solucionador indica que Megaminx aún no está disponible.

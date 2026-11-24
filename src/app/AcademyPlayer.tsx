@@ -17,7 +17,7 @@ const Duo = lazy(() => import('./DuoPlayer').then((m) => ({ default: m.DuoPlayer
 export function AcademyPlayer(props: PlayerProps) {
     if (props.puzzle === 'pyraminx-duo')
         return <Suspense fallback={<p>{props.t('aLoading')}</p>}><Duo {...props} /></Suspense>;
-    const puzzle = props.puzzle === 'skewb' || props.puzzle === 'pyraminx' || props.puzzle === '2x2x2'
+    const puzzle = props.puzzle === 'megaminx' || props.puzzle === 'skewb' || props.puzzle === 'pyraminx' || props.puzzle === '2x2x2'
         ? props.puzzle : '3x3x3';
     return <Twisty {...props} puzzle={puzzle} />;
 }
@@ -30,7 +30,7 @@ function Twisty({
     flatOnly = false,
     timerPreview = false,
     t,
-}: PlayerProps & { puzzle: '2x2x2' | '3x3x3' | 'pyraminx' | 'skewb' }) {
+}: PlayerProps & { puzzle: '2x2x2' | '3x3x3' | 'pyraminx' | 'skewb' | 'megaminx' }) {
     const target = useRef<HTMLDivElement>(null);
     const net = useRef<HTMLDivElement>(null);
     const player = useRef<TwistyPlayer>();

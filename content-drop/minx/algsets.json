@@ -1,0 +1,526 @@
+{
+  "version": 1,
+  "sets": [
+    {
+      "id": "minx-eo",
+      "name": {
+        "es": "Megaminx · Orientar aristas (EO)",
+        "en": "Megaminx · Edge orientation (EO)"
+      },
+      "stage": "eo",
+      "cases": [
+        {
+          "id": "minx-eo-1",
+          "name": {
+            "es": "EO · 2 aristas vecinas",
+            "en": "EO · 2 adjacent edges"
+          },
+          "group": "Orientar aristas / Orient edges",
+          "setup": "F R U R' U' F'",
+          "algs": [
+            "F U R U' R' F'"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-eo-2",
+          "name": {
+            "es": "EO · 2 aristas separadas",
+            "en": "EO · 2 non-adjacent edges"
+          },
+          "group": "Orientar aristas / Orient edges",
+          "setup": "F U R U' R' F'",
+          "algs": [
+            "F R U R' U' F'"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-eo-3",
+          "name": {
+            "es": "EO · 4 aristas",
+            "en": "EO · 4 edges"
+          },
+          "group": "Orientar aristas / Orient edges",
+          "setup": "F U2 F R' F' R2 U2' R' F'",
+          "algs": [
+            "F R U2 R2' F R F' U2' F'"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        }
+      ]
+    },
+    {
+      "id": "minx-co",
+      "name": {
+        "es": "Megaminx · Orientar esquinas (CO)",
+        "en": "Megaminx · Corner orientation (CO)"
+      },
+      "stage": "co",
+      "cases": [
+        {
+          "id": "minx-co-1",
+          "name": {
+            "es": "CO #1 · 2 esquinas giradas",
+            "en": "CO #1 · 2 twisted corners"
+          },
+          "group": "2 esquinas / 2 corners",
+          "setup": "F R U R' U R U2' R' F'",
+          "algs": [
+            "F R U2 R' U' R U' R' F'"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-co-2",
+          "name": {
+            "es": "CO #2 · 2 esquinas giradas",
+            "en": "CO #2 · 2 twisted corners"
+          },
+          "group": "2 esquinas / 2 corners",
+          "setup": "R U R' U2 R U' R' U' R U' R'",
+          "algs": [
+            "R U R' U R U R' U2' R U' R'"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-co-3",
+          "name": {
+            "es": "CO #3 · 2 esquinas giradas",
+            "en": "CO #3 · 2 twisted corners"
+          },
+          "group": "2 esquinas / 2 corners",
+          "setup": "R U2 R' U R U2 R'",
+          "algs": [
+            "R U2' R' U' R U2' R'"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-co-4",
+          "name": {
+            "es": "CO #4 · 2 esquinas giradas",
+            "en": "CO #4 · 2 twisted corners"
+          },
+          "group": "2 esquinas / 2 corners",
+          "setup": "F R U R' U' R' F' R U R U' R'",
+          "algs": [
+            "R U R' U' R' F R U R U' R' F'"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-co-5",
+          "name": {
+            "es": "CO #5 · 3 esquinas giradas",
+            "en": "CO #5 · 3 twisted corners"
+          },
+          "group": "3 esquinas / 3 corners",
+          "setup": "R' U2' R U R' U R",
+          "algs": [
+            "R' U' R U' R' U2 R"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-co-6",
+          "name": {
+            "es": "CO #6 · 3 esquinas giradas",
+            "en": "CO #6 · 3 twisted corners"
+          },
+          "group": "3 esquinas / 3 corners",
+          "setup": "R U2 R' U' R U' R'",
+          "algs": [
+            "R U R' U R U2' R'"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-co-7",
+          "name": {
+            "es": "CO #7 · 3 esquinas giradas",
+            "en": "CO #7 · 3 twisted corners"
+          },
+          "group": "3 esquinas / 3 corners",
+          "setup": "R U R' U R U2' R'",
+          "algs": [
+            "R U2 R' U' R U' R'"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-co-8",
+          "name": {
+            "es": "CO #8 · 3 esquinas giradas",
+            "en": "CO #8 · 3 twisted corners"
+          },
+          "group": "3 esquinas / 3 corners",
+          "setup": "R U2' R' U2' R U' R'",
+          "algs": [
+            "R U R' U2 R U2 R'"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-co-9",
+          "name": {
+            "es": "CO #9 · 4 esquinas giradas",
+            "en": "CO #9 · 4 twisted corners"
+          },
+          "group": "4 esquinas / 4 corners",
+          "setup": "R' U2' R U R' U R2 U R' U R U2' R'",
+          "algs": [
+            "R U2 R' U' R U' R2' U' R U' R' U2 R"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-co-10",
+          "name": {
+            "es": "CO #10 · 4 esquinas giradas",
+            "en": "CO #10 · 4 twisted corners"
+          },
+          "group": "4 esquinas / 4 corners",
+          "setup": "R U R' U R U' R' U R U2' R'",
+          "algs": [
+            "R U2 R' U' R U R' U' R U' R'"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-co-11",
+          "name": {
+            "es": "CO #11 · 4 esquinas giradas",
+            "en": "CO #11 · 4 twisted corners"
+          },
+          "group": "4 esquinas / 4 corners",
+          "setup": "R U2 R2' U' R2 U' R2' U2 R",
+          "algs": [
+            "R' U2' R2 U R2' U R2 U2' R'"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-co-12",
+          "name": {
+            "es": "CO #12 · 4 esquinas giradas",
+            "en": "CO #12 · 4 twisted corners"
+          },
+          "group": "4 esquinas / 4 corners",
+          "setup": "R' U2' R2 U R2' U R2 U2' R'",
+          "algs": [
+            "R U2 R2' U' R2 U' R2' U2 R"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-co-13",
+          "name": {
+            "es": "CO #13 · 4 esquinas giradas",
+            "en": "CO #13 · 4 twisted corners"
+          },
+          "group": "4 esquinas / 4 corners",
+          "setup": "R U2 R' U' R U R' U' R U' R'",
+          "algs": [
+            "R U R' U R U' R' U R U2' R'"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-co-14",
+          "name": {
+            "es": "CO #14 · 4 esquinas giradas",
+            "en": "CO #14 · 4 twisted corners"
+          },
+          "group": "4 esquinas / 4 corners",
+          "setup": "R U2 R' U R U' R' U' R U' R'",
+          "algs": [
+            "R U R' U R U R' U' R U2' R'"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-co-15",
+          "name": {
+            "es": "CO #15 · 5 esquinas giradas",
+            "en": "CO #15 · 5 twisted corners"
+          },
+          "group": "5 esquinas / 5 corners",
+          "setup": "R U R' U2 R U2' R' U R U2' R'",
+          "algs": [
+            "R U2 R' U' R U2 R' U2' R U' R'"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-co-16",
+          "name": {
+            "es": "CO #16 · 5 esquinas giradas",
+            "en": "CO #16 · 5 twisted corners"
+          },
+          "group": "5 esquinas / 5 corners",
+          "setup": "R U2 R' U' R U2 R' U2' R U' R'",
+          "algs": [
+            "R U R' U2 R U2' R' U R U2' R'"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        }
+      ]
+    },
+    {
+      "id": "minx-ep",
+      "name": {
+        "es": "Megaminx · Permutar aristas (EP)",
+        "en": "Megaminx · Edge permutation (EP)"
+      },
+      "stage": "ep",
+      "cases": [
+        {
+          "id": "minx-ep-1",
+          "name": {
+            "es": "EP · ciclo de 3 (1)",
+            "en": "EP · 3-cycle (1)"
+          },
+          "group": "ciclo de 3 / 3-cycle",
+          "setup": "R U R2' F' R U R U' R' F R U' R'",
+          "algs": [
+            "R U R' F' R U R' U' R' F R2 U' R'"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-ep-2",
+          "name": {
+            "es": "EP · ciclo de 3 (2)",
+            "en": "EP · 3-cycle (2)"
+          },
+          "group": "ciclo de 3 / 3-cycle",
+          "setup": "R2 U2 R2' U R2 U2 R2'",
+          "algs": [
+            "R2 U2' R2' U' R2 U2' R2'"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-ep-3",
+          "name": {
+            "es": "EP · 2 pares (3)",
+            "en": "EP · 2 pairs (3)"
+          },
+          "group": "2 pares / 2 pairs",
+          "setup": "R U2' L U2' R' U L' R U' L U2' R' L'",
+          "algs": [
+            "L R U2 L' U R' L U' R U2 L' U2 R'"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        }
+      ]
+    },
+    {
+      "id": "minx-cp",
+      "name": {
+        "es": "Megaminx · Permutar esquinas (CP)",
+        "en": "Megaminx · Corner permutation (CP)"
+      },
+      "stage": "cp",
+      "cases": [
+        {
+          "id": "minx-cp-1",
+          "name": {
+            "es": "CP #1 · ciclo de 3, fijas vecinas",
+            "en": "CP #1 · 3-cycle, adjacent fixed"
+          },
+          "group": "ciclo de 3, fijas vecinas / 3-cycle, adjacent fixed",
+          "setup": "R' F' BR' R BR R' F R BR' R' BR R",
+          "algs": [
+            "R' BR' R BR R' F' R BR' R' BR F R"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-cp-2",
+          "name": {
+            "es": "CP #2 · ciclo de 3, fijas vecinas",
+            "en": "CP #2 · 3-cycle, adjacent fixed"
+          },
+          "group": "ciclo de 3, fijas vecinas / 3-cycle, adjacent fixed",
+          "setup": "R' BR' R BR R' F' R BR' R' BR F R",
+          "algs": [
+            "R' F' BR' R BR R' F R BR' R' BR R"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-cp-3",
+          "name": {
+            "es": "CP #3 · ciclo de 3, fijas separadas",
+            "en": "CP #3 · 3-cycle, non-adjacent fixed"
+          },
+          "group": "ciclo de 3, fijas separadas / 3-cycle, non-adjacent fixed",
+          "setup": "BR' R2' U L U' R U L' U' R BR",
+          "algs": [
+            "BR' R' U L U' R' U L' U' R2 BR"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-cp-4",
+          "name": {
+            "es": "CP #4 · ciclo de 3, fijas separadas",
+            "en": "CP #4 · 3-cycle, non-adjacent fixed"
+          },
+          "group": "ciclo de 3, fijas separadas / 3-cycle, non-adjacent fixed",
+          "setup": "BR' R' U L U' R' U L' U' R2 BR",
+          "algs": [
+            "BR' R2' U L U' R U L' U' R BR"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-cp-5",
+          "name": {
+            "es": "CP #5 · doble intercambio",
+            "en": "CP #5 · double swap"
+          },
+          "group": "doble intercambio / double swap",
+          "setup": "L' R U R' U R U' R' U R U' R' U R U2' R' L",
+          "algs": [
+            "L' R U2 R' U' R U R' U' R U R' U' R U' R' L"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-cp-6",
+          "name": {
+            "es": "CP #6 · doble intercambio",
+            "en": "CP #6 · double swap"
+          },
+          "group": "doble intercambio / double swap",
+          "setup": "R' U' R2 U R2' F' R U R U' R' F R' U R U' R U' R'",
+          "algs": [
+            "R U R' U R' U' R F' R U R' U' R' F R2 U' R2' U R"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-cp-7",
+          "name": {
+            "es": "CP #7 · doble intercambio",
+            "en": "CP #7 · double swap"
+          },
+          "group": "doble intercambio / double swap",
+          "setup": "BR' R2' U L U' R U L' U' R BR R' F' BR' R BR R' F R BR' R' BR R",
+          "algs": [
+            "R' BR' R BR R' F' R BR' R' BR F R BR' R' U L U' R' U L' U' R2 BR"
+          ],
+          "source": "generated:combinación verificada de dos algoritmos de CP de cubeskills (Feliks Zemdegs y Andy Klise)"
+        },
+        {
+          "id": "minx-cp-8",
+          "name": {
+            "es": "CP #8 · ciclo de 5",
+            "en": "CP #8 · 5-cycle"
+          },
+          "group": "ciclo de 5 / 5-cycle",
+          "setup": "R2 U2' R2' U' R2 U R2' U' R2 U R2' U' R2 U2' R2'",
+          "algs": [
+            "R2 U2 R2' U R2 U' R2' U R2 U' R2' U R2 U2 R2'"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-cp-9",
+          "name": {
+            "es": "CP #9 · ciclo de 5",
+            "en": "CP #9 · 5-cycle"
+          },
+          "group": "ciclo de 5 / 5-cycle",
+          "setup": "R2 U2 R2' U R2 U' R2' U R2 U' R2' U R2 U2 R2'",
+          "algs": [
+            "R2 U2' R2' U' R2 U R2' U' R2 U R2' U' R2 U2' R2'"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-cp-10",
+          "name": {
+            "es": "CP #10 · ciclo de 5",
+            "en": "CP #10 · 5-cycle"
+          },
+          "group": "ciclo de 5 / 5-cycle",
+          "setup": "R' U' R U2 R' U' R U2 R' U R U2 R' U2' R U R' U2' R",
+          "algs": [
+            "R' U2 R U' R' U2 R U2' R' U' R U2' R' U R U2' R' U R"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-cp-11",
+          "name": {
+            "es": "CP #11 · ciclo de 5",
+            "en": "CP #11 · 5-cycle"
+          },
+          "group": "ciclo de 5 / 5-cycle",
+          "setup": "F R U' R' U R U R2' F' R U R U' R U2 R2' U R2 U2 R2'",
+          "algs": [
+            "R2 U2' R2' U' R2 U2' R' U R' U' R' F R2 U' R' U' R U R' F'"
+          ],
+          "source": "https://www.cubeskills.com/uploads/pdf/tutorials/intermediate-megaminx-techniques.pdf"
+        },
+        {
+          "id": "minx-cp-12",
+          "name": {
+            "es": "CP #12 · ciclo de 5",
+            "en": "CP #12 · 5-cycle"
+          },
+          "group": "ciclo de 5 / 5-cycle",
+          "setup": "BR' R2' U L U' R U L' U' R BR U BR' R2' U L U' R U L' U' R BR",
+          "algs": [
+            "BR' R' U L U' R' U L' U' R2 BR U' BR' R' U L U' R' U L' U' R2 BR"
+          ],
+          "source": "generated:combinación verificada de dos algoritmos de CP de cubeskills (Feliks Zemdegs y Andy Klise)"
+        },
+        {
+          "id": "minx-cp-13",
+          "name": {
+            "es": "CP #13 · ciclo de 5",
+            "en": "CP #13 · 5-cycle"
+          },
+          "group": "ciclo de 5 / 5-cycle",
+          "setup": "BR' R' U L U' R' U L' U' R2 BR U' BR' R' U L U' R' U L' U' R2 BR",
+          "algs": [
+            "BR' R2' U L U' R U L' U' R BR U BR' R2' U L U' R U L' U' R BR"
+          ],
+          "source": "generated:combinación verificada de dos algoritmos de CP de cubeskills (Feliks Zemdegs y Andy Klise)"
+        },
+        {
+          "id": "minx-cp-14",
+          "name": {
+            "es": "CP #14 · ciclo de 5",
+            "en": "CP #14 · 5-cycle"
+          },
+          "group": "ciclo de 5 / 5-cycle",
+          "setup": "R' F' BR' R BR R' F R BR' R' BR R U2' R' F' BR' R BR R' F R BR' R' BR R",
+          "algs": [
+            "R' BR' R BR R' F' R BR' R' BR F R U2 R' BR' R BR R' F' R BR' R' BR F R"
+          ],
+          "source": "generated:combinación verificada de dos algoritmos de CP de cubeskills (Feliks Zemdegs y Andy Klise)"
+        },
+        {
+          "id": "minx-cp-15",
+          "name": {
+            "es": "CP #15 · ciclo de 5",
+            "en": "CP #15 · 5-cycle"
+          },
+          "group": "ciclo de 5 / 5-cycle",
+          "setup": "R' BR' R BR R' F' R BR' R' BR F R U2 R' BR' R BR R' F' R BR' R' BR F R",
+          "algs": [
+            "R' F' BR' R BR R' F R BR' R' BR R U2' R' F' BR' R BR R' F R BR' R' BR R"
+          ],
+          "source": "generated:combinación verificada de dos algoritmos de CP de cubeskills (Feliks Zemdegs y Andy Klise)"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "lessons": [{
+    "id": "minx-fixture-lesson",
+    "title": {"es": "Prueba de importación", "en": "Import test"},
+    "objective": {"es": "Comprobar el formato.", "en": "Check the format."},
+    "body": {"es": "**Fixture técnico.**", "en": "**Technical fixture.**"},
+    "algSetRefs": ["minx-fixture"],
+    "demos": [{"setup": "BR2 F", "alg": "F' BR2'"}],
+    "prerequisites": []
+  }]
+}

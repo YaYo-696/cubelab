@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "sets": [{
+    "id": "minx-fixture",
+    "name": {"es": "Fixture técnico", "en": "Technical fixture"},
+    "stage": "Synthetic import check",
+    "cases": [{
+      "id": "minx-fixture-case",
+      "name": {"es": "Caso de prueba", "en": "Test case"},
+      "group": "Fixture",
+      "setup": "BR2 F",
+      "algs": ["F' BR2'", "F' BR2' Uv"],
+      "source": "generated: fixture"
+    }]
+  }]
+}

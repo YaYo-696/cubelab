@@ -1,5 +1,6 @@
 import { expect, it } from 'vitest';
 import { Alg } from 'cubing/alg';
+import { puzzles } from 'cubing/puzzles';
 import { parseSkewbDrop, loadSkewbContent } from '../../src/puzzles/skewb/content';
 import { skewbCase } from '../../src/puzzles/skewb/case';
 import {
@@ -57,6 +58,15 @@ it('verifies both Skewb methods with KPuzzle on 200 random-state WCA mixtures', 
     const model = await skewbModel();
     const solved = visibleSkewb(model.defaultPattern());
     expect(skewbSolvedGrips(solved)).toHaveLength(24);
+    const geometry = (await puzzles.skewb.pg!()).get3d();
+    for (const sequence of ["R' B R B'", "L B' L' B"])
+        expect(firstLayerSolved(solved.applyAlg(sequence)), sequence).toBe(true);
+    const upperFace = geometry.faces.findIndex(({ name }) => name === 'U');
+    const upperStickers = geometry.stickers.filter(({ face }) => face === upperFace);
+    const upperCenter = upperStickers.find(({ orbit }) => orbit === 'CENTERS')!.ord;
+    const upperCorners = upperStickers
+        .filter(({ orbit }) => orbit === 'CORNERS')
+        .map(({ ord }) => ord);
     for (let i = 0; i < 200; i++) {
         const scramble = await scrambleSkewb(signal);
         expect(normalizeSkewb(scramble)).toBe(scramble);
@@ -79,6 +89,11 @@ it('verifies both Skewb methods with KPuzzle on 200 random-state WCA mixtures', 
         ]);
         const layer = pattern.applyAlg(beginner.stages[0].alg);
         expect(firstLayerSolved(layer)).toBe(true);
+        expect(layer.patternData.CENTERS.pieces[upperCenter]).toBe(upperCenter);
+        for (const slot of upperCorners) {
+            expect(layer.patternData.CORNERS.pieces[slot]).toBe(slot);
+            expect(layer.patternData.CORNERS.orientation[slot]).toBe(0);
+        }
         expect(cornersStageSolved(layer.applyAlg(beginner.stages[1].alg))).toBe(true);
         expect(beginner.moves).toBe(
             beginner.stages.reduce((total, stage) => total + stage.moves, 0),

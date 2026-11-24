@@ -55,6 +55,7 @@ export function SolverView({
     const [verifiedInput, setVerifiedInput] = useState('');
     const running = useRef<AbortController>();
     const current = timer?.puzzle === cube ? timer.scramble : undefined;
+    const unavailable = mod?.id === cube && !mod.solvers?.shortestKnown;
 
     useEffect(
         () => () => {
@@ -207,7 +208,7 @@ export function SolverView({
                         {Object.keys(registry).map((id) => <option key={id} value={id}>{t(id)}</option>)}
                     </select>
                 </label>
-                <label>
+                {!unavailable && <label>
                     {t('solveMethod')}{' '}
                     <select
                         value={method}
@@ -225,7 +226,7 @@ export function SolverView({
                             </option>
                         ))}
                     </select>
-                </label>
+                </label>}
                 {cube === '333' && method !== 'shortest' && (
                     <label>
                         <input
@@ -240,6 +241,7 @@ export function SolverView({
                     </label>
                 )}
             </div>
+            {unavailable && <p role="status">{t('solveUnavailable', { puzzle: t(cube) })}</p>}
             <div className="solver-controls">
                 <button type="button" disabled={!last} onClick={() => replaceInput(last ?? '')}>
                     {t('solveSourceLast')}
@@ -264,7 +266,7 @@ export function SolverView({
                     />
                 </label>
                 <div className="solver-controls">
-                    <button disabled={!mod || mod.id !== cube || status === 'solveRunning'}>
+                    <button disabled={!mod || mod.id !== cube || unavailable || status === 'solveRunning'}>
                         {t('solveStart')}
                     </button>
                     {status === 'solveRunning' && (

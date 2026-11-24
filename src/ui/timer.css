@@ -56,6 +56,7 @@
     margin: 0;
 }
 .mix-board .sequence {
+    white-space: pre-line;
     font-size: clamp(18px, 3vw, 26px);
     margin: 0.5em 0;
 }

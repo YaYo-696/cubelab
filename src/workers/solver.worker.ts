@@ -6,6 +6,10 @@ self.addEventListener('message', async ({ data }: MessageEvent<SolverJob>) => {
     if (data?.kind !== 'solve') return;
     try {
         const { puzzle, input, method, neutral } = data;
+        if (puzzle === 'minx') {
+            self.postMessage({ result: { status: 'invalidInput' } });
+            return;
+        }
         const progress = (value: SolveProgress) => self.postMessage({ progress: value });
         const result = puzzle === 'skewb'
             ? await (await import('../puzzles/skewb/engine')).solveSkewb(input, method, progress)

@@ -7,9 +7,9 @@ import { normalizeSkewb, skewbModel, skewbMoves, visibleSkewb } from './model';
 const unknownDistance = 255;
 const centerCount = 360;
 const stateCount = 3149280;
-// D stickers in the cubing.js Skewb geometry (yellow in the standard palette).
-const bottomCorners = [2, 4, 5, 7];
-const bottomCenter = 2;
+// The academy keeps WCA face U solved (white in the cubing.js palette).
+const topCorners = [0, 1, 3, 6];
+const topCenter = 3;
 
 function cornersMatch(pattern: KPattern, slots: readonly number[]) {
     const { pieces, orientation } = pattern.patternData.CORNERS;
@@ -17,14 +17,14 @@ function cornersMatch(pattern: KPattern, slots: readonly number[]) {
 }
 export function firstLayerSolved(pattern: KPattern) {
     return (
-        cornersMatch(pattern, bottomCorners) &&
-        pattern.patternData.CENTERS.pieces[bottomCenter] === bottomCenter
+        cornersMatch(pattern, topCorners) &&
+        pattern.patternData.CENTERS.pieces[topCenter] === topCenter
     );
 }
 export function cornersStageSolved(pattern: KPattern) {
     return (
         cornersMatch(pattern, [0, 1, 2, 3, 4, 5, 6, 7]) &&
-        pattern.patternData.CENTERS.pieces[bottomCenter] === bottomCenter
+        pattern.patternData.CENTERS.pieces[topCenter] === topCenter
     );
 }
 
@@ -101,10 +101,10 @@ function makeTable(model: KPuzzle) {
     function beginnerDistances() {
         if (beginner) return beginner;
         const alignedCenters = centers.patterns.flatMap((p, i) =>
-            p.patternData.CENTERS.pieces[bottomCenter] === bottomCenter ? [i] : [],
+            p.patternData.CENTERS.pieces[topCenter] === topCenter ? [i] : [],
         );
         const layer = corners.patterns.flatMap((p, i) =>
-            cornersMatch(p, bottomCorners)
+            cornersMatch(p, topCorners)
                 ? alignedCenters.map((center) => i * centerCount + center)
                 : [],
         );
