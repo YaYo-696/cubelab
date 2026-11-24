@@ -1,0 +1,48 @@
+# Source: https://cubingapp.com/algorithms/Pyraminx-L4E (consultado 2026-11-23)
+L4E = {
+ 'Down Edge Solved': [
+   ('Sune', ["R U R' U R U R'"]),
+   ('Antisune', ["R U' R' U' R U' R'"]),
+   ('2-flip', ["L R' L' R U' R U R'"]),
+   ("R' unsexy R", ["R' U' L' U L R"]),
+   ("L unsexy L'", ["L U R U' R' L'"]),
+ ],
+ 'Down Edge Flipped': [
+   ('#1', ["R' L R L' U R' L R L' U R' L R L'"]),
+   ('#2', ["L R' L' R U L R' L' R"]),
+   ('#3', ["R' L R L' U' R' L R L'"]),
+   ('#4', ["U' R' L R L' R U' R'", "U L R' L' R L' U L"]),
+   ('#5', ["U' R U' R' L' U' L"]),
+   ('#6', ["U L' U L R U R'"]),
+ ],
+ 'Upper Edge Solved': [
+   ('#1', ["U L' U' L"]),
+   ('#2', ["U' R U R'"]),
+   ('#3', ["U' R U R'"]),
+   ('#4', ["R' L R L'"]),
+   ('#5', ["R' L R L2' U L"]),
+   ('#6', ["L R' L' R2 U' R'"]),
+   ('#7', ["R U' R'"]),
+   ('#8', ["L' U L"]),
+ ],
+ 'Upper Edge Flipped': [
+   ('#1', ["R U R' U R' L R L'"]),
+   ('#2', ["L' U' L U' L R' L' R"]),
+   ('#3', ["U L' U L U' R U R'"]),
+   ('#4', ["U' R U' R' U L' U' L"]),
+   ('#5', ["R U R' U L' U L"]),
+   ('#6', ["L' U' L U' R U' R'"]),
+   ('#7', ["U R' L R L' U L' U L"]),
+   ('#8', ["U' L R' L' R U' R U' R'"]),
+ ],
+ 'Nothing Placed': [
+   ('#1', ["U R U' R2' L R L'"]),
+   ('#2', ["U' L' U L2 R' L' R"]),
+   ('#3', ["U' L' U' L U R U R'"]),
+   ('#4', ["U R U R' U' L' U' L"]),
+   ('#5', ["U R U' R' U' R U R'"]),
+   ('#6', ["U' L' U L U L' U' L"]),
+   ('#7', ["U' L' U L R U' R'"]),
+   ('#8', ["U R U' R' L' U L"]),
+ ],
+}
