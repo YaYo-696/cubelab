@@ -38,6 +38,31 @@ export const videoTopicAssociations: Readonly<Record<string, Association>> = {
     '222-cll': { courseId: 'academy-222', lessonIds: groups.fullCLL.map(({ id }) => id) },
     'pyram-beginner': { courseId: 'academy-pyram', lessonIds: ['pyram-first-layer', 'pyram-l3e'] },
     'pyram-l4e': { courseId: 'academy-pyram', lessonIds: ['pyram-l4e'] },
+    '333-notation': { courseId: 'academy-333', lessonIds: ['notationB'] },
+    'skewb-beginner': {
+        courseId: 'academy-skewb',
+        lessonIds: ['skewb-first-layer', 'skewb-corners', 'skewb-centers'],
+    },
+    'minx-beginner': {
+        courseId: 'academy-minx',
+        lessonIds: ['minx-star', 'minx-f2l', 'minx-eo', 'minx-co', 'minx-ep', 'minx-cp'],
+    },
+    '444-beginner': {
+        courseId: 'academy-444',
+        lessonIds: ['444-centers', '444-edges', '444-3x3'],
+    },
+    '444-parity': {
+        courseId: 'academy-444',
+        lessonIds: ['444-oll-parity', '444-pll-parity'],
+    },
+    'sq1-beginner': {
+        courseId: 'academy-sq1',
+        lessonIds: ['sq1-shape', 'sq1-co', 'sq1-eo', 'sq1-cp', 'sq1-ep'],
+    },
+    'clock-beginner': {
+        courseId: 'academy-clock',
+        lessonIds: ['clock-front', 'clock-back', 'clock-corners'],
+    },
 };
 
 export function videoTopicForLesson(courseId: string, lessonId: string) {
