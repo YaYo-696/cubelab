@@ -1,0 +1,127 @@
+{
+ "version": 1,
+ "drills333": [
+  {
+   "id": "cornersRepeat",
+   "setup": "U R U' R' U R U' R' U R U' R'",
+   "goal": "first",
+   "alg": "R U R' U' R U R' U' R U R' U'"
+  },
+  {
+   "id": "middleLeft",
+   "setup": "F U F' U' L' U' L U",
+   "goal": "f2l",
+   "alg": "U' L' U L U F U' F'"
+  },
+  {
+   "id": "ycLine",
+   "setup": "F U R U' R' F'",
+   "goal": "edgeOrientation",
+   "alg": "F R U R' U' F'"
+  },
+  {
+   "id": "ycL",
+   "setup": "f U R U' R' f'",
+   "goal": "edgeOrientation",
+   "alg": "U2 F R U R' U' F' F R U R' U' F'"
+  },
+  {
+   "id": "ycDot",
+   "setup": "f U R U' R' f' F U R U' R' F'",
+   "goal": "edgeOrientation",
+   "alg": "F R U R' U' F' U2 F R U R' U' F' F R U R' U' F'"
+  },
+  {
+   "id": "orientSune",
+   "setup": "R U2 R' U' R U' R'",
+   "goal": "orientation",
+   "alg": "R U R' U R U2 R'"
+  },
+  {
+   "id": "orientAnti",
+   "setup": "R U R' U R U2 R'",
+   "goal": "orientation",
+   "alg": "R U2 R' U' R U' R'"
+  },
+  {
+   "id": "orientZero",
+   "setup": "R' U2 R2 U R2 U R2 U2 R'",
+   "goal": "orientation",
+   "alg": "R U R' U R U2 R' U' R U R' U R U2 R'"
+  },
+  {
+   "id": "orientTwo",
+   "setup": "F R' F' r U R U' r'",
+   "goal": "orientation",
+   "alg": "R U R' U R U2 R' U R U R' U R U2 R' U2 R U R' U R U2 R'"
+  },
+  {
+   "id": "cornersAdj",
+   "setup": "R2 B2 R F R' B2 R F' R",
+   "goal": "cornerPermutation",
+   "alg": "R' F R' B2 R F' R' B2 R2"
+  },
+  {
+   "id": "cornersDiag",
+   "setup": "F R' F' R U R U' R' F R U' R' U R U R' F'",
+   "goal": "cornerPermutation",
+   "alg": "R' F R' B2 R F' R' B2 R2 U R' F R' B2 R F' R' B2 R2"
+  },
+  {
+   "id": "edgesUa",
+   "setup": "R2 U R U R' U' R' U' R' U R'",
+   "goal": "solved",
+   "alg": "R U' R U R U R U' R' U' R2"
+  },
+  {
+   "id": "edgesUb",
+   "setup": "R U' R U R U R U' R' U' R2",
+   "goal": "solved",
+   "alg": "R U' R U R U R U' R' U' R2 R U' R U R U R U' R' U' R2"
+  },
+  {
+   "id": "edgesH",
+   "setup": "M2 U' M2 U2 M2 U' M2",
+   "goal": "solved",
+   "alg": "R U' R U R U R U' R' U' R2 y R U' R U R U R U' R' U' R2 y'"
+  },
+  {
+   "id": "edgesZ",
+   "setup": "U2 M U2 M2 U2 M U' M2 U' M2",
+   "goal": "solved",
+   "alg": "R U' R U R U R U' R' U' R2 y' R U' R U R U R U' R' U' R2 y"
+  }
+ ],
+ "drills222": [
+  {
+   "id": "orient2Sune",
+   "setup": "R U2 R' U' R U' R'",
+   "goal": "orientation",
+   "alg": "R U R' U R U2 R'"
+  },
+  {
+   "id": "orient2Anti",
+   "setup": "R U R' U R U2 R'",
+   "goal": "orientation",
+   "alg": "R U2 R' U' R U' R'"
+  },
+  {
+   "id": "orient2Zero",
+   "setup": "R' U2 R2 U R2 U R2 U2 R'",
+   "goal": "orientation",
+   "alg": "R U R' U R U2 R' U' R U R' U R U2 R'"
+  },
+  {
+   "id": "orient2Two",
+   "setup": "F R' F' R U R U' R'",
+   "goal": "orientation",
+   "alg": "R U R' U R U2 R' U R U R' U R U2 R' U2 R U R' U R U2 R'"
+  },
+  {
+   "id": "firstLayerRepeat",
+   "setup": "U R U' R' U R U' R' U R U' R'",
+   "goal": "first",
+   "alg": "R U R' U' R U R' U' R U R' U'"
+  }
+ ]
+}
