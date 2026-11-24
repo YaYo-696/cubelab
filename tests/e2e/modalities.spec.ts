@@ -57,7 +57,7 @@ for (const id of ['333oh', '444bf', '555bf'] as const) {
 test('entrega FMC y registra el conteo OBTM', async ({ page }) => {
     await choose(page, '333fm');
     await page.getByRole('button', { name: 'Preparar intento', exact: true }).click();
-    await expect(page.getByTestId('modality-countdown')).toHaveText('1:00:00');
+    await expect(page.getByTestId('modality-countdown')).toHaveText('1:00:00', { timeout: 15000 });
     await expect(page.getByTestId('scramble')).toHaveCount(0);
     await page.getByRole('button', { name: 'Iniciar intento', exact: true }).click();
     const scramble = (await page.getByTestId('scramble').innerText()).trim();

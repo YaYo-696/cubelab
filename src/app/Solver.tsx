@@ -3,7 +3,7 @@ import Dexie from 'dexie';
 import type { PuzzleModule, SearchResult } from '../core/contracts';
 import type { SolveProgress } from '../core/solver/options';
 import { db } from '../core/storage/db';
-import { events, isPuzzleId, registry } from '../puzzles/registry';
+import { events, puzzleFor, registry } from '../puzzles/registry';
 import { NotationError } from '../puzzles/notation';
 import type { PuzzleId } from '../puzzles/events';
 import { useApp } from './state';
@@ -15,7 +15,9 @@ type T = (key: string, params?: Record<string, string | number>) => string;
 type Solved = Extract<SearchResult, { status: 'solved' }>;
 
 async function latest(puzzle: PuzzleId) {
-    const modalities = events.filter((event) => event.puzzleId === puzzle);
+    const modalities = events.filter(
+        ({ puzzleId, rules }) => puzzleId === puzzle && rules.scoring !== 'multiBlind',
+    );
     const rows = await Promise.all(
         modalities.map(({ rules: { id: event } }) =>
             db.solves
@@ -38,7 +40,8 @@ export function SolverView({
     t: T;
 }) {
     const [cube, setCube] = useState(initialPuzzle);
-    const [mod, setMod] = useState<PuzzleModule<string>>();
+    const [loadedModule, setMod] = useState<PuzzleModule<string>>();
+    const [loadingHistory, setLoadingHistory] = useState(Boolean(solveId));
     const [method, setMethod] = useState('shortest');
     const [input, setInput] = useState('');
     const [neutral, setNeutral] = useState(false);
@@ -55,7 +58,8 @@ export function SolverView({
     const [verifiedInput, setVerifiedInput] = useState('');
     const running = useRef<AbortController>();
     const current = timer?.puzzle === cube ? timer.scramble : undefined;
-    const unavailable = mod?.id === cube && !mod.solvers?.shortestKnown;
+    const mod = loadedModule?.id === cube ? loadedModule : undefined;
+    const unavailable = mod && !mod.solvers?.shortestKnown;
 
     useEffect(
         () => () => {
@@ -90,15 +94,19 @@ export function SolverView({
             .get(solveId)
             .then((row) => {
                 if (!active) return;
-                if (!row || row.deletedAt || !isPuzzleId(row.puzzleId)) {
+                const puzzle = row && (puzzleFor(row.eventId) ?? puzzleFor(row.puzzleId));
+                if (!row || row.deletedAt || row.result.kind === 'multiBlind' || !puzzle) {
                     setStatus('solveMissing');
                     return;
                 }
-                setCube(row.puzzleId);
+                setCube(puzzle);
                 setInput(row.scramble);
             })
             .catch(() => {
                 if (active) setStatus('solveError');
+            })
+            .finally(() => {
+                if (active) setLoadingHistory(false);
             });
         return () => {
             active = false;
@@ -122,10 +130,11 @@ export function SolverView({
     }
 
     async function run() {
-        reset();
+        if (loadingHistory || status === 'solveRunning') return;
         const shortest = mod?.solvers?.shortestKnown;
         const solver = method === 'shortest' ? shortest : mod?.solvers?.byMethod?.[method];
-        if (!shortest || !solver || mod?.id !== cube) return;
+        if (!mod || !shortest || !solver) return;
+        reset();
         let scramble: string;
         try {
             scramble = input.trim() ? mod.notation.normalize(input) : '';
@@ -138,11 +147,13 @@ export function SolverView({
         running.current = control;
         setStatus('solveRunning');
         const active = () => running.current === control && !control.signal.aborted;
-        const comparison =
-            method === 'shortest'
-                ? Promise.resolve(undefined)
-                : shortest(scramble, control.signal).catch(() => undefined);
         try {
+            const comparison =
+                method === 'shortest'
+                    ? undefined
+                    : Promise.resolve()
+                          .then(() => shortest(scramble, control.signal))
+                          .catch(() => undefined);
             const answer = await solver(scramble, control.signal, {
                 neutral,
                 onProgress: (value) => {
@@ -220,7 +231,7 @@ export function SolverView({
                         <option value="shortest">
                             {t(cube === '333' ? 'solveNear' : 'solveOptimal')}
                         </option>
-                        {Object.keys(mod?.id === cube ? (mod.solvers?.byMethod ?? {}) : {}).map((id) => (
+                        {Object.keys(mod?.solvers?.byMethod ?? {}).map((id) => (
                             <option key={id} value={id}>
                                 {t(cube === 'pyramduo' && id === 'beginner' ? 'duoLesson' : 'solveMethod_' + id)}
                             </option>
@@ -266,7 +277,7 @@ export function SolverView({
                     />
                 </label>
                 <div className="solver-controls">
-                    <button disabled={!mod || mod.id !== cube || unavailable || status === 'solveRunning'}>
+                    <button disabled={!mod || unavailable || loadingHistory || status === 'solveRunning'}>
                         {t('solveStart')}
                     </button>
                     {status === 'solveRunning' && (

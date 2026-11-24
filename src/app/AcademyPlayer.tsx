@@ -1,7 +1,6 @@
 import './academy.css';
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { TwistyPlayer } from 'cubing/twisty';
-import { Alg } from 'cubing/alg';
 import { clockPlayerAlg } from '../puzzles/sideEvents/clock';
 import { supportsTwisty3d } from '../puzzles/visualization';
 type T = (key: string) => string;
@@ -58,6 +57,8 @@ function Twisty({
             experimentalDragInput: flatOnly ? 'none' : 'auto',
             hintFacelets: hiddenRef.current ? 'floating' : 'none',
         });
+        // With an empty setup, TwistyPlayer's automatic timestamp starts at the end.
+        node.timestamp = 'start';
         const comparison =
             !flatOnly && !still ? new TwistyPlayer({ ...config, visualization: '2D' }) : undefined;
         const timeline = node.experimentalModel.detailedTimelineInfo;
@@ -91,7 +92,7 @@ function Twisty({
             node.experimentalModel.indexer.get(),
             node.experimentalGet.timestamp(),
         ]);
-        const moves = Array.from(new Alg(alg).expand().childAlgNodes()).length;
+        const moves = indexer.numAnimatedLeaves();
         const boundaries = [
             ...Array.from({ length: moves }, (_, i) =>
                 indexer.indexToMoveStartTimestamp(

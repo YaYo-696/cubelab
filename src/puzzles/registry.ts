@@ -33,6 +33,9 @@ export const events = [
     { puzzleId: '555', rules: modality('555bf') },
     { puzzleId: '333', rules: modality('333mbf') },
 ] as const;
+export function puzzleFor(id: string): PuzzleId | undefined {
+    return events.find(({ rules }) => rules.id === id)?.puzzleId ?? (isPuzzleId(id) ? id : undefined);
+}
 export function isPuzzleId(id: string): id is PuzzleId {
     return Object.hasOwn(registry, id);
 }
