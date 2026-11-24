@@ -19,28 +19,28 @@ const plans: Record<CubeId, { id: string; lessons: Plan[] }[]> = {
             id: 'layers',
             lessons: [
                 { id: 'cross', set: 'drills333', cases: ['cross'], needs: ['notationB'] },
-                { id: 'corners', set: 'drills333', cases: ['corners'] },
-                { id: 'middle', set: 'drills333', cases: ['middle'] },
+                { id: 'corners', set: 'drills333', cases: ['corners', 'cornersRepeat'] },
+                { id: 'middle', set: 'drills333', cases: ['middle', 'middleLeft'] },
                 {
                     id: 'yellowCross',
-                    set: 'oll333',
-                    cases: ['line', 'el', 'dot'],
-                    needs: ['middle', 'notationA'],
+                    set: 'drills333',
+                    cases: ['ycLine', 'ycL', 'ycDot'],
+                    needs: ['middle'],
                 },
                 {
                     id: 'orient',
-                    set: 'oll333',
-                    cases: ['sune', 'antisune'],
+                    set: 'drills333',
+                    cases: ['orientSune', 'orientAnti', 'orientZero', 'orientTwo'],
                 },
                 {
                     id: 'permCorners',
-                    set: 'pll333',
-                    cases: ['tperm', 'yperm'],
+                    set: 'drills333',
+                    cases: ['cornersAdj', 'cornersDiag'],
                 },
                 {
                     id: 'permEdges',
-                    set: 'pll333',
-                    cases: ['ua', 'ub', 'hperm', 'zperm'],
+                    set: 'drills333',
+                    cases: ['edgesUa', 'edgesUb', 'edgesH', 'edgesZ'],
                 },
             ],
         },
@@ -63,7 +63,7 @@ const plans: Record<CubeId, { id: string; lessons: Plan[] }[]> = {
                     id: 'oll3',
                     set: 'oll333',
                     cases: ['dot', 'el', 'line', ...corner],
-                    needs: ['f2l', 'orient'],
+                    needs: ['f2l', 'orient', 'notationA'],
                 },
                 {
                     id: 'pll3',
@@ -82,13 +82,13 @@ const plans: Record<CubeId, { id: string; lessons: Plan[] }[]> = {
                 {
                     id: 'firstLayer',
                     set: 'drills222',
-                    cases: ['firstLayer'],
+                    cases: ['firstLayer', 'firstLayerRepeat'],
                     needs: ['notationB'],
                 },
                 {
                     id: 'orient2',
-                    set: 'oll222',
-                    cases: ['sune', 'antisune'],
+                    set: 'drills222',
+                    cases: ['orient2Sune', 'orient2Anti', 'orient2Zero', 'orient2Two'],
                 },
                 { id: 'perm2', set: 'pbl222', cases: ['tperm', 'yperm'] },
             ],
@@ -184,6 +184,7 @@ export function makeCourse(puzzle: CubeId): Course {
                         'aExercise_' +
                         plan.id +
                         (plan.id === 'notationA' && puzzle === '222' ? '2' : ''),
+                    markdown: module.id === 'layers' || undefined,
                     setId: plan.set,
                     caseIds: plan.cases,
                     caseId: plan.cases[0],

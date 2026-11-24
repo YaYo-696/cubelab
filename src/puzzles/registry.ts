@@ -1,17 +1,21 @@
+import { devFlags } from '../config/devFlags';
 import { cubeEvent, tetraEvent, skewbEvent, minxEvent, bigCubeEvent, sideEvent, modality, type PuzzleId } from './events';
+function registered<T>(category: 'wca' | 'unofficial', load: () => Promise<T>) {
+    return Object.assign(load, { category });
+}
 export const registry = {
-    '222': () => import('./222/module').then(m => m.default),
-    '333': () => import('./333/module').then(m => m.default),
-    pyram: () => import('./tetra/module').then(m => m.makeTetra('pyram')),
-    pyramduo: () => import('./tetra/module').then(m => m.makeTetra('pyramduo')),
-    skewb: () => import('./skewb/module').then(m => m.makeSkewb()),
-    minx: () => import('./minx/module').then(m => m.makeMinx()),
-    '444': () => import('./bigCube/module').then(m => m.makeBigCube('444')),
-    '555': () => import('./bigCube/module').then(m => m.makeBigCube('555')),
-    '666': () => import('./bigCube/module').then(m => m.makeBigCube('666')),
-    '777': () => import('./bigCube/module').then(m => m.makeBigCube('777')),
-    sq1: () => import('./sideEvents/module').then(m => m.makeSideEvent('sq1')),
-    clock: () => import('./sideEvents/module').then(m => m.makeSideEvent('clock')),
+    '222': registered('wca', () => import('./222/module').then(m => m.default)),
+    '333': registered('wca', () => import('./333/module').then(m => m.default)),
+    pyram: registered('wca', () => import('./tetra/module').then(m => m.makeTetra('pyram'))),
+    pyramduo: registered('unofficial', () => import('./tetra/module').then(m => m.makeTetra('pyramduo'))),
+    skewb: registered('wca', () => import('./skewb/module').then(m => m.makeSkewb())),
+    minx: registered('wca', () => import('./minx/module').then(m => m.makeMinx())),
+    '444': registered('wca', () => import('./bigCube/module').then(m => m.makeBigCube('444'))),
+    '555': registered('wca', () => import('./bigCube/module').then(m => m.makeBigCube('555'))),
+    '666': registered('wca', () => import('./bigCube/module').then(m => m.makeBigCube('666'))),
+    '777': registered('wca', () => import('./bigCube/module').then(m => m.makeBigCube('777'))),
+    sq1: registered('wca', () => import('./sideEvents/module').then(m => m.makeSideEvent('sq1'))),
+    clock: registered('wca', () => import('./sideEvents/module').then(m => m.makeSideEvent('clock'))),
 };
 export const events = [
     { puzzleId: '222', rules: cubeEvent('222') },
@@ -38,4 +42,16 @@ export function puzzleFor(id: string): PuzzleId | undefined {
 }
 export function isPuzzleId(id: string): id is PuzzleId {
     return Object.hasOwn(registry, id);
+}
+
+export function visiblePuzzle(id: string): id is PuzzleId {
+    return isPuzzleId(id) && (devFlags.SHOW_UNOFFICIAL || registry[id].category !== 'unofficial');
+}
+
+export function visibleEvents() {
+    return events.filter(({ puzzleId }) => visiblePuzzle(puzzleId));
+}
+
+export function visibleEvent(id: string | null) {
+    return visibleEvents().find(({ rules }) => rules.id === id) ?? events.find(({ rules }) => rules.id === '333')!;
 }

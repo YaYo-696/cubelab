@@ -6,6 +6,35 @@ import type { SolveMethod } from '../../src/core/solver/options';
 import type { CubeId } from '../../src/puzzles/events';
 import { frames } from '../../src/core/solver/coordinates';
 import { loadAlgSet } from '../../src/puzzles/content';
+import beginnerDrills from '../../content-drop/333-222/drills-nuevos.json';
+
+const beginnerRules = {
+    yellowCross: { ids: ['ycLine'], max: 3, adjustment: /^U(?:2|')?$/ },
+    orient: { ids: ['orientSune', 'orientAnti'], max: 3, adjustment: /^U(?:2|')?$/ },
+    permCorners: { ids: ['cornersAdj'], max: 2, adjustment: /^U(?:2|')?$/ },
+    permEdges: { ids: ['edgesUa'], max: 3, adjustment: /^y(?:2|')?$/ },
+    orient2: { ids: ['orient2Sune', 'orient2Anti'], max: 3, adjustment: /^U(?:2|')?$/ },
+};
+const beginnerCatalog = [...beginnerDrills.drills333, ...beginnerDrills.drills222];
+
+function checkBeginnerStage(lesson: string, alg: string) {
+    const rule = beginnerRules[lesson as keyof typeof beginnerRules];
+    if (!rule) return;
+    const allowed = rule.ids.map((id) => beginnerCatalog.find((row) => row.id === id)!.alg.split(' '));
+    const moves = alg ? alg.split(' ') : [];
+    let count = 0;
+    for (let index = 0; index < moves.length; ) {
+        const match = allowed.find((candidate) => candidate.every((move, i) => moves[index + i] === move));
+        if (match) {
+            count++;
+            index += match.length;
+        } else {
+            expect(moves[index], lesson + ': ' + alg).toMatch(rule.adjustment);
+            index++;
+        }
+    }
+    expect(count, lesson + ': ' + alg).toBeLessThanOrEqual(rule.max);
+}
 const methods: [CubeId, SolveMethod][] = [
     ['222', 'shortest'],
     ['222', 'beginner'],
@@ -59,6 +88,8 @@ it.each(methods)(
                 scramble,
             ).toBe(true);
             expect(result.moves).toBe(result.stages.reduce((sum, stage) => sum + stage.moves, 0));
+            if (method === 'beginner')
+                for (const stage of result.stages) checkBeginnerStage(stage.lessonId ?? '', stage.alg);
             if (cube === '333' && method !== 'shortest')
                 expect(result.stages[0].moves).toBeLessThanOrEqual(8);
             if (cube === '222' && method === 'shortest') {

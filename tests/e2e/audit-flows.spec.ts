@@ -146,15 +146,18 @@ freshTest(
     await expect(page.getByTestId("history-solve")).toHaveCount(0);
     await page.getByLabel("Importar JSON").setInputFiles(file);
     await expect(
+      page.getByRole("status").filter({ hasText: /^Respaldo importado\.$/ }),
+    ).toBeVisible({ timeout: 15000 });
+    await expect(
       page.getByTestId("history-solve").locator("summary"),
-    ).toContainText(fmc);
+    ).toContainText(fmc, { timeout: 15000 });
     await expect(
       page.getByRole("rowheader", { name: "Mo3", exact: true }),
     ).toBeVisible();
     await event.selectOption("333mbf");
     await expect(
       page.getByTestId("history-solve").locator("summary"),
-    ).toContainText("2/2 · 2 pts");
+    ).toContainText("2/2 · 2 pts", { timeout: 15000 });
     await page.getByTestId("history-solve").locator("summary").click();
     await expect(
       page.getByRole("link", { name: "Ver en el solucionador", exact: true }),

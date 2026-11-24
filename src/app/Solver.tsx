@@ -3,7 +3,7 @@ import Dexie from 'dexie';
 import type { PuzzleModule, SearchResult } from '../core/contracts';
 import type { SolveProgress } from '../core/solver/options';
 import { db } from '../core/storage/db';
-import { events, puzzleFor, registry } from '../puzzles/registry';
+import { events, puzzleFor, registry, visiblePuzzle } from '../puzzles/registry';
 import { NotationError } from '../puzzles/notation';
 import type { PuzzleId } from '../puzzles/events';
 import { useApp } from './state';
@@ -95,7 +95,7 @@ export function SolverView({
             .then((row) => {
                 if (!active) return;
                 const puzzle = row && (puzzleFor(row.eventId) ?? puzzleFor(row.puzzleId));
-                if (!row || row.deletedAt || row.result.kind === 'multiBlind' || !puzzle) {
+                if (!row || row.deletedAt || row.result.kind === 'multiBlind' || !puzzle || !visiblePuzzle(puzzle)) {
                     setStatus('solveMissing');
                     return;
                 }
@@ -216,7 +216,7 @@ export function SolverView({
                             setCube(e.target.value as PuzzleId);
                         }}
                     >
-                        {Object.keys(registry).map((id) => <option key={id} value={id}>{t(id)}</option>)}
+                        {Object.keys(registry).filter(visiblePuzzle).map((id) => <option key={id} value={id}>{t(id)}</option>)}
                     </select>
                 </label>
                 {!unavailable && <label>

@@ -88,6 +88,21 @@ const early3 = [
     drill('f2l', "R U2 R'", 'f2l', "R U2 R'"),
     drill('f2lJoin', "R U R' U2", 'f2l', "U2 R U' R'"),
     drill('f2lSplit', "R U' R'", 'f2l', "R U R'"),
+    drill('cornersRepeat', "U R U' R' U R U' R' U R U' R'", 'first', "R U R' U' R U R' U' R U R' U'"),
+    drill('middleLeft', "F U F' U' L' U' L U", 'f2l', "U' L' U L U F U' F'"),
+    drill('ycLine', "F U R U' R' F'", 'edgeOrientation', "F R U R' U' F'"),
+    drill('ycL', "f U R U' R' f'", 'edgeOrientation', "U2 F R U R' U' F' F R U R' U' F'"),
+    drill('ycDot', "f U R U' R' f' F U R U' R' F'", 'edgeOrientation', "F R U R' U' F' U2 F R U R' U' F' F R U R' U' F'"),
+    drill('orientSune', "R U2 R' U' R U' R'", 'orientation', "R U R' U R U2 R'"),
+    drill('orientAnti', "R U R' U R U2 R'", 'orientation', "R U2 R' U' R U' R'"),
+    drill('orientZero', "R' U2 R2 U R2 U R2 U2 R'", 'orientation', "R U R' U R U2 R' U' R U R' U R U2 R'"),
+    drill('orientTwo', "F R' F' r U R U' r'", 'orientation', "R U R' U R U2 R' U R U R' U R U2 R' U2 R U R' U R U2 R'"),
+    drill('cornersAdj', "R2 B2 R F R' B2 R F' R", 'cornerPermutation', "R' F R' B2 R F' R' B2 R2"),
+    drill('cornersDiag', "F R' F' R U R U' R' F R U' R' U R U R' F'", 'cornerPermutation', "R' F R' B2 R F' R' B2 R2 U R' F R' B2 R F' R' B2 R2"),
+    drill('edgesUa', "R2 U R U R' U' R' U' R' U R'", 'solved', "R U' R U R U R U' R' U' R2"),
+    drill('edgesUb', "R U' R U R U R U' R' U' R2", 'solved', "R U' R U R U R U' R' U' R2 R U' R U R U R U' R' U' R2"),
+    drill('edgesH', "M2 U' M2 U2 M2 U' M2", 'solved', "R U' R U R U R U' R' U' R2 y R U' R U R U R U' R' U' R2 y'"),
+    drill('edgesZ', "U2 M U2 M2 U2 M U' M2 U' M2", 'solved', "R U' R U R U R U' R' U' R2 y' R U' R U R U R U' R' U' R2 y"),
 ];
 export const sets3 = [
     set('drills333', early3),
@@ -112,6 +127,11 @@ export const sets2 = [
     set('drills222', [
         drill('firstFace', 'F2', 'face', 'F2'),
         drill('firstLayer', "R U R'", 'first', "R U' R'"),
+        drill('orient2Sune', "R U2 R' U' R U' R'", 'orientation', "R U R' U R U2 R'"),
+        drill('orient2Anti', "R U R' U R U2 R'", 'orientation', "R U2 R' U' R U' R'"),
+        drill('orient2Zero', "R' U2 R2 U R2 U R2 U2 R'", 'orientation', "R U R' U R U2 R' U' R U R' U R U2 R'"),
+        drill('orient2Two', "F R' F' R U R U' R'", 'orientation', "R U R' U R U2 R' U R U R' U R U2 R' U2 R U R' U R U2 R'"),
+        drill('firstLayerRepeat', "U R U' R' U R U' R' U R U' R'", 'first', "R U R' U' R U R' U' R U R' U'"),
     ]),
     set(
         'oll222',

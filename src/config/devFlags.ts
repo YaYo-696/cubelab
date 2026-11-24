@@ -2,6 +2,8 @@
 export const devFlags = {
     // DEV-FLAG: bypass all progress gates while still recording real progress.
     UNLOCK_ALL: true,
+    // DEV-FLAG: expose unofficial puzzles in app navigation and selectors.
+    SHOW_UNOFFICIAL: true,
 };
 
 export function unlockAllProgress() {

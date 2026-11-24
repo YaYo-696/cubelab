@@ -4,7 +4,7 @@ import { lazy, Suspense, useEffect, useState } from 'react';
 import { liveQuery } from 'dexie';
 import { translate } from '../i18n/translate';
 import { isCubePuzzle } from '../puzzles/events';
-import { events, isPuzzleId, registry } from '../puzzles/registry';
+import { visibleEvent, visibleEvents, visiblePuzzle, registry } from '../puzzles/registry';
 import { db } from '../core/storage/db';
 import {
     defaults,
@@ -26,7 +26,7 @@ const CompetitionView = lazy(() => import('./Competition').then((m) => ({ defaul
 const Settings = lazy(() => import('./Settings').then((m) => ({ default: m.Settings })));
 const routes = ['timer', 'academy', 'evaluation', 'trainer', 'solver', 'stats', 'competition', 'settings'] as const;
 function routeFromHash() {
-    const [name, id, extra] = location.hash.slice(1).split('/');
+    const [name, id, extra] = location.hash.slice(1).split('/') as [string, string?, string?];
     return { route: routes.find((r) => r === name) ?? 'timer', id, extra };
 }
 function read(key: string) {
@@ -50,9 +50,9 @@ export default function App() {
     const [onboarded, setOnboarded] = useState(() => read('onboarded') === 'yes');
     const [eventId, setEvent] = useState(() => {
         const saved = read('event');
-        return events.find((e) => e.rules.id === saved)?.rules.id ?? '333';
+        return visibleEvent(saved).rules.id;
     });
-    const { puzzleId: puzzle, rules } = events.find((e) => e.rules.id === eventId)!;
+    const { puzzleId: puzzle, rules } = visibleEvent(eventId);
     const [{ route, id, extra }, setPath] = useState(routeFromHash);
     const [mod, setMod] = useState<PuzzleModule<string>>();
     const [failed, setFailed] = useState(false);
@@ -74,9 +74,14 @@ export default function App() {
     useEffect(() => {
         function change() {
             const path = routeFromHash();
-            setPath(path);
-            if (path.route === 'academy' && path.extra && isPuzzleId(path.extra))
+            if (path.route === 'academy' && path.extra) {
+                if (!visiblePuzzle(path.extra)) {
+                    setPath({ route: 'academy', id: undefined, extra: undefined });
+                    return;
+                }
                 setEvent(path.extra);
+            }
+            setPath(path);
         }
         change();
         window.addEventListener('hashchange', change);
@@ -179,7 +184,7 @@ export default function App() {
                                         e.target.blur();
                                     }}
                                 >
-                                    {events.map(({ rules }) => (
+                                    {visibleEvents().map(({ rules }) => (
                                         <option key={rules.id} value={rules.id}>
                                             {t(rules.nameKey)}
                                         </option>

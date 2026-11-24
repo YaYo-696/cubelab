@@ -94,8 +94,8 @@ export class CubeDatabase extends Dexie {
     }
 }
 export const db = new CubeDatabase(storageScope);
-export function solvesForEvent(eventId: string) {
-    return db.solves
+export function solvesForEvent(eventId: string, database = db) {
+    return database.solves
         .where('[eventId+createdAt]')
         .between([eventId, Dexie.minKey], [eventId, Dexie.maxKey])
         .filter((s) => s.deletedAt === undefined)

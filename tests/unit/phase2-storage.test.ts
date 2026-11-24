@@ -1,6 +1,9 @@
 import 'fake-indexeddb/auto';
 import { afterEach, expect, it } from 'vitest';
-import { CubeDatabase, type Solve } from '../../src/core/storage/db';
+import Dexie, { liveQuery } from 'dexie';
+import { CubeDatabase, solvesForEvent, type Solve } from '../../src/core/storage/db';
+import { prepareRound, rulesRevision, type Competition } from '../../src/core/competition/round';
+import { cubeEvent } from '../../src/puzzles/events';
 import { attemptRepository } from '../../src/core/storage/attempts';
 import { sessionRepository } from '../../src/core/storage/sessions';
 import { exportBackup, exportCsv, importBackup } from '../../src/core/storage/backup';
@@ -102,4 +105,85 @@ it('restaura sesiones y solves tetraédricos en el respaldo v3', async () => {
     expect(JSON.parse(await exportBackup(target))).toEqual(JSON.parse(backup));
     expect(await target.solves.where('[eventId+createdAt]').equals(['pyram', 10]).count()).toBe(1);
     expect(await target.solves.where('[eventId+createdAt]').equals(['pyramduo', 10]).count()).toBe(1);
+});
+
+it('actualiza los historiales FMC y Multi-Blind al confirmar un respaldo v4 con una competencia', async () => {
+    const repo = attemptRepository(source);
+    const [fmcSession] = await repo.sessions('333fm', '333');
+    const [multiSession] = await repo.sessions('333mbf', '333');
+    const common = { puzzleId: '333', createdAt: 42, penalty: 'none', source: 'timer' } as const;
+    const fmc: Solve = {
+        ...common,
+        id: crypto.randomUUID(),
+        eventId: '333fm',
+        sessionId: fmcSession.id,
+        result: { kind: 'moves', moves: 24 },
+        scramble: "R' U' F R U R' U' F",
+        reconstruction: "F' U R F' U' R'",
+    };
+    const multi: Solve = {
+        ...common,
+        id: crypto.randomUUID(),
+        eventId: '333mbf',
+        sessionId: multiSession.id,
+        result: { kind: 'multiBlind', attempted: 2, solved: 2, timeMs: 90_000 },
+        scramble: "R U x\nF2 R y",
+    };
+    await repo.save(fmc);
+    await repo.save(multi);
+    let mix = 0;
+    const round = await prepareRound(
+        { eventId: '333', format: 'ao5', timeLimitMs: 60_000 },
+        cubeEvent('333'),
+        async () => 'mix-' + ++mix,
+        new AbortController().signal,
+        () => {},
+    );
+    const competition: Competition = {
+        id: crypto.randomUUID(),
+        name: 'Práctica',
+        createdAt: 42,
+        rulesRevision,
+        rounds: [round],
+    };
+    await source.competitions.add(competition);
+    const backup = await exportBackup(source);
+    expect(JSON.parse(backup).version).toBe(4);
+
+    const histories = () =>
+        target.transaction('r', target.sessions, target.solves, () =>
+            Promise.all([solvesForEvent('333fm', target), solvesForEvent('333mbf', target)]),
+        );
+    let latest: Solve[][] | undefined;
+    const subscription = liveQuery(histories).subscribe((value) => {
+        latest = value;
+    });
+    try {
+        await expect.poll(() => latest).toEqual([[], []]);
+
+        // Hold the transaction open so the subscribed history spans a delayed commit.
+        let commit!: () => void;
+        const gate = new Promise<void>((resolve) => {
+            commit = resolve;
+        });
+        let imported = false;
+        const transaction = target.transaction('rw', target.tables, async () => {
+            await importBackup(backup, target);
+            imported = true;
+            await Dexie.waitFor(gate);
+        });
+        try {
+            await expect.poll(() => imported).toBe(true);
+            expect(latest).toEqual([[], []]);
+        } finally {
+            commit();
+            await transaction;
+        }
+
+        await expect.poll(() => latest).toEqual([[fmc], [multi]]);
+        await expect(histories()).resolves.toEqual([[fmc], [multi]]);
+        await expect(target.competitions.get(competition.id)).resolves.toEqual(competition);
+    } finally {
+        subscription.unsubscribe();
+    }
 });

@@ -158,6 +158,54 @@ async function lastLayer(
     throw new UnrecognizedCase('No matching academy algorithm for ' + lessonId);
 }
 
+type BeginnerStage = 'yellowCross' | 'orient' | 'permCorners' | 'permEdges' | 'orient2';
+const beginnerStages: Record<BeginnerStage, {
+    ids: string[];
+    goal: StageGoal;
+    repetitions: number;
+}> = {
+    yellowCross: { ids: ['ycLine'], goal: 'edgeOrientation', repetitions: 3 },
+    orient: { ids: ['orientSune', 'orientAnti'], goal: 'orientation', repetitions: 3 },
+    permCorners: { ids: ['cornersAdj'], goal: 'cornerPermutation', repetitions: 2 },
+    permEdges: { ids: ['edgesUa'], goal: 'exact', repetitions: 3 },
+    orient2: { ids: ['orient2Sune', 'orient2Anti'], goal: 'orientation', repetitions: 3 },
+};
+
+async function beginnerLayer(pattern: KPattern, solved: KPattern, cube: CubeId, lesson: BeginnerStage) {
+    const { ids, goal, repetitions } = beginnerStages[lesson];
+    const set = await loadAlgSet('drills' + cube, cube);
+    const edgePermutation = lesson === 'permEdges';
+    const adjustments = edgePermutation ? ['', 'y', 'y2', "y'"] : turns;
+    const options = ids.flatMap((id) => {
+        const main = set.cases.find((entry) => entry.id === id)?.algorithms[0];
+        if (!main) throw new UnrecognizedCase('Missing beginner algorithm ' + lesson + '/' + id);
+        return adjustments.map((adjustment) => sequence(
+            adjustment,
+            main,
+            edgePermutation ? new Alg(adjustment).invert().toString() : '',
+        ));
+    }).map((alg) => ({ alg, transform: pattern.kpuzzle.algToTransformation(alg) }));
+    const done = (state: KPattern) => matchesStage(state, solved, goal) &&
+        (lesson !== 'permCorners' || state.patternData.CORNERS.pieces.slice(0, 4).every((piece, i) => piece === i));
+    const queue = [{ pattern, alg: '', depth: 0 }];
+    const key = (state: KPattern) => JSON.stringify(state.patternData);
+    const visited = new Set([key(pattern)]);
+    for (const node of queue) {
+        for (const auf of lesson === 'permCorners' ? turns : ['']) {
+            if (done(node.pattern.applyAlg(auf))) return sequence(node.alg, auf);
+        }
+        if (node.depth === repetitions) continue;
+        for (const action of options) {
+            const next = node.pattern.applyTransformation(action.transform);
+            const stateKey = key(next);
+            if (visited.has(stateKey)) continue;
+            visited.add(stateKey);
+            queue.push({ pattern: next, alg: sequence(node.alg, action.alg), depth: node.depth + 1 });
+        }
+    }
+    throw new UnrecognizedCase('No beginner solution within the lesson bound for ' + lesson);
+}
+
 export async function solvePuzzle(
     cube: CubeId,
     input: string,
@@ -377,6 +425,12 @@ export async function solvePuzzle(
                 explanationParams: { caseName: caseName ?? '' },
             });
         }
+        async function finishBeginner(lesson: BeginnerStage) {
+            const alg = await beginnerLayer(state, solved, cube, lesson);
+            add(lesson, alg, (p) => matchesStage(p, solved, beginnerStages[lesson].goal), {
+                lessonId: lesson,
+            });
+        }
         if (method === 'cllPractice') {
             await finish('fullCLL', 'solved', 'cllPractice');
         } else if (method === 'egPractice') {
@@ -401,7 +455,8 @@ export async function solvePuzzle(
                 throw error;
             }
         } else if (cube === '222') {
-            await finish('oll222', 'orientation', method === 'ortega' ? 'oll2' : 'orient2');
+            if (method === 'ortega') await finish('oll222', 'orientation', 'oll2');
+            else await finishBeginner('orient2');
             await finish(
                 'pbl222',
                 'solved',
@@ -409,6 +464,9 @@ export async function solvePuzzle(
                 method === 'ortega' ? undefined : ['tperm', 'yperm'],
                 true,
             );
+        } else if (method === 'beginner') {
+            for (const lesson of ['yellowCross', 'orient', 'permCorners', 'permEdges'] as const)
+                await finishBeginner(lesson);
         } else if (method === 'cfopFull') {
             await finish('fullOLL', 'orientation', 'oll3');
             await finish('fullPLL', 'solved', 'pll3');

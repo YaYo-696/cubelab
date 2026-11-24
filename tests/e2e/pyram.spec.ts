@@ -1,4 +1,5 @@
 import { expect, test } from './fixtures';
+import { devFlags } from '../../src/config/devFlags';
 
 test('cronometra Pyraminx y resuelve la mezcla del historial', async ({ page }) => {
     await page.goto('/');
@@ -52,7 +53,18 @@ test('cronometra Pyraminx y resuelve la mezcla del historial', async ({ page }) 
         .toBeGreaterThan(0);
 });
 
-test('practica Pyraminx Duo y abre su lección de dos pasos', async ({ page }) => {
+test('aplica SHOW_UNOFFICIAL a Pyraminx Duo y a su lección', async ({ page }) => {
+    if (!devFlags.SHOW_UNOFFICIAL) {
+        await page.goto('/#academy/duo-two-steps/pyramduo');
+        await expect(page.getByRole('heading', { name: 'Academia', exact: true })).toBeVisible();
+        for (const section of ['Academia', 'Timer', 'Entrenador', 'Evaluación', 'Estadísticas', 'Solucionador']) {
+            await page.getByRole('link', { name: section, exact: true }).click();
+            const selector = page.getByRole('combobox', { name: section === 'Solucionador' ? 'Puzzle' : 'Evento', exact: true });
+            await expect(selector).toBeVisible();
+            await expect(selector.getByRole('option', { name: 'Pyraminx Duo', exact: true })).toHaveCount(0);
+        }
+        return;
+    }
     await page.goto('/');
     await page.getByRole('combobox', { name: 'Evento', exact: true }).selectOption('pyramduo');
     await expect(page.getByRole('button', { name: 'Siguiente mezcla', exact: true })).toBeEnabled();

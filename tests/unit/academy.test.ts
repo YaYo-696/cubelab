@@ -1,6 +1,7 @@
 import { devFlags, unlockAllProgress } from '../../src/config/devFlags';
 import 'fake-indexeddb/auto';
 import { expect, it, beforeEach, afterEach } from 'vitest';
+import beginnerDrills from '../../content-drop/333-222/drills-nuevos.json';
 const developmentUnlock = devFlags.UNLOCK_ALL;
 beforeEach(() => { devFlags.UNLOCK_ALL = false; });
 afterEach(() => { devFlags.UNLOCK_ALL = developmentUnlock; });
@@ -20,6 +21,12 @@ for (const [id, puzzle] of [
     it(id + ' verifica el 100% de los algoritmos y el objetivo de cada lección', async () => {
         const mod = await registry[id]();
         const course = await mod.loadCourse(mod.courses[0]);
+        const drills = await mod.loadAlgSet('drills' + id);
+        const supplied = id === '222' ? beginnerDrills.drills222 : beginnerDrills.drills333;
+        expect(drills.cases.slice(-supplied.length).map((raw) => {
+            const entry = raw as AcademyCase;
+            return { id: entry.id, setup: entry.referenceSetup, goal: entry.goal, alg: entry.algorithms[0] };
+        })).toEqual(supplied);
         const kp = await puzzles[puzzle].kpuzzle(),
             solved = kp.defaultPattern();
         const covered = new Set<string>();

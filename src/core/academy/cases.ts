@@ -146,6 +146,23 @@ export function matchesCase(p: KPattern, solved: KPattern, pattern: CasePattern)
     }
     return false;
 }
+function matchesDrillInverse(inverse: KPattern, reference: KPattern, goal: StageGoal) {
+    // A teaching drill may leave the next stage unsolved. Compare only its declared pattern,
+    // while forward verification still applies the exact supplied setup and checks the goal.
+    if (goal === 'edgeOrientation' || goal === 'orientation') {
+        const orbits = goal === 'edgeOrientation' ? ['EDGES'] : ['EDGES', 'CORNERS'];
+        const key = (state: KPattern) => orbits.map((orbit) =>
+            state.patternData[orbit] ? patternString(state, orbit, 'orientation') : '',
+        ).join('/');
+        return turns.some((auf) => key(inverse.applyAlg(auf)) === key(reference));
+    }
+    if (goal === 'cornerPermutation') {
+        const key = (state: KPattern) => permClass(patternString(state, 'CORNERS', 'pieces'));
+        return key(inverse) === key(reference);
+    }
+    return false;
+}
+
 export function verifyCase(solved: KPattern, entry: AcademyCase, algorithm: string) {
     const fromSetup = solved.applyAlg(caseSetup(entry, entry.algorithms.indexOf(algorithm)));
     const independent = independentCase(solved, entry.pattern);
@@ -167,7 +184,8 @@ export function verifyCase(solved: KPattern, entry: AcademyCase, algorithm: stri
         matchesCase(independent, solved, entry.pattern) &&
         solves(independent) &&
         matchesCase(fromSetup, solved, entry.pattern) &&
-        matchesCase(fromInverse, solved, entry.pattern) &&
+        (matchesCase(fromInverse, solved, entry.pattern) ||
+            (entry.pattern.kind === 'setup' && matchesDrillInverse(fromInverse, independent, entry.goal))) &&
         (full
             ? matchesStage(fromSetup.applyAlg(sequence).applyAlg(restoreFrame), solved, entry.goal)
             : solves(fromSetup))

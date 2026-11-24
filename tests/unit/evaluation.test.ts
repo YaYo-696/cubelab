@@ -3,6 +3,7 @@ import { Alg, Move } from 'cubing/alg';
 import { puzzles } from 'cubing/puzzles';
 import { expect, it } from 'vitest';
 import { registry } from '../../src/puzzles/registry';
+import { exerciseMethod } from '../../src/core/academy/generatedPractice';
 import { family, taughtFamilies } from '../../src/core/academy/glossary';
 import { matchesCase, type AcademyCase } from '../../src/core/academy/cases';
 import {
@@ -38,6 +39,12 @@ for (const [id, puzzle] of [
                 lesson.requires.flatMap((prerequisite) => [...taught.get(prerequisite)!]),
             );
             if (lesson.glossary) for (const move of taughtFamilies(id, lesson.glossary)) moves.add(move);
+            if (lesson.id === 'permEdges') {
+                // The lesson itself introduces y as a whole-cube turn.
+                for (const lang of ['es', 'en'] as const)
+                    expect(translate(lang, lesson.bodyKey), lesson.id + '/' + lang).toMatch(/\(y\)/);
+                moves.add('y');
+            }
             taught.set(lesson.id, moves);
             const set = await mod.loadAlgSet(lesson.setId);
             const material = [
@@ -46,7 +53,10 @@ for (const [id, puzzle] of [
                     .filter((c) => lesson.caseIds.includes(c.id))
                     .flatMap((raw) => {
                         const c = raw as AcademyCase;
-                        return [c.referenceSetup, ...c.algorithms, ...(c.alternativeSetups ?? [])];
+                        const setupShown = !exerciseMethod(lesson);
+                        return setupShown
+                            ? [c.referenceSetup, ...c.algorithms, ...(c.alternativeSetups ?? [])]
+                            : c.algorithms;
                     }),
             ];
             for (const source of material)

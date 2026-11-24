@@ -21,10 +21,11 @@ export const trainingSets: Record<CubeId, readonly TrainingSet[]> = {
             skill: 'oll',
             targetMs: 6000,
             groups: [
-                { id: 'yellowCross', lessonId: 'yellowCross', ids: ['dot', 'el', 'line'] },
+                { id: 'yellowCross', lessonId: 'oll3', nameKey: 'aTitle_yellowCross', ids: ['dot', 'el', 'line'] },
                 {
                     id: 'orient',
-                    lessonId: 'orient',
+                    lessonId: 'oll3',
+                    nameKey: 'aTitle_orient',
                     ids: ['sune', 'antisune', 'pi', 'h', 't', 'l', 'u'],
                 },
             ],
@@ -35,8 +36,8 @@ export const trainingSets: Record<CubeId, readonly TrainingSet[]> = {
             skill: 'pll',
             targetMs: 6000,
             groups: [
-                { id: 'permCorners', lessonId: 'permCorners', ids: ['tperm', 'yperm'] },
-                { id: 'permEdges', lessonId: 'permEdges', ids: ['ua', 'ub', 'hperm', 'zperm'] },
+                { id: 'permCorners', lessonId: 'pll3', nameKey: 'aTitle_permCorners', ids: ['tperm', 'yperm'] },
+                { id: 'permEdges', lessonId: 'pll3', nameKey: 'aTitle_permEdges', ids: ['ua', 'ub', 'hperm', 'zperm'] },
             ],
         },
         full('fullOLL', 'oll', 4500),
