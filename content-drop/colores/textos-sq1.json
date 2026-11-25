@@ -1,0 +1,22 @@
+{
+  "es": {
+    "sq1Intro": "Arma cada capa tocando sus piezas en orden. Antes de empezar, gira cada capa hasta que el corte de la línea del medio quede entre dos piezas.",
+    "sq1Middle": "¿La capa del medio está alineada, formando un bloque completo sin escalón?",
+    "sq1Check": "Compara tu puzzle con la vista plana antes de seguir la solución: deben verse iguales.",
+    "sq1Unknown": "Hay piezas que no existen en el Square-1.",
+    "sq1Duplicate": "Hay piezas que aparecen dos veces: {pieces}.",
+    "sq1Missing": "Faltan piezas por ubicar: {pieces}.",
+    "sq1LayerSize": "La capa no cierra: ocupa {width} de 12 espacios. Cada esquina ocupa 2 y cada arista 1.",
+    "sq1Notation": "(1, 0) gira la capa de arriba 30° y (0, 1) la de abajo; «/» gira 180° la mitad derecha del puzzle."
+  },
+  "en": {
+    "sq1Intro": "Build each layer by tapping its pieces in order. Before you start, turn each layer until the cut of the middle line sits between two pieces.",
+    "sq1Middle": "Is the middle layer aligned, forming one complete block with no step?",
+    "sq1Check": "Compare your puzzle with the flat view before following the solution: they must look the same.",
+    "sq1Unknown": "Some pieces do not exist on a Square-1.",
+    "sq1Duplicate": "Some pieces appear twice: {pieces}.",
+    "sq1Missing": "Some pieces are still missing: {pieces}.",
+    "sq1LayerSize": "The layer does not close: it takes {width} of 12 spaces. Each corner takes 2 and each edge 1.",
+    "sq1Notation": "(1, 0) turns the top layer 30° and (0, 1) the bottom one; «/» turns the right half of the puzzle 180°."
+  }
+}
