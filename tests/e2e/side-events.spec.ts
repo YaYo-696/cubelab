@@ -54,11 +54,8 @@ for (const [id, name, puzzle] of [
         await expect(solve).toHaveCount(1);
         await solve.locator('summary').click();
         await page.getByRole('link', { name: 'Ver en el solucionador', exact: true }).click();
-        await expect(
-            page.getByText('El solucionador de ' + name + ' aún no está disponible.', {
-                exact: true,
-            }),
-        ).toBeVisible();
         await expect(page.getByRole('textbox', { name: 'Mezcla', exact: true })).toHaveValue(mix);
+        await page.getByRole('button', { name: 'Resolver', exact: true }).click();
+        await expect(page.getByTestId('side-solution')).toBeVisible({ timeout: 35_000 });
     });
 }

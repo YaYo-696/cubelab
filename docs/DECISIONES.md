@@ -181,3 +181,8 @@ Timer abre en 2D con las preferencias iniciales y solo monta el visor 3D al eleg
 - El editor usa la red y los IDs de cubing.js para 3×3, 2×2, Pyraminx y Skewb. Carga el núcleo al seleccionar «Desde colores». Cada adhesivo tiene un único control enfocable y comparte el color con sus copias y superposiciones. Los errores marcan los adhesivos identificados por el núcleo.
 - La mezcla equivalente pasa por la misma validación y el mismo método del Solucionador. La rotación para acomodar el puzzle se muestra como una instrucción física. Al reproducir una solución obtenida desde colores, las vistas usan el marco de esa mezcla, con la orientación descrita por el núcleo.
 - La lectura de colores usa un worker de módulo dedicado. En el build original, el worker interno de cubing.js importaba el archivo de entrada de la app para el preload de Vite y fallaba al acceder a `document`. El worker dedicado mantiene la búsqueda en su propio grafo de módulos. Reutiliza las búsquedas cargadas y cancela el trabajo al abandonar el editor o agotar el límite de 30 segundos. El protocolo tiene trabajos para los colores del 4×4 y las esferas de Clock.
+
+## Fase 15-G · Solucionador de Clock y Square-1
+
+- Clock convierte la mezcla normalizada en esferas dentro del worker de colores. En el editor, las esquinas del reverso reflejan las del frente y se calculan módulo 12. La solución se reproduce desde la mezcla equivalente en el marco del lado anotado como frente.
+- Square-1 reutiliza el modelo de cortes de la notación para las mezclas. El editor transmite el orden de las piezas de cada capa y el estado de la capa media. Ambas rutas calculan la solución con las tablas del mismo worker y muestran el estado inicial con la vista plana de cubing.js.

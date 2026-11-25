@@ -2,6 +2,9 @@ import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import Dexie from 'dexie';
 import type { PuzzleModule, SearchResult } from '../core/contracts';
 import type { ColorPuzzle, ColorReading } from '../core/fromColors/readColors';
+import type { ClockReading } from '../core/fromColors/readClock';
+import type { Square1Reading } from '../core/fromColors/readSquare1';
+import { requestColorReading, type ColorJob } from '../workers/fromColorsClient';
 import type { SolveProgress } from '../core/solver/options';
 import { db } from '../core/storage/db';
 import { events, puzzleFor, registry, visiblePuzzle } from '../puzzles/registry';
@@ -13,6 +16,8 @@ import './solver.css';
 
 const Player = lazy(() => import('./AcademyPlayer').then((m) => ({ default: m.AcademyPlayer })));
 const ColorEditor = lazy(() => import('./ColorEditor').then((m) => ({ default: m.ColorEditor })));
+const ClockEditor = lazy(() => import('./SidePuzzleEditors').then((m) => ({ default: m.ClockEditor })));
+const Square1Editor = lazy(() => import('./SidePuzzleEditors').then((m) => ({ default: m.Square1Editor })));
 const editablePuzzles = { '333': true, '222': true, pyram: true, skewb: true } satisfies Record<ColorPuzzle, true>;
 function supportsColors(puzzle: PuzzleId): puzzle is ColorPuzzle {
     return Object.hasOwn(editablePuzzles, puzzle);
@@ -20,6 +25,8 @@ function supportsColors(puzzle: PuzzleId): puzzle is ColorPuzzle {
 type T = (key: string, params?: Record<string, string | number>) => string;
 type Solved = Extract<SearchResult, { status: 'solved' }>;
 type ColorInput = Extract<ColorReading, { ok: true }>;
+type SideReading = ClockReading | Square1Reading;
+type SideJob = ColorJob<'readClock' | 'clockScramble' | 'readSquare1' | 'square1Scramble'>;
 
 async function latest(puzzle: PuzzleId) {
     const modalities = events.filter(
@@ -57,6 +64,7 @@ export function SolverView({
     const [last, setLast] = useState<string>();
     const timer = useApp((state) => state.timerMix);
     const [result, setResult] = useState<Solved>();
+    const [sideReading, setSideReading] = useState<SideReading>();
     const [comparison, setComparison] = useState<number>();
     const [compareFailed, setCompareFailed] = useState(false);
     const [progress, setProgress] = useState<SolveProgress>();
@@ -68,7 +76,8 @@ export function SolverView({
     const running = useRef<AbortController>();
     const current = timer?.puzzle === cube ? timer.scramble : undefined;
     const mod = loadedModule?.id === cube ? loadedModule : undefined;
-    const unavailable = mod && !mod.solvers?.shortestKnown;
+    const sidePuzzle = cube === 'clock' || cube === 'sq1';
+    const unavailable = mod && !sidePuzzle && !mod.solvers?.shortestKnown;
 
     useEffect(
         () => () => {
@@ -126,6 +135,7 @@ export function SolverView({
         running.current?.abort();
         running.current = undefined;
         setResult(undefined);
+        setSideReading(undefined);
         setComparison(undefined);
         setCompareFailed(false);
         setProgress(undefined);
@@ -140,6 +150,20 @@ export function SolverView({
 
     async function run(raw = input) {
         if (loadingHistory || status === 'solveRunning') return;
+        if (!mod || unavailable) return;
+        if (sidePuzzle) {
+            let scramble: string;
+            try {
+                scramble = raw.trim() ? mod.notation.normalize(raw) : '';
+            } catch (error) {
+                reset();
+                if (error instanceof NotationError) setPosition(error.offset + 1);
+                setStatus('solveNotation');
+                return;
+            }
+            await runSide(cube === 'clock' ? { kind: 'clockScramble', scramble } : { kind: 'square1Scramble', scramble });
+            return;
+        }
         const shortest = mod?.solvers?.shortestKnown;
         const solver = method === 'shortest' ? shortest : mod?.solvers?.byMethod?.[method];
         if (!mod || !shortest || !solver) return;
@@ -196,6 +220,25 @@ export function SolverView({
             }
         }
     }
+    async function runSide(job: SideJob) {
+        if (loadingHistory || running.current) return;
+        reset();
+        const control = new AbortController();
+        running.current = control;
+        setStatus('solveRunning');
+        try {
+            const answer = await requestColorReading(job, control.signal);
+            if (control.signal.aborted) return;
+            setSideReading(answer);
+            setStatus('');
+        } catch (error) {
+            if (control.signal.aborted) return;
+            console.error('CubeLab side puzzle solver', error);
+            setStatus('solveError');
+        } finally {
+            if (running.current === control) running.current = undefined;
+        }
+    }
     function stageText(item: Solved['stages'][number], key: string) {
         const parameters = Object.fromEntries(
             Object.entries(item.explanationParams).map(([name, value]) => [
@@ -207,6 +250,8 @@ export function SolverView({
     }
     const stage = result?.stages[stageIndex];
     const colorMode = inputMode === 'colors' && supportsColors(cube);
+    const sideEditor = inputMode === 'pieces' && sidePuzzle;
+    const sideIssues = sideReading && !sideReading.ok ? sideReading.issues : [];
     const cancel = status === 'solveRunning' && (
         <button type="button" onClick={() => {
             reset();
@@ -239,7 +284,7 @@ export function SolverView({
                         {Object.keys(registry).filter(visiblePuzzle).map((id) => <option key={id} value={id}>{t(id)}</option>)}
                     </select>
                 </label>
-                {!unavailable && <label>
+                {!sidePuzzle && !unavailable && <label>
                     {t('solveMethod')}{' '}
                     <select
                         value={method}
@@ -273,7 +318,7 @@ export function SolverView({
                 )}
             </div>
             {unavailable && <p role="status">{t('solveUnavailable', { puzzle: t(cube) })}</p>}
-            {supportsColors(cube) && (
+            {(supportsColors(cube) || sidePuzzle) && (
                 <label className="solver-controls">
                     {t('fromColorsMode')}
                     <select value={inputMode} disabled={loadingHistory} onChange={(e) => {
@@ -282,11 +327,27 @@ export function SolverView({
                         setInputMode(e.target.value);
                     }}>
                         <option value="scramble">{t('fromColorsModeScramble')}</option>
-                        <option value="colors">{t('fromColorsModeColors')}</option>
+                        {sidePuzzle
+                            ? <option value="pieces">{t(cube === 'clock' ? 'clockFromDials' : 'sq1FromPieces')}</option>
+                            : <option value="colors">{t('fromColorsModeColors')}</option>}
                     </select>
                 </label>
             )}
-            {colorMode ? (
+            {sideEditor ? (
+                <>
+                    <fieldset disabled={status === 'solveRunning'}>
+                        <legend>{t(cube === 'clock' ? 'clockFromDials' : 'sq1FromPieces')}</legend>
+                        <Suspense fallback={<p role="status">{t('aLoading')}</p>}>
+                            {cube === 'clock'
+                                ? <ClockEditor t={t} issues={sideIssues.filter((issue) => 'dials' in issue)}
+                                    onEdit={reset} onSubmit={(job) => void runSide(job)} />
+                                : <Square1Editor t={t} issues={sideIssues.filter((issue) => 'pieces' in issue)}
+                                    onEdit={reset} onSubmit={(job) => void runSide(job)} />}
+                        </Suspense>
+                    </fieldset>
+                    {cancel}
+                </>
+            ) : colorMode ? (
                 <>
                     <Suspense fallback={<p role="status">{t('aLoading')}</p>}>
                         <ColorEditor
@@ -356,6 +417,38 @@ export function SolverView({
             )}
             {status && <p role="status">{t(status, { position: position ?? 1 })}</p>}
             {progress && <p aria-live="polite">{t(progress.key, { value: progress.value })}</p>}
+            {sideIssues.length > 0 && (
+                <ul role="alert">
+                    {sideIssues.map((issue, index) => (
+                        <li key={issue.key + index}>{t(issue.key, 'pieces' in issue
+                            ? { ...issue.params, pieces: issue.pieces.join(', ') }
+                            : undefined)}</li>
+                    ))}
+                </ul>
+            )}
+            {sidePuzzle && sideReading?.ok && (
+                <div>
+                    <h2>{t('sideSolution')}</h2>
+                    <p data-testid="side-solution" data-alg={sideReading.solution}>
+                        <code>{sideReading.solution || t('solveAlready')}</code>
+                    </p>
+                    {cube === 'clock' ? (
+                        <>
+                            <p>{t('clockHold')}</p>
+                            <p>{t('clockHowToMove')}</p>
+                        </>
+                    ) : (
+                        <>
+                            <p>{t('sq1Check')}</p>
+                            <p>{t('sq1Notation')}</p>
+                        </>
+                    )}
+                    <Suspense fallback={<p>{t('aLoading')}</p>}>
+                        <Player puzzle={cube === 'clock' ? 'clock' : 'square1'} setup={sideReading.scramble}
+                            alg={sideReading.solution} flatOnly t={t} />
+                    </Suspense>
+                </div>
+            )}
             {result && stage && setup !== undefined && (
                 <div className="academy">
                     <div>

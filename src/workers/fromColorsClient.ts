@@ -1,16 +1,23 @@
 import type { ClockDials, ClockReading } from '../core/fromColors/readClock';
 import type { ColorPuzzle, ColorReading, Painted } from '../core/fromColors/readColors';
 import type { Reading444 } from '../core/fromColors/readColors444';
+import type { Square1Input, Square1Reading } from '../core/fromColors/readSquare1';
 
 type Jobs = {
     readColors: { puzzle: ColorPuzzle; painted: Painted };
     readClock: { dials: ClockDials };
+    clockScramble: { scramble: string };
+    readSquare1: { pieces: Square1Input };
+    square1Scramble: { scramble: string };
     readColors444: { painted: Painted };
 };
 
 type Readings = {
     readColors: ColorReading;
     readClock: ClockReading;
+    clockScramble: ClockReading;
+    readSquare1: Square1Reading;
+    square1Scramble: Square1Reading;
     readColors444: Reading444;
 };
 
