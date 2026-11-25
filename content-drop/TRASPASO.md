@@ -1,4 +1,4 @@
-# CubeLab · Traspaso de contexto (24-11-2026, 21:05)
+# CubeLab · Traspaso de contexto (24-11-2026, 22:30)
 
 ## 1. Qué es
 PWA de speedcubing: timer, estadísticas, academia (lecciones y casos), solucionador, entrenador y modo competencia.
@@ -42,6 +42,16 @@ CONTEXTO DE TRABAJO: Claude y tú trabajan en paralelo sobre este repo, los dos 
 - **Principiante 3x3 renovado:** última capa con 4 algoritmos (`F R U R' U' F'`, Sune repetido con Anti-Sune de atajo, Aa con faros atrás, Ua con la arista resuelta atrás). 2x2 orienta con Sune repetido.
 
 ## 4. Estado actual
+- **En curso: Fase 15 "Resolver desde colores"** (idea de Carlos, 24-11). El usuario pinta los colores de su puzzle,
+  la app valida que el estado sea posible y entrega la solución (línea de notación + vista 3D/plana) usando el
+  Solucionador existente. Decisiones: va **dentro del Solucionador** como modo "Desde colores"; en 3x3/2x2 se
+  mantienen los métodos (Principiante, CFOP…); la auditoría se hace cuando estén **todas** las funciones.
+  - 15-A (Claude, hecho): núcleo `src/core/fromColors/readColors.ts` para 333, 222, pyram, skewb. Convierte
+    colores en una mezcla equivalente + rotación para sostenerlo. Verificación en `content-drop/colores/`.
+  - 15-B (Codex): editor de colores en el Solucionador, mensajes, e2e.
+  - Después: 15-C Clock (esferas, no colores), 15-D Square-1 (forma + colores), 15-E 4x4 (cubing.js trae un
+    solucionador 4x4 interno, no exportado: evaluar), 15-F Megaminx (`solveMegaminx` existe). 5x5–7x7 al final.
+    Escanear con cámara: después del lanzamiento.
 - Commits del 24-11: Pyraminx/Duo, videos, Skewb, Megaminx, 4x4–7x7, Square-1, Clock, OH/FMC/BLD/MBLD,
   CI estable, contenido Square-1, videos en español, **Fase 13 competencia**, contenido principiante 3x3/2x2. CI verde.
 - Academias con contenido verificado: 333, 222, pyram, pyramduo, skewb, minx, 444, clock, sq1.

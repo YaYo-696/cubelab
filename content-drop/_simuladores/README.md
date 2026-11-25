@@ -17,5 +17,6 @@ reconstruir nada. Algunos tienen rutas absolutas del chat anterior (`/home/claud
 | `big/nxn.py` | NxN | `Rw`, `2R`, `3Rw`. En la app `r` = `Rw`; las fuentes que usan `r` = capa interna se traducen a `2R` |
 | `clock/clk.py` | Clock | a partir de la definición kpuzzle de clock de cubing.js |
 | `sq1/sq1.py` | Square-1 | copia exacta del modelo de `src/puzzles/sideEvents/square1.ts` |
+| `colores/*.ts`, `skewb-grupo.mjs` | cubing.js real (Node) | Resolver desde colores: reconstrucción, legalidad y grupo del Skewb. Correr desde la raíz del repo; ver `content-drop/colores/VERIFICACION.md` |
 
 Lección aprendida: al escribir en el PC de Carlos, volver a leer cada archivo escrito y comparar md5.
