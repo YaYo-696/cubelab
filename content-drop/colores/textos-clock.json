@@ -1,0 +1,16 @@
+{
+  "es": {
+    "clockHold": "Empieza con el lado que anotaste como frente mirando hacia ti y el 12 arriba. «y2» significa dar vuelta el reloj de izquierda a derecha, sin invertir arriba y abajo.",
+    "clockReadBack": "Para anotar el reverso, da vuelta el reloj de izquierda a derecha: el 12 sigue arriba. Las esquinas del reverso se completan solas.",
+    "clockHowToMove": "En cada paso, sube los pines que indica (UR = arriba a la derecha, U = los dos de arriba, ALL = todos) y gira una rueda de esa zona: «3+» son 3 horas en el sentido del reloj y «2-», 2 horas en contra.",
+    "clockCorner": "Las esquinas no calzan: la esfera de adelante y la de atrás de una misma esquina suman 12 (si adelante marca 3, atrás marca 9). Revisa las esferas marcadas.",
+    "clockValue": "Cada esfera debe marcar una hora del 1 al 12."
+  },
+  "en": {
+    "clockHold": "Start with the side you wrote down as the front facing you and 12 at the top. «y2» means turning the clock over left to right, without flipping top and bottom.",
+    "clockReadBack": "To write down the back, turn the clock over left to right: 12 stays at the top. The back corners fill in by themselves.",
+    "clockHowToMove": "In each step, push up the pins it names (UR = upper right, U = both upper pins, ALL = all of them) and turn a wheel in that area: «3+» is 3 hours clockwise and «2-» is 2 hours counterclockwise.",
+    "clockCorner": "The corners do not match: the front and back dials of the same corner add up to 12 (if the front shows 3, the back shows 9). Check the marked dials.",
+    "clockValue": "Each dial must show an hour from 1 to 12."
+  }
+}
