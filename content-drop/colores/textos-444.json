@@ -1,0 +1,20 @@
+{
+  "es": {
+    "fromColors444Intro": "Este asistente es para la etapa final del 4×4: primero arma los centros y empareja las aristas, y después pinta tu cubo. La app detecta las paridades y te da la solución como si fuera un 3×3.",
+    "fromColors444Centers": "Los centros todavía no están armados: cada cara debe tener sus 4 centros del mismo color. Termínalos y vuelve a pintar.",
+    "fromColors444Pairs": "Hay aristas sin emparejar: las dos piezas del medio de cada borde deben tener los mismos colores. Emparéjalas y vuelve a pintar.",
+    "fromColors444Oll": "Paridad OLL: tu 4×4 tiene una arista volteada que un 3×3 no puede tener. Sostenlo tal como lo pintaste y haz este algoritmo, que voltea la arista de arriba al frente.",
+    "fromColors444Pll": "Paridad PLL: tu 4×4 tiene dos aristas intercambiadas que un 3×3 no puede tener. Sostenlo como quedó y haz este algoritmo, que intercambia las aristas de arriba al frente y de arriba atrás.",
+    "fromColors444Then": "Después, resuélvelo como un 3×3 girando solo las capas exteriores.",
+    "fromColors444Notation": "2R = solo la segunda capa desde la derecha. Rw = las dos capas de la derecha juntas. Uw = las dos capas de arriba juntas."
+  },
+  "en": {
+    "fromColors444Intro": "This assistant is for the last stage of the 4×4: first build the centers and pair the edges, then paint your cube. The app finds the parities and gives you the solution as if it were a 3×3.",
+    "fromColors444Centers": "The centers are not built yet: each face needs its 4 centers of the same color. Finish them and paint again.",
+    "fromColors444Pairs": "Some edges are not paired: the two middle pieces of each border must have the same colors. Pair them and paint again.",
+    "fromColors444Oll": "OLL parity: your 4×4 has a flipped edge that a 3×3 cannot have. Hold it as you painted it and do this algorithm, which flips the upper front edge.",
+    "fromColors444Pll": "PLL parity: your 4×4 has two swapped edges that a 3×3 cannot have. Hold it as it is and do this algorithm, which swaps the upper front and upper back edges.",
+    "fromColors444Then": "Then solve it as a 3×3, turning only the outer layers.",
+    "fromColors444Notation": "2R = only the second layer from the right. Rw = the two right layers together. Uw = the two upper layers together."
+  }
+}
