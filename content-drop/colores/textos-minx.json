@@ -1,0 +1,32 @@
+{
+  "es": {
+    "fromColorsHold_minx": "Para seguir la solución, sostén el Megaminx con el centro blanco arriba y el verde al frente.",
+    "fromColorsMinxColor_white": "blanco",
+    "fromColorsMinxColor_green": "verde",
+    "fromColorsMinxColor_red": "rojo",
+    "fromColorsMinxColor_purple": "morado",
+    "fromColorsMinxColor_yellow": "amarillo",
+    "fromColorsMinxColor_blue": "azul",
+    "fromColorsMinxColor_cream": "crema",
+    "fromColorsMinxColor_lightBlue": "celeste",
+    "fromColorsMinxColor_orange": "naranja",
+    "fromColorsMinxColor_pink": "rosado",
+    "fromColorsMinxColor_lime": "verde limón",
+    "fromColorsMinxColor_gray": "gris"
+  },
+  "en": {
+    "fromColorsHold_minx": "To follow the solution, hold the Megaminx with the white center on top and the green center in front.",
+    "fromColorsMinxColor_white": "white",
+    "fromColorsMinxColor_green": "green",
+    "fromColorsMinxColor_red": "red",
+    "fromColorsMinxColor_purple": "purple",
+    "fromColorsMinxColor_yellow": "yellow",
+    "fromColorsMinxColor_blue": "blue",
+    "fromColorsMinxColor_cream": "cream",
+    "fromColorsMinxColor_lightBlue": "light blue",
+    "fromColorsMinxColor_orange": "orange",
+    "fromColorsMinxColor_pink": "pink",
+    "fromColorsMinxColor_lime": "lime",
+    "fromColorsMinxColor_gray": "gray"
+  }
+}

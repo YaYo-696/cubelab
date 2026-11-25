@@ -79,6 +79,16 @@ Núcleo: `src/core/fromColors/readColors.ts`. Puzzles: 3x3, 2x2, Pyraminx y Skew
   `tests/unit/from-square1.test.ts`: 3 pruebas; compara cada solución con `square1State` de la app, que rechaza
   cualquier «/» ilegal.
 
+## Megaminx (15-F): `src/core/fromColors/readColorsMinx.ts`
+- Mismo método que `readColors.ts` sobre los 132 adhesivos de la red de cubing.js (12 colores, 11 por color).
+  Módulo aparte para que el Solucionador no ofrezca Megaminx donde espera sus propios solucionadores.
+- Marco: los centros (las caras nunca los mueven); 60 rotaciones con Uv, Rv, Fv. Sostener: blanco arriba, verde al frente.
+- Legalidad: giros de esquinas ≡ 0 (mod 3), volteos de aristas ≡ 0 (mod 2), permutación de esquinas par y de aristas
+  par (cada giro de cara son dos ciclos de 5). 120 estados al azar: 32 aceptados y 88 rechazados, todos según las reglas.
+- Solución: `solveMegaminx` de cubing.js (solo giros de cara, se comprueba que no traiga rotaciones) y se verifica.
+  40 posiciones pintadas con rotaciones al azar: resueltas; mediana 158 movimientos, ~160 ms cada una.
+  `tests/unit/from-colors-minx.test.ts`: 3 pruebas.
+
 ## Cómo volver a correrlo (desde la raíz del repo)
 ```
 node --experimental-strip-types content-drop/_simuladores/colores/reconstruccion.ts

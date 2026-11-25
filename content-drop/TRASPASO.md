@@ -1,4 +1,4 @@
-# CubeLab · Traspaso de contexto (25-11-2026, 00:30)
+# CubeLab · Traspaso de contexto (25-11-2026, 00:10)
 
 ## 1. Qué es
 PWA de speedcubing: timer, estadísticas, academia (lecciones y casos), solucionador, entrenador y modo competencia.
@@ -57,7 +57,8 @@ CONTEXTO DE TRABAJO: Claude y tú trabajan en paralelo sobre este repo, los dos 
   - 15-D Square-1: núcleo hecho por Claude (`readSquare1.ts`): piezas por capa + capa del medio → solución WCA con
     solucionador propio de 3 etapas (verificado contra `square1State`). Falta la interfaz (Codex) y confirmar en el
     puzzle físico el orden de las capas con la vista plana.
-  - Después: 15-F Megaminx (`solveMegaminx` existe). 5x5–7x7 al final.
+  - 15-F Megaminx: núcleo hecho por Claude (`readColorsMinx.ts`: 132 adhesivos → solución de cubing.js). Falta la
+    interfaz (Codex). 5x5–7x7: no hay solucionador; quedaría como asistente de etapa final igual que el 4x4.
     Escanear con cámara: después del lanzamiento.
 - Commits del 24-11: Pyraminx/Duo, videos, Skewb, Megaminx, 4x4–7x7, Square-1, Clock, OH/FMC/BLD/MBLD,
   CI estable, contenido Square-1, videos en español, **Fase 13 competencia**, contenido principiante 3x3/2x2. CI verde.
