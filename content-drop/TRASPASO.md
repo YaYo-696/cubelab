@@ -1,4 +1,4 @@
-# CubeLab · Traspaso de contexto (24-11-2026, 20:40)
+# CubeLab · Traspaso de contexto (24-11-2026, 21:05)
 
 ## 1. Qué es
 PWA de speedcubing: timer, estadísticas, academia (lecciones y casos), solucionador, entrenador y modo competencia.
@@ -12,9 +12,13 @@ PWA de speedcubing: timer, estadísticas, academia (lecciones y casos), solucion
 - **Carlos** decide, prueba y hace commit/push. Valida en PC con Edge; el teléfono solo para táctil, instalación u offline.
 - **Codex** (ChatGPT) y **Claude** escriben código **en paralelo, 2 y 2**, cada uno en su zona.
   Los fallos se le reportan a **Claude**, que los resuelve o arma el prompt para Codex.
-- Una tarea de Codex a la vez, sin "actualizaciones" a mitad. Codex parte **después** del commit y el push de lo anterior.
+- Una tarea de Codex a la vez, sin "actualizaciones" a mitad. Codex parte **después del commit** de lo anterior.
 - Al terminar Codex: `.\tools\diagnostico.ps1 -ConE2E` (con la vista previa cerrada; usa el puerto 4173)
-  → prueba manual → commit(s) → `git push` → revisar GitHub Actions en verde.
+  → prueba manual → commit.
+- **Push por bloque** (decisión de Carlos, 24-11): los commits se acumulan y se hace **un solo `git push`** al cerrar
+  cada bloque de trabajo → revisar GitHub Actions una vez. Si solo falla `deploy-pages` (error de GitHub, no de
+  pruebas), usar **"Re-run failed jobs"**, no "Re-run all jobs".
+- Claude entrega cada commit listo para pegar y cada prompt de Codex listo para copiar.
 - Explicarle a Carlos paso a paso, uno por uno y explícito: se distrae.
 - Todo lo bloqueado (prerrequisitos, desbloqueos) queda abierto en dev con `UNLOCK_ALL` en `src/config/devFlags.ts`.
   Antes del lanzamiento se apagan **todas** las DEV-FLAG.
@@ -45,13 +49,14 @@ CONTEXTO DE TRABAJO: Claude y tú trabajan en paralelo sobre este repo, los dos 
   `content-drop/333-222/` = textos y ejercicios del principiante (se integran a mano, ver su `CAMBIOS.md`).
   `content-drop/_simuladores/` = scripts de verificación de Claude.
 - **Fase 14 "Blindaje WCA": cerrada** (commit `feat: blinda los catálogos WCA y la visibilidad de puzzles`, push 24-11).
-  A, B, C y E hechos; diagnóstico `FALLAS: 0`, 204 unitarias, 38 e2e. **D quedó pendiente** (ver pendientes).
+  A, B, C y E hechos; diagnóstico `FALLAS: 0`, 204 unitarias, 38 e2e. D se cerró aparte (Codex,
+  `test: amplía y mide la espera de Square-1 en e2e`): Square-1 espera 30 s en ambos e2e y registra la primera
+  mezcla (anotación `sq1-primera-mezcla-ms`); medida en 1,35–2,90 s, 5/5 repeticiones estables (incluido E).
 - Corrección de Claude tras la Fase 14: en el solucionador, las 4 etapas de CFOP 4LLL enlazan a `oll3`/`pll3`
   (antes a las lecciones principiante, que ahora enseñan otras secuencias). Prueba en `tests/unit/solver.test.ts`.
 
 ## 5. Pendientes
-1. **Fase 14-D (Codex):** e2e de Square-1 con espera de 30 s y medición de la primera mezcla
-   (`tests/e2e/side-events.spec.ts` sigue en 10 s; `audit-flows.spec.ts` en 15 s). Prompt entregado a Carlos.
+1. **Conversar funcionalidades nuevas** con Carlos (las de esta lista y las que él quiere agregar) antes de la auditoría.
 2. **Lecciones que faltan (pedir ok a Carlos antes):** 5x5, 6x6, 7x7, 3BLD/4BLD/5BLD/MBLD, FMC, OH. Tienen timer, no academia.
 3. **Fases siguientes:** smart cubes y Stackmat → app APK/escritorio. Puzzles personalizados: después del lanzamiento.
 4. **`PRE-LANZAMIENTO` (se revisa al final de todo):**
