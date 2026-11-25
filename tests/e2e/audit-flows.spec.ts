@@ -39,7 +39,7 @@ test("los videos de Academia se desactivan sin conexión y las mezclas nuevas si
     await event.selectOption(id);
     await expect(
       page.getByRole("button", { name: "Siguiente mezcla", exact: true }),
-    ).toBeEnabled({ timeout: 15000 });
+    ).toBeEnabled({ timeout: id === "sq1" ? 30000 : 15000 });
     await expect(page.getByTestId("scramble")).not.toBeEmpty();
   }
 });

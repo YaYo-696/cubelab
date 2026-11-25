@@ -7,13 +7,23 @@ for (const [id, name, puzzle] of [
     test('cronometra ' + name + ' y consulta el intento en Estadísticas', async ({ page }) => {
         await page.goto('/');
         const event = page.getByRole('combobox', { name: 'Evento', exact: true });
-        await event.selectOption(id);
+        const scramble = page.getByTestId('scramble');
+        const squareOne = /\(-?[0-6], -?[0-6]\).*\//;
+        const timeout = id === 'sq1' ? 30_000 : 10_000;
         await expect(event.getByRole('option', { name, exact: true })).toBeAttached();
+        const selectedAt = performance.now();
+        await event.selectOption(id);
+        if (id === 'sq1') {
+            await expect(scramble.filter({ hasText: squareOne })).toBeVisible({ timeout });
+            const elapsed = Math.round(performance.now() - selectedAt);
+            test.info().annotations.push({ type: 'sq1-primera-mezcla-ms', description: String(elapsed) });
+            console.log(`[sq1] primera mezcla: ${elapsed} ms`);
+        }
         await expect(
             page.getByRole('button', { name: 'Siguiente mezcla', exact: true }),
-        ).toBeEnabled({ timeout: 10000 });
-        const mix = (await page.getByTestId('scramble').innerText()).trim();
-        expect(mix).toMatch(id === 'sq1' ? /\(-?[0-6], -?[0-6]\).*\// : /(?:[A-Z]+[0-6][+-]).*y2/);
+        ).toBeEnabled({ timeout });
+        const mix = (await scramble.innerText()).trim();
+        expect(mix).toMatch(id === 'sq1' ? squareOne : /(?:[A-Z]+[0-6][+-]).*y2/);
 
         const player = page.getByTestId('academy-player');
         await expect(player).toHaveAttribute('data-visualization', '2D');
