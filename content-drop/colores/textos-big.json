@@ -1,0 +1,20 @@
+{
+  "es": {
+    "fromColorsBigIntro": "Este asistente es para la etapa final de los cubos grandes: primero arma los centros y agrupa las aristas, y después pinta tu cubo. La app detecta las paridades (solo en 4×4 y 6×6) y te da la solución como si fuera un 3×3.",
+    "fromColorsBigCenters": "Los centros todavía no están armados: cada cara debe tener todo su centro de un solo color. Termínalos y vuelve a pintar.",
+    "fromColorsBigEdges": "Hay aristas sin agrupar: las piezas del medio de cada borde deben tener los mismos colores. Agrúpalas y vuelve a pintar.",
+    "fromColorsBigOll": "Paridad OLL: tu cubo tiene una arista volteada que un 3×3 no puede tener. Sostenlo tal como lo pintaste y haz este algoritmo, que voltea la arista de arriba al frente.",
+    "fromColorsBigPll": "Paridad PLL: tu cubo tiene dos aristas intercambiadas que un 3×3 no puede tener. Sostenlo como quedó y haz este algoritmo, que intercambia las aristas de arriba al frente y de arriba atrás.",
+    "fromColorsBigThen": "Después, resuélvelo como un 3×3 girando solo las capas exteriores.",
+    "fromColorsBigNotation": "2R = solo la segunda capa desde la derecha. 2-3Rw = la segunda y la tercera capa juntas. 3Rw = las tres capas de la derecha juntas. Uw = las dos capas de arriba juntas."
+  },
+  "en": {
+    "fromColorsBigIntro": "This assistant is for the last stage of big cubes: first build the centers and group the edges, then paint your cube. The app finds the parities (only on 4×4 and 6×6) and gives you the solution as if it were a 3×3.",
+    "fromColorsBigCenters": "The centers are not built yet: each face needs its whole center in one color. Finish them and paint again.",
+    "fromColorsBigEdges": "Some edges are not grouped: the middle pieces of each border must have the same colors. Group them and paint again.",
+    "fromColorsBigOll": "OLL parity: your cube has a flipped edge that a 3×3 cannot have. Hold it as you painted it and do this algorithm, which flips the upper front edge.",
+    "fromColorsBigPll": "PLL parity: your cube has two swapped edges that a 3×3 cannot have. Hold it as it is and do this algorithm, which swaps the upper front and upper back edges.",
+    "fromColorsBigThen": "Then solve it as a 3×3, turning only the outer layers.",
+    "fromColorsBigNotation": "2R = only the second layer from the right. 2-3Rw = the second and third layers together. 3Rw = the three right layers together. Uw = the two upper layers together."
+  }
+}

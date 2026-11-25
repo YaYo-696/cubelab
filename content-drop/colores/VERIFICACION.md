@@ -89,11 +89,24 @@ Núcleo: `src/core/fromColors/readColors.ts`. Puzzles: 3x3, 2x2, Pyraminx y Skew
   40 posiciones pintadas con rotaciones al azar: resueltas; mediana 158 movimientos, ~160 ms cada una.
   `tests/unit/from-colors-minx.test.ts`: 3 pruebas.
 
+## Cubos grandes reducidos 4x4–7x7 (15-H): `src/core/fromColors/readColorsBig.ts`
+- Generaliza el 4x4: lectura por cuadrícula N×N de la red de cubing.js (polígonos; los centros fijos de 5x5 y 7x7
+  tienen 4 copias superpuestas, se pintan juntas). Reducción: centro (N−2)×(N−2) de un color y las N−2 piezas del
+  medio de cada borde iguales. Se lee como 3x3 (fila/columna 0 → 0, 1…N−2 → 1, N−1 → 2).
+- Pares (4x4, 6x6): paridad OLL/PLL como en el 4x4. Algoritmos 6x6 (puros, comprobados: solo cambian las aristas UF/UB):
+  OLL `2-3Rw2 B2 U2 2-3Lw U2 2-3Rw' U2 2-3Rw U2 F2 2-3Rw F2 2-3Lw' B2 2-3Rw2`; PLL `3Uw2 3Rw2 U2 2-3Rw2 U2 3Rw2 3Uw2`.
+- Impares (5x5, 7x7): un cubo impar reducido es un 3x3 real; un volteo o intercambio imposible es error de pintado.
+- `_simuladores/colores/grandes.ts`: 60 posiciones reducidas por tamaño (con giros de bloque interno, paridades y
+  rotaciones): 240/240 con la paridad detectada = aplicada y reconstrucción exacta; 80/80 sin reducir rechazadas;
+  en 4x4 el resultado es idéntico al de `readColors444.ts`. `tests/unit/from-colors-big.test.ts`: 6 pruebas.
+- Cuando la interfaz use este módulo para 4x4, `readColors444.ts` (y su prueba, textos y script) se pueden retirar.
+
 ## Cómo volver a correrlo (desde la raíz del repo)
 ```
 node --experimental-strip-types content-drop/_simuladores/colores/reconstruccion.ts
 node --experimental-strip-types content-drop/_simuladores/colores/legalidad.ts
 node --experimental-strip-types content-drop/_simuladores/colores/clock.ts
 node --experimental-strip-types content-drop/_simuladores/colores/cuatro.ts
+node --experimental-strip-types content-drop/_simuladores/colores/grandes.ts
 node content-drop/_simuladores/colores/skewb-grupo.mjs   (≈40 s, 4 GB: --max-old-space-size=4096)
 ```
