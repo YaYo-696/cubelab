@@ -12,6 +12,7 @@ export type PlayerProps = {
     still?: boolean;
     flatOnly?: boolean;
     timerPreview?: boolean;
+    canonicalFrame?: boolean;
     t: T;
 };
 const Duo = lazy(() => import('./DuoPlayer').then((m) => ({ default: m.DuoPlayer })));
@@ -31,6 +32,7 @@ function Twisty({
     still = false,
     flatOnly = false,
     timerPreview = false,
+    canonicalFrame = false,
     t,
 }: PlayerProps & { puzzle: PlayerPuzzle }) {
     const target = useRef<HTMLDivElement>(null);
@@ -45,7 +47,7 @@ function Twisty({
             puzzle,
             alg: puzzle === 'clock' ? clockPlayerAlg(alg) : alg,
             experimentalSetupAlg: puzzle === 'clock' ? clockPlayerAlg(setup)
-                : !timerPreview && (puzzle === '2x2x2' || puzzle === '3x3x3')
+                : !canonicalFrame && !timerPreview && (puzzle === '2x2x2' || puzzle === '3x3x3')
                     ? ('z2 ' + setup).trim() : setup,
             controlPanel: 'none' as const,
             background: 'none' as const,
@@ -83,7 +85,7 @@ function Twisty({
             comparison?.remove();
             player.current = undefined;
         };
-    }, [puzzle, setup, alg, autoplay, flatOnly, still, timerPreview]);
+    }, [puzzle, setup, alg, autoplay, flatOnly, still, timerPreview, canonicalFrame]);
     async function step(direction: number) {
         const node = player.current;
         if (!node) return;

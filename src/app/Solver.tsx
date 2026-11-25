@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import Dexie from 'dexie';
 import type { PuzzleModule, SearchResult } from '../core/contracts';
+import type { ColorPuzzle, ColorReading } from '../core/fromColors/readColors';
 import type { SolveProgress } from '../core/solver/options';
 import { db } from '../core/storage/db';
 import { events, puzzleFor, registry, visiblePuzzle } from '../puzzles/registry';
@@ -11,8 +12,14 @@ import './academy.css';
 import './solver.css';
 
 const Player = lazy(() => import('./AcademyPlayer').then((m) => ({ default: m.AcademyPlayer })));
+const ColorEditor = lazy(() => import('./ColorEditor').then((m) => ({ default: m.ColorEditor })));
+const editablePuzzles = { '333': true, '222': true, pyram: true, skewb: true } satisfies Record<ColorPuzzle, true>;
+function supportsColors(puzzle: PuzzleId): puzzle is ColorPuzzle {
+    return Object.hasOwn(editablePuzzles, puzzle);
+}
 type T = (key: string, params?: Record<string, string | number>) => string;
 type Solved = Extract<SearchResult, { status: 'solved' }>;
+type ColorInput = Extract<ColorReading, { ok: true }>;
 
 async function latest(puzzle: PuzzleId) {
     const modalities = events.filter(
@@ -44,6 +51,8 @@ export function SolverView({
     const [loadingHistory, setLoadingHistory] = useState(Boolean(solveId));
     const [method, setMethod] = useState('shortest');
     const [input, setInput] = useState('');
+    const [inputMode, setInputMode] = useState('scramble');
+    const [colorInput, setColorInput] = useState<ColorInput>();
     const [neutral, setNeutral] = useState(false);
     const [last, setLast] = useState<string>();
     const timer = useApp((state) => state.timerMix);
@@ -129,7 +138,7 @@ export function SolverView({
         setInput(value);
     }
 
-    async function run() {
+    async function run(raw = input) {
         if (loadingHistory || status === 'solveRunning') return;
         const shortest = mod?.solvers?.shortestKnown;
         const solver = method === 'shortest' ? shortest : mod?.solvers?.byMethod?.[method];
@@ -137,7 +146,7 @@ export function SolverView({
         reset();
         let scramble: string;
         try {
-            scramble = input.trim() ? mod.notation.normalize(input) : '';
+            scramble = raw.trim() ? mod.notation.normalize(raw) : '';
         } catch (error) {
             if (error instanceof NotationError) setPosition(error.offset + 1);
             setStatus('solveNotation');
@@ -197,6 +206,15 @@ export function SolverView({
         return t(key, parameters);
     }
     const stage = result?.stages[stageIndex];
+    const colorMode = inputMode === 'colors' && supportsColors(cube);
+    const cancel = status === 'solveRunning' && (
+        <button type="button" onClick={() => {
+            reset();
+            setStatus('solveStatus_cancelled');
+        }}>
+            {t('solveCancel')}
+        </button>
+    );
     const setup =
         result &&
         [verifiedInput, ...result.stages.slice(0, stageIndex).map((item) => item.alg)]
@@ -213,6 +231,8 @@ export function SolverView({
                             reset();
                             setMethod('shortest');
                             setLast(undefined);
+                            setInputMode('scramble');
+                            setColorInput(undefined);
                             setCube(e.target.value as PuzzleId);
                         }}
                     >
@@ -253,46 +273,87 @@ export function SolverView({
                 )}
             </div>
             {unavailable && <p role="status">{t('solveUnavailable', { puzzle: t(cube) })}</p>}
-            <div className="solver-controls">
-                <button type="button" disabled={!last} onClick={() => replaceInput(last ?? '')}>
-                    {t('solveSourceLast')}
-                </button>
-                <button type="button" disabled={!current} onClick={() => replaceInput(current ?? '')}>
-                    {t('solveSourceCurrent')}
-                </button>
-            </div>
-            <form
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    void run();
-                }}
-            >
-                <label>
-                    {t('scramble')}{' '}
-                    <textarea
-                        value={input}
-                        onChange={(e) => replaceInput(e.target.value)}
-                        aria-invalid={status === 'solveNotation'}
-                        rows={3}
-                    />
+            {supportsColors(cube) && (
+                <label className="solver-controls">
+                    {t('fromColorsMode')}
+                    <select value={inputMode} disabled={loadingHistory} onChange={(e) => {
+                        reset();
+                        setColorInput(undefined);
+                        setInputMode(e.target.value);
+                    }}>
+                        <option value="scramble">{t('fromColorsModeScramble')}</option>
+                        <option value="colors">{t('fromColorsModeColors')}</option>
+                    </select>
                 </label>
-                <div className="solver-controls">
-                    <button disabled={!mod || unavailable || loadingHistory || status === 'solveRunning'}>
-                        {t('solveStart')}
-                    </button>
-                    {status === 'solveRunning' && (
-                        <button
-                            type="button"
-                            onClick={() => {
-                                reset();
-                                setStatus('solveStatus_cancelled');
+            )}
+            {colorMode ? (
+                <>
+                    <Suspense fallback={<p role="status">{t('aLoading')}</p>}>
+                        <ColorEditor
+                            key={cube}
+                            puzzle={cube}
+                            disabled={!mod || unavailable || loadingHistory || status === 'solveRunning'}
+                            onEdit={() => {
+                                if (colorInput) {
+                                    setColorInput(undefined);
+                                    reset();
+                                }
                             }}
-                        >
-                            {t('solveCancel')}
-                        </button>
+                            onRead={(reading) => {
+                                setColorInput(reading);
+                                void run(reading.scramble);
+                            }}
+                            t={t}
+                        />
+                    </Suspense>
+                    {cancel}
+                    <label>
+                        {t('fromColorsEquivalent')}{' '}
+                        <textarea readOnly rows={3} value={colorInput?.scramble ?? ''} />
+                    </label>
+                    {colorInput && (
+                        <div aria-live="polite">
+                            <p data-testid="from-colors-hold">{t(colorInput.holdKey)}</p>
+                            {colorInput.rotation && (
+                                <p data-testid="from-colors-rotation">
+                                    {t('fromColorsRotate', { rotation: colorInput.rotation })}
+                                </p>
+                            )}
+                        </div>
                     )}
-                </div>
-            </form>
+                </>
+            ) : (
+                <>
+                    <div className="solver-controls">
+                        <button type="button" disabled={!last} onClick={() => replaceInput(last ?? '')}>
+                            {t('solveSourceLast')}
+                        </button>
+                        <button type="button" disabled={!current} onClick={() => replaceInput(current ?? '')}>
+                            {t('solveSourceCurrent')}
+                        </button>
+                    </div>
+                    <form onSubmit={(e) => {
+                        e.preventDefault();
+                        void run();
+                    }}>
+                        <label>
+                            {t('scramble')}{' '}
+                            <textarea
+                                value={input}
+                                onChange={(e) => replaceInput(e.target.value)}
+                                aria-invalid={status === 'solveNotation'}
+                                rows={3}
+                            />
+                        </label>
+                        <div className="solver-controls">
+                            <button disabled={!mod || unavailable || loadingHistory || status === 'solveRunning'}>
+                                {t('solveStart')}
+                            </button>
+                            {cancel}
+                        </div>
+                    </form>
+                </>
+            )}
             {status && <p role="status">{t(status, { position: position ?? 1 })}</p>}
             {progress && <p aria-live="polite">{t(progress.key, { value: progress.value })}</p>}
             {result && stage && setup !== undefined && (
@@ -345,6 +406,7 @@ export function SolverView({
                                 setup={setup}
                                 alg={practicing ? '' : stage.alg}
                                 still={practicing}
+                                canonicalFrame={colorMode}
                                 t={t}
                             />
                         </Suspense>
