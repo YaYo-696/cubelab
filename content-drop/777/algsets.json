@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "sets": [
+    {
+      "id": "777-edge-parity",
+      "name": {
+        "es": "7x7 · Paridad de aristas",
+        "en": "7x7 · Edge parity"
+      },
+      "stage": "edge-parity",
+      "cases": [
+        {
+          "id": "777-ep-1",
+          "name": {
+            "es": "Alas exteriores cruzadas",
+            "en": "Outer wings crossed"
+          },
+          "group": "Paridad / Parity",
+          "setup": "2R2 B2 2L F2 2R' F2 U2 2R' U2 2R U2 2L' U2 B2 2R2",
+          "algs": [
+            "2R2 B2 U2 2L U2 2R' U2 2R U2 F2 2R F2 2L' B2 2R2"
+          ],
+          "source": "generated:paridad OLL pura de 4x4 (https://kewbz.co.uk/blogs/solutions/4x4-parity-algorithms-oll-pll-algs-how-to-solve-a-4x4-rubiks-cube) con la capa interior cambiada por la órbita indicada; verificada en cubing.js"
+        },
+        {
+          "id": "777-ep-2",
+          "name": {
+            "es": "Alas interiores cruzadas",
+            "en": "Inner wings crossed"
+          },
+          "group": "Paridad / Parity",
+          "setup": "3R2 B2 3L F2 3R' F2 U2 3R' U2 3R U2 3L' U2 B2 3R2",
+          "algs": [
+            "3R2 B2 U2 3L U2 3R' U2 3R U2 F2 3R F2 3L' B2 3R2"
+          ],
+          "source": "generated:paridad OLL pura de 4x4 (https://kewbz.co.uk/blogs/solutions/4x4-parity-algorithms-oll-pll-algs-how-to-solve-a-4x4-rubiks-cube) con la capa interior cambiada por la órbita indicada; verificada en cubing.js"
+        },
+        {
+          "id": "777-ep-3",
+          "name": {
+            "es": "Las dos órbitas cruzadas",
+            "en": "Both orbits crossed"
+          },
+          "group": "Paridad / Parity",
+          "setup": "2-3Rw2 B2 2-3Lw F2 2-3Rw' F2 U2 2-3Rw' U2 2-3Rw U2 2-3Lw' U2 B2 2-3Rw2",
+          "algs": [
+            "2-3Rw2 B2 U2 2-3Lw U2 2-3Rw' U2 2-3Rw U2 F2 2-3Rw F2 2-3Lw' B2 2-3Rw2"
+          ],
+          "source": "generated:paridad OLL pura de 4x4 (https://kewbz.co.uk/blogs/solutions/4x4-parity-algorithms-oll-pll-algs-how-to-solve-a-4x4-rubiks-cube) con la capa interior cambiada por la órbita indicada; verificada en cubing.js"
+        }
+      ]
+    }
+  ]
+}

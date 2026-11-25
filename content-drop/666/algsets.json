@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "sets": [
+    {
+      "id": "666-oll-parity",
+      "name": {
+        "es": "6x6 · Paridad OLL",
+        "en": "6x6 · OLL parity"
+      },
+      "stage": "oll-parity",
+      "cases": [
+        {
+          "id": "666-oll-1",
+          "name": {
+            "es": "Arista volteada (pura)",
+            "en": "Flipped edge (pure)"
+          },
+          "group": "Paridad OLL / OLL parity",
+          "setup": "2-3Rw2 B2 2-3Lw F2 2-3Rw' F2 U2 2-3Rw' U2 2-3Rw U2 2-3Lw' U2 B2 2-3Rw2",
+          "algs": [
+            "2-3Rw2 B2 U2 2-3Lw U2 2-3Rw' U2 2-3Rw U2 F2 2-3Rw F2 2-3Lw' B2 2-3Rw2"
+          ],
+          "source": "generated:paridad OLL pura de 4x4 (https://kewbz.co.uk/blogs/solutions/4x4-parity-algorithms-oll-pll-algs-how-to-solve-a-4x4-rubiks-cube) con la capa interior cambiada por la órbita indicada; verificada en cubing.js"
+        }
+      ]
+    },
+    {
+      "id": "666-pll-parity",
+      "name": {
+        "es": "6x6 · Paridad PLL",
+        "en": "6x6 · PLL parity"
+      },
+      "stage": "pll-parity",
+      "cases": [
+        {
+          "id": "666-pll-1",
+          "name": {
+            "es": "Aristas opuestas",
+            "en": "Opposite edges"
+          },
+          "group": "Aristas / Edges",
+          "setup": "3Uw2 3Rw2 U2 2-3Rw2 U2 3Rw2 3Uw2",
+          "algs": [
+            "3Uw2 3Rw2 U2 2-3Rw2 U2 3Rw2 3Uw2"
+          ],
+          "source": "generated:paridad PLL de 4x4 Uw2 Rw2 U2 2R2 U2 Rw2 Uw2 llevada a las capas 2 y 3; verificada en cubing.js"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "version": 1,
+  "lessons": [
+    {
+      "id": "666-notation",
+      "title": {
+        "es": "Notación del 6x6",
+        "en": "6x6 notation"
+      },
+      "objective": {
+        "es": "Leer giros de varias capas.",
+        "en": "Read multi-layer turns."
+      },
+      "body": {
+        "es": "Las caras son las del 3x3: **R L U D F B**, con ', 2 o nada.\n\n- **Rw** gira las 2 capas de la derecha juntas y **3Rw** las 3 de la derecha.\n- **2R** gira solo la segunda capa y **3R** solo la tercera.\n- **2-3Rw** gira la segunda y la tercera capa juntas, sin la exterior.\n- **x, y, z** giran el cubo completo.\n\nLos algoritmos de esta academia ya están en la notación de la app.",
+        "en": "Faces are the same as on the 3x3: **R L U D F B**, with ', 2 or nothing.\n\n- **Rw** turns the 2 right layers together and **3Rw** the 3 right layers.\n- **2R** turns only the second layer and **3R** only the third.\n- **2-3Rw** turns the second and third layers together, without the outer one.\n- **x, y, z** turn the whole cube.\n\nThe algorithms in this academy are already in the app's notation."
+      },
+      "algSetRefs": [],
+      "demos": [
+        {
+          "setup": "",
+          "alg": "3Rw"
+        },
+        {
+          "setup": "",
+          "alg": "2-3Rw"
+        },
+        {
+          "setup": "",
+          "alg": "3R"
+        }
+      ],
+      "prerequisites": []
+    },
+    {
+      "id": "666-centers",
+      "title": {
+        "es": "Centros",
+        "en": "Centers"
+      },
+      "objective": {
+        "es": "Formar los 6 centros de 4x4.",
+        "en": "Build the 6 4x4 centers."
+      },
+      "body": {
+        "es": "Cada cara tiene un centro de 16 piezas y, como en el 4x4, **no hay pieza fija** que diga el color de la cara.\n\n1. Arma el primer centro y luego el **opuesto**, formando barras de 4 y juntándolas con capas interiores (2R, 3R).\n2. Arma los 4 restantes respetando el orden de colores del 3x3 (con blanco arriba y verde al frente, el rojo va a la derecha). Si te equivocas aquí, el cubo no se puede terminar como un 3x3.\n\nTruco: arma barras de 1x4 y une dos barras para formar 2x4; dos de esas completan el centro.",
+        "en": "Each face has a 16-piece center and, as on the 4x4, **there is no fixed piece** telling the face color.\n\n1. Build the first center and then the **opposite** one, making bars of 4 and joining them with inner layers (2R, 3R).\n2. Build the remaining 4 following the 3x3 color order (with white on top and green in front, red goes on the right). If you get this wrong, the cube cannot be finished like a 3x3.\n\nTip: build 1x4 bars and join two of them into a 2x4; two of those complete the center."
+      },
+      "algSetRefs": [],
+      "demos": [],
+      "prerequisites": [
+        "666-notation"
+      ]
+    },
+    {
+      "id": "666-edges",
+      "title": {
+        "es": "Agrupar aristas",
+        "en": "Group the edges"
+      },
+      "objective": {
+        "es": "Juntar las 4 alas de cada arista.",
+        "en": "Join the 4 wings of each edge."
+      },
+      "body": {
+        "es": "Cada arista del 6x6 son **4 alas**: dos exteriores (pegadas a las esquinas) y dos interiores.\n\n1. Agrupa primero de a pares (dos alas iguales a la misma altura en FL y FR, unidas con **Uw/Dw** o **3Uw/3Dw**, guardadas arriba y deshaciendo el giro). Luego junta los pares.\n2. Repite hasta tener 10 aristas completas.\n3. **Últimas 2 aristas:** déjalas en FL y FR. **Dw R F' U R' F Dw'** intercambia un ala entre FL y FR (y voltea la arista de FR); **3Dw R F' U R' F 3Dw'** intercambia dos alas juntas sin voltear nada. Ninguno toca los centros (comprobado en el simulador).\n\nAl terminar, el 6x6 puede tener las mismas paridades que el 4x4: están en las lecciones de paridad.",
+        "en": "Each 6x6 edge is **4 wings**: two outer ones (next to the corners) and two inner ones.\n\n1. Group in pairs first (two matching wings at the same height in FL and FR, joined with **Uw/Dw** or **3Uw/3Dw**, stored on top and undoing the turn). Then join the pairs.\n2. Repeat until 10 edges are complete.\n3. **Last 2 edges:** leave them in FL and FR. **Dw R F' U R' F Dw'** swaps one wing between FL and FR (and flips the FR edge); **3Dw R F' U R' F 3Dw'** swaps two wings together without flipping anything. Neither touches the centers (checked in the simulator).\n\nWhen done, the 6x6 can have the same parities as the 4x4: see the parity lessons."
+      },
+      "algSetRefs": [],
+      "demos": [
+        {
+          "setup": "",
+          "alg": "Dw R F' U R' F Dw'"
+        }
+      ],
+      "prerequisites": [
+        "666-centers"
+      ]
+    },
+    {
+      "id": "666-3x3",
+      "title": {
+        "es": "Resolver como 3x3",
+        "en": "Solve like a 3x3"
+      },
+      "objective": {
+        "es": "Terminar con el método del 3x3.",
+        "en": "Finish with the 3x3 method."
+      },
+      "body": {
+        "es": "Con centros y aristas agrupados, el 6x6 se resuelve como un 3x3 usando **solo giros exteriores**. Usa lo de la Academia de 3x3.\n\nComo el 4x4, el 6x6 puede mostrar dos situaciones imposibles en un 3x3: **paridad OLL** (una arista volteada) y **paridad PLL** (dos aristas intercambiadas). Tienen sus lecciones a continuación.",
+        "en": "With centers and edges grouped, the 6x6 is solved like a 3x3 using **only outer turns**. Use the 3x3 Academy.\n\nLike the 4x4, the 6x6 can show two situations impossible on a 3x3: **OLL parity** (one flipped edge) and **PLL parity** (two swapped edges). They have their own lessons next."
+      },
+      "algSetRefs": [],
+      "demos": [],
+      "prerequisites": [
+        "666-edges"
+      ]
+    },
+    {
+      "id": "666-oll-parity",
+      "title": {
+        "es": "Paridad OLL",
+        "en": "OLL parity"
+      },
+      "objective": {
+        "es": "Arreglar una arista volteada imposible en 3x3.",
+        "en": "Fix an edge flip impossible on a 3x3."
+      },
+      "body": {
+        "es": "Si al orientar la última capa te queda un número **impar** de aristas volteadas, tienes paridad OLL.\n\nPon una arista volteada adelante (UF) y aplica **2-3Rw2 B2 U2 2-3Lw U2 2-3Rw' U2 2-3Rw U2 F2 2-3Rw F2 2-3Lw' B2 2-3Rw2**. Es la paridad OLL pura del 4x4 con las capas 2 y 3 juntas. Comprobado en el simulador: voltea solo la arista UF.",
+        "en": "If after orienting the last layer you have an **odd** number of flipped edges, you have OLL parity.\n\nPut a flipped edge at the front (UF) and apply **2-3Rw2 B2 U2 2-3Lw U2 2-3Rw' U2 2-3Rw U2 F2 2-3Rw F2 2-3Lw' B2 2-3Rw2**. It is the pure 4x4 OLL parity with layers 2 and 3 together. Checked in the simulator: it flips only the UF edge."
+      },
+      "algSetRefs": [
+        "666-oll-parity"
+      ],
+      "demos": [
+        {
+          "setup": "2-3Rw2 B2 2-3Lw F2 2-3Rw' F2 U2 2-3Rw' U2 2-3Rw U2 2-3Lw' U2 B2 2-3Rw2",
+          "alg": "2-3Rw2 B2 U2 2-3Lw U2 2-3Rw' U2 2-3Rw U2 F2 2-3Rw F2 2-3Lw' B2 2-3Rw2"
+        }
+      ],
+      "prerequisites": [
+        "666-3x3"
+      ]
+    },
+    {
+      "id": "666-pll-parity",
+      "title": {
+        "es": "Paridad PLL",
+        "en": "PLL parity"
+      },
+      "objective": {
+        "es": "Arreglar dos aristas intercambiadas.",
+        "en": "Fix two swapped edges."
+      },
+      "body": {
+        "es": "Si en la última capa ves dos aristas intercambiadas que un 3x3 no podría tener, tienes paridad PLL.\n\nAplica **3Uw2 3Rw2 U2 2-3Rw2 U2 3Rw2 3Uw2**: intercambia las aristas de adelante y atrás (UF y UB) y no toca nada más (comprobado en el simulador). Después, lo que quede es una PLL normal de 3x3.",
+        "en": "If the last layer shows two swapped edges that a 3x3 could not have, you have PLL parity.\n\nApply **3Uw2 3Rw2 U2 2-3Rw2 U2 3Rw2 3Uw2**: it swaps the front and back edges (UF and UB) and touches nothing else (checked in the simulator). What remains is a normal 3x3 PLL."
+      },
+      "algSetRefs": [
+        "666-pll-parity"
+      ],
+      "demos": [
+        {
+          "setup": "3Uw2 3Rw2 U2 2-3Rw2 U2 3Rw2 3Uw2",
+          "alg": "3Uw2 3Rw2 U2 2-3Rw2 U2 3Rw2 3Uw2"
+        }
+      ],
+      "prerequisites": [
+        "666-oll-parity"
+      ]
+    },
+    {
+      "id": "666-plan",
+      "title": {
+        "es": "Plan de práctica",
+        "en": "Practice plan"
+      },
+      "objective": {
+        "es": "Bajar tiempos en 6x6.",
+        "en": "Lower your 6x6 times."
+      },
+      "body": {
+        "es": "1. Termina el 6x6 completo con reducción, aunque sea lento.\n2. **Centros:** son más de la mitad del tiempo; practica barras de 4 sin pausas.\n3. **Aristas:** agrupa de a pares y luego une los pares.\n4. Aprende las dos paridades antes que cualquier otra técnica.\n5. Mide con Mo3 en el Timer, que es el formato oficial del 6x6.",
+        "en": "1. Finish the whole 6x6 with reduction, even if slowly.\n2. **Centers:** they are more than half the time; practice bars of 4 without pauses.\n3. **Edges:** group in pairs and then join the pairs.\n4. Learn both parities before any other technique.\n5. Time with Mo3 in the Timer, the official 6x6 format."
+      },
+      "algSetRefs": [],
+      "demos": [],
+      "prerequisites": [
+        "666-pll-parity"
+      ]
+    }
+  ]
+}

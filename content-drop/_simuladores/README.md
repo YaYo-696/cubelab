@@ -14,6 +14,7 @@ reconstruir nada. Algunos tienen rutas absolutas del chat anterior (`/home/claud
 | `pyra/pyra.py` | Pyraminx geométrico | L3E/L4E. Probado contra 48 permutaciones de convención |
 | `skewb/skewb.py` | Skewb, notación WCA 12h | esquinas R=DBR, U=UBL, L=DFL, B=DBL; sentido horario visto desde afuera |
 | `minx/minx.py` | Megaminx, 132 adhesivos | nombres de cara de cubing.js (U; F,R,BR,BL,L; FR,DR,B,DL,FL; D) |
+| `big/lessons.ts` | cubing.js real (Node) | drops de 5x5, 6x6 y 7x7: casos, demos, notación y efecto de cada algoritmo. Correr desde la raíz del repo |
 | `big/nxn.py` | NxN | `Rw`, `2R`, `3Rw`. En la app `r` = `Rw`; las fuentes que usan `r` = capa interna se traducen a `2R` |
 | `clock/clk.py` | Clock | a partir de la definición kpuzzle de clock de cubing.js |
 | `sq1/sq1.py` | Square-1 | copia exacta del modelo de `src/puzzles/sideEvents/square1.ts` |

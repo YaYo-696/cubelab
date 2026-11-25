@@ -1,4 +1,4 @@
-# CubeLab · Traspaso de contexto (25-11-2026, 00:40)
+# CubeLab · Traspaso de contexto (25-11-2026, 01:00)
 
 ## 1. Qué es
 PWA de speedcubing: timer, estadísticas, academia (lecciones y casos), solucionador, entrenador y modo competencia.
@@ -77,7 +77,9 @@ CONTEXTO DE TRABAJO: Claude y tú trabajan en paralelo sobre este repo, los dos 
 
 ## 5. Pendientes
 1. **Conversar funcionalidades nuevas** con Carlos (las de esta lista y las que él quiere agregar) antes de la auditoría.
-2. **Lecciones que faltan (pedir ok a Carlos antes):** 5x5, 6x6, 7x7, 3BLD/4BLD/5BLD/MBLD, FMC, OH. Tienen timer, no academia.
+2. **Lecciones (ok de Carlos, 25-11):** drops de **5x5, 6x6 y 7x7 hechos** (`content-drop/555|666|777`, verificados con
+   `_simuladores/big/lessons.ts`). Falta que Codex generalice el importador de cubos grandes (hoy solo carga 444).
+   Pendientes: 3BLD/4BLD/5BLD/MBLD, FMC, OH (hay que decidir dónde viven: son modalidades, no puzzles).
 3. **Fases siguientes:** smart cubes y Stackmat → app APK/escritorio. Puzzles personalizados: después del lanzamiento.
 4. **`PRE-LANZAMIENTO` (se revisa al final de todo):**
    - `UNLOCK_ALL = false` y `SHOW_UNOFFICIAL = false` (buscar todas las `DEV-FLAG`).

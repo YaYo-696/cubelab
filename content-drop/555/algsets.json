@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "sets": [
+    {
+      "id": "555-edge-parity",
+      "name": {
+        "es": "5x5 · Paridad de aristas",
+        "en": "5x5 · Edge parity"
+      },
+      "stage": "edge-parity",
+      "cases": [
+        {
+          "id": "555-ep-1",
+          "name": {
+            "es": "Alas volteadas en una arista",
+            "en": "Flipped wings on one edge"
+          },
+          "group": "Paridad / Parity",
+          "setup": "2R2 B2 2L F2 2R' F2 U2 2R' U2 2R U2 2L' U2 B2 2R2",
+          "algs": [
+            "2R2 B2 U2 2L U2 2R' U2 2R U2 F2 2R F2 2L' B2 2R2"
+          ],
+          "source": "generated:paridad OLL pura de 4x4 (https://kewbz.co.uk/blogs/solutions/4x4-parity-algorithms-oll-pll-algs-how-to-solve-a-4x4-rubiks-cube) con la capa interior cambiada por la órbita indicada; verificada en cubing.js"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "version": 1,
+  "lessons": [
+    {
+      "id": "555-notation",
+      "title": {
+        "es": "Notación del 5x5",
+        "en": "5x5 notation"
+      },
+      "objective": {
+        "es": "Leer giros exteriores, dobles e interiores.",
+        "en": "Read outer, wide and inner turns."
+      },
+      "body": {
+        "es": "Las caras son las del 3x3: **R L U D F B**, con ', 2 o nada.\n\n- **Rw** gira las 2 capas de la derecha juntas y **3Rw** las 3 de la derecha. En esta app, **r** significa lo mismo que **Rw**.\n- **2R** gira solo la segunda capa desde la derecha y **3R** la capa del medio (en el 5x5 también se escribe **M'**).\n- **x, y, z** giran el cubo completo.\n\n**Ojo con otros tutoriales:** muchos escriben **r** para la segunda capa sola (aquí **2R**). Los algoritmos de esta academia ya están en la notación de la app.",
+        "en": "Faces are the same as on the 3x3: **R L U D F B**, with ', 2 or nothing.\n\n- **Rw** turns the 2 right layers together and **3Rw** the 3 right layers. In this app, **r** means the same as **Rw**.\n- **2R** turns only the second layer from the right and **3R** the middle layer (on the 5x5 also written **M'**).\n- **x, y, z** turn the whole cube.\n\n**Watch out for other tutorials:** many write **r** for the second layer alone (here **2R**). The algorithms in this academy are already in the app's notation."
+      },
+      "algSetRefs": [],
+      "demos": [
+        {
+          "setup": "",
+          "alg": "Rw"
+        },
+        {
+          "setup": "",
+          "alg": "2R"
+        },
+        {
+          "setup": "",
+          "alg": "3R"
+        }
+      ],
+      "prerequisites": []
+    },
+    {
+      "id": "555-centers",
+      "title": {
+        "es": "Centros",
+        "en": "Centers"
+      },
+      "objective": {
+        "es": "Formar los 6 centros de 3x3.",
+        "en": "Build the 6 3x3 centers."
+      },
+      "body": {
+        "es": "Cada cara tiene un centro de 9 piezas. La del medio no se mueve con los giros de capa, así que **ya te dice el color de esa cara**: en el 5x5 no te puedes equivocar en el orden de los centros.\n\n1. Arma el primer centro (por ejemplo blanco) formando **barras de 3** y juntándolas con giros de capa interior (2R, 3R) y giros de cara.\n2. Arma el centro opuesto (amarillo) sin romper el primero: usa solo giros de cara y capas interiores que no lo toquen, o devuelve cada giro.\n3. Arma los 4 restantes de a uno, dejando el último par para el final.\n\nTruco: busca primero las piezas que ya forman una barra; mover una barra entera es más rápido que mover piezas sueltas.",
+        "en": "Each face has a 9-piece center. The middle piece never moves with layer turns, so **it already tells you that face's color**: on the 5x5 you cannot get the center order wrong.\n\n1. Build the first center (for example white) by making **bars of 3** and joining them with inner-layer turns (2R, 3R) and face turns.\n2. Build the opposite center (yellow) without breaking the first one: use only face turns and inner layers that don't touch it, or undo each turn.\n3. Build the remaining 4 one at a time, leaving the last pair for the end.\n\nTip: look first for pieces that already form a bar; moving a whole bar is faster than moving loose pieces."
+      },
+      "algSetRefs": [],
+      "demos": [],
+      "prerequisites": [
+        "555-notation"
+      ]
+    },
+    {
+      "id": "555-edges",
+      "title": {
+        "es": "Agrupar aristas",
+        "en": "Group the edges"
+      },
+      "objective": {
+        "es": "Juntar cada arista central con sus dos alas.",
+        "en": "Join each middle edge with its two wings."
+      },
+      "body": {
+        "es": "Cada arista del 5x5 son 3 piezas: una **central** y dos **alas** de los mismos colores.\n\n1. Con los centros armados, pon la central de una arista en FR y busca sus alas. Llévalas a la misma altura en FL con giros de cara, únelas con **Uw** o **Dw**, guarda la arista nueva arriba con un giro de cara y deshaz el Uw/Dw. Así los centros se reparan solos.\n2. Repite hasta tener 10 aristas agrupadas.\n3. **Últimas 2 aristas:** deja las dos aristas sueltas en FL y FR y usa **Dw R F' U R' F Dw'**. Comprobado en el simulador: intercambia un ala entre FL y FR y **no toca ningún centro**. La arista de FR queda volteada, así que el ala que entra cambia de altura. Repítelo, reacomodando con U y giros de cara, hasta que ambas queden agrupadas.\n\nSi al final te queda una arista con sus dos alas **al revés** (la central bien, las alas cruzadas), tienes la paridad de aristas: está en la lección siguiente.",
+        "en": "Each 5x5 edge is 3 pieces: a **middle** piece and two **wings** of the same colors.\n\n1. With the centers done, put an edge's middle piece in FR and find its wings. Bring them to the same height in FL with face turns, join them with **Uw** or **Dw**, store the new edge on top with a face turn and undo the Uw/Dw. The centers fix themselves this way.\n2. Repeat until 10 edges are grouped.\n3. **Last 2 edges:** leave the two loose edges in FL and FR and use **Dw R F' U R' F Dw'**. Checked in the simulator: it swaps one wing between FL and FR and **touches no center**. The FR edge ends up flipped, so the incoming wing changes height. Repeat it, rearranging with U and face turns, until both are grouped.\n\nIf you end with one edge whose two wings are **swapped** (middle piece fine, wings crossed), that is edge parity: see the next lesson."
+      },
+      "algSetRefs": [],
+      "demos": [
+        {
+          "setup": "",
+          "alg": "Dw R F' U R' F Dw'"
+        }
+      ],
+      "prerequisites": [
+        "555-centers"
+      ]
+    },
+    {
+      "id": "555-edge-parity",
+      "title": {
+        "es": "Paridad de aristas",
+        "en": "Edge parity"
+      },
+      "objective": {
+        "es": "Arreglar la última arista con las alas cruzadas.",
+        "en": "Fix the last edge with crossed wings."
+      },
+      "body": {
+        "es": "A veces las dos últimas aristas no se pueden agrupar: una queda con la central bien y las **dos alas cruzadas**. Es la paridad de aristas del 5x5.\n\nPon esa arista arriba al frente (UF) y aplica **2R2 B2 U2 2L U2 2R' U2 2R U2 F2 2R F2 2L' B2 2R2**. Comprobado en el simulador: intercambia solo las dos alas de UF y no toca nada más.\n\nEs la paridad OLL pura del 4x4 aplicada a la segunda capa. Está en el Entrenador.",
+        "en": "Sometimes the last two edges cannot be grouped: one ends with its middle piece right and its **two wings crossed**. That is the 5x5 edge parity.\n\nPut that edge at the upper front (UF) and apply **2R2 B2 U2 2L U2 2R' U2 2R U2 F2 2R F2 2L' B2 2R2**. Checked in the simulator: it swaps only the two wings of UF and touches nothing else.\n\nIt is the pure 4x4 OLL parity applied to the second layer. It is in the Trainer."
+      },
+      "algSetRefs": [
+        "555-edge-parity"
+      ],
+      "demos": [
+        {
+          "setup": "2R2 B2 2L F2 2R' F2 U2 2R' U2 2R U2 2L' U2 B2 2R2",
+          "alg": "2R2 B2 U2 2L U2 2R' U2 2R U2 F2 2R F2 2L' B2 2R2"
+        }
+      ],
+      "prerequisites": [
+        "555-edges"
+      ]
+    },
+    {
+      "id": "555-3x3",
+      "title": {
+        "es": "Resolver como 3x3",
+        "en": "Solve like a 3x3"
+      },
+      "objective": {
+        "es": "Terminar con el método del 3x3.",
+        "en": "Finish with the 3x3 method."
+      },
+      "body": {
+        "es": "Con centros y aristas agrupados, el 5x5 se resuelve como un 3x3 usando **solo giros exteriores** (R, U, F...). Usa lo que aprendiste en la Academia de 3x3: cruz, F2L, OLL y PLL.\n\nA diferencia del 4x4, **el 5x5 no tiene paridades en esta etapa**: las piezas centrales de los centros y de las aristas fijan todo como en un 3x3 de verdad. Si algo parece imposible, revisa los centros o una arista mal agrupada.",
+        "en": "With centers and edges grouped, the 5x5 is solved like a 3x3 using **only outer turns** (R, U, F...). Use what you learned in the 3x3 Academy: cross, F2L, OLL and PLL.\n\nUnlike the 4x4, **the 5x5 has no parities at this stage**: the middle pieces of centers and edges fix everything like a real 3x3. If something looks impossible, check the centers or a badly grouped edge."
+      },
+      "algSetRefs": [],
+      "demos": [],
+      "prerequisites": [
+        "555-edge-parity"
+      ]
+    },
+    {
+      "id": "555-plan",
+      "title": {
+        "es": "Plan de práctica",
+        "en": "Practice plan"
+      },
+      "objective": {
+        "es": "Bajar tiempos en 5x5.",
+        "en": "Lower your 5x5 times."
+      },
+      "body": {
+        "es": "1. Primero termina el 5x5 completo con reducción, aunque sea lento.\n2. **Centros:** es el paso más largo; practica armar barras de 3 sin pausas.\n3. **Aristas:** apunta a agrupar sin buscar demasiado entre una arista y la siguiente.\n4. Aprende las dos últimas aristas y la paridad de aristas antes que cualquier otra técnica.\n5. Mide con Ao5 en el Timer y compara la parte de 3x3 con tus tiempos de 3x3.",
+        "en": "1. First finish the whole 5x5 with reduction, even if slowly.\n2. **Centers:** it is the longest step; practice building bars of 3 without pauses.\n3. **Edges:** aim to group without long searches between one edge and the next.\n4. Learn the last two edges and edge parity before any other technique.\n5. Time with Ao5 in the Timer and compare the 3x3 part with your 3x3 times."
+      },
+      "algSetRefs": [],
+      "demos": [],
+      "prerequisites": [
+        "555-3x3"
+      ]
+    }
+  ]
+}
