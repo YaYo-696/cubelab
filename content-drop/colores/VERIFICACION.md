@@ -32,9 +32,58 @@ Núcleo: `src/core/fromColors/readColors.ts`. Puzzles: 3x3, 2x2, Pyraminx y Skew
 - `tests/unit/from-colors.test.ts`: 12 pruebas, pasan con un sustituto mínimo de Vitest en Node.
   Falta correrlas con el Vitest real y TypeScript del repo (diagnóstico).
 
+## Clock (15-C): `src/core/fromColors/readClock.ts`
+- Entrada: 9 esferas de adelante y 9 de atrás (horas 0–11; 12 se acepta como 0), por filas, vistas desde cada lado.
+  El reverso se lee dando vuelta el reloj de izquierda a derecha (y2). Cada esquina de atrás comparte engranaje
+  con la de adelante: deben sumar 12 (`clockCorner`). Las 12^14 combinaciones restantes son todas posibles.
+- Solución: sistema lineal módulo 12 sobre los 14 movimientos de una mezcla WCA (9 adelante, y2, 5 atrás),
+  resuelto por eliminación con pivotes invertibles (1, 5, 7, 11). Notación de `normalizeClock`.
+  Sin movimientos atrás, la solución no lleva y2. La mezcla equivalente empieza con y2 cuando hace falta, para
+  que el lado visible del reproductor sea el que se anotó como frente.
+- `_simuladores/colores/clock.ts`: 2.000 estados aleatorios resueltos (máx. 14 movimientos, 0,3 ms c/u) y
+  200 mezclas tipo WCA leídas y resueltas. `tests/unit/from-clock.test.ts`: 2 pruebas.
+
+## 4x4 reducido (15-E): `src/core/fromColors/readColors444.ts`
+- No hay solucionador 4x4 usable: el de cubing.js (threephase de Chen Shuang, GPL) solo expone mezclas, y el
+  buscador general twips no resolvió ni los centros en 5 min. Por eso se resuelve la **etapa final**: el usuario
+  reduce (centros armados, aristas emparejadas) y pinta los 96 adhesivos.
+- Se comprueba la reducción (4 centros iguales por cara, las dos piezas del medio de cada borde iguales), se lee
+  como 3x3 (fila/columna 0→0, 1–2→1, 3→2 en cada cara; ambas redes de cubing.js tienen la misma disposición) y se
+  usa `readColors('333')`: volteo imposible = paridad OLL; intercambio imposible = paridad PLL.
+- Algoritmos (puros, comprobados en cubing.js: solo cambian los adhesivos de esas aristas):
+  OLL `2R2 B2 U2 2L U2 2R' U2 2R U2 F2 2R F2 2L' B2 2R2` (voltea UF);
+  PLL `Uw2 Rw2 U2 2R2 U2 Rw2 Uw2` (intercambia UF y UB).
+  Nota: la versión "Rw U2 x Rw U2…" con capas dobles NO es pura en este modelo (también mueve esquinas y aristas U).
+- El efecto exacto de cada algoritmo se aplica sobre los colores con la transformación de cubing.js, y se vuelve a
+  leer el 3x3: la mezcla resultante es exacta aunque el algoritmo cambiara.
+- Lectura del 4x4 comprobada con R, 2R, Rw, U, F, x (colores físicamente correctos).
+- `_simuladores/colores/cuatro.ts`: 200 posiciones reducidas (con OLL, PLL, ambas o ninguna, y rotaciones al azar):
+  paridad detectada = aplicada en 200/200 y reconstrucción exacta de los 96 adhesivos. 50/50 posiciones sin reducir
+  rechazadas. `tests/unit/from-colors-444.test.ts`: 3 pruebas.
+
+## Square-1 (15-D): `src/core/fromColors/readSquare1.ts`
+- El modelo de cubing.js permite «/» aunque corte una esquina, así que su buscador general no sirve. Se usa el
+  modelo de la app (`square1.ts`: 24 cuñas + capa del medio) y un solucionador propio en tres etapas exactas:
+  A) forma de cubo **con paridad par** (BFS 0–1 sobre forma exacta + paridad: 38.610 nodos; giros gratis, «/» cuesta 1);
+  B) esquinas en su lugar y aristas en su capa (40.320 × 70 = 2.822.400 estados, todos alcanzables, ≤ 8 pasos);
+  C) aristas dentro de su capa + capa del medio (576 estados) con 103 efectos que no mueven esquinas.
+- Hecho comprobado: los movimientos que conservan la forma de cubo **nunca** cambian la paridad del orden de las
+  piezas; por eso la paridad se arregla en la etapa A (igual que el solucionador clásico sq12phase).
+  IDA* dentro de la forma de cubo con tablas 8! fue demasiado lento (poda máxima 7): descartado.
+- Entrada: piezas de cada capa en orden de posiciones (0–11 arriba, 12–23 abajo) y si el medio está alineado.
+  La primera pieza de cada capa debe empezar en el corte (el usuario gira la capa antes de anotar).
+  **Pendiente de la interfaz:** confirmar con la vista plana de cubing.js el sentido y el punto de partida de
+  cada capa en el puzzle físico (el núcleo usa el modelo de la app, que coincide con el reproductor).
+- Resultados (laboratorio, Node): 300 posiciones reales (145 con el medio volteado) resueltas; mediana 19 «/»,
+  máximo 26; < 6 ms por posición; tablas en 2,2 s la primera vez (se guardan en memoria).
+  `tests/unit/from-square1.test.ts`: 3 pruebas; compara cada solución con `square1State` de la app, que rechaza
+  cualquier «/» ilegal.
+
 ## Cómo volver a correrlo (desde la raíz del repo)
 ```
 node --experimental-strip-types content-drop/_simuladores/colores/reconstruccion.ts
 node --experimental-strip-types content-drop/_simuladores/colores/legalidad.ts
+node --experimental-strip-types content-drop/_simuladores/colores/clock.ts
+node --experimental-strip-types content-drop/_simuladores/colores/cuatro.ts
 node content-drop/_simuladores/colores/skewb-grupo.mjs   (≈40 s, 4 GB: --max-old-space-size=4096)
 ```

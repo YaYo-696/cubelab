@@ -1,4 +1,4 @@
-# CubeLab · Traspaso de contexto (24-11-2026, 22:30)
+# CubeLab · Traspaso de contexto (25-11-2026, 00:30)
 
 ## 1. Qué es
 PWA de speedcubing: timer, estadísticas, academia (lecciones y casos), solucionador, entrenador y modo competencia.
@@ -49,8 +49,15 @@ CONTEXTO DE TRABAJO: Claude y tú trabajan en paralelo sobre este repo, los dos 
   - 15-A (Claude, hecho): núcleo `src/core/fromColors/readColors.ts` para 333, 222, pyram, skewb. Convierte
     colores en una mezcla equivalente + rotación para sostenerlo. Verificación en `content-drop/colores/`.
   - 15-B (Codex): editor de colores en el Solucionador, mensajes, e2e.
-  - Después: 15-C Clock (esferas, no colores), 15-D Square-1 (forma + colores), 15-E 4x4 (cubing.js trae un
-    solucionador 4x4 interno, no exportado: evaluar), 15-F Megaminx (`solveMegaminx` existe). 5x5–7x7 al final.
+  - 15-C Clock: núcleo hecho por Claude (`readClock.ts`: 18 esferas → solución WCA). Falta la interfaz (Codex,
+    después de 15-B): editor de esferas y usar el mismo núcleo para "Desde mezcla" del Clock.
+  - 15-E 4x4: núcleo hecho por Claude (`readColors444.ts`): asistente de **etapa final** (el usuario reduce,
+    la app detecta paridad OLL/PLL, da el algoritmo y entrega el 3x3 al Solucionador). Un solucionador 4x4 completo
+    no es viable hoy (ver `content-drop/colores/VERIFICACION.md`). Falta la interfaz (Codex).
+  - 15-D Square-1: núcleo hecho por Claude (`readSquare1.ts`): piezas por capa + capa del medio → solución WCA con
+    solucionador propio de 3 etapas (verificado contra `square1State`). Falta la interfaz (Codex) y confirmar en el
+    puzzle físico el orden de las capas con la vista plana.
+  - Después: 15-F Megaminx (`solveMegaminx` existe). 5x5–7x7 al final.
     Escanear con cámara: después del lanzamiento.
 - Commits del 24-11: Pyraminx/Duo, videos, Skewb, Megaminx, 4x4–7x7, Square-1, Clock, OH/FMC/BLD/MBLD,
   CI estable, contenido Square-1, videos en español, **Fase 13 competencia**, contenido principiante 3x3/2x2. CI verde.
